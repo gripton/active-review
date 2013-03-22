@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ARR.Prototype.MVC.Models;
+using ARR.Prototype.MVC.Notifications;
 using Raven.Client;
 using Raven.Client.Embedded;
 
@@ -31,6 +32,9 @@ namespace ARR.Prototype.MVC.Controllers
             {
                 model = session.Load<RequirementModel>(string.Format("requirementmodels/{0}", id));
             }
+
+            var mailer = new NotificationSender();
+            mailer.Send();
 
             return View(model);
         }
