@@ -1,0 +1,59 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="869" measuredH="479" mockupW="851" mockupH="466">
+  <controls>
+    <control controlID="124" controlTypeID="com.balsamiq.mockups::TitleWindow" x="18" y="13" w="851" h="466" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Active%20Requirements%20Reader</text>
+      </controlProperties>
+    </control>
+    <control controlID="125" controlTypeID="com.balsamiq.mockups::Title" x="40" y="63" w="-1" h="-1" measuredW="420" measuredH="35" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>32</size>
+        <text>Active%20Requirements%20Reader</text>
+      </controlProperties>
+    </control>
+    <control controlID="126" controlTypeID="com.balsamiq.mockups::LinkBar" x="757" y="71" w="-1" h="-1" measuredW="86" measuredH="19" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>%2CARR_02_Login%26bm%3BARR_02_Login.bmml%26bm%3BARR_02_Login.bmml%26bm%3BARR_02_Login.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22784%2C60%2C825%2C73%22%20href%3D%22ARR_02_Login.bmml%22%20alt%3D%22ARR_02_Login%22%20id%3D%22126%22/%3E%0A</map>
+        <text>Help%2CSign%20in</text>
+      </controlProperties>
+    </control>
+    <control controlID="127" controlTypeID="com.balsamiq.mockups::FieldSet" x="130" y="159" w="602" h="206" measuredW="200" measuredH="170" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Create%20new%20account</text>
+      </controlProperties>
+    </control>
+    <control controlID="128" controlTypeID="com.balsamiq.mockups::TextInput" x="306" y="198" w="288" h="-1" measuredW="101" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>abce@xyz.edu</text>
+      </controlProperties>
+    </control>
+    <control controlID="129" controlTypeID="com.balsamiq.mockups::TextInput" x="306" y="241" w="288" h="-1" measuredW="75" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>**********</text>
+      </controlProperties>
+    </control>
+    <control controlID="131" controlTypeID="com.balsamiq.mockups::List" x="155" y="198" w="128" h="112" measuredW="100" measuredH="132" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Confirm%20user%20name%3A%0A%20%0APassword%3A%0A%20%0AConfirm%20Password%3A%0A%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="133" controlTypeID="com.balsamiq.mockups::Button" x="635" y="325" w="82" h="27" measuredW="81" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>ARR_05_Account%20_Information%26bm%3BARR_05_Account%20_Information.bmml%26bm%3BARR_05_Account%20_Information.bmml%26bm%3BARR_05_Account%20_Information.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22617%2C312%2C699%2C339%22%20href%3D%22ARR_05_Account%2520_Information.bmml%22%20alt%3D%22ARR_05_Account%20_Information%22%20id%3D%22133%22/%3E</map>
+        <text>Create%3E%3E</text>
+      </controlProperties>
+    </control>
+    <control controlID="155" controlTypeID="com.balsamiq.mockups::Label" x="306" y="167" w="-1" h="-1" measuredW="223" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Enter%20same%20user%20name%20and%20password</text>
+      </controlProperties>
+    </control>
+    <control controlID="156" controlTypeID="com.balsamiq.mockups::TextInput" x="306" y="283" w="288" h="-1" measuredW="75" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>**********</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
