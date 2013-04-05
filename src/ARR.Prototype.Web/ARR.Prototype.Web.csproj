@@ -128,7 +128,7 @@
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Screens\Editor.html" />
-    <Content Include="Screens\TinyMCE.html" />
+    <Content Include="Screens\Index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
