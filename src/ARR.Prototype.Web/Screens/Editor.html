@@ -26,8 +26,9 @@
    
     <script type="text/javascript">
         tinyMCE.init({
+            // General options
+            mode: "textareas",
             theme: "advanced",
-            mode: "none",
             plugins: "bbcode",
             theme_advanced_buttons1: "bold,italic,underline,undo,redo,link,unlink,image,forecolor,styleselect,removeformat,cleanup,code",
             theme_advanced_buttons2: "",
@@ -35,14 +36,23 @@
             theme_advanced_toolbar_location: "bottom",
             theme_advanced_toolbar_align: "center",
             theme_advanced_styles: "Code=codeStyle;Quote=quoteStyle",
-            content_css: "css/bbcode.css",
-            entity_encoding: "raw",
-            add_unload_trigger: false,
-            remove_linebreaks: false,
-            inline_styles: false,
-            convert_fonts_to_spans: false
+
+            // Skin options
+            skin: "o2k7",
+            skin_variant: "silver",
+
+            // Example content CSS (should be your site CSS)
+            content_css: "css/example.css",
+
+            // Drop lists for link/image/media/template dialogs
+            template_external_list_url: "js/template_list.js",
+            external_link_list_url: "js/link_list.js",
+            external_image_list_url: "js/image_list.js",
+            media_external_list_url: "js/media_list.js",
+
+          
         });
-       </script>
+</script>
 
     
 </head>
@@ -90,7 +100,7 @@
   </div><!-- /.navbar-inner -->
 </div><!-- /.navbar -->
 
-    <fieldset class="well" style="float:left; width: 40%; height: 400px; margin-left: 20px">
+    <fieldset class="well" style="float:left; width: 40%; height: 600px; margin-left: 20px">
         <legend class="the-legend">Requirements</legend>
         <table class="table-condensed">
             <tbody>
@@ -109,11 +119,13 @@
             </tbody>
         </table>  
         <textarea name="content" id="content" style="width:100%"></textarea>
+        <br />
+        <input type="button" class="btn-medium btn-primary" value="Add Requirement" />
 
 
               
     </fieldset>
-      <fieldset class="well" style="float:left;  width: 40%; height: 400px; margin-left: 20px">
+      <fieldset class="well" style="float:left;  width: 40%; height: 600px; margin-left: 20px">
         <legend class="the-legend">Questionnaire</legend>
            <table class="table-condensed">
             <tbody>                
