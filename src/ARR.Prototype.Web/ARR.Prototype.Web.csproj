@@ -61,6 +61,7 @@
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -127,9 +128,13 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Screens\Account.html" />
     <Content Include="Screens\Editor.html" />
+    <Content Include="Screens\Forum.html" />
     <Content Include="Screens\Home.html" />
     <Content Include="Screens\Login.html" />
+    <Content Include="Screens\Profile.html" />
+    <Content Include="Screens\Questionnaire.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
