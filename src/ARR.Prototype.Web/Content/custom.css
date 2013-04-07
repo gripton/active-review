@@ -1,0 +1,17 @@
+﻿body {
+    padding-top: 60px; /* When using the navbar-top-fixed */
+}
+
+.the-legend {
+    border-style: none;
+    border-width: 0;
+    font-size: 12px;
+    font-weight: bolder;
+    line-height: 20px;
+    margin-bottom: 0;
+}
+
+.single-fieldset-small {
+    margin-left: 40px;
+    margin-right: 40px;
+}
