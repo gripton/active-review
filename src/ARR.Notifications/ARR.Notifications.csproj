@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INotificationGenerator.cs" />
+    <Compile Include="INotificationSender.cs" />
+    <Compile Include="NotificationGenerator.cs" />
+    <Compile Include="NotificationSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
