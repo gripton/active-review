@@ -22,6 +22,8 @@ namespace ARR.Prototype.API
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            CorsConfig.RegisterCors(GlobalConfiguration.Configuration);
         }
     }
 }

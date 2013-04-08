@@ -1,4 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace ARR.API.Controllers
@@ -18,8 +22,9 @@ namespace ARR.API.Controllers
         }
 
         // POST api/reviewsession
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post(dynamic data)
         {
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         // PUT api/reviewsession/5
