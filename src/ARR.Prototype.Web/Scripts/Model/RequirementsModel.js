@@ -76,6 +76,17 @@ var ViewModel = function () {
     self.addQuestion = function () {
         self.questionList.push(new Question(self.newQuestion()));
     }
+
+    self.save = function () {
+        $.post("http://localhost:55519/api/reviewsession", {
+            data: ko.toJSON({ session: self }),
+            dataType: "json",
+            type: "post",
+            contentType: "application/json",
+            success: function (result) { alert(result) }
+        });
+    };
+
 };
 
 var requirementsModel = new ViewModel();
