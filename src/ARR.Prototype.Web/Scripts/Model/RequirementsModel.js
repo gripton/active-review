@@ -12,6 +12,33 @@
         requirementsModel.setEditRequirement(data);
     }
 }
+function SpawnReview(reviewModel) {
+    var self = this;
+    self.name = ko.observable(reviewModel.name + " clone");
+    self.requirementsList = ko.observableArray();
+    self.questionList = ko.observableArray();
+
+    for (var i = 0; i < reviewModel.requirementsList().length; i++) {
+        self.requirementsList.push(new SpawnRequirement(reviewModel.requirementsList()[i]));
+    }
+
+    for (var i = 0; i < reviewModel.questionList().length; i++) {
+        self.questionList.push(new SpawnQuestion(reviewModel.questionList()[i]));
+    }
+}
+
+function SpawnRequirement(requirement) {
+    var self = this;
+    self.Requirement = requirement;
+    self.Copy = ko.observable(true);
+}
+
+function SpawnQuestion(question) {
+    var self = this;
+    self.Question = question;
+    self.Copy = ko.observable(true);
+}
+
 
 function Question(questionText) {
     var self = this;
@@ -87,6 +114,11 @@ var ViewModel = function () {
         });
     };
 
+    self.spawnInstance = ko.observable(null);
+
+    self.spawn = function () {
+        self.spawnInstance(new SpawnReview(requirementsModel));
+    };
 };
 
 var requirementsModel = new ViewModel();

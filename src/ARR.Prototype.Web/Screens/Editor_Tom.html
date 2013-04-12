@@ -49,7 +49,7 @@
               <hr />
               <li><a href="#">Release</a></li>
               <li><a href="#">Assign Reviewer</a></li>
-              <li><a href="#">Spawn</a></li>
+              <li><a href="#spawnDialog" data-toggle="modal" data-bind="click: spawn">Spawn</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -131,6 +131,50 @@
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click:saveEditedRequirement">Save changes</button>
+      </div>
+    </div>
+
+    <!-- Edit Requirement Modal -->
+    <div id="spawnDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true" data-bind="with: spawnInstance">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="H2">Spawn Review<span></span></h3>
+      </div>
+      <div class="modal-body">
+        <div class="control-group">
+          <label class="control-label" for="spawnName">Name:</label>
+          <div class="controls">
+            <input id="spawnName" type="text" data-bind="value: name"/>
+          </div>
+       </div>
+          <ul class="unstyled">
+            <li><h5>Requirements</h5></li>
+            <li>
+              <ul class="unstyled" data-bind="foreach: requirementsList">
+                <li>
+                  <label class="checkbox">
+                    <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />asdf
+                    <span data-bind="text: Requirement.name"></span>
+                  </label>
+                </li>
+              </ul>
+            </li>
+            <li><h5>Questions</h5></li>
+            <li>
+              <ul class="unstyled" data-bind="foreach: questionList">
+                <li>
+                  <label class="checkbox">
+                    <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />asdf
+                    <span data-bind="text: Question.questionText"></span>
+                  </label>
+                </li>
+              </ul>
+            </li>
+          </ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" >Hatch</button>
       </div>
     </div>
 
