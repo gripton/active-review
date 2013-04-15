@@ -1,57 +1,63 @@
-﻿var initialData = [
-    { name: "Session Title 1" },
-    { name: "Session Title 2" },
-    { name: "Session Title 3" },
-    { name: "aSession Title 4" },
-    { name: "Session Title 5" }
-];
-
-var PagedGridModel = function (items) {
+﻿function Session(name, reviewer) {
     var self = this;
+    self.name = ko.observable(name);
 
-    self.items = ko.observableArray(items);
+    //self.Reviewer = ko.observable(reviewer);
 
-    self.sortByName = function () {
-        self.items.sort(function (a, b) {
-            return a.name > b.name ? -1 : 1;
-        });
-    };
+    //self.selectItem = function (data) {
+    //    homeModel.setReviewer(data);
+    //}
+}
 
-    self.jumpToFirstPage = function () {
-        self.gridViewModel.currentPageIndex(0);
-    };
+//View Model
+function ViewModel() {
+    var self = this;
+    //self.selectedItem = null;
+    
+    //My created sessions List
+    self.myCreatedSessionsList = ko.observableArray([
+        new Session("Session Title 1"),
+        new Session("Session Title 2"),
+        new Session("Session Title 3")
+    ]);
 
-    self.createNewSession = function () {
-        return;
+    //My created sessions List
+    self.myActiveSessionsListReviewer = ko.observableArray([
+        new Session("Session Title 1"),
+        new Session("Session Title 2")
+    ]);
+
+    //My created sessions List
+    self.myActiveSessionsListCreator = ko.observableArray([
+        new Session("Session Title 1"),
+        new Session("Session Title 2")
+    ]);
+
+    //My created sessions List
+    self.myArchivedSessionsList = ko.observableArray([
+        new Session("Session Title 1")
+    ]);
+
+    //Remove Session
+    self.removeSession = function(session) 
+    {
+        self.myCreatedSessionsList.remove(session);
     }
 
-    editSession = function () {
-        return;
-    };
+    // Add Reviewer
+    //self.currentReviewer = ko.observable("");
 
-    previewSession = function () {
-        return;
-    };
+    //self.setReviewer = function (selectedSession) {
+    //    self.selectedItem = selectedSession;
+    //    self.currentReviewer(self.selectedItem.Reviewer());
+    //}
 
-    assignReviewer = function () {
-        return;
-    };
+    //self.saveReviewer = function () {
+    //    self.selectedItem.Reviewer(self.currentReviewer());
+    //    self.selectedItem = null;
+    //}
 
-    spawnSession = function () {
-        return;
-    };
+}
 
-    self.deleteSession = function (item) {
-        self.items.remove(item);
-    };
-
-    self.gridViewModel = new ko.simpleGrid.viewModel({
-        data: self.items,
-        columns: [
-            { headerText: "Session Title", rowText: "name" }
-        ],
-        pageSize: 4
-    });
-};
-
-ko.applyBindings(new PagedGridModel(initialData));
+//var homeModel = new ViewModel();
+ko.applyBindings(new ViewModel());
