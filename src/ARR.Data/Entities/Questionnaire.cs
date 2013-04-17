@@ -13,5 +13,11 @@ namespace ARR.Data.Entities
     {
         public string Content { get; set; }
         public List<Feedback> Feedback { get; set; }
+        public List<Answer> Answers { get; set; }
+    }
+
+    public class Answer
+    {
+        public string Text { get; set; }
     }
 }

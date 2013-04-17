@@ -16,10 +16,7 @@ namespace ARR.Prototype.API
             WebApiCorsConfiguration corsConfig = new WebApiCorsConfiguration();
             corsConfig.RegisterGlobal(httpConfig);
 
-            corsConfig
-                .ForResources("ReviewSession")
-                .ForOrigins("http://http://localhost:51907")
-                .AllowAll();
+            corsConfig.AllowAll();
 
         }
 

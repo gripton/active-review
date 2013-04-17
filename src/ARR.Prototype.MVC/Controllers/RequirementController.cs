@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+
+using ARR.Data;
 using ARR.Prototype.MVC.Models;
 using ARR.Prototype.MVC.Notifications;
 using Raven.Client;
@@ -51,7 +53,7 @@ namespace ARR.Prototype.MVC.Controllers
         // POST: /Requirement/Create
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Create(RequirementModel requirement)
+        public ActionResult Create(ARR.Data.Entities.ReviewSession reviewSession)
         {
             try
             {
@@ -62,7 +64,7 @@ namespace ARR.Prototype.MVC.Controllers
                     // Operations against session
 
                     // Flush those changes
-                    session.Store(requirement);
+                    session.Store(reviewSession);
                     session.SaveChanges();
                 }
 

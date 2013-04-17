@@ -47,6 +47,8 @@ namespace ARR.Prototype.MVC
         }
     }
 
+
+
     public class ChangeObserver : IObserver<DocumentChangeNotification>
     {
         public void OnCompleted()

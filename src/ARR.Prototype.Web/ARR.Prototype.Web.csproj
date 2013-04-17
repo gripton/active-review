@@ -137,6 +137,7 @@
     <Content Include="Screens\Login.html" />
     <Content Include="Screens\Profile.html" />
     <Content Include="Screens\Questionnaire.html" />
+    <Content Include="Screens\TestForm.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Commands\RequirementsCommands.js" />
@@ -148,6 +149,7 @@
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\Model\HomeModel.js" />
     <Content Include="Scripts\Model\RequirementsModel.js" />
+    <Content Include="Scripts\Model\ProfileModel.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
     <Content Include="Scripts\tinymce\langs\en.js" />
     <Content Include="Scripts\tinymce\license.txt" />
