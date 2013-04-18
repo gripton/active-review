@@ -129,6 +129,7 @@
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Screens\Account.html" />
+    <Content Include="Screens\Forum_Tom.html" />
     <Content Include="Screens\Home_cer.html" />
     <Content Include="Screens\Editor.html" />
     <Content Include="Screens\Forum.html" />
@@ -137,17 +138,19 @@
     <Content Include="Screens\Login.html" />
     <Content Include="Screens\Profile.html" />
     <Content Include="Screens\Questionnaire.html" />
-    <Content Include="Screens\TestForm.html" />
+    <Content Include="Screens\Questionnaire_Tom.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Commands\RequirementsCommands.js" />
+    <Content Include="Scripts\Commands\TinyMCECommands.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\Model\ForumModel.js" />
     <Content Include="Scripts\Model\HomeModel.js" />
+    <Content Include="Scripts\Model\QuestionnaireModel.js" />
     <Content Include="Scripts\Model\RequirementsModel.js" />
     <Content Include="Scripts\Model\ProfileModel.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
@@ -408,6 +411,7 @@
     <Content Include="Scripts\tinymce\utils\form_utils.js" />
     <Content Include="Scripts\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\tinymce\utils\validate.js" />
+    <Content Include="Scripts\ViewModel\ReviewEditorViewModel.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>

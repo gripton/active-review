@@ -49,7 +49,7 @@
               <hr />
               <li><a href="#">Release</a></li>
               <li><a href="#">Assign Reviewer</a></li>
-              <li><a href="#spawnDialog" data-toggle="modal" data-bind="click: spawn">Spawn</a></li>
+              <li><a href="#spawnDialog" data-toggle="modal" data-bind="click: spawnReviewViewModel.spawn">Spawn</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -71,14 +71,14 @@
 
     <fieldset class="well span6" style="min-width:500px;">
       <legend class="the-legend">Requirements</legend>
-        <div class="row" data-bind="foreach: requirementsList">
+        <div class="row" data-bind="foreach: reviewSession.requirementsList">
           <div class="span6">
             <div class="row">
               <div class="span4"><a href="#" data-bind="text: name"></a></div>
               <div class="span2">
-                <a href="#editDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click:selectRequirement">edit</a>
+                <a href="#editDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editRequirementViewModel.setEditRequirement">edit</a>
                 &nbsp
-                <a href="#commentDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click:selectItem" >Comment</a>
+                <a href="#commentDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editCommentViewModel.setComment" >Comment</a>
               </div>
             </div>
             <div class="row">
@@ -87,19 +87,19 @@
           </div>
         </div>
 
-        <textarea style="width:100%" class="tinymce" data-bind="tinymce: newRequirement"></textarea>
+        <textarea style="width:100%" class="tinymce" data-bind="tinymce: newRequirementViewModel.newRequirement"></textarea>
         <br />
-        <button class="btn-medium btn-primary" data-bind="click: addRequirement">Add Requirement</button>
-              
+        <button class="btn-medium btn-primary" data-bind="click: newRequirementViewModel.addRequirement">Add Requirement</button>
     </fieldset>
+
     <fieldset class="well span5" style="min-width:400px;">
       <legend class="the-legend">Questionnaire</legend>
-        <div class="row span5" data-bind="foreach: questionList">
+        <div class="row span5" data-bind="foreach: reviewSession.questionList">
             <p><i class="icon-hand-right"></i>&nbsp; <span data-bind="text: questionText"></span></p>
         </div>
-        <textarea style="width:100%" class="tinymce" data-bind="tinymce: newQuestion"></textarea>
+        <textarea style="width:100%" class="tinymce" data-bind="tinymce: newQuestionViewModel.newQuestion"></textarea>
         <br />
-        <button class="btn-medium btn-primary" data-bind="click: addQuestion">Add Question</button>
+        <button class="btn-medium btn-primary" data-bind="click: newQuestionViewModel.addQuestion">Add Question</button>
     </fieldset>
 
     <!-- Comment Modal -->
@@ -110,11 +110,11 @@
         <h3 id="commentModalLabel" data-bind="text: name"></h3>
       </div>
       <div class="modal-body">
-        <textarea id="commentText" data-bind="value: currentComment"></textarea>
+        <textarea id="commentText" data-bind="value: editCommentViewModel.currentComment"></textarea>
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click:saveComment">Save changes</button>
+        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editCommentViewModel.saveComment">Save changes</button>
       </div>
     </div>
 
@@ -125,17 +125,17 @@
         <h3 id="H1">Edit Requirement <span></span></h3>
       </div>
       <div class="modal-body">
-        <input type="text" data-bind="value: currentRequirementName"/>
-        <textarea style="width:100%" class="tinymce" data-bind="tinymce: currentRequirement"></textarea>
+        <input type="text" data-bind="value: editRequirementViewModel.currentRequirementName"/>
+        <textarea style="width:100%" class="tinymce" data-bind="tinymce: editRequirementViewModel.currentRequirement"></textarea>
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click:saveEditedRequirement">Save changes</button>
+        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editRequirementViewModel.saveEditedRequirement">Save changes</button>
       </div>
     </div>
 
     <!-- Edit Requirement Modal -->
-    <div id="spawnDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true" data-bind="with: spawnInstance">
+    <div id="spawnDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true" data-bind="with: spawnReviewViewModel.spawnInstance">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="H2">Spawn Review<span></span></h3>
@@ -184,7 +184,9 @@
     <script src="../Scripts/bootstrap.js"></script>
     <script src="../Scripts/tinymce/plugins/bbcode/editor_plugin.js"></script>
     <script src="../Scripts/tinymce/plugins/bbcode/editor_plugin_src.js"></script>
-    <script type="text/javascript" src="../Scripts/Commands/RequirementsCommands.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/TinyMCECommands.js"></script>
     <script type="text/javascript" src="../Scripts/Model/RequirementsModel.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/ReviewEditorViewModel.js"></script>
+
   </body>
 </html>
