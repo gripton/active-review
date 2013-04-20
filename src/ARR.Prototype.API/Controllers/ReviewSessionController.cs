@@ -4,11 +4,21 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
+using ARR.Data.Entities;
+using ARR.Prototype.API.Controllers;
 
 namespace ARR.API.Controllers
 {
+
     public class ReviewSessionController : ApiController
     {
+        private readonly IReviewSessionManager _manager;
+
+        public ReviewSessionController(IReviewSessionManager manager)
+        {
+            _manager = manager;
+        }
+
         // GET api/reviewsession
         public IEnumerable<string> Get()
         {
@@ -22,8 +32,9 @@ namespace ARR.API.Controllers
         }
 
         // POST api/reviewsession
-        public HttpResponseMessage Post(dynamic data)
+        public HttpResponseMessage Post(ReviewSession data)
         {
+            _manager.Save(data);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
