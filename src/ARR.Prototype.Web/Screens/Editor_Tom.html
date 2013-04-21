@@ -71,10 +71,10 @@
 
     <fieldset class="well span6" style="min-width:500px;">
       <legend class="the-legend">Requirements</legend>
-        <div class="row" data-bind="foreach: reviewSession.requirementsList">
+        <div class="row" data-bind="foreach: reviewSession.requirements">
           <div class="span6">
             <div class="row">
-              <div class="span4"><a href="#" data-bind="text: name"></a></div>
+              <div class="span4"><a href="#" ></a></div>
               <div class="span2">
                 <a href="#editDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editRequirementViewModel.setEditRequirement">edit</a>
                 &nbsp
@@ -82,7 +82,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="span5" data-bind="html: requirementText"></div>
+              <div class="span5" data-bind="html: content"></div>
             </div>
           </div>
         </div>
@@ -94,8 +94,8 @@
 
     <fieldset class="well span5" style="min-width:400px;">
       <legend class="the-legend">Questionnaire</legend>
-        <div class="row span5" data-bind="foreach: reviewSession.questionList">
-            <p><i class="icon-hand-right"></i>&nbsp; <span data-bind="text: questionText"></span></p>
+        <div class="row span5" data-bind="foreach: reviewSession.questions">
+            <p><i class="icon-hand-right"></i>&nbsp; <span data-bind="text: content"></span></p>
         </div>
         <textarea style="width:100%" class="tinymce" data-bind="tinymce: newQuestionViewModel.newQuestion"></textarea>
         <br />
@@ -150,7 +150,7 @@
           <ul class="unstyled">
             <li><h5>Requirements</h5></li>
             <li>
-              <ul class="unstyled" data-bind="foreach: requirementsList">
+              <ul class="unstyled" data-bind="foreach: requirements">
                 <li>
                   <label class="checkbox">
                     <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />asdf
@@ -161,7 +161,7 @@
             </li>
             <li><h5>Questions</h5></li>
             <li>
-              <ul class="unstyled" data-bind="foreach: questionList">
+              <ul class="unstyled" data-bind="foreach: questions">
                 <li>
                   <label class="checkbox">
                     <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />asdf

@@ -17,6 +17,18 @@ namespace ARR.Tests.Prototype
     public class ControllerTests
     {
         [Test]
+        public void Get_Succeeds()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterModule(new TestModule());
+
+            var container = builder.Build();
+
+            var manager = container.Resolve<IReviewSessionManager>();
+            var sessions = manager.ListCreated();
+        }
+
+        [Test]
         public void Post_Succeeds()
         {
             var builder = new ContainerBuilder();
@@ -25,6 +37,7 @@ namespace ARR.Tests.Prototype
             var container = builder.Build();
 
             var session = new ReviewSession();
+            session.Name = "Session 1";
 
             var requirements1 = new Requirement();
             requirements1.Content = "This is requirement 1";
@@ -43,10 +56,10 @@ namespace ARR.Tests.Prototype
             var question1 = new Question { Content = "This is question 1" };
             var question2 = new Question { Content = "This is question 2" };
 
-            session.Questionnaire = new Questionnaire { Questions = new List<Question> { question1, question2 } };
+            session.Questions = new List<Question> { question1, question2 };
 
             var manager = container.Resolve<IReviewSessionManager>();
-            manager.Save(session);
+            manager.Process(session);
         }
 
     }

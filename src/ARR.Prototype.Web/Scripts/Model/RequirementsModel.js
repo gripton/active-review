@@ -1,21 +1,21 @@
 ﻿// Base Requirement Class Holds the necessary data for an individual Requirement
 function Requirement(name, requirementText) {
     var self = this;
-    self.name = ko.observable(name);
-    self.requirementText = ko.observable(requirementText);
-    self.Comment = ko.observable("No Comment");
+//    self.name = ko.observable(name);
+    self.content = ko.observable(requirementText);
+    //self.Comment = ko.observable("No Comment");
 }
 
 function Question(questionText) {
     var self = this;
-    self.questionText = questionText;
+    self.content = questionText;
 }
 
 function ReviewSession(name) {
     var self = this;
-    self.Name = name;
-    self.requirementsList = ko.observableArray([]);
-    self.questionList = ko.observableArray([]);
+//    self.Name = name;
+    self.requirements = ko.observableArray([]);
+    self.questions = ko.observableArray([]);
 }
 
 function SpawnRequirement(requirement) {
@@ -33,14 +33,14 @@ function SpawnQuestion(question) {
 function SpawnReview(reviewModel) {
     var self = this;
     self.name = ko.observable("");
-    self.requirementsList = ko.observableArray();
-    self.questionList = ko.observableArray();
+    self.requirements = ko.observableArray();
+    self.questions = ko.observableArray();
 
     self.addRequirement = function (requirement) {
-        self.requirementsList.push(new SpawnRequirement(requirement));
+        self.requirements.push(new SpawnRequirement(requirement));
     }
 
     self.addQuestion = function (question) {
-        self.questionList.push(new SpawnQuestion(question));
+        self.questions.push(new SpawnQuestion(question));
     }
 }

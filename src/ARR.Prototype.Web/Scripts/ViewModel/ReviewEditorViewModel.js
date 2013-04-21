@@ -1,12 +1,12 @@
 ﻿function getReviewSession() {
     var reviewSession = new ReviewSession("Demo Review Session");
 
-    reviewSession.requirementsList.push(new Requirement("Requirement One", "<p>Here is a requirement</p><ul><li>Acceptance One</li></ul>"));
-    reviewSession.requirementsList.push(new Requirement("Requirement Two", "<p>Here is another requirement</p><ul><li>Acceptance One</li></ul>"));
+    reviewSession.requirements.push(new Requirement("Requirement One", "<p>Here is a requirement</p><ul><li>Acceptance One</li></ul>"));
+    reviewSession.requirements.push(new Requirement("Requirement Two", "<p>Here is another requirement</p><ul><li>Acceptance One</li></ul>"));
 
-    reviewSession.questionList.push(new Question("This is Question #1"));
-    reviewSession.questionList.push(new Question("This is Question #2"));
-    reviewSession.questionList.push(new Question("This is Question #3"));
+    reviewSession.questions.push(new Question("This is Question #1"));
+    reviewSession.questions.push(new Question("This is Question #2"));
+    reviewSession.questions.push(new Question("This is Question #3"));
 
     return reviewSession;
 }
@@ -24,14 +24,17 @@ var ReviewEditorViewModel = function () {
     self.spawnReviewViewModel = new SpawnReviewViewModel(self.reviewSession);
 
     self.save = function () {
-        $.post("http://localhost:55519/api/reviewsession", {
-            data: ko.toJSON({ session: self }),
-            dataType: "json",
-            type: "post",
-            contentType: "application/json",
-            success: function (result) { alert(result) }
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:55519/api/reviewsession",
+            data: ko.toJSON(self.reviewSession),
+            contentType: 'application/json',
+            dataType: 'JSON',
+            success: function (data) { }
         });
-    };
+    }
+
+
 };
 
 // Class that handles the bindings for the new Requirement Interaction
@@ -41,7 +44,7 @@ function NewRequirementViewModel(reviewSession) {
     self.newRequirement = ko.observable("")
 
     self.addRequirement = function () {
-        self.reviewSession.requirementsList.push(new Requirement("Added Requirement", self.newRequirement()));
+        self.reviewSession.requirements.push(new Requirement("Added Requirement", self.newRequirement()));
     }
 }
 
@@ -94,7 +97,7 @@ function NewQuestionViewModel(reviewSession) {
 
     self.newQuestion = ko.observable("");
     self.addQuestion = function () {
-        self.reviewSession.questionList.push(new Question(self.newQuestion()));
+        self.reviewSession.questions.push(new Question(self.newQuestion()));
     }
 }
 
@@ -112,12 +115,12 @@ function SpawnReviewViewModel(reviewSession) {
 
         spawnedReview.name(reviewSession.name + " clone");
 
-        for (var i = 0; i < reviewSession.requirementsList().length; i++) {
-            spawnedReview.addRequirement(reviewSession.requirementsList()[i]);
+        for (var i = 0; i < reviewSession.requirements().length; i++) {
+            spawnedReview.addRequirement(reviewSession.requirements()[i]);
         }
 
-        for (var i = 0; i < reviewSession.questionList().length; i++) {
-            spawnedReview.addQuestion(reviewSession.questionList()[i]);
+        for (var i = 0; i < reviewSession.questions().length; i++) {
+            spawnedReview.addQuestion(reviewSession.questions()[i]);
         }
 
         self.spawnInstance(spawnedReview);

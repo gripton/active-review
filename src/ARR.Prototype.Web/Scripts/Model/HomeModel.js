@@ -1,6 +1,6 @@
-﻿function Session(name, reviewer) {
+﻿function Session(data) {
     var self = this;
-    self.name = ko.observable(name);
+    self.name = ko.observable(data.Name);
 
     //self.Reviewer = ko.observable(reviewer);
 
@@ -15,11 +15,18 @@ function ViewModel() {
     //self.selectedItem = null;
     
     //My created sessions List
-    self.myCreatedSessionsList = ko.observableArray([
-        new Session("Session Title 1"),
-        new Session("Session Title 2"),
-        new Session("Session Title 3")
-    ]);
+    //self.myCreatedSessionsList = ko.observableArray([
+    //    new Session("Session Title 1"),
+    //    new Session("Session Title 2"),
+    //    new Session("Session Title 3")
+    //]);
+
+    self.myCreatedSessionsList = ko.observableArray([]);
+
+    $.getJSON("http://localhost:55519/api/reviewsession", function (allData) {
+        var mappedSessions = $.map(allData, function (item) { return new Session(item) });
+        self.myCreatedSessionsList(mappedSessions);
+    });
 
     //My created sessions List
     self.myActiveSessionsListReviewer = ko.observableArray([

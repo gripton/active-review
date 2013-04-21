@@ -20,9 +20,9 @@ namespace ARR.API.Controllers
         }
 
         // GET api/reviewsession
-        public IEnumerable<string> Get()
+        public IEnumerable<ReviewSession> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _manager.ListCreated();
         }
 
         // GET api/reviewsession/5
@@ -34,7 +34,7 @@ namespace ARR.API.Controllers
         // POST api/reviewsession
         public HttpResponseMessage Post(ReviewSession data)
         {
-            _manager.Save(data);
+            _manager.Process(data);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 

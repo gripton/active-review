@@ -9,7 +9,8 @@ namespace ARR.Prototype.API.Controllers
 {
     public interface IReviewSessionManager
     {
-        void Save(ReviewSession session);
+        void Process(ReviewSession session);
+        List<ReviewSession> ListCreated();
     }
 
     public class ReviewSessionManager : IReviewSessionManager
@@ -28,7 +29,12 @@ namespace ARR.Prototype.API.Controllers
             _repository = repository;
         }
 
-        public void Save(ReviewSession session)
+        public List<ReviewSession> ListCreated()
+        {
+            return _repository.Get();
+        }
+
+        public void Process(ReviewSession session)
         {
             _repository.SaveReviewSession(session);
 
