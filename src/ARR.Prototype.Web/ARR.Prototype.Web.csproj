@@ -141,6 +141,7 @@
     <Content Include="Screens\Questionnaire_Tom.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Commands\ResizeCommands.js" />
     <Content Include="Scripts\Commands\TinyMCECommands.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

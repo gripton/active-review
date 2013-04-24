@@ -1,4 +1,13 @@
-﻿body {
+﻿.fixed_page_top
+{
+    min-height:300px;
+    overflow-y:scroll;
+    margin-bottom:10px;
+}
+
+.fixed_page_bottom {
+    min-height:250px;
+}body {
     padding-top: 60px; /* When using the navbar-top-fixed */
 }
 
