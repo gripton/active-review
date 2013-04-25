@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 
 namespace ARR.Data.Entities
@@ -16,14 +16,12 @@ namespace ARR.Data.Entities
         public string Creator { get; set; }
         public string Reviewer { get; set; }
         public string Title { get; set; }
-        public string Creator { get; set; }
-        public string Reviewer { get; set; }
-
+       
         public DateTime LastModified { get; set; }
 
         public List<Question> Questions { get; set; }
         public List<Requirement> Requirements { get; set; }
-        
+
         public SessionStatusType SessionStatus { get; set; }
     }
 }
