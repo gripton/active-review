@@ -1,9 +1,9 @@
 ﻿// Base Requirement Class Holds the necessary data for an individual Requirement
 function Requirement(name, requirementText) {
     var self = this;
-//    self.name = ko.observable(name);
+    self.name = ko.observable(name);
     self.content = ko.observable(requirementText);
-    //self.Comment = ko.observable("No Comment");
+    self.Comment = ko.observable("No Comment");
 }
 
 function Question(questionText) {

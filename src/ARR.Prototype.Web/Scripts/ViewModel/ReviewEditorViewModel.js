@@ -45,6 +45,8 @@ function NewRequirementViewModel(reviewSession) {
 
     self.addRequirement = function () {
         self.reviewSession.requirements.push(new Requirement("Added Requirement", self.newRequirement()));
+        setScrollDisplay("Left");
+        setScrollableToBottom("Left")
     }
 }
 
@@ -80,13 +82,16 @@ function EditRequirementViewModel(reviewSession) {
     self.setEditRequirement = function (selectedRequirement) {
         self.selectedRequirement = selectedRequirement;
         self.currentRequirementName(self.selectedRequirement.name());
-        self.currentRequirement(self.selectedRequirement.requirementText());
+        self.currentRequirement(self.selectedRequirement.content());
     }
 
     self.saveEditedRequirement = function () {
         self.selectedRequirement.name(self.currentRequirementName());
-        self.selectedRequirement.requirementText(self.currentRequirement());
+        self.selectedRequirement.content(self.currentRequirement());
         self.selectedRequirement = null;
+
+        setScrollDisplay("Left");
+        setScrollableToBottom("Left")
     }
 }
 
@@ -98,6 +103,8 @@ function NewQuestionViewModel(reviewSession) {
     self.newQuestion = ko.observable("");
     self.addQuestion = function () {
         self.reviewSession.questions.push(new Question(self.newQuestion()));
+        setScrollDisplay("Right")
+        setScrollableToBottom("Right")
     }
 }
 
