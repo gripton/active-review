@@ -30,11 +30,17 @@ var ReviewEditorViewModel = function () {
             data: ko.toJSON(self.reviewSession),
             contentType: 'application/json',
             dataType: 'JSON',
-            success: function (data) { }
+            success: function (data) {  }
         });
+        // We'll want to reset the dirty flag on successful save. TODO: Figure out how to incorporate this into the success of the ajax call?
+        self.dirtyFlag.reset();
     }
 
+    self.dirtyFlag = new ko.dirtyFlag(self.reviewSession);
 
+    self.isDirty = ko.computed(function () {
+        return self.dirtyFlag.isDirty();
+    }, self.reviewSession);
 };
 
 // Class that handles the bindings for the new Requirement Interaction
@@ -45,6 +51,8 @@ function NewRequirementViewModel(reviewSession) {
 
     self.addRequirement = function () {
         self.reviewSession.requirements.push(new Requirement("Added Requirement", self.newRequirement()));
+
+        //Need to recalculate the view in order to adjust the scrolling
         setScrollDisplay("Left");
         setScrollableToBottom("Left")
     }
@@ -90,6 +98,7 @@ function EditRequirementViewModel(reviewSession) {
         self.selectedRequirement.content(self.currentRequirement());
         self.selectedRequirement = null;
 
+        //Need to recalculate the view in order to adjust the scrolling
         setScrollDisplay("Left");
         setScrollableToBottom("Left")
     }
@@ -103,6 +112,8 @@ function NewQuestionViewModel(reviewSession) {
     self.newQuestion = ko.observable("");
     self.addQuestion = function () {
         self.reviewSession.questions.push(new Question(self.newQuestion()));
+
+        //Need to recalculate the view in order to adjust the scrolling
         setScrollDisplay("Right")
         setScrollableToBottom("Right")
     }
@@ -134,5 +145,14 @@ function SpawnReviewViewModel(reviewSession) {
     };
 }
 
+//Instantiate the requirements model that we will be using throughout the page life
 var requirementsModel = new ReviewEditorViewModel();
 ko.applyBindings(requirementsModel); // This makes Knockout get to work
+
+//We wanted to do some special processing on the ReviewEditor View Model because we're treating the 
+//state as not being immediately persisted until the user requests that we persist it.
+$(window).bind('beforeunload', function () {
+    if (requirementsModel.isDirty()) {
+        return "You may have unsaved changes.";
+    }
+});
