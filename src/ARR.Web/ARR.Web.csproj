@@ -38,6 +38,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.0.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\..\packages\Autofac.3.0.2\lib\net40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Web">
+      <HintPath>..\..\packages\Autofac.Web.3.0.0\lib\net40\Autofac.Integration.Web.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\..\packages\AutoMapper.3.0.0-ci1035\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
@@ -432,9 +441,23 @@
     <Content Include="Scripts\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\tinymce\utils\validate.js" />
     <Content Include="Scripts\ViewModel\ReviewEditorViewModel.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastrcture\IWebApplicationServices.cs" />
+    <Compile Include="Infrastrcture\WebApplicationModule.cs" />
+    <Compile Include="Infrastrcture\WebApplicationServices.cs" />
+    <Compile Include="Infrastrcture\WebSecurity\AccountMappingProfile.cs" />
+    <Compile Include="Infrastrcture\WebSecurity\IUserManagementService.cs" />
+    <Compile Include="Infrastrcture\WebSecurity\JsonRequestHandler.cs" />
+    <Compile Include="Infrastrcture\WebSecurity\LoginHandler.cs" />
+    <Compile Include="Infrastrcture\WebSecurity\LoginManager.cs" />
+    <Compile Include="Infrastrcture\WebSecurity\PasswordPolicySettings.cs" />
+    <Compile Include="Infrastrcture\WebSecurity\UserManagementService.cs" />
+    <Compile Include="Infrastrcture\WebSecurity\WebSecurityDataProvider.cs" />
+    <Compile Include="Infrastrcture\WebSecurity\WebSecurityModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -445,6 +468,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ARR.Data\ARR.Data.csproj">
+      <Project>{3b221ee1-e418-4da6-b863-41ae9f5f13c9}</Project>
+      <Name>ARR.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
