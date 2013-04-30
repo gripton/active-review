@@ -82,6 +82,7 @@
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -148,14 +149,30 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Screens\Account.html" />
+    <Content Include="Screens\Editor.html" />
+    <Content Include="Screens\Forum.html" />
+    <Content Include="Screens\Home.html" />
+    <Content Include="Screens\Login.html" />
+    <Content Include="Screens\Profile.html" />
+    <Content Include="Screens\Questionnaire.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Commands\DirtyModelCommands.js" />
+    <Content Include="Scripts\Commands\ResizeCommands.js" />
+    <Content Include="Scripts\Commands\TinyMCECommands.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
+    <Content Include="Scripts\Model\AccountModel.js" />
+    <Content Include="Scripts\Model\ForumModel.js" />
+    <Content Include="Scripts\Model\HomeModel.js" />
+    <Content Include="Scripts\Model\ProfileModel.js" />
+    <Content Include="Scripts\Model\QuestionnaireModel.js" />
+    <Content Include="Scripts\Model\RequirementsModel.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
     <Content Include="Scripts\tinymce\langs\en.js" />
     <Content Include="Scripts\tinymce\license.txt" />
@@ -414,6 +431,7 @@
     <Content Include="Scripts\tinymce\utils\form_utils.js" />
     <Content Include="Scripts\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\tinymce\utils\validate.js" />
+    <Content Include="Scripts\ViewModel\ReviewEditorViewModel.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -441,9 +459,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>51832</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49968/</IISUrl>
+          <IISUrl>http://localhost:51908/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

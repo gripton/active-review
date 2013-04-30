@@ -1,0 +1,26 @@
+﻿.fixed_page_top
+{
+    min-height:300px;
+    overflow-y:scroll;
+    margin-bottom:10px;
+}
+
+.fixed_page_bottom {
+    min-height:250px;
+}body {
+    padding-top: 60px; /* When using the navbar-top-fixed */
+}
+
+.the-legend {
+    border-style: none;
+    border-width: 0;
+    font-size: 12px;
+    font-weight: bolder;
+    line-height: 20px;
+    margin-bottom: 0;
+}
+
+.single-fieldset-small {
+    margin-left: 40px;
+    margin-right: 40px;
+}
