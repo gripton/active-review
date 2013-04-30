@@ -1,12 +1,13 @@
-﻿using ARR.Web.Infrastructure;
+﻿using System.Web;
+using ARR.Web.Infrastructure;
 using ARR.Web.Infrastructure.WebSecurity;
 using Autofac;
 using Autofac.Integration.Web;
 using log4net;
 using PracticalCode.WebSecurity.Infrastructure.Membership;
-using System.Web;
 
-namespace Kryptiq.Network.VendorManagement.VMP.Modules
+
+namespace ARR.Web.Infrastructure
 {
     public class WebApplicationModule : Module
     {
