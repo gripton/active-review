@@ -10,8 +10,10 @@ namespace ARR.Data.Entities
         Archived = 2
     }
 
-    public class ReviewSession
+    public class ReviewSession : IPersistentEntity
     {
+        public int Id { get; set; }
+
         // NOTE: Courtenay to consider handling 'invitee' scenario
         public string Creator { get; set; }
         public string Reviewer { get; set; }
@@ -23,5 +25,8 @@ namespace ARR.Data.Entities
         public List<Requirement> Requirements { get; set; }
 
         public SessionStatusType SessionStatus { get; set; }
+
+        
+       
     }
 }

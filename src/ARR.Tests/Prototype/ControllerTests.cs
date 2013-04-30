@@ -37,19 +37,17 @@ namespace ARR.Tests.Prototype
             var container = builder.Build();
 
             var session = new ReviewSession();
-            session.Name = "Session 1";
+            session.Title = "Session 1";
 
             var requirements1 = new Requirement();
             requirements1.Content = "This is requirement 1";
-            requirements1.Created = DateTime.UtcNow;
-
+            
             var requirements2 = new Requirement();
             requirements2.Content = "This is requirement 2";
-            requirements2.Created = DateTime.UtcNow;
-
+            
             var requirements3 = new Requirement();
             requirements3.Content = "This is requirement 3";
-            requirements3.Created = DateTime.UtcNow;
+            
 
             session.Requirements = new List<Requirement> { requirements1, requirements2, requirements3 };
 
