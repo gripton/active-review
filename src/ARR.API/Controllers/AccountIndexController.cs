@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ARR.AccountManagement;
+using ARR.Data.Entities;
+using ARR.Prototype.API.Models;
+using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +13,59 @@ namespace ARR.API.Controllers
 {
     public class AccountIndexController : ApiController
     {
-        // GET api/accountindex
-        public IEnumerable<string> Get()
+        private readonly IAccountManager _manager;
+
+        public AccountIndexController(IAccountManager manager)
         {
-            return new string[] { "value1", "value2" };
+            _manager = manager;
         }
 
-        // GET api/accountindex/5
-        public string Get(int id)
+        // GET api/account
+        public IEnumerable<AccountIndex> Get()
         {
-            return "value";
+            var indexes = new List<AccountIndex>();
+            var accounts = _manager.ReadContext.ListAll();
+
+            foreach (var account in accounts)
+            {
+                indexes.Add(Mapper.Map<AccountIndex>(account));
+            }
+
+            return indexes;
         }
 
-        // POST api/accountindex
-        public void Post([FromBody]string value)
+        // GET api/account/5
+        public AccountIndex Get(int id)
         {
+            var account = _manager.ReadContext.Get(id);
+            var index = Mapper.Map<AccountIndex>(account);
+            return index;
         }
 
-        // PUT api/accountindex/5
-        public void Put(int id, [FromBody]string value)
+        // POST api/account
+        public void Post(AccountIndex account)
         {
+            //_manager.CreateNew(account);
         }
 
-        // DELETE api/accountindex/5
+        // PUT api/account/5/patch
+        public void Put(int id, string patch, Account account)
+        {
+            //switch (patch)
+            //{
+            //    case "security":
+            //        _manager.UpdateSecurityStatistics(account);
+            //        break;
+            //    default:
+            //        _manager.Save(account);
+            //        break;
+            //}
+        }
+
+        // DELETE api/account/5
         public void Delete(int id)
         {
+            //_manager.Delete(id);
         }
     }
 }

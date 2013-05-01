@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AutoMapper;
+
 using PracticalCode.WebSecurity.Infrastructure.Membership;
 using PracticalCode.WebSecurity.Infrastructure.Policies;
 using PracticalCode.WebSecurity.Infrastructure.Data;
@@ -30,8 +31,6 @@ namespace ARR.Web.Infrastructure.WebSecurity
             _policyEnforcer = applicationServices.WebSecurity.PolicyEnforcer;
         }
 
-        // Testing something
-        // Testing something 1
         public WebSecurityUser Authorizer { get { return _applicationServices.WebSecurity.GetCurrentUser(); } }
 
         public void CreateUser(WebSecurityUser user)
