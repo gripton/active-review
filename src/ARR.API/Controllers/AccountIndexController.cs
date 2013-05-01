@@ -49,7 +49,7 @@ namespace ARR.API.Controllers
         }
 
         // PUT api/account/5/patch
-        public void Put(int id, string patch, Account account)
+        public void Put(int id, string patch, AccountIndex account)
         {
             //switch (patch)
             //{

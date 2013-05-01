@@ -13,6 +13,7 @@ namespace ARR.API.Models
         protected override void Configure()
         {
             Mapper.CreateMap<Account, AccountIndex>();
+            Mapper.CreateMap<ReviewSession, ReviewIndex>();
 
         }
     }
