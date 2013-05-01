@@ -17,11 +17,6 @@ namespace ARR.Web.Infrastructure.WebSecurity
         private const string _lockedUserMessage = @"The account is locked out. Please contact support to unlock.";
         private const string _exceptionMessage = @"Unable to log on. An unexpected error occurred.";
 
-        public bool IsReusable
-        {
-            get { return true; }
-        }
-
         public IWebApplicationServices WebApplicationServices { get; set; }
         public ILoginManager LoginManager { get; set; }
         public IWebSecurityPolicySettings WebSecuritySettings { get; set; }

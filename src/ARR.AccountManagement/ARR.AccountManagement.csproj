@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B221EE1-E418-4DA6-B863-41AE9F5F13C9}</ProjectGuid>
+    <ProjectGuid>{41A80FD8-FB44-4D57-B8A0-1D04DF0F7854}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ARR.Data</RootNamespace>
-    <AssemblyName>ARR.Data</AssemblyName>
+    <RootNamespace>ARR.AccountManagement</RootNamespace>
+    <AssemblyName>ARR.AccountManagement</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PracticalCode.WebSecurity.Infrastructure">
+      <HintPath>..\..\packages\PracticalCode.WebSecurity.Infrastructure.1.0.0-alpha\lib\net45\PracticalCode.WebSecurity.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,13 +42,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\Feedback.cs" />
-    <Compile Include="Entities\IPersistentEntity.cs" />
-    <Compile Include="Entities\Question.cs" />
-    <Compile Include="Entities\Requirement.cs" />
-    <Compile Include="Entities\ReviewSession.cs" />
+    <Compile Include="AccountManager.cs" />
+    <Compile Include="AccountMonitor.cs" />
+    <Compile Include="IAccountManager.cs" />
+    <Compile Include="IAccountMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ARR.Core\ARR.Core.csproj">
+      <Project>{1292dc71-7a5c-409f-bfed-60d2c17f340e}</Project>
+      <Name>ARR.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Data\ARR.Data.csproj">
+      <Project>{3b221ee1-e418-4da6-b863-41ae9f5f13c9}</Project>
+      <Name>ARR.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Notifications\ARR.Notifications.csproj">
+      <Project>{79a6e6c2-f1a7-48ed-97b8-ba4f64b6196d}</Project>
+      <Name>ARR.Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Repository\ARR.Repository.csproj">
+      <Project>{85f45a1a-d695-44a9-b6f9-05fb6940c022}</Project>
+      <Name>ARR.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

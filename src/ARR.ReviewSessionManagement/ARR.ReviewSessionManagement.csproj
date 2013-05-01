@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B221EE1-E418-4DA6-B863-41AE9F5F13C9}</ProjectGuid>
+    <ProjectGuid>{8D81BAC6-567A-4D18-8519-625FF2B4E3DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ARR.Data</RootNamespace>
-    <AssemblyName>ARR.Data</AssemblyName>
+    <RootNamespace>ARR.ReviewSessionManagement</RootNamespace>
+    <AssemblyName>ARR.ReviewSessionManagement</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,12 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\Feedback.cs" />
-    <Compile Include="Entities\IPersistentEntity.cs" />
-    <Compile Include="Entities\Question.cs" />
-    <Compile Include="Entities\Requirement.cs" />
-    <Compile Include="Entities\ReviewSession.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

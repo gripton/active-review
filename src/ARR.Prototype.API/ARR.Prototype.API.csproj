@@ -149,7 +149,6 @@
     <Compile Include="Controllers\ApplicationModule.cs" />
     <Compile Include="Controllers\TestModule.cs" />
     <Compile Include="Controllers\NotificationSender.cs" />
-    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ReviewSessionController.cs" />
     <Compile Include="Controllers\ReviewSessionManager.cs" />
     <Compile Include="Controllers\ReviewSessionMonitor.cs" />
@@ -184,9 +183,25 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ARR.AccountManagement\ARR.AccountManagement.csproj">
+      <Project>{41a80fd8-fb44-4d57-b8a0-1d04df0f7854}</Project>
+      <Name>ARR.AccountManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Core\ARR.Core.csproj">
+      <Project>{1292dc71-7a5c-409f-bfed-60d2c17f340e}</Project>
+      <Name>ARR.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ARR.Data\ARR.Data.csproj">
       <Project>{3b221ee1-e418-4da6-b863-41ae9f5f13c9}</Project>
       <Name>ARR.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Repository\ARR.Repository.csproj">
+      <Project>{85f45a1a-d695-44a9-b6f9-05fb6940c022}</Project>
+      <Name>ARR.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.ReviewSessionManagement\ARR.ReviewSessionManagement.csproj">
+      <Project>{8d81bac6-567a-4d18-8519-625ff2b4e3de}</Project>
+      <Name>ARR.ReviewSessionManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

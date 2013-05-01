@@ -3,6 +3,8 @@ namespace ARR.Data.Entities
 {
     public class Account : IPersistentEntity
     {
+        public const string UpdateSecurityPatch = "security";
+
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -16,5 +18,7 @@ namespace ARR.Data.Entities
         public DateTime LastLoginAttempted { get; set; }
         public DateTime LastPasswordChanged { get; set; }
         public int FailedPasswordAttempt { get; set; }
+
+
     }
 }

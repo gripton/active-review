@@ -9,14 +9,9 @@ using ARR.Data.Entities;
 
 namespace ARR.Data.Patch
 {
-    public interface IAccountPatcher
+    public class AccountPatchCollection
     {
-        PatchRequest[] GetUpdateStatisticsPatch(Account account);
-    }
-
-    public class AccountPatcher : IAccountPatcher
-    {
-        public PatchRequest[] GetUpdateStatisticsPatch(Account account)
+        public static PatchRequest[] GetUpdateStatisticsPatch(Account account)
         {
             return new PatchRequest[] { 
 

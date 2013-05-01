@@ -1,11 +1,12 @@
-﻿using Raven.Abstractions.Data;
+﻿using ARR.Data.Repository;
+using Raven.Abstractions.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ARR.Data.Repository
+namespace ARR.Repository
 {
     public interface IRepository<TEntity> : IReadContext<TEntity>, IPatcher<TEntity>
     {

@@ -9,6 +9,6 @@ namespace ARR.Data.Repository
 {
     public interface IPatcher<TEntity>
     {
-        void Patch(TEntity entity, PatchRequest[] patches);
+        void Patch(TEntity entity, string patchKey);
     }
 }

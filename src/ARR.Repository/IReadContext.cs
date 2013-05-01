@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ARR.Data.Repository
+namespace ARR.Repository
 {
     public interface IReadContext<TEntity>
     {

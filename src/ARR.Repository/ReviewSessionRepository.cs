@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ARR.Data.Repository
+namespace ARR.Repository
 {
     public class ReviewSessionRepository : AbstractRepository<ReviewSession>
     {
@@ -15,6 +15,11 @@ namespace ARR.Data.Repository
         public override ReviewSession GetByName(string name)
         {
             return Find((r) => r.Title == name).FirstOrDefault();
+        }
+
+        protected override void InitializePatchFunctions()
+        {
+            
         }
     }
 }

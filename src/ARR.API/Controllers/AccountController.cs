@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ARR.AccountManagement;
+using ARR.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +11,49 @@ namespace ARR.API.Controllers
 {
     public class AccountController : ApiController
     {
-        // GET api/account
-        public IEnumerable<string> Get()
+        private readonly IAccountManager _manager;
+
+        public AccountController(IAccountManager manager)
         {
-            return new string[] { "value1", "value2" };
+            _manager = manager;
+        }
+
+        // GET api/account
+        public IEnumerable<Account> Get()
+        {
+            return _manager.ReadContext.ListAll();
         }
 
         // GET api/account/5
-        public string Get(int id)
+        public Account Get(string id)
         {
-            return "value";
+            return _manager.ReadContext.GetByName(id);
         }
 
         // POST api/account
-        public void Post([FromBody]string value)
+        public void Post(Account account)
         {
+            _manager.CreateNew(account);
         }
 
-        // PUT api/account/5
-        public void Put(int id, [FromBody]string value)
+        // PUT api/account/5/patch
+        public void Put(int id, string patch, Account account)
         {
+            switch (patch)
+            {
+                case "security":
+                    _manager.UpdateSecurityStatistics(account);
+                    break;
+                default:
+                    _manager.Save(account);
+                    break;
+            }
         }
 
         // DELETE api/account/5
         public void Delete(int id)
         {
+            _manager.Delete(id);                
         }
     }
 }

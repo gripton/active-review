@@ -8,21 +8,24 @@ using ARR.Data.Entities;
 using Raven.Client;
 using ARR.Data.Patch;
 
-namespace ARR.Data.Repository
+namespace ARR.Repository
 {
     public class AccountRepository : AbstractRepository<Account>
     {
-        public AccountRepository(IDocumentSession session, IAccountPatcher patcher)
+        public AccountRepository(IDocumentSession session)
             : base(session)
         {
-            Patcher = patcher;
+            
         }
-
-        public IAccountPatcher Patcher { get; set; }
 
         public override Account GetByName(string name)
         {
             return Find((a) => a.Username == name).FirstOrDefault();
+        }
+
+        protected override void InitializePatchFunctions()
+        {
+            PatchDictionary.Add(Account.UpdateSecurityPatch, AccountPatchCollection.GetUpdateStatisticsPatch);
         }
     }
     

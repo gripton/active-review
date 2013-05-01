@@ -9,7 +9,7 @@ using ARR.Data.Entities;
 using Raven.Abstractions.Data;
 using Raven.Client;
 
-namespace ARR.Data.Repository
+namespace ARR.Repository
 {
     public abstract class AbstractRepository<TEntity> : IRepository<TEntity> where TEntity : class, IPersistentEntity
     {
@@ -18,11 +18,16 @@ namespace ARR.Data.Repository
         public AbstractRepository(IDocumentSession session)
         {
             _session = session;
+            InitializePatchFunctions();
         }
+
+        protected abstract void InitializePatchFunctions();
+
+        protected IDictionary<string, Func<TEntity, PatchRequest[]>> PatchDictionary { get; set; }
 
         public void Save(TEntity entity)
         {
-            if(entity.Id == null)
+            if(entity.Id == default(int))
             {
                 // Create new
                 _session.Store(entity);
@@ -36,11 +41,12 @@ namespace ARR.Data.Repository
             _session.SaveChanges();
         }
 
-        public void Patch(TEntity entity, PatchRequest[] patches)
+        public void Patch(TEntity entity, string patchKey)
         {
             const string patchFormat = "{0}s/{1}";
 
             var patchString = string.Format(patchFormat, typeof(TEntity).Name.ToLower(), entity.Id);
+            var patches = PatchDictionary[patchKey].Invoke(entity);
 
             _session
                .Advanced

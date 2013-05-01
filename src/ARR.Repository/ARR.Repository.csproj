@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B221EE1-E418-4DA6-B863-41AE9F5F13C9}</ProjectGuid>
+    <ProjectGuid>{85F45A1A-D695-44A9-B6F9-05FB6940C022}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ARR.Data</RootNamespace>
-    <AssemblyName>ARR.Data</AssemblyName>
+    <RootNamespace>ARR.Repository</RootNamespace>
+    <AssemblyName>ARR.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\..\packages\RavenDB.Client.2.0.2288-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\..\packages\RavenDB.Client.2.0.2288-Unstable\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -40,13 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\Feedback.cs" />
-    <Compile Include="Entities\IPersistentEntity.cs" />
-    <Compile Include="Entities\Question.cs" />
-    <Compile Include="Entities\Requirement.cs" />
-    <Compile Include="Entities\ReviewSession.cs" />
+    <Compile Include="AbstractRepository.cs" />
+    <Compile Include="AccountRepository.cs" />
+    <Compile Include="IReadContext.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Patch\AccountPatchFunctions.cs" />
+    <Compile Include="IPatcher.cs" />
+    <Compile Include="Patch\ReviewSessionPatchFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReviewSessionRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ARR.Data\ARR.Data.csproj">
+      <Project>{3b221ee1-e418-4da6-b863-41ae9f5f13c9}</Project>
+      <Name>ARR.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
