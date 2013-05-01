@@ -39,8 +39,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IReviewSessionManager.cs" />
+    <Compile Include="IReviewSessionMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReviewSessionManager.cs" />
+    <Compile Include="ReviewSessionMonitor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ARR.Core\ARR.Core.csproj">
+      <Project>{1292dc71-7a5c-409f-bfed-60d2c17f340e}</Project>
+      <Name>ARR.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Data\ARR.Data.csproj">
+      <Project>{3b221ee1-e418-4da6-b863-41ae9f5f13c9}</Project>
+      <Name>ARR.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Notifications\ARR.Notifications.csproj">
+      <Project>{79a6e6c2-f1a7-48ed-97b8-ba4f64b6196d}</Project>
+      <Name>ARR.Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Repository\ARR.Repository.csproj">
+      <Project>{85f45a1a-d695-44a9-b6f9-05fb6940c022}</Project>
+      <Name>ARR.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

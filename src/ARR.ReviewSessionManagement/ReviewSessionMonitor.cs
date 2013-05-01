@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ARR.ReviewSessionManagement
 {
-    public class Class1
+    class ReviewSessionMonitor
     {
     }
 }
