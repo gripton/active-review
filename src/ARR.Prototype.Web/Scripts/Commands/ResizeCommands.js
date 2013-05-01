@@ -1,7 +1,6 @@
 ﻿$(document).ready(sizeContent);
 
 var ContentMinHeight = parseInt($("#Top_Left").css("min-height").replace(/[^-\d\.]/g, '')) + $("#Bottom_Left").height();
-    
 $("#Content").css("min-height", ContentMinHeight + "px");
 
 //Every resize of window
@@ -14,17 +13,17 @@ function sizeContent() {
     
     var resizableContentHeight = calculateResizableHeight("Left");
     $("#Top_Left").css("height", resizableContentHeight+ "px");
-
-    var resizableContentHeight = calculateResizableHeight("Right");
-    $("#Top_Right").css("height", resizableContentHeight + "px");
-
-    setScrollDisplay("Right");
     setScrollDisplay("Left");
+
+    if ($("#Top_Right").val() != null) {
+        var resizableContentHeight = calculateResizableHeight("Right");
+        $("#Top_Right").css("height", resizableContentHeight + "px");
+        setScrollDisplay("Right");
+    }
 }
 
 function setScrollDisplay(postFix) {
     var resizableContentHeight = calculateResizableHeight(postFix);
-
     var element = $("#Top_" + postFix)
 
     if (resizableContentHeight < element[0].scrollHeight)
@@ -38,12 +37,12 @@ function setScrollDisplay(postFix) {
 }
 
 function calculateNewContentHeight() {
-    return $(window).height() - $("#Header").height() - $("#Footer").height() - 90;
+    return $(window).height() - $("#Header").outerHeight() - $("#Footer").outerHeight();
 }
 
 function calculateResizableHeight(postFix) {
     var newHeight = calculateNewContentHeight();
-    return newHeight - $("#Bottom_" + postFix).height();
+    return newHeight - $("#Bottom_" + postFix).outerHeight() - 80;
 }
 
 function setScrollableToBottom(postFix) {

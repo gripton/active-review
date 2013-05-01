@@ -1,13 +1,4 @@
-﻿.fixed_page_top
-{
-    min-height:300px;
-    overflow-y:scroll;
-    margin-bottom:10px;
-}
-
-.fixed_page_bottom {
-    min-height:250px;
-}body {
+﻿body {
     padding-top: 60px; /* When using the navbar-top-fixed */
 }
 
@@ -23,4 +14,14 @@
 .single-fieldset-small {
     margin-left: 40px;
     margin-right: 40px;
+}
+
+/* Setting the height to match the body's top padding - the resizing functions rely on it being the same*/
+#Header {
+    height:60px;
+}
+
+#Content, #Footer {
+    margin-left:30px;
+    margin-right:30px;
 }

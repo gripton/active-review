@@ -4,28 +4,12 @@
     <title>Questionnaire</title>
     <link href="../Content/bootstrap.css" rel="stylesheet" />
     <link href="../Content/bootstrap-responsive.css" rel="stylesheet" />
-   
-    <style>
-        body {
-        padding-top: 60px; /* When using the navbar-top-fixed */
-        }
-
-        .the-legend {
-            border-style: none;
-            border-width: 0;
-            font-size: 12px;
-            font-weight: bolder;
-            line-height: 20px;
-            margin-bottom: 0;
-        }
-       
-    </style>
+    <link href="../Content/custom.css" rel="stylesheet" />
     <script type="text/javascript" src="../Scripts/tinymce/tiny_mce.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-2.1.0.js"></script>
-
 </head>
 <body>
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top" id="Header">
   <div class="navbar-inner">
     <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -67,30 +51,44 @@
     </div><!-- /.container -->
   </div><!-- /.navbar-inner -->
 </div><!-- /.navbar -->
-    <fieldset class="well span12" style="min-width:500px;">
+<div id="Content" class="fixed_">
+  <div class="row-fluid">
+   <fieldset class="well span12" style="min-width:500px;">
       <legend class="the-legend">Requirements</legend>
+      <div id="Top_Left">
         <div class="row span12" data-bind="foreach: requirementsList">
             <a href="#" data-bind="text: name"></a>
             <p data-bind="html: requirementText"></p>
         </div>
+      </div>
     </fieldset>
-
+    <div id="Bottom_Left">
+    </div>
+  </div>
+</div>
+<div  id="Footer" style="height:330px;">
+  <div class="row-fluid">
     <fieldset class="well span12" data-bind="with: currentQuestion">
       <legend class="the-legend">Questions</legend>
-        <div class="row span8">
-            <p>
-                <i class="icon-hand-right"></i>&nbsp; <span data-bind="text: questionText"></span> 
-                <a href="#"></a>
-                <a href="#feedbackDialog" data-toggle="modal" role="button" data-bind="click:selectItem">Comment</a>
-            </p>
-        </div>
-        <div class="span3">
-            <button class="btn-medium btn-primary" data-bind="click: $root.previousQuestion, enable: $root.enablePrevious">Previous</button>
-            <button class="btn-medium btn-primary" data-bind="click: $root.nextQuestion, enable: $root.enableNext">Next</button>
+        <div class="row-fluid">
+            <div class="row span8">
+                <p>
+                    <i class="icon-hand-right"></i>&nbsp; <span data-bind="text: questionText"></span> 
+                    <a href="#"></a>
+                    <a href="#feedbackDialog" data-toggle="modal" role="button" data-bind="click: selectItem">Comment</a>
+                </p>
+            </div>
+            <div class="span4" style="text-align:right">
+                <button class="btn-medium btn-primary" data-bind="click: $root.previousQuestion, enable: $root.enablePrevious">Previous</button>
+                <button class="btn-medium btn-primary" data-bind="click: $root.nextQuestion, enable: $root.enableNext">Next</button>
+            </div>
         </div>
         <textarea style="width:100%" class="tinymce" data-bind="tinymce: answer"></textarea>
         <br />
     </fieldset>
+  </div>
+</div>
+
 
     <!-- Comment Modal -->
     <div id="feedbackDialog" class="modal hide fade" tabindex="-1" role="dialog" 
@@ -100,11 +98,13 @@
         <h3 id="feedbackModalLabel">Question Feedback</h3>
       </div>
       <div class="modal-body">
-        <textarea id="feedbackText" data-bind="value: currentFeedback"></textarea>
+        <div>
+            <textarea id="feedbackText" data-bind="value: currentFeedback" style="width:97%"></textarea>
+        </div>
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click:saveFeedback">Save changes</button>
+        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: saveFeedback">Save changes</button>
       </div>
     </div>
 
@@ -115,6 +115,7 @@
     <script src="../Scripts/tinymce/plugins/bbcode/editor_plugin.js"></script>
     <script src="../Scripts/tinymce/plugins/bbcode/editor_plugin_src.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/TinyMCECommands.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/ResizeCommands.js"></script>
     <script type="text/javascript" src="../Scripts/Model/QuestionnaireModel.js"></script>
 </body>
 </html>
