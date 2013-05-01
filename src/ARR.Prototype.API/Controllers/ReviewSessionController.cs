@@ -9,7 +9,6 @@ using ARR.Prototype.API.Controllers;
 
 namespace ARR.API.Controllers
 {
-
     public class ReviewSessionController : ApiController
     {
         private readonly IReviewSessionManager _manager;
