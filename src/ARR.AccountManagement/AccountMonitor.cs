@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ARR.AccountManagement
 {
-    public class AccountMonitor
+    public class AccountMonitor : IAccountMonitor
     {
     }
 }

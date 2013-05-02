@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using ARR.Data.Entities;
 
@@ -15,9 +13,10 @@ namespace ARR.Repository
     {
         private readonly IDocumentSession _session;
 
-        public AbstractRepository(IDocumentSession session)
+        protected AbstractRepository(IDocumentSession session)
         {
             _session = session;
+            PatchDictionary = new Dictionary<string, Func<TEntity, PatchRequest[]>>();
             InitializePatchFunctions();
         }
 
