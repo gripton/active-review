@@ -1,5 +1,4 @@
 ﻿using log4net;
-
 using PracticalCode.WebSecurity.Infrastructure.Membership;
 
 namespace ARR.Web.Infrastructure

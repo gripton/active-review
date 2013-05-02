@@ -1,12 +1,8 @@
-﻿using ARR.Web.Infrastructure;
-using ARR.Web.Infrastructure.WebSecurity;
-using PracticalCode.WebSecurity.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 
-namespace ARR.Web.Infrastrcture
+using PracticalCode.WebSecurity.Infrastructure.Data;
+
+namespace ARR.Web.Infrastructure.WebSecurity
 {
     public class CurrentUserHandler : JsonRequestHandler    {     
 

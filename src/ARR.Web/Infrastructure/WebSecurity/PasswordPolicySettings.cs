@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-
-using PracticalCode.WebSecurity.Infrastructure.Policies;
+﻿using PracticalCode.WebSecurity.Infrastructure.Policies;
 
 namespace ARR.Web.Infrastructure.WebSecurity
 {

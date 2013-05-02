@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
 
-using PracticalCode.WebSecurity.Infrastructure.Data;
+using ARR.Web.Infrastructure;
+using ARR.Web.Infrastructure.WebSecurity;
+
 using Autofac.Integration.Web;
 using Autofac;
 using AutoMapper;
-using ARR.Web.Infrastructure.WebSecurity;
-using ARR.Web.Infrastructure;
 
-namespace ARR.Prototype.Web
+namespace ARR.Web
 {
     public class Global : System.Web.HttpApplication, IContainerProviderAccessor
     {

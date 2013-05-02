@@ -78,6 +78,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -158,7 +161,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Screens\Account.html" />
     <Content Include="Screens\Editor.html" />
     <Content Include="Screens\Forum.html" />
@@ -171,8 +173,9 @@
     <Content Include="Scripts\Commands\DirtyModelCommands.js" />
     <Content Include="Scripts\Commands\ResizeCommands.js" />
     <Content Include="Scripts\Commands\TinyMCECommands.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <None Include="Scripts\jquery-2.0.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.0.js" />
+    <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
@@ -450,22 +453,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastrcture\IWebApplicationServices.cs" />
-    <Compile Include="Infrastrcture\WebApplicationModule.cs" />
-    <Compile Include="Infrastrcture\WebApplicationServices.cs" />
-    <Compile Include="Infrastrcture\WebSecurity\AccountMappingProfile.cs" />
-    <Compile Include="Infrastrcture\WebSecurity\IUserManagementService.cs" />
-    <Compile Include="Infrastrcture\WebSecurity\JsonRequestHandler.cs" />
-    <Compile Include="Infrastrcture\WebSecurity\LoginHandler.cs" />
-    <Compile Include="Infrastrcture\WebSecurity\LoginManager.cs" />
-    <Compile Include="Infrastrcture\WebSecurity\PasswordPolicySettings.cs" />
-    <Compile Include="Infrastrcture\WebSecurity\UserManagementService.cs" />
-    <Compile Include="Infrastrcture\WebSecurity\WebSecurityDataProvider.cs" />
-    <Compile Include="Infrastrcture\WebSecurity\WebSecurityModule.cs" />
+    <Compile Include="Infrastructure\IWebApplicationServices.cs" />
+    <Compile Include="Infrastructure\JsonRequestHandler.cs" />
+    <Compile Include="Infrastructure\WebApplicationModule.cs" />
+    <Compile Include="Infrastructure\WebApplicationServices.cs" />
+    <Compile Include="Infrastructure\WebSecurity\AccountMappingProfile.cs" />
+    <Compile Include="Infrastructure\WebSecurity\CurrentUserHandler.cs" />
+    <Compile Include="Infrastructure\WebSecurity\IUserManagementService.cs" />
+    <Compile Include="Infrastructure\WebSecurity\LoginHandler.cs" />
+    <Compile Include="Infrastructure\WebSecurity\LoginManager.cs" />
+    <Compile Include="Infrastructure\WebSecurity\PasswordPolicySettings.cs" />
+    <Compile Include="Infrastructure\WebSecurity\UserManagementService.cs" />
+    <Compile Include="Infrastructure\WebSecurity\WebSecurityDataProvider.cs" />
+    <Compile Include="Infrastructure\WebSecurity\WebSecurityModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Scripts\jquery-2.0.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

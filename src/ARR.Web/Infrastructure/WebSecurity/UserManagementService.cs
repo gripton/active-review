@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using AutoMapper;
+﻿using System.Collections.Generic;
 
 using PracticalCode.WebSecurity.Infrastructure.Membership;
 using PracticalCode.WebSecurity.Infrastructure.Policies;

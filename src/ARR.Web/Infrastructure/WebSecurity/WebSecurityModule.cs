@@ -1,6 +1,4 @@
-﻿using System.Web.Security;
-
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Web;
 
 using PracticalCode.WebSecurity.Infrastructure.Policies;

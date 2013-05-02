@@ -1,14 +1,13 @@
-﻿using ARR.Data.Entities;
+﻿using System.Collections.Generic;
+
+using ARR.Data.Entities;
+
 using AutoMapper;
 using PracticalCode.WebSecurity.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ARR.Web.Infrastructure.WebSecurity
 {
-    public class AccountMappingProfile : AutoMapper.Profile
+    public class AccountMappingProfile : Profile
     {
         protected override void Configure()
         {

@@ -1,12 +1,12 @@
-﻿using ARR.Data.Entities;
+﻿using System;
+using System.IO;
+using System.Web;
+
+using ARR.Data.Entities;
+
 using PracticalCode.WebSecurity.Infrastructure.Data;
 using PracticalCode.WebSecurity.Infrastructure.Membership;
 using PracticalCode.WebSecurity.Infrastructure.Policies;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
 
 namespace ARR.Web.Infrastructure.WebSecurity
 {

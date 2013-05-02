@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Web.SessionState;
 
-namespace ARR.Web.Infrastructure.WebSecurity
+namespace ARR.Web.Infrastructure
 {
     public abstract class JsonRequestHandler : IHttpHandler, IRequiresSessionState
     {

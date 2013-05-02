@@ -1,11 +1,9 @@
 ﻿using System.Web;
-using ARR.Web.Infrastructure;
 using ARR.Web.Infrastructure.WebSecurity;
 using Autofac;
 using Autofac.Integration.Web;
 using log4net;
 using PracticalCode.WebSecurity.Infrastructure.Membership;
-
 
 namespace ARR.Web.Infrastructure
 {
