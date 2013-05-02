@@ -1,54 +1,74 @@
 ﻿function Session(data) {
     var self = this;
-    self.name = ko.observable(data.Name);
-
-    //self.Reviewer = ko.observable(reviewer);
+    self.ID = ko.observable(data.ID);
+    self.title = ko.observable(data.Title);
+    self.reviewer = ko.observable(data.Reviewer);
+    self.creator = ko.observable(data.Creator);
+    self.type = ko.observable(data.SessionStatus);
 
     //self.selectItem = function (data) {
     //    homeModel.setReviewer(data);
     //}
 }
 
+function getReviewers() {
+    //get all reviewers
+    //bind to drop down list in html
+}
+
+function getCurrentUser() {
+    //accountIndexController
+    //http handler
+}
+
+function createNewSession() {
+    //new reviewSesison model/object
+    //set title as untitled document
+    //post to reviewIndexController
+    //redraw myCreatedSessionsList
+}
+
+function getSessions(self) {
+    $.getJSON("http://localhost:55519/api/reviewsession", function (allData) {
+        var mappedSessions = $.map(allData, function (item) {
+            var type = item.SessionStatus;
+
+            if (type == 0) {
+                self.myCreatedSessionsList.push(new Session(item));
+            }
+            else if (type == 1 && getCurrentUser() == item.Creator) {
+                self.myActiveSessionsListCreator.push(new Session(item));
+            }
+            else if (type == 1 && getCurrentUser() == item.Reviewer) {
+                self.myActiveSessionsListReviewer.push(new Session(item));
+            }
+            else if (type == 2) {
+                self.myArchivedSessionsList.push(new Session(item));
+            }
+        });
+    });
+}
+
 //View Model
 function ViewModel() {
     var self = this;
     //self.selectedItem = null;
-    
-    //My created sessions List
-    //self.myCreatedSessionsList = ko.observableArray([
-    //    new Session("Session Title 1"),
-    //    new Session("Session Title 2"),
-    //    new Session("Session Title 3")
-    //]);
 
     self.myCreatedSessionsList = ko.observableArray([]);
+    self.myActiveSessionsListCreator = ko.observableArray([]);
+    self.myActiveSessionsListReviewer = ko.observableArray([]);
+    self.myArchivedSessionsList = ko.observableArray([]);
 
-    $.getJSON("http://localhost:55519/api/reviewsession", function (allData) {
-        var mappedSessions = $.map(allData, function (item) { return new Session(item) });
-        self.myCreatedSessionsList(mappedSessions);
-    });
+    getSessions(self);
+   
 
-    //My created sessions List
-    self.myActiveSessionsListReviewer = ko.observableArray([
-        new Session("Session Title 1"),
-        new Session("Session Title 2")
-    ]);
-
-    //My created sessions List
-    self.myActiveSessionsListCreator = ko.observableArray([
-        new Session("Session Title 1"),
-        new Session("Session Title 2")
-    ]);
-
-    //My created sessions List
-    self.myArchivedSessionsList = ko.observableArray([
-        new Session("Session Title 1")
-    ]);
 
     //Remove Session
     self.removeSession = function(session) 
     {
-        self.myCreatedSessionsList.remove(session);
+        //self.myCreatedSessionsList.remove(session);
+        //how to bind with modal
+        //use delete verb with ID call using ajax
     }
 
     // Add Reviewer
@@ -66,5 +86,5 @@ function ViewModel() {
 
 }
 
-//var homeModel = new ViewModel();
-ko.applyBindings(new ViewModel());
+var indexModel = new ViewModel();
+ko.applyBindings(indexModel);
