@@ -13,7 +13,7 @@ var AccountViewModel = function () {
     self.save = function () {
         $.ajax({
             type: "POST",
-            url: "http://localhost:55519/api/account",
+            url: "http://localhost:49882/api/account",
             data: ko.toJSON(this.Data),
             contentType: 'application/json',
             dataType: 'JSON',

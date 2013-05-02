@@ -14,6 +14,12 @@ namespace ARR.API
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "PatchApi",
+                routeTemplate: "api/{controller}/{id}/{patch}",
+                defaults: new { id = RouteParameter.Optional, patch = RouteParameter.Optional }
+            );
         }
     }
 }

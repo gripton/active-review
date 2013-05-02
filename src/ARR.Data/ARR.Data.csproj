@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\packages\RavenDB.Client.2.0.2288-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\packages\RavenDB.Client.2.0.2288-Unstable\lib\net40\Raven.Client.Lightweight.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -49,22 +43,10 @@
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Feedback.cs" />
     <Compile Include="Entities\IPersistentEntity.cs" />
-    <Compile Include="Entities\Profile.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Requirement.cs" />
     <Compile Include="Entities\ReviewSession.cs" />
-    <Compile Include="Patch\AccountPatcher.cs" />
-    <Compile Include="Patch\ReviewSessionPatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\AbstractRepository.cs" />
-    <Compile Include="Repository\AccountRepository.cs" />
-    <Compile Include="Patch\IPatcher.cs" />
-    <Compile Include="Repository\IReadContext.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\ReviewSessionRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

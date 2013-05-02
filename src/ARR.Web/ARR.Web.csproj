@@ -38,6 +38,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.0.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\..\packages\Autofac.3.0.2\lib\net40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Web">
+      <HintPath>..\..\packages\Autofac.Web.3.0.0\lib\net40\Autofac.Integration.Web.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\..\packages\AutoMapper.3.0.0-ci1035\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
@@ -69,6 +78,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -147,8 +159,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Global.asax" />
     <Content Include="packages.config" />
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Screens\Account.html" />
     <Content Include="Screens\Editor.html" />
     <Content Include="Screens\Forum.html" />
@@ -161,8 +173,9 @@
     <Content Include="Scripts\Commands\DirtyModelCommands.js" />
     <Content Include="Scripts\Commands\ResizeCommands.js" />
     <Content Include="Scripts\Commands\TinyMCECommands.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <None Include="Scripts\jquery-2.0.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.0.js" />
+    <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
@@ -432,19 +445,43 @@
     <Content Include="Scripts\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\tinymce\utils\validate.js" />
     <Content Include="Scripts\ViewModel\ReviewEditorViewModel.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\IWebApplicationServices.cs" />
+    <Compile Include="Infrastructure\JsonRequestHandler.cs" />
+    <Compile Include="Infrastructure\WebApplicationModule.cs" />
+    <Compile Include="Infrastructure\WebApplicationServices.cs" />
+    <Compile Include="Infrastructure\WebSecurity\AccountMappingProfile.cs" />
+    <Compile Include="Infrastructure\WebSecurity\CurrentUserHandler.cs" />
+    <Compile Include="Infrastructure\WebSecurity\IUserManagementService.cs" />
+    <Compile Include="Infrastructure\WebSecurity\LoginHandler.cs" />
+    <Compile Include="Infrastructure\WebSecurity\LoginManager.cs" />
+    <Compile Include="Infrastructure\WebSecurity\PasswordPolicySettings.cs" />
+    <Compile Include="Infrastructure\WebSecurity\UserManagementService.cs" />
+    <Compile Include="Infrastructure\WebSecurity\WebSecurityDataProvider.cs" />
+    <Compile Include="Infrastructure\WebSecurity\WebSecurityModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Scripts\jquery-2.0.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ARR.Data\ARR.Data.csproj">
+      <Project>{3b221ee1-e418-4da6-b863-41ae9f5f13c9}</Project>
+      <Name>ARR.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
