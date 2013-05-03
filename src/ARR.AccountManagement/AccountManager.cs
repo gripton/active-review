@@ -11,7 +11,7 @@ namespace ARR.AccountManagement
 {
     public class AccountManager :  IAccountManager
     {
-        private readonly INotificationGenerator _generator;
+        //private readonly INotificationGenerator _generator;
         private readonly INotificationSender _sender;
         private readonly IAccountMonitor _monitor;
         private readonly AccountRepository _repository;

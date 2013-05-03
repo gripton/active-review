@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ARR.Prototype.API.Models
+namespace ARR.API.Models
 {
     public class AccountIndex
     {

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using ARR.API.App_Start;
 using ARR.API.Controllers;
-using ARR.Prototype.API;
+using ARR.API;
 using Autofac;
 using Autofac.Integration.WebApi;
 

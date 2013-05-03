@@ -24,9 +24,7 @@ namespace ARR.Data.Entities
         public List<Question> Questions { get; set; }
         public List<Requirement> Requirements { get; set; }
 
-        public SessionStatusType SessionStatus { get; set; }
-
-        
+        public SessionStatusType SessionStatus { get; set; }       
        
     }
 }

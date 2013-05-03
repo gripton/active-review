@@ -155,6 +155,7 @@
     <Compile Include="Infrastructure\ApplicationModule.cs" />
     <Compile Include="Models\AccountIndex.cs" />
     <Compile Include="Models\IndexMappingProfile.cs" />
+    <Compile Include="Models\ModelExtensions.cs" />
     <Compile Include="Models\ReviewIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

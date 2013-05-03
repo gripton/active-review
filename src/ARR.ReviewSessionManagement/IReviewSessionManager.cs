@@ -14,6 +14,9 @@ namespace ARR.ReviewSessionManagement
         void Save(ReviewSession session);
         void Delete(int id);
 
+        // API Controller to give 403 on exception
+        void AssignReviewer(string username, int reviewId);
+
         IReadContext<ReviewSession> ReadContext { get; }
     }
 }
