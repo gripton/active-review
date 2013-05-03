@@ -65,7 +65,10 @@ namespace ARR.Repository
             return _session.Load<TEntity>(id);
         }
 
-        public abstract TEntity GetByName(string name);
+        public virtual TEntity GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
 
         public IQueryable<TEntity> Find(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate = null)
         {
