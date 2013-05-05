@@ -18,6 +18,8 @@ namespace ARR.ReviewSessionManagement
             _sender = sender;
             _monitor = monitor;
             _repository = repository;
+
+            ReadContext = repository;
         }
 
         public IReadContext<ReviewSession> ReadContext { get; private set; }

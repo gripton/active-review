@@ -1,21 +1,26 @@
 ﻿// Base Requirement Class Holds the necessary data for an individual Requirement
-function Requirement(name, requirementText) {
+function Requirement() {
     var self = this;
-    self.name = ko.observable(name);
-    self.content = ko.observable(requirementText);
-    self.Comment = ko.observable("No Comment");
+    self.Content = ko.observable("");
+    self.Comment = ko.observable("");
 }
 
-function Question(questionText) {
+function Question() {
     var self = this;
-    self.content = questionText;
+    self.Content = ko.observable("");
+    self.Answer = ko.observable("");
+    self.Feedbacks = ko.observableArray([]);
 }
 
-function ReviewSession(name) {
+function ReviewSession() {
     var self = this;
-//    self.Name = name;
-    self.requirements = ko.observableArray([]);
-    self.questions = ko.observableArray([]);
+    self.Title = ko.observable("New Review Session");
+    self.Creator = ko.observable("");
+    self.Review = ko.observable("");
+    self.LastModified = ko.observable(Date.now());
+    self.Requirements = ko.observableArray([]);
+    self.Questions = ko.observableArray([]);
+    self.SessionStatus = ko.observable();
 }
 
 function SpawnRequirement(requirement) {
@@ -30,17 +35,17 @@ function SpawnQuestion(question) {
     self.Copy = ko.observable(true);
 }
 
-function SpawnReview(reviewModel) {
+function SpawnReview() {
     var self = this;
     self.name = ko.observable("");
     self.requirements = ko.observableArray();
     self.questions = ko.observableArray();
 
-    self.addRequirement = function (requirement) {
+    self.addRequirement = function(requirement) {
         self.requirements.push(new SpawnRequirement(requirement));
-    }
+    };
 
-    self.addQuestion = function (question) {
+    self.addQuestion = function(question) {
         self.questions.push(new SpawnQuestion(question));
-    }
+    };
 }
