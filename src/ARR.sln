@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.ReviewSessionManagement
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.Repository", "ARR.Repository\ARR.Repository.csproj", "{85F45A1A-D695-44A9-B6F9-05FB6940C022}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prototype", "Prototype", "{35F58D3B-8DAB-457F-9FAB-5BF093269425}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{203ED07E-0644-4068-8E66-7723AEB317B5} = {88596FC9-9CAD-4A1A-8923-EF0D93B2FC42}
+		{EADCD63F-8959-4874-9672-9EAB9432C032} = {35F58D3B-8DAB-457F-9FAB-5BF093269425}
+		{76ED85DB-E785-4807-AFEC-CE2C0A304AD8} = {35F58D3B-8DAB-457F-9FAB-5BF093269425}
 	EndGlobalSection
 EndGlobal
