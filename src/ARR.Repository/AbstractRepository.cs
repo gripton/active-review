@@ -20,7 +20,7 @@ namespace ARR.Repository
             InitializePatchFunctions();
         }
 
-        protected abstract void InitializePatchFunctions();
+        protected virtual void InitializePatchFunctions() { }
 
         protected IDictionary<string, Func<TEntity, PatchRequest[]>> PatchDictionary { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using ARR.AccountManagement;
+using ARR.API.Infrastructure;
 using ARR.Notifications;
 using ARR.Repository;
 using ARR.ReviewSessionManagement;
@@ -22,11 +23,6 @@ namespace ARR.API.Controllers
             builder
                 .RegisterType<AccountRepository>()
                 .AsSelf()
-                .InstancePerApiRequest();
-
-            builder
-                .RegisterType<AccountMonitor>()
-                .As<IAccountMonitor>()
                 .InstancePerApiRequest();
 
             builder
@@ -77,8 +73,7 @@ namespace ARR.API.Controllers
             builder
                 .Register(c => c.Resolve<IDocumentStore>().OpenSession())
                 .As<IDocumentSession>()
-                .InstancePerApiRequest();
-                
+                .InstancePerApiRequest();               
                 
         }
     }
