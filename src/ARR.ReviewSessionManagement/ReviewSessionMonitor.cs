@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ARR.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,9 @@ namespace ARR.ReviewSessionManagement
 {
     public class ReviewSessionMonitor : IReviewSessionMonitor
     {
+        public void ProcessEvent(Event evt)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

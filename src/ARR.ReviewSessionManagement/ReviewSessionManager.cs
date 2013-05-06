@@ -18,6 +18,8 @@ namespace ARR.ReviewSessionManagement
             _sender = sender;
             _monitor = monitor;
             _repository = repository;
+
+            ReadContext = repository;
         }
 
         public IReadContext<ReviewSession> ReadContext { get; private set; }
@@ -25,8 +27,6 @@ namespace ARR.ReviewSessionManagement
         public void CreateNew(ReviewSession session)
         {
             _repository.Save(session);
-            // MailMessage message = _generator.();
-            //_sender.SendNotification(message);
         }
 
         public void Save(ReviewSession session)
@@ -38,6 +38,11 @@ namespace ARR.ReviewSessionManagement
         {
             var account = _repository.Get(id);
             _repository.Delete(account);
-        }        
+        }
+
+        public void AssignReviewer(string username, int reviewId)
+        {
+            
+        }
     }
 }

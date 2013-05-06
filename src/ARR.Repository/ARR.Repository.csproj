@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractEventMonitor.cs" />
     <Compile Include="AbstractRepository.cs" />
     <Compile Include="AccountRepository.cs" />
+    <Compile Include="EventRepository.cs" />
     <Compile Include="IReadContext.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Patch\AccountPatchFunctions.cs" />

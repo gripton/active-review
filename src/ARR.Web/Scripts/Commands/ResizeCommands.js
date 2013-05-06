@@ -26,11 +26,13 @@ function setScrollDisplay(postFix) {
     var resizableContentHeight = calculateResizableHeight(postFix);
     var element = $("#Top_" + postFix)
 
-    if (resizableContentHeight < element[0].scrollHeight) {
-        element.css("overflow-y", "scroll");
-    }
-    else {
-        element.css("overflow-y", "hidden");
+    if (element[0] !== undefined) {
+        if (resizableContentHeight < element[0].scrollHeight) {
+            element.css("overflow-y", "scroll");
+        }
+        else {
+            element.css("overflow-y", "hidden");
+        }
     }
 }
 

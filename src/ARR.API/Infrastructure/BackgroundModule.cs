@@ -1,5 +1,6 @@
 ﻿using ARR.AccountManagement;
 using ARR.API.Infrastructure;
+using ARR.Data.Entities;
 using ARR.Notifications;
 using ARR.Repository;
 using ARR.ReviewSessionManagement;
@@ -11,54 +12,30 @@ using Raven.Client.Document;
 
 namespace ARR.API.Controllers
 {
-    public class ApplicationModule : Module
+    public class BackgroundModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterType<AccountManager>()
-                .As<IAccountManager>()
-                .InstancePerApiRequest();
-
-            builder
-                .RegisterType<AccountRepository>()
+                .RegisterType<AccountEventSubscriber>()
                 .AsSelf()
-                .InstancePerApiRequest();
+                .As<IStartable>()
+                .SingleInstance();
 
             builder
-                .RegisterType<PasswordManager>()
-                .As<IPasswordManager>()
-                .InstancePerApiRequest();
+                .RegisterType<ReviewSessionEventSubscriber>()
+                .As<IStartable>()
+                .SingleInstance();  
 
-            builder
-                .RegisterType<ReviewSessionManager>()
-                .As<IReviewSessionManager>()
-                .InstancePerApiRequest();
-
-            builder
-                .RegisterType<ReviewSessionRepository>()
-                .AsSelf()
-                .InstancePerApiRequest();
-            
-            builder
-                .RegisterType<ReviewSessionMonitor>()
-                .As<IReviewSessionMonitor>()
-                .InstancePerApiRequest();
-
-            builder
+           builder
                 .RegisterType<NotificationGenerator>()
                 .As<INotificationGenerator>()
-                .InstancePerApiRequest();
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<NotificationSender>()
                 .As<INotificationSender>()
-                .InstancePerApiRequest();
-
-            builder
-                .RegisterType<NotificationSender>()
-                .As<INotificationSender>()
-                .InstancePerApiRequest();
+                .InstancePerLifetimeScope();     
 
             builder
                 .Register(c => new DocumentStore
@@ -70,10 +47,30 @@ namespace ARR.API.Controllers
                 .SingleInstance()
                 .OnActivating(c => c.Instance.Initialize());
 
+
             builder
                 .Register(c => c.Resolve<IDocumentStore>().OpenSession())
                 .As<IDocumentSession>()
-                .InstancePerApiRequest();               
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<AccountRepository>()
+                .AsSelf()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<ReviewSessionRepository>()
+                .AsSelf()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<AccountMonitor>()
+                .As<IAccountMonitor>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<ReviewSessionMonitor>()
+                .As<IReviewSessionMonitor>();    
                 
         }
     }

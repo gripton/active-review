@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ARR.Prototype.API.Models
+namespace ARR.API.Models
 {
     public class ReviewIndex
     {
-        // NOTE: Courtenay to consider handling 'invitee' scenario
-        int Id { get; set; }
+        public int Id { get; set; }
         public string Reviewer { get; set; }
         public string Title { get; set; }
         public DateTime LastModified { get; set; }

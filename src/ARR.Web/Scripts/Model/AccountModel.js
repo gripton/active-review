@@ -1,8 +1,10 @@
 ﻿function Account() {
     var self = this;
 
+    self.ScreenName = ko.observable();
     self.Username = ko.observable();
     self.Password = ko.observable();
+
 }
 
 var AccountViewModel = function () {
@@ -17,7 +19,7 @@ var AccountViewModel = function () {
             data: ko.toJSON(this.Data),
             contentType: 'application/json',
             dataType: 'JSON',
-            success: function (data) { }
+            success: function (data) { $('#myModal').modal('show'); }
         });
     }
 
