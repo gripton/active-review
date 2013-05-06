@@ -20,8 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{671084
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.Prototype.MVC", "ARR.Prototype.MVC\ARR.Prototype.MVC.csproj", "{2FA10917-F2C1-4EDE-AD84-430D35C78124}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.Prototype.API", "ARR.Prototype.API\ARR.Prototype.API.csproj", "{EADCD63F-8959-4874-9672-9EAB9432C032}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.Prototype.Web", "ARR.Prototype.Web\ARR.Prototype.Web.csproj", "{76ED85DB-E785-4807-AFEC-CE2C0A304AD8}"
@@ -62,10 +60,6 @@ Global
 		{3B221EE1-E418-4DA6-B863-41AE9F5F13C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B221EE1-E418-4DA6-B863-41AE9F5F13C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B221EE1-E418-4DA6-B863-41AE9F5F13C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FA10917-F2C1-4EDE-AD84-430D35C78124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FA10917-F2C1-4EDE-AD84-430D35C78124}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FA10917-F2C1-4EDE-AD84-430D35C78124}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FA10917-F2C1-4EDE-AD84-430D35C78124}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EADCD63F-8959-4874-9672-9EAB9432C032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EADCD63F-8959-4874-9672-9EAB9432C032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EADCD63F-8959-4874-9672-9EAB9432C032}.Release|Any CPU.ActiveCfg = Release|Any CPU
