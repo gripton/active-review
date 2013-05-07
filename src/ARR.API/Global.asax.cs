@@ -5,6 +5,7 @@ using System.Web.Routing;
 using ARR.API.App_Start;
 using ARR.API.Controllers;
 using ARR.API;
+using ARR.API.Models;
 using Autofac;
 using Autofac.Integration.WebApi;
 
@@ -17,6 +18,8 @@ namespace ARR.API
     {
         protected void Application_Start()
         {
+            AutoMapper.Mapper.AddProfile<IndexMappingProfile>();
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -32,9 +35,6 @@ namespace ARR.API
 
             // Register the Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-
-            // Register other dependencies.
-            //builder.Register(c => new Logger()).As<ILogger>().InstancePerApiRequest();
 
             // Build the container.
             var container = builder.Build();
