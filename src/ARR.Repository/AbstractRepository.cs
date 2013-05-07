@@ -26,17 +26,7 @@ namespace ARR.Repository
 
         public void Save(TEntity entity)
         {
-            if(entity.Id == default(int))
-            {
-                // Create new
-                _session.Store(entity);
-            }
-            else
-            {
-                // save
-                _session.Store(entity, entity.Id.ToString());
-            }
-
+            _session.Store(entity);
             _session.SaveChanges();
         }
 
