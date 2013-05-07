@@ -113,6 +113,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TeamAgile.UnitTestExtensions">
+      <HintPath>..\..\packages\XT-Unit.Unofficial.1.0.5.1\lib\TeamAgile.UnitTestExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="Thinktecture.IdentityModel">
       <HintPath>..\..\packages\Thinktecture.IdentityModel.2.4.1\lib\net45\Thinktecture.IdentityModel.dll</HintPath>
     </Reference>
@@ -146,10 +149,6 @@
     <ProjectReference Include="..\ARR.Notifications\ARR.Notifications.csproj">
       <Project>{79a6e6c2-f1a7-48ed-97b8-ba4f64b6196d}</Project>
       <Name>ARR.Notifications</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ARR.Prototype.API\ARR.Prototype.API.csproj">
-      <Project>{eadcd63f-8959-4874-9672-9eab9432c032}</Project>
-      <Name>ARR.Prototype.API</Name>
     </ProjectReference>
     <ProjectReference Include="..\ARR.Repository\ARR.Repository.csproj">
       <Project>{85f45a1a-d695-44a9-b6f9-05fb6940c022}</Project>
