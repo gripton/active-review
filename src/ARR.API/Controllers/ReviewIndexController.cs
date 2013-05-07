@@ -1,12 +1,9 @@
-﻿using ARR.API.Models;
+﻿using System.Linq;
+using ARR.API.Models;
 using ARR.Data.Entities;
 using ARR.ReviewSessionManagement;
 using AutoMapper;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace ARR.API.Controllers
@@ -24,9 +21,14 @@ namespace ARR.API.Controllers
         public IEnumerable<ReviewIndex> Get()
         {
             var indexes = new List<ReviewIndex>();
-            var sessions = _manager.ReadContext.ListAll();
+            
+            var qry = from reviewSession in _manager.ReadContext.FindAll() 
+                        orderby reviewSession.LastModified ascending
+                        select reviewSession;
 
-            foreach (var session in sessions)
+            var orderSessions = qry.ToList();
+
+            foreach (var session in orderSessions)
             {
                 indexes.Add(Mapper.Map<ReviewIndex>(session));
             }
