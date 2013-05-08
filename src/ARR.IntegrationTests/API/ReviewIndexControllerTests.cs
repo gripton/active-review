@@ -5,14 +5,13 @@ using ARR.Data.Entities;
 using ARR.Repository;
 using Autofac;
 using NUnit.Framework;
-using TeamAgile.ApplicationBlocks.Interception.UnitTestExtensions;
 
 namespace ARR.IntegrationTests.API
 {
     [TestFixture]
     public class ReviewIndexControllerTests : BaseTestController
     {
-        [Test, DataRollBack]
+        [Test]
         public void Get_Succeeds()
         {
             // Build the container.

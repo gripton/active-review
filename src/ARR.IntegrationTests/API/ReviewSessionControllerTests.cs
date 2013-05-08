@@ -3,13 +3,12 @@ using ARR.Data.Entities;
 using ARR.Repository;
 using Autofac;
 using NUnit.Framework;
-using TeamAgile.ApplicationBlocks.Interception.UnitTestExtensions;
 
 namespace ARR.IntegrationTests.API
 {
     public class ReviewSessionControllerTests : BaseTestController
     {
-        [Test, DataRollBack]
+        [Test]
         public void Put_Succeeds()
         {
             // Build the container.
