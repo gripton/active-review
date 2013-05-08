@@ -139,6 +139,10 @@
     <Reference Include="Thinktecture.IdentityModel">
       <HintPath>..\..\packages\Thinktecture.IdentityModel.2.4.1\lib\net45\Thinktecture.IdentityModel.dll</HintPath>
     </Reference>
+    <Reference Include="WebApiContrib.Formatting.Jsonp, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WebApiContrib\WebApiContrib.Formatting.Jsonp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CorsConfig.cs" />
