@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Web
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.Core", "ARR.Core\ARR.Core.csproj", "{1292DC71-7A5C-409F-BFED-60D2C17F340E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{88596FC9-9CAD-4A1A-8923-EF0D93B2FC42}"
@@ -22,10 +22,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.Repository", "ARR.Repository\ARR.Repository.csproj", "{85F45A1A-D695-44A9-B6F9-05FB6940C022}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.IntegrationTests", "ARR.IntegrationTests\ARR.IntegrationTests.csproj", "{81A7A7EB-FB25-4813-9F33-127DB9896AED}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.Tests.Unit", "ARR.Tests.Unit\ARR.Tests.Unit.csproj", "{8B09577A-1161-4512-9F41-2E3B1049252F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.Tests.Integration", "ARR.Tests.Integration\ARR.Tests.Integration.csproj", "{5DFCC22C-1DE7-45E1-BE1A-971B987B000A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,21 +65,11 @@ Global
 		{81A7A7EB-FB25-4813-9F33-127DB9896AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81A7A7EB-FB25-4813-9F33-127DB9896AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81A7A7EB-FB25-4813-9F33-127DB9896AED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B09577A-1161-4512-9F41-2E3B1049252F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B09577A-1161-4512-9F41-2E3B1049252F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B09577A-1161-4512-9F41-2E3B1049252F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B09577A-1161-4512-9F41-2E3B1049252F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5DFCC22C-1DE7-45E1-BE1A-971B987B000A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DFCC22C-1DE7-45E1-BE1A-971B987B000A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DFCC22C-1DE7-45E1-BE1A-971B987B000A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DFCC22C-1DE7-45E1-BE1A-971B987B000A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{81A7A7EB-FB25-4813-9F33-127DB9896AED} = {88596FC9-9CAD-4A1A-8923-EF0D93B2FC42}
-		{8B09577A-1161-4512-9F41-2E3B1049252F} = {88596FC9-9CAD-4A1A-8923-EF0D93B2FC42}
-		{5DFCC22C-1DE7-45E1-BE1A-971B987B000A} = {88596FC9-9CAD-4A1A-8923-EF0D93B2FC42}
 	EndGlobalSection
 EndGlobal
