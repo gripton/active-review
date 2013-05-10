@@ -64,6 +64,8 @@ var ReviewEditorViewModel = function (reviewSessionId) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
                 self.isLoading(false);
                 self.dirtyFlag.reset();
+                setScrollDisplay("Left");
+                setScrollDisplay("Right");
             });
         } 
     };
