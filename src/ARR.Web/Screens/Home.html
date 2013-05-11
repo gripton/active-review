@@ -29,28 +29,7 @@ legend {
       <div class="nav-collapse">
         <ul class="nav">
           <li class="active"><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">File <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">New</a></li>
-              <li><a href="#">Open</a></li>
-              <hr />
-              <li><a href="#">Save</a></li>
-              <li><a href="#">Preview</a></li>
-              <hr />
-              <li><a href="#">Release</a></li>
-              <li><a href="#">Assign Reviewer</a></li>
-              <li><a href="#">Spawn</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">View <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-            </ul>
-          </li>
-         <li ><a href="#">Help</a></li> 
+         <li ><a href="#">Guide</a></li> 
         </ul>
         <form class="navbar-search pull-right" action="">
           <input type="text" class="search-query span2" placeholder="Search">
@@ -68,7 +47,7 @@ legend {
         <li><a href="#">Help/Guide</a></li>
     </ul>   
 
-    <button class="btn btn-primary">Create New Session</button>
+    <button class="btn btn-primary" data-bind="click: createNewSession">Create New Session</button>
 
     <fieldset class="well" style="min-width: 500px; margin-top: 20px;">
         <legend class="the-legend">My New Created Sessions</legend>
@@ -86,38 +65,26 @@ legend {
             </thead>
             <tbody data-bind="foreach: myCreatedSessionsList">
                 <tr>
-                    <td data-bind="text: name"></td>
+                    <td data-bind="text: title"></td>
                     <td>
-                        <a href="../Screens/Editor_Tom.html"><i class="icon-pencil"></i></a>
+                        <a data-bind="attr: {href: editorUrl}"><i class="icon-pencil"></i></a>
                     </td>
                     <td>
-                        <a href="../Screens/Editor_Tom.html"><i class="icon-eye-open"></i></a>
+                        <a data-bind="attr: {href: editorUrl}"><i class="icon-eye-open"></i></a>
                     </td>
                     <td>
                         <a href="#reviewerModal" role="button" data-toggle="modal"><i class="icon-user"></i></a>
                     </td>
                     <td>
-                        <a href=""><i class="icon-fire"></i></a>
+                        <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire"></i></a>
                     </td>
                     <td>
-                        <a href="#deleteModal" role="button" data-toggle="modal" data-bind="click: $root.removeSession"><i class="icon-remove"></i></a>
+                        <a href="#deleteModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
                     </td>
                 </tr>
             </tbody>
         </table>
         
-
-        <div class="pagination">
-            <ul>
-                <li><a href="#">Prev</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
-        </div>
-
         <div class="modal small hide fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -141,7 +108,7 @@ legend {
                 <label>Reviewer Name</label>
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-user"></i></span>
-                    <input type="text" id="" name="" />
+                    <input type="text" id="txtReviewerName" data-bind="text: $root.reviewer"  />
                 </div>
             </div>
             <div class="modal-footer">
@@ -164,12 +131,12 @@ legend {
             </thead>
             <tbody data-bind="foreach: myActiveSessionsListReviewer">
                 <tr>
-                    <td data-bind="text: name"></td>
+                    <td data-bind="text: title"></td>
                     <td>
-                        <a href="../Screens/Editor_Tom.html"><i class="icon-edit"></i></a>
+                        <a data-bind="attr: {href: questionnaireUrl}"><i class="icon-edit"></i></a>
                     </td>
                     <td>
-                        <a href=""><i class="icon-comment"></i></a>
+                        <a data-bind="attr: {href: forumUrl}"><i class="icon-comment"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -189,12 +156,12 @@ legend {
             </thead>
             <tbody data-bind="foreach: myActiveSessionsListCreator">
                 <tr>
-                    <td data-bind="text: name"></td>
+                    <td data-bind="text: title"></td>
                     <td>
-                        <a href="../Screens/Editor_Tom.html"><i class="icon-comment"></i></a>
+                        <a data-bind="attr: {href: forumUrl}"><i class="icon-comment"></i></a>
                     </td>
                     <td>
-                        <a href="../Screens/Editor_Tom.html"><i class="icon-fire"></i></a>
+                        <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -214,16 +181,28 @@ legend {
                 </thead>
                 <tbody data-bind="foreach: myArchivedSessionsList">
                     <tr>
-                        <td data-bind="text: name"></td>
+                        <td data-bind="text: title"></td>
                         <td>
-                            <a href="../Screens/Editor_Tom.html"><i class="icon-file"></i></a>
+                            <a data-bind="attr: {href: previewUrl}"><i class="icon-file"></i></a>
                         </td>
                         <td>
-                            <a href="../Screens/Editor_Tom.html"><i class="icon-fire"></i></a>
+                            <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire"></i></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
+
+        <div class="pagination">
+            <ul>
+                <li><a href="#">Prev</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </div>
+
     </fieldset>
  </section>
 
@@ -233,7 +212,8 @@ legend {
     <script src="../Scripts/jquery-2.0.0.js"></script>
     <script src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
+    <script type="text/javascript" src="../Scripts/arr-urls.js"></script>
     <script type="text/javascript" src="../Scripts/Model/HomeModel.js"></script>
-
+    
 </body>
 </html>

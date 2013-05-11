@@ -22,11 +22,10 @@ namespace ARR.API.Controllers
         {
             var indexes = new List<ReviewIndex>();
             
-            var qry = from reviewSession in _manager.ReadContext.FindAll() 
-                        orderby reviewSession.LastModified ascending
+            var qry = from reviewSession in _manager.ReadContext.FindAll()
                         select reviewSession;
 
-            var orderSessions = qry.ToList();
+            var orderSessions = qry.ToList().OrderByDescending(sessionId => sessionId.Id).ThenBy(sessionDate => sessionDate.LastModified);
 
             foreach (var session in orderSessions)
             {

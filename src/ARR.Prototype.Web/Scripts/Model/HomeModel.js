@@ -6,10 +6,17 @@
     self.creator = ko.observable(data.Creator);
     self.type = ko.observable(data.SessionStatus);
 
-    //self.selectItem = function (data) {
-    //    homeModel.setReviewer(data);
-    //}
+    self.selectItem = function (data) {
+        indexModel.setReviewer(data);
+    }
 }
+
+var reviewerModel = {
+    reviewerName: ko.observable("courtenay"),
+    reviewerID: ko.observable("1")
+};
+
+//ko.applyBindings(reviewerModel, document.getElementById("txtReviewerName"));
 
 function getReviewers() {
     //get all reviewers
@@ -50,7 +57,7 @@ function getSessions(self) {
 }
 
 //View Model
-function ViewModel() {
+var ViewModel = function () {
     var self = this;
     //self.selectedItem = null;
 
@@ -60,9 +67,7 @@ function ViewModel() {
     self.myArchivedSessionsList = ko.observableArray([]);
 
     getSessions(self);
-   
-
-
+  
     //Remove Session
     self.removeSession = function(session) 
     {
@@ -72,17 +77,17 @@ function ViewModel() {
     }
 
     // Add Reviewer
-    //self.currentReviewer = ko.observable("");
+    self.currentReviewer = ko.observable("");
 
-    //self.setReviewer = function (selectedSession) {
-    //    self.selectedItem = selectedSession;
-    //    self.currentReviewer(self.selectedItem.Reviewer());
-    //}
+    self.setReviewer = function (selectedSession) {
+        self.selectedItem = selectedSession;
+        self.currentReviewer(self.selectedItem.Reviewer());
+    }
 
-    //self.saveReviewer = function () {
-    //    self.selectedItem.Reviewer(self.currentReviewer());
-    //    self.selectedItem = null;
-    //}
+    self.saveReviewer = function () {
+        self.selectedItem.Reviewer(self.currentReviewer());
+        self.selectedItem = null;
+    }
 
 }
 
