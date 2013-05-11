@@ -32,6 +32,12 @@ namespace ARR.API.Controllers
             _manager.CreateNew(session);
         }
 
+        // POST api/reviewsession/5
+        public void Post(ReviewSession session, int id)
+        {
+            _manager.Save(session);
+        }
+
         // PUT api/reviewsession/5/assignreviewer
         public void Put(int id, string patch, ReviewSession session)
         {

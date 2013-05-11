@@ -40,7 +40,7 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     self.save = function () {
         $.ajax({
             type: "POST",
-            url: getArrApiUrlPost('reviewsession'),
+            url: getArrApiUrlPost('reviewsession/' + self.reviewSessionId),
             data: ko.toJSON(self.reviewSession),
             contentType: 'application/json',
             dataType: 'JSON',
