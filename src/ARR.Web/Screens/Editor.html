@@ -30,6 +30,7 @@
                                         <li><a href="#">New</a></li>
                                         <li><a href="#">Open</a></li>
                                         <li><hr/></li>
+                                        <li><a href="#renameDialog" data-toggle="modal" data-bind="click: $root.renameSessionViewModel.setTitle">Rename</a></li>
                                         <li><a href="#" data-bind="click: $root.save">Save</a></li>
                                         <li><a href="#">Preview</a></li>
                                         <li><hr/></li>
@@ -55,6 +56,9 @@
                 </div><!-- /.navbar-inner -->
             </div><!-- /.navbar -->
         <div>
+            <div id="Title">
+                <h5>Session: <span data-bind="text: reviewSession.Title"></span></h5>
+            </div>
             <div id="Content">
                 <div class="row-fluid">
                     <fieldset class="well span6">
@@ -109,6 +113,21 @@
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                     <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editCommentViewModel.saveComment">Save changes</button>
+                </div>
+            </div>
+
+            <!-- Edit Title Modal -->
+            <div id="renameDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="renameModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="H3">Rename Session</h3>
+                </div>
+                <div class="modal-body">
+                    <input style="width:98%" data-bind="value: renameSessionViewModel.currentTitle" />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: renameSessionViewModel.saveTitle">Rename</button>
                 </div>
             </div>
 

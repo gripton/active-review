@@ -31,9 +31,11 @@ var ReviewEditorViewModel = function (reviewSessionId) {
 
     self.newRequirementViewModel = new NewRequirementViewModel(self);
     self.editCommentViewModel = new EditCommentViewModel();
+    self.renameSessionViewModel = new RenameSessionViewModel(self);
     self.editRequirementViewModel = new EditRequirementViewModel();
     self.newQuestionViewModel = new NewQuestionViewModel(self);
     self.spawnReviewViewModel = new SpawnReviewViewModel(self);
+    
 
     self.save = function () {
         $.ajax({
@@ -106,6 +108,22 @@ function EditCommentViewModel() {
     self.saveComment = function() {
         self.selectedRequirement.Comment(self.currentComment());
         self.selectedRequirement = null;
+    };
+}
+
+// Class that handles the bindings for the Edit Comment Interaction
+function RenameSessionViewModel(reviewSessionModel) {
+    var self = this;
+    self.reviewSessionModel = reviewSessionModel;
+
+    self.currentTitle = ko.observable("");
+
+    self.setTitle = function () {
+        self.currentTitle(self.reviewSessionModel.reviewSession.Title());
+    };
+
+    self.saveTitle = function () {
+        self.reviewSessionModel.reviewSession.Title(self.currentTitle());
     };
 }
 
