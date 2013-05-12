@@ -64,6 +64,7 @@ var ReviewEditorViewModel = function (reviewSessionId) {
             
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
+                console.log(ko.toJSON(self.reviewSession));
                 self.isLoading(false);
                 self.dirtyFlag.reset();
                 setScrollDisplay("Left");

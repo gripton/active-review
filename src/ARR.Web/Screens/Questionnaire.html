@@ -7,115 +7,98 @@
     <link href="../Content/custom.css" rel="stylesheet" />
     <script type="text/javascript" src="../Scripts/tinymce/tiny_mce.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
+    <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
 </head>
 <body>
-<div class="navbar navbar-fixed-top" id="Header">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a class="brand" href="#">Active Requirements Review</a>
-      <div class="nav-collapse">
-        <ul class="nav">
-          <li class="active"><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">File <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">New</a></li>
-              <li><a href="#">Open</a></li>
-              <hr />
-              <li><a href="#" data-bind="click: save">Save</a></li>
-              <li><a href="#">Preview</a></li>
-              <hr />
-              <li><a href="#">Release</a></li>
-              <li><a href="#">Assign Reviewer</a></li>
-              <li><a href="">Spawn</a></li>
+    <div class="navbar navbar-fixed-top" id="Header">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Active Requirements Review</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="Home.html"><i class="icon-home icon-white"></i> Home</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">File <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Forum</a></li>
+                  <li><hr /></li>
+                  <li><a href="#" data-bind="click: save">Save</a></li>
+                  <li><a href="#" data-bind="click: save">Save and Complete</a></li>
+                </ul>
+              </li>
+             <li ><a href="#">Help</a></li> 
             </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">View <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-            </ul>
-          </li>
-         <li ><a href="#">Help</a></li> 
-        </ul>
-        <form class="navbar-search pull-right" action="">
-          <input type="text" class="search-query span2" placeholder="Search">
-        </form>
-      </div><!-- /.nav-collapse -->
-    </div><!-- /.container -->
-  </div><!-- /.navbar-inner -->
-</div><!-- /.navbar -->
-<div id="Content" class="fixed_">
-  <div class="row-fluid">
-   <fieldset class="well span12" style="min-width:500px;">
-      <legend class="the-legend">Requirements</legend>
-      <div id="Top_Left">
-        <div class="row span12" data-bind="foreach: requirementsList">
-            <a href="#" data-bind="text: name"></a>
-            <p data-bind="html: requirementText"></p>
+          </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+      </div><!-- /.navbar-inner -->
+    </div><!-- /.navbar -->
+    <div id="Title">
+        <h5>Session: <span data-bind="text: reviewSession.Title"></span></h5>
+    </div>    
+    <div id="Content">
+      <div class="row-fluid">
+       <fieldset class="well span12" style="min-width:500px;">
+          <legend class="the-legend">Requirements</legend>
+          <div id="Top_Left">
+            <div class="row span12" data-bind="foreach: reviewSession.Requirements">
+                <span data-bind="html: Content"></span>
+            </div>
+          </div>
+        </fieldset>
+        <div id="Bottom_Left">
         </div>
       </div>
-    </fieldset>
-    <div id="Bottom_Left">
     </div>
-  </div>
-</div>
-<div  id="Footer" style="height:330px;">
-  <div class="row-fluid">
-    <fieldset class="well span12" data-bind="with: currentQuestion">
-      <legend class="the-legend">Questions</legend>
+    <div  id="Footer" style="height:330px;">
         <div class="row-fluid">
-            <div class="row span8">
-                <p>
-                    <i class="icon-hand-right"></i>&nbsp; <span data-bind="text: questionText"></span> 
-                    <a href="#"></a>
-                    <a href="#feedbackDialog" data-toggle="modal" role="button" data-bind="click: selectItem">Comment</a>
-                </p>
-            </div>
-            <div class="span4" style="text-align:right">
-                <button class="btn-medium btn-primary" data-bind="click: $root.previousQuestion, enable: $root.enablePrevious">Previous</button>
-                <button class="btn-medium btn-primary" data-bind="click: $root.nextQuestion, enable: $root.enableNext">Next</button>
-            </div>
+            <fieldset class="well span12" data-bind="with: questionNavigationViewModel.currentQuestion">
+                <legend class="the-legend">Questions</legend>
+                <div class="row-fluid">
+                    <div class="row span8">
+                        <div class="row-fluid">
+                            <div class="span1" data-bind="text: ($root.questionNavigationViewModel.questionIndex() + 1) + ':'"></div>    
+                            <div class="span11" data-bind="text: Content"></div>
+                        </div>
+                    </div>
+                    <div class="span4" style="text-align:right">
+                        <button class="btn-primary" data-bind="click: $root.questionNavigationViewModel.previousQuestion, enable: $root.questionNavigationViewModel.enablePrevious">Previous</button>
+                        <button class="btn-primary" data-bind="click: $root.questionNavigationViewModel.nextQuestion, enable: $root.questionNavigationViewModel.enableNext">Next</button>
+                    </div>
+                </div>
+                <textarea style="width:100%" class="tinymce" data-bind="tinymce: Answer"></textarea>
+                <br />
+            </fieldset>
         </div>
-        <textarea style="width:100%" class="tinymce" data-bind="tinymce: answer"></textarea>
-        <br />
-    </fieldset>
-  </div>
-</div>
-
-
-    <!-- Comment Modal -->
-    <div id="feedbackDialog" class="modal hide fade" tabindex="-1" role="dialog" 
-        aria-labelledby="feedbackModalLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="feedbackModalLabel">Question Feedback</h3>
-      </div>
-      <div class="modal-body">
-        <div>
-            <textarea id="feedbackText" data-bind="value: currentFeedback" style="width:97%"></textarea>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: saveFeedback">Save changes</button>
-      </div>
     </div>
+    <div id="Loader" data-bind="loadingWhen: isLoading">
+        <div id="horizon">
+            <div id="LoadingDiv">
+                <h4>Loading...</h4>
+                <img alt="activity indicator" src="../Content/images/ajax-loader.gif"/>
+            </div>
+        </div>
+    </div>
+    <div id="PageMask" class="modal-backdrop" data-bind="loadingWhen: isLoading"></div>
 
     <!-- Bootstrap jQuery Plugins, compiled and minified -->
-    <script src="../Scripts/jquery-2.0.0.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.base64.js"></script>
+    <script type="text/javascript" src="../Scripts/purl.js"></script>
     <script type="text/javascript" src="../Scripts/tinymce/jquery.tinymce.js"></script>
-    <script src="../Scripts/bootstrap.js"></script>
-    <script src="../Scripts/tinymce/plugins/bbcode/editor_plugin.js"></script>
-    <script src="../Scripts/tinymce/plugins/bbcode/editor_plugin_src.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="../Scripts/tinymce/plugins/bbcode/editor_plugin.js"></script>
+    <script type="text/javascript" src="../Scripts/tinymce/plugins/bbcode/editor_plugin_src.js"></script>
+    <script type="text/javascript" src="../Scripts/arr-urls.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-tinymce-commands.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-resize-commands.js"></script>
-    <script type="text/javascript" src="../Scripts/Model/QuestionnaireModel.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-loading-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Model/arr-requirements-model.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/arr-questions-view-model.js"></script>
 </body>
 </html>

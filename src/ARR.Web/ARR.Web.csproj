@@ -174,6 +174,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Commands\arr-loading-commands.js" />
+    <Content Include="Scripts\Commands\arr-review-session-management.js" />
     <Content Include="Scripts\Commands\arr-security-commands.js" />
     <Content Include="Scripts\Commands\arr-dirty-model-commands.js" />
     <Content Include="Scripts\Commands\arr-resize-commands.js" />
@@ -192,7 +193,6 @@
     <Content Include="Scripts\Model\ForumModel.js" />
     <Content Include="Scripts\Model\HomeModel.js" />
     <Content Include="Scripts\Model\ProfileModel.js" />
-    <Content Include="Scripts\Model\QuestionnaireModel.js" />
     <Content Include="Scripts\Model\arr-requirements-model.js" />
     <Content Include="Scripts\purl.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
@@ -453,6 +453,7 @@
     <Content Include="Scripts\tinymce\utils\form_utils.js" />
     <Content Include="Scripts\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\tinymce\utils\validate.js" />
+    <Content Include="Scripts\ViewModel\arr-questions-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-review-editor-view-model.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
