@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
+
 using ARR.API.Controllers;
 using ARR.API.Models;
-using ARR.Data.Entities;
 using ARR.Repository;
+
 using Autofac;
-using NUnit.Framework;
+using Xunit;
 
 namespace ARR.IntegrationTests.API
 {
-    [TestFixture]
-    public class ReviewIndexControllerTests : BaseTestController
+    public class ReviewIndexControllerTests : BaseIntegrationTest
     {
-        [Test]
+        [Fact]
         public void Get_Succeeds()
         {
             // Build the container.

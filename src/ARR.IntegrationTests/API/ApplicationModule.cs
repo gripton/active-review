@@ -44,6 +44,11 @@ namespace ARR.IntegrationTests.API
                 .InstancePerLifetimeScope();
 
             builder
+               .RegisterType<EventRepository>()
+               .AsSelf()
+               .InstancePerLifetimeScope();
+
+            builder
                 .RegisterType<NotificationGenerator>()
                 .As<INotificationGenerator>()
                 .InstancePerLifetimeScope();
@@ -71,7 +76,11 @@ namespace ARR.IntegrationTests.API
             builder
                 .Register(c => c.Resolve<IDocumentStore>().OpenSession())
                 .As<IDocumentSession>()
-                .InstancePerLifetimeScope();               
+                .InstancePerLifetimeScope()
+                .OnActivating(c =>
+                    {
+                        var test = "test";
+                    });               
                 
         }
     }

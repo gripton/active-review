@@ -7,7 +7,8 @@ namespace ARR.Data.Entities
     {
         Created = 0,
         Released = 1,
-        Archived = 2
+        Completed = 2,
+        Archived = 3
     }
 
     public class ReviewSession : IPersistentEntity
@@ -18,7 +19,7 @@ namespace ARR.Data.Entities
         public string Creator { get; set; }
         public string Reviewer { get; set; }
         public string Title { get; set; }
-       
+        public bool PendingReviewer { get; set; }
         public DateTime LastModified { get; set; }
 
         public List<Question> Questions { get; set; }

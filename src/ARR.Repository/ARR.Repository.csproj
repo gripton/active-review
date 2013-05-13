@@ -50,6 +50,7 @@
     <Compile Include="AbstractRepository.cs" />
     <Compile Include="AccountRepository.cs" />
     <Compile Include="EventRepository.cs" />
+    <Compile Include="Exceptions\RepositorySaveException.cs" />
     <Compile Include="IReadContext.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Patch\AccountPatchFunctions.cs" />

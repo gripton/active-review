@@ -2,11 +2,12 @@
 using ARR.API.Controllers;
 using ARR.API.Models;
 using ARR.Data.Entities;
+using ARR.IntegrationTests.API;
 using Autofac;
 
-namespace ARR.IntegrationTests.API
+namespace ARR.IntegrationTests
 {
-    public class BaseTestController
+    public class BaseIntegrationTest
     {
         protected IContainer Setup()
         {
@@ -38,6 +39,7 @@ namespace ARR.IntegrationTests.API
         {
             var session = new ReviewSession();
             session.Title = "Session 1";
+            session.Creator = "test@test.com";
 
             var requirements1 = new Requirement();
             requirements1.Content = "This is requirement 1";
