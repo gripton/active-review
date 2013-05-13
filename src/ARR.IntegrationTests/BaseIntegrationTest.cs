@@ -1,14 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ARR.API.Controllers;
 using ARR.API.Models;
 using ARR.Data.Entities;
 using ARR.IntegrationTests.API;
 using Autofac;
+using Raven.Abstractions.Data;
+using Raven.Abstractions.Indexing;
+using Raven.Client;
+using Raven.Client.Document;
+using Raven.Client.Indexes;
 
 namespace ARR.IntegrationTests
 {
-    public class BaseIntegrationTest
+    public class BaseIntegrationTest : IDisposable
     {
+        private readonly IDocumentStore _store;
+        
+        public BaseIntegrationTest()
+        {
+            _store = new DocumentStore
+                {
+                    Url = "https://aeo.ravenhq.com/databases/AppHarbor_48e97815-70ea-43bc-ac81-4229e1cc4454",
+                    ApiKey = "3d9f210f-2fdc-4eb5-a350-5d4cc3a1e226"
+                };
+
+            _store.Initialize();
+
+            IndexCreation.CreateIndexes(typeof(BaseIntegrationTest).Assembly, _store);    
+        }
+
         protected IContainer Setup()
         {
             // Map AutoMapper
@@ -16,6 +37,11 @@ namespace ARR.IntegrationTests
 
             // Create the container builder.
             var builder = new ContainerBuilder();
+
+            builder
+                .RegisterInstance(_store)
+                .As<IDocumentStore>();
+
 
             builder.RegisterModule(new TestApplicationModule());
 
@@ -59,6 +85,23 @@ namespace ARR.IntegrationTests
             session.Questions = new List<Question> { question1, question2 };
 
             return session;
+        }
+
+        public void Dispose()
+        {
+            _store.DatabaseCommands.DeleteByIndex("AllDocumentsById", new IndexQuery());
+        }
+    }
+
+    public class AllDocumentsById : AbstractIndexCreationTask
+    {
+        public override IndexDefinition CreateIndexDefinition()
+        {
+            return new IndexDefinition
+            {
+                Name = "AllDocumentsById",
+                Map = "from doc in docs let DocId = doc[\"@metadata\"][\"@id\"] select new {DocId};"
+            };
         }
     }
 }

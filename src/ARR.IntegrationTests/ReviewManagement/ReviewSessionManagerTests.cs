@@ -2,15 +2,13 @@
 using ARR.Repository;
 using ARR.ReviewSessionManagement;
 using Autofac;
-using Raven.Client;
 using Xunit;
-using Xunit.Extensions;
 
 namespace ARR.IntegrationTests.ReviewManagement
 {
     public class ReviewSessionManagerTests : BaseIntegrationTest
     {
-        [Fact, AutoRollback]
+        [Fact]
         public void AssignReviewer_Succeeds()
         {
             // Build the container.
@@ -20,7 +18,6 @@ namespace ARR.IntegrationTests.ReviewManagement
             {
                 var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
                 var eventRepo = lifetime.Resolve<EventRepository>();
-                var documentession = lifetime.Resolve<IDocumentSession>();
 
                 // Create a new session to work with
                 var session = NewReviewSession();
@@ -30,8 +27,6 @@ namespace ARR.IntegrationTests.ReviewManagement
 
                 Assert.DoesNotThrow(() => manager.AssignReviewer(session.Id, "test@test.com", session.Creator));
                 Assert.True(session.PendingReviewer);
-
-                //documentession.Advanced.Refresh();
 
                 var events = eventRepo.List(e => e.EventType == EventType.ReviewerInvited);
 

@@ -64,16 +64,6 @@ namespace ARR.IntegrationTests.API
                 .InstancePerLifetimeScope();
 
             builder
-                .Register(c => new DocumentStore
-                {
-                    Url = "https://aeo.ravenhq.com/databases/AppHarbor_48e97815-70ea-43bc-ac81-4229e1cc4454",
-                    ApiKey = "3d9f210f-2fdc-4eb5-a350-5d4cc3a1e226"
-                })
-                .As<IDocumentStore>()
-                .SingleInstance()
-                .OnActivating(c => c.Instance.Initialize());
-
-            builder
                 .Register(c => c.Resolve<IDocumentStore>().OpenSession())
                 .As<IDocumentSession>()
                 .InstancePerLifetimeScope()
