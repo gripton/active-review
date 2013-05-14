@@ -456,6 +456,8 @@
     <Content Include="Scripts\ViewModel\arr-login-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-questions-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-review-editor-view-model.js" />
+    <Content Include="Scripts\ViewModel\arr-profile-view-model.js" />
+    <Content Include="Scripts\ViewModel\arr-login-view-model.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
