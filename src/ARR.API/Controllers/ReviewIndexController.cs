@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using ARR.API.Models;
 using ARR.ReviewSessionManagement;
@@ -39,10 +41,16 @@ namespace ARR.API.Controllers
         }
 
         // POST api/reviewindex
-        public void Post(ReviewIndex index)
+        public HttpResponseMessage Post(ReviewIndex index)
         {
             var username = GetAPIUser();
-            _manager.Create(index.ToNewSession(), username);
+            var session = index.ToNewSession();
+            _manager.Create(session, username);
+            
+            // Sending back the id in the reponse for the index page
+            var response = new HttpResponseMessage {Content = new StringContent(session.Id.ToString())};
+            response.StatusCode = HttpStatusCode.OK;
+            return response;    
         }
 
         // PUT api/reviewindex/5
