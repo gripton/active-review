@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text;
 using ARR.API.Models;
-using ARR.Data.Entities;
 using ARR.ReviewSessionManagement;
 using AutoMapper;
 using System.Collections.Generic;
@@ -40,20 +41,22 @@ namespace ARR.API.Controllers
         // POST api/reviewindex
         public void Post(ReviewIndex index)
         {
-            var session = new ReviewSession();
-            _manager.Save(index.ToNewSession());
+            var username = GetAPIUser();
+            _manager.Create(index.ToNewSession(), username);
         }
 
         // PUT api/reviewindex/5
         public void Put(int id, string patch, ReviewIndex index)
         {
+            var username = GetAPIUser();
+
             switch (patch)
             {
                 case "assign-reviewer":
-                    _manager.AssignReviewer(index.Reviewer, id);
+                    _manager.AssignReviewer(id, index.Reviewer, username);
                     break;
                 default:
-                    _manager.Save(index.ToSession(_manager.ReadContext));
+                    _manager.Edit(index.ToSession(_manager.ReadContext), username);
                     break;
             }
         }
@@ -61,7 +64,21 @@ namespace ARR.API.Controllers
         // DELETE api/reviewindex/5
         public void Delete(int id)
         {
-            _manager.Delete(id);
-        }        
+            var username = GetAPIUser();
+            _manager.Delete(id, username);
+        }
+
+        // Very temporary for handling security
+        private string GetAPIUser()
+        {
+            IEnumerable<string> headerVals;
+
+            Request.Headers.TryGetValues("Authorization", out headerVals);
+            var sAuthHeader = headerVals.First();
+            var authHeaderTokens = sAuthHeader.Split();
+
+            var encodedDataAsBytes = Convert.FromBase64String(authHeaderTokens[0]);
+            return Encoding.ASCII.GetString(encodedDataAsBytes);
+        }
     }
 }

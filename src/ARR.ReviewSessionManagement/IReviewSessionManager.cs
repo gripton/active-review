@@ -1,22 +1,21 @@
-﻿using ARR.Data.Entities;
+﻿using System.Collections.Generic;
+using ARR.Data.Entities;
 using ARR.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ARR.ReviewSessionManagement
 {
     public interface IReviewSessionManager
     {
-        void CreateNew(ReviewSession session);
-        void Save(ReviewSession session);
-        void Delete(int id);
-
-        // API Controller to give 403 on exception
-        void AssignReviewer(string username, int reviewId);
-
+        void AssignReviewer(int sessionId, string reviewer, string current);
+        void Create(ReviewSession session, string current);
+        void Delete(int sessionId, string current);
+        void Edit(ReviewSession session, string current);
+        void Release(int sessionId, string current);
+        void SaveQuestionnaire(int sessionId, List<Question> questions, string current);
+        void CompleteQuestionnaire(int sessionId, List<Question> questions, string current);
+        void ProvideFeedback(string content, int sessionId, string current);
+        void Archive(int sessionId, string current);
+        
         IReadContext<ReviewSession> ReadContext { get; }
     }
 }

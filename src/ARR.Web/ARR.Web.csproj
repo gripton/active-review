@@ -174,10 +174,11 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Commands\arr-loading-commands.js" />
+    <Content Include="Scripts\Commands\arr-review-session-management.js" />
     <Content Include="Scripts\Commands\arr-security-commands.js" />
-    <Content Include="Scripts\Commands\DirtyModelCommands.js" />
-    <Content Include="Scripts\Commands\ResizeCommands.js" />
-    <Content Include="Scripts\Commands\TinyMCECommands.js" />
+    <Content Include="Scripts\Commands\arr-dirty-model-commands.js" />
+    <Content Include="Scripts\Commands\arr-resize-commands.js" />
+    <Content Include="Scripts\Commands\arr-tinymce-commands.js" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
@@ -192,8 +193,7 @@
     <Content Include="Scripts\Model\ForumModel.js" />
     <Content Include="Scripts\Model\HomeModel.js" />
     <Content Include="Scripts\Model\ProfileModel.js" />
-    <Content Include="Scripts\Model\QuestionnaireModel.js" />
-    <Content Include="Scripts\Model\RequirementsModel.js" />
+    <Content Include="Scripts\Model\arr-requirements-model.js" />
     <Content Include="Scripts\purl.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
     <Content Include="Scripts\tinymce\langs\en.js" />
@@ -453,7 +453,8 @@
     <Content Include="Scripts\tinymce\utils\form_utils.js" />
     <Content Include="Scripts\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\tinymce\utils\validate.js" />
-    <Content Include="Scripts\ViewModel\ReviewEditorViewModel.js" />
+    <Content Include="Scripts\ViewModel\arr-questions-view-model.js" />
+    <Content Include="Scripts\ViewModel\arr-review-editor-view-model.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

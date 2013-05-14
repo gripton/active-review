@@ -31,8 +31,7 @@ var AccountViewModel = function () {
             contentType: 'application/json',
             dataType: 'JSON',
             success: function (response) {
-                alert(response);
-                //completeFunction();
+                location.href = "home.html";
             },
             error: function (response) {
                 alert("Ajax Request Failed");

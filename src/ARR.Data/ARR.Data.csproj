@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\Credentials.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Feedback.cs" />
     <Compile Include="Entities\IPersistentEntity.cs" />

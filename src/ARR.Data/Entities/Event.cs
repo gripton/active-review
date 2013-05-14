@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ARR.Data.Entities
 {
@@ -11,7 +8,9 @@ namespace ARR.Data.Entities
         ReviewerInvited = 1,
         InviteeRegistered = 2,
         FeedbackProvided = 3,
-        FeedbackAcknowleged = 4
+        FeedbackAcknowleged = 4,
+        QuestionnaireCompleted = 5,
+        ReviewReleased = 6
     }
 
     public class Event : IPersistentEntity

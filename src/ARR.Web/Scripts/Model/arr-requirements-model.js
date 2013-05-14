@@ -37,15 +37,15 @@ function SpawnQuestion(question) {
 
 function SpawnReview() {
     var self = this;
-    self.name = ko.observable("");
-    self.requirements = ko.observableArray();
-    self.questions = ko.observableArray();
+    self.Title = ko.observable("");
+    self.Requirements = ko.observableArray();
+    self.Questions = ko.observableArray();
 
     self.addRequirement = function(requirement) {
-        self.requirements.push(new SpawnRequirement(requirement));
+        self.Requirements.push(new SpawnRequirement(requirement));
     };
 
     self.addQuestion = function(question) {
-        self.questions.push(new SpawnQuestion(question));
+        self.Questions.push(new SpawnQuestion(question));
     };
 }

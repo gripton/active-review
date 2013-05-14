@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 60px; /* When using the navbar-top-fixed */
+    padding-top: 35px; /* When using the navbar-top-fixed */
 }
 
 .the-legend {
@@ -19,6 +19,16 @@
 /* Setting the height to match the body's top padding - the resizing functions rely on it being the same*/
 #Header {
     height:60px;
+}
+
+#Title 
+{
+    margin-left:30px;
+    margin-right:30px;
+}
+
+#Title h5 {
+    margin-bottom: 0;
 }
 
 #Content, #Footer {

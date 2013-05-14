@@ -42,7 +42,7 @@ function calculateNewContentHeight() {
 
 function calculateResizableHeight(postFix) {
     var newHeight = calculateNewContentHeight();
-    return newHeight - $("#Bottom_" + postFix).outerHeight() - 80;
+    return newHeight - $("#Bottom_" + postFix).outerHeight() - 85;
 }
 
 function setScrollableToBottom(postFix) {

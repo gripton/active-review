@@ -42,12 +42,14 @@ namespace ARR.Repository
                .DocumentStore
                .DatabaseCommands
                .Patch(patchString, patches);
+
+            _session.SaveChanges();
         }
 
         public void Delete(TEntity entity)
         {
-            // Create new
-            _session.Delete<TEntity>(entity);
+           _session.Delete<TEntity>(entity);
+            _session.SaveChanges();
         }
 
         public TEntity Get(int id)

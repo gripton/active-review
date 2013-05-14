@@ -9,7 +9,7 @@
 
 function getSessionAuthorization() {
     //TODO: load the username from the cookies
-    return getAuthorizationHeader("thorfio","password");
+    return getAuthorizationHeader("thorfio","");
 }
 
 function getAuthorizationHeader(username, password) {
@@ -17,7 +17,7 @@ function getAuthorizationHeader(username, password) {
     var authType;
 
     if (password == "") {
-        authType = "Cookie " + $.base64.encode(username);
+        authType = $.base64.encode(username);
     }
     else {
         var up = $.base64.encode(username + ":" + password);

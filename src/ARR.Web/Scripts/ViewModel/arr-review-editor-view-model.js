@@ -31,14 +31,16 @@ var ReviewEditorViewModel = function (reviewSessionId) {
 
     self.newRequirementViewModel = new NewRequirementViewModel(self);
     self.editCommentViewModel = new EditCommentViewModel();
+    self.renameSessionViewModel = new RenameSessionViewModel(self);
     self.editRequirementViewModel = new EditRequirementViewModel();
     self.newQuestionViewModel = new NewQuestionViewModel(self);
     self.spawnReviewViewModel = new SpawnReviewViewModel(self);
+    
 
     self.save = function () {
         $.ajax({
-            type: "POST",
-            url: getArrApiUrlPost('reviewsession'),
+            type: "PUT",
+            url: getArrApiUrlPost('reviewsession/' + self.reviewSessionId),
             data: ko.toJSON(self.reviewSession),
             contentType: 'application/json',
             dataType: 'JSON',
@@ -62,6 +64,7 @@ var ReviewEditorViewModel = function (reviewSessionId) {
             
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
+                console.log(ko.toJSON(self.reviewSession));
                 self.isLoading(false);
                 self.dirtyFlag.reset();
                 setScrollDisplay("Left");
@@ -106,6 +109,22 @@ function EditCommentViewModel() {
     self.saveComment = function() {
         self.selectedRequirement.Comment(self.currentComment());
         self.selectedRequirement = null;
+    };
+}
+
+// Class that handles the bindings for the Edit Comment Interaction
+function RenameSessionViewModel(reviewSessionModel) {
+    var self = this;
+    self.reviewSessionModel = reviewSessionModel;
+
+    self.currentTitle = ko.observable("");
+
+    self.setTitle = function () {
+        self.currentTitle(self.reviewSessionModel.reviewSession.Title());
+    };
+
+    self.saveTitle = function () {
+        self.reviewSessionModel.reviewSession.Title(self.currentTitle());
     };
 }
 
@@ -161,11 +180,11 @@ function SpawnReviewViewModel(reviewSessionModel) {
 
     // Grabs all the pertinent pieces of the review that need to be migrated and creates an instance
     // Of a spawned review.
-    self.spawn = function () {
+    self.spawnSetup = function () {
         var reviewSession = reviewSessionModel.reviewSession;
         var spawnedReview = new SpawnReview(reviewSession);
 
-        spawnedReview.name(reviewSession.name + " clone");
+        spawnedReview.Title(reviewSession.Title() + " clone");
 
         for (var i = 0; i < reviewSession.Requirements().length; i++) {
             spawnedReview.addRequirement(reviewSession.Requirements()[i]);
@@ -176,6 +195,34 @@ function SpawnReviewViewModel(reviewSessionModel) {
         }
 
         self.spawnInstance(spawnedReview);
+    };
+
+    self.spawn = function () {
+        var session = new ReviewSession();
+        var spawnedReview = self.spawnInstance();
+        session.Title(spawnedReview.Title());
+        for (var i = 0; i < spawnedReview.Requirements().length; i++) {
+            if (spawnedReview.Requirements()[i].Copy()) {
+                session.Requirements().push(spawnedReview.Requirements()[i].Requirement);
+            }
+        }
+
+        for (var k = 0; k < spawnedReview.Questions().length; k++) {
+            if (spawnedReview.Questions()[k].Copy()) {
+                session.Questions().push(spawnedReview.Questions()[k].Question);
+            }
+        }
+
+        $.ajax({
+            type: "POST",
+            url: getArrApiUrlPost('reviewsession'),
+            data: ko.toJSON(session),
+            contentType: 'application/json',
+            dataType: 'JSON',
+            success: function () {
+                alert('success!');
+            },
+        });
     };
 }
 

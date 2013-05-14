@@ -61,6 +61,11 @@ namespace ARR.API.Controllers
                 .InstancePerApiRequest();
 
             builder
+               .RegisterType<EventRepository>()
+               .AsSelf()
+               .InstancePerApiRequest();
+
+            builder
                 .Register(c => new DocumentStore
                 {
                     Url = "https://2.ravenhq.com/databases/AppHarbor_6d9ac094-3ec0-454d-8f3f-b838f0847e99",
