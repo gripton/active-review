@@ -1,6 +1,31 @@
 ﻿ko.bindingHandlers.tinymce = {
     init: function (element, valueAccessor, allBindingsAccessor) {
-        var options = allBindingsAccessor().tinymceOptions || {};
+        var options = allBindingsAccessor().tinymceOptions ||
+        {
+            // General options
+            mode: "textareas",
+            theme: "advanced",
+            plugins: "bbcode",
+            theme_advanced_buttons1: "bold,italic,underline,undo,redo,link,unlink,image,forecolor,styleselect,removeformat,cleanup,code",
+            theme_advanced_buttons2: "",
+            theme_advanced_buttons3: "",
+            theme_advanced_toolbar_location: "bottom",
+            theme_advanced_toolbar_align: "center",
+            theme_advanced_styles: "Code=codeStyle;Quote=quoteStyle",
+
+            // Skin options
+            skin: "o2k7",
+            skin_variant: "silver",
+
+            // Example content CSS (should be your site CSS)
+            content_css: "css/example.css",
+
+            // Drop lists for link/image/media/template dialogs
+            template_external_list_url: "js/template_list.js",
+            external_link_list_url: "js/link_list.js",
+            external_image_list_url: "js/image_list.js",
+            media_external_list_url: "js/media_list.js",
+        };
         var modelValue = valueAccessor();
         var value = ko.utils.unwrapObservable(valueAccessor());
         var el = $(element);
@@ -41,3 +66,4 @@
         }
     }
 };
+

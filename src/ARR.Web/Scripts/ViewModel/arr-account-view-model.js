@@ -1,7 +1,7 @@
 ﻿var AccountViewModel = function() {
 
     var self = this;
-    self.accountId = accountId;
+    self.accountId = -1//accountId;
     self.account = new Account();
     self.websecurityUser = new Account();
 
@@ -59,7 +59,7 @@
     };
     
     self.load = function () {
-        ko.applyBindings(new AccountViewModel());
+        ko.applyBindings(self);
         
         $.getJSON(getArrApiUrl('user.user'), function (allData) {
             ko.mapping.fromJS(allData, {}, self.websecurityUser);
@@ -76,5 +76,5 @@
 };
 
 
-
+var accountViewModel = new AccountViewModel();
 

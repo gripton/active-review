@@ -40,7 +40,7 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     self.save = function () {
         $.ajax({
             type: "PUT",
-            url: getArrApiUrlPost('reviewsession/' + self.reviewSessionId),
+            url: getArrApiUrlPost('reviewsession/' + self.reviewSessionId + "/session"),
             data: ko.toJSON(self.reviewSession),
             contentType: 'application/json',
             dataType: 'JSON',
@@ -64,7 +64,6 @@ var ReviewEditorViewModel = function (reviewSessionId) {
             
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
-                console.log(ko.toJSON(self.reviewSession));
                 self.isLoading(false);
                 self.dirtyFlag.reset();
                 setScrollDisplay("Left");
