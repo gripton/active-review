@@ -35,8 +35,12 @@ namespace ARR.API.Controllers
         // PUT api/reviewsession/5/assignreviewer
         public void Put(int id, string patch, ReviewSession session)
         {
-            
-            
+            switch (patch)
+            {
+                default:
+                    _manager.Save(session);
+                    break;
+            }
         }
 
         // DELETE api/reviewsession/5

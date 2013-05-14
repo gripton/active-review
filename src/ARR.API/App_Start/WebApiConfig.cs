@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Net.Http.Formatting;
 using System.Web.Http;
+using WebApiContrib.Formatting.Jsonp;
 
 namespace ARR.API
 {
@@ -20,6 +19,8 @@ namespace ARR.API
                 routeTemplate: "api/{controller}/{id}/{patch}",
                 defaults: new { id = RouteParameter.Optional, patch = RouteParameter.Optional }
             );
+
+            GlobalConfiguration.Configuration.Formatters.Insert(0, new JsonpMediaTypeFormatter(new JsonMediaTypeFormatter()));
         }
     }
 }

@@ -20,19 +20,13 @@ namespace ARR.API.Controllers
         // GET api/reviewindex
         public IEnumerable<ReviewIndex> Get()
         {
-            var indexes = new List<ReviewIndex>();
-            
-            var qry = from reviewSession in _manager.ReadContext.FindAll()
+            var qry = from reviewSession in _manager.ReadContext.FindAll() 
+                        orderby reviewSession.LastModified ascending
                         select reviewSession;
 
-            var orderSessions = qry.ToList().OrderByDescending(sessionId => sessionId.Id).ThenBy(sessionDate => sessionDate.LastModified);
+            var orderSessions = qry.ToList();
 
-            foreach (var session in orderSessions)
-            {
-                indexes.Add(Mapper.Map<ReviewIndex>(session));
-            }
-
-            return indexes;
+            return orderSessions.Select(Mapper.Map<ReviewIndex>).ToList();
         }
 
         // GET api/reviewindex/5

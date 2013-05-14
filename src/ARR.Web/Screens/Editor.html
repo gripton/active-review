@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div id="Bottom_Left" style="height:245px;">
-                            <textarea class="tinymce" data-bind="tinymce: newRequirementViewModel.newRequirement"></textarea>
+                            <textarea style="width:100%" class="tinymce" data-bind="tinymce: newRequirementViewModel.newRequirement"></textarea>
                             <br />
                             <button class="btn-primary" data-bind="click: newRequirementViewModel.addRequirement">Add Requirement</button>
                         </div>
@@ -140,34 +140,38 @@
                             <input id="spawnName" type="text" data-bind="value: name"/>
                         </div>
                     </div>
-                    <ul class="unstyled">
-                        <li><h5>Requirements</h5></li>
-                        <li>
-                            <ul class="unstyled" data-bind="foreach: requirements">
-                                <li>
-                                    <label class="checkbox">
-                                        <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />asdf
-                                        <span data-bind="text: Requirement.name"></span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><h5>Questions</h5></li>
-                        <li>
-                            <ul class="unstyled" data-bind="foreach: questions">
-                                <li>
-                                    <label class="checkbox">
-                                        <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />asdf
-                                        <span data-bind="text: Question.questionText"></span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div>
+                        <h5>Requirements</h5>
+                        <ol class="unstyled">
+                            <li>
+                                <ul class="unstyled" data-bind="foreach: requirements">
+                                    <li>
+                                        <label class="checkbox">
+                                            <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />
+                                            <span data-bind="text: $index() + 1"></span>:
+                                            <span data-bind="html: Requirement.Content"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h5>Questions</h5>
+                        <ol class="unstyled" data-bind="foreach: questions">
+                            <li>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />
+                                    <span data-bind="text: $index() + 1"></span>:
+                                    <span data-bind="html: Question.Content"></span>
+                                </label>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" >Hatsch</button>
+                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" >Hatch</button>
                 </div>
             </div>
         </div>
@@ -184,12 +188,14 @@
         </div>
         <!-- Bootstrap jQuery Plugins, compiled and minified -->
         <script src="../Scripts/jquery-2.0.0.js"></script>
+         <script src="../Scripts/jquery.base64.js"></script>
         <script src="../Scripts/purl.js"></script>
         <script type="text/javascript" src="../Scripts/tinymce/jquery.tinymce.js"></script>
         <script src="../Scripts/bootstrap.js"></script>
         <script src="../Scripts/tinymce/plugins/bbcode/editor_plugin.js"></script>
         <script src="../Scripts/tinymce/plugins/bbcode/editor_plugin_src.js"></script>
         <script type="text/javascript" src="../Scripts/arr-urls.js"></script>
+        <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
         <script type="text/javascript" src="../Scripts/Commands/arr-loading-commands.js"></script>
         <script type="text/javascript" src="../Scripts/Commands/TinyMCECommands.js"></script>
         <script type="text/javascript" src="../Scripts/Commands/ResizeCommands.js"></script>

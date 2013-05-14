@@ -1,14 +1,13 @@
 ﻿$(function () {
     $.ajaxSetup({
-        error: function (jqXHR, exception) {
-            if (jqXHR.status === 0) {
+        error: function (jqXhr, exception) {
+            if (jqXhr.status === 0) {
                 alert('Not connect.\n Verify Network.');
-            } else if (jqXHR.status == 404) {
+            } else if (jqXhr.status == 404) {
                 alert('Requested page not found. [404]');
-            } else if (jqXHR.status == 500) {
-                alert('Internal Server Error [500].');
-                var obj = JSON.parse(jqXHR.responseText);
-                alert(obj.ExceptionMessage)
+            } else if (jqXhr.status == 500) {
+                var obj = JSON.parse(jqXhr.responseText);
+                alert('Internal Server Error [500]: ' + obj.ExceptionMessage);
             } else if (exception === 'parsererror') {
                 alert('Requested JSON parse failed.');
             } else if (exception === 'timeout') {
@@ -16,24 +15,11 @@
             } else if (exception === 'abort') {
                 alert('Ajax request aborted.');
             } else {
-                alert('Uncaught Error.\n' + jqXHR.responseText);
+                alert('Uncaught Error.\n' + jqXhr.responseText);
             }
         }
     });
 });
-
-function getReviewSession() {
-    var reviewSession = new ReviewSession("Demo Review Session");
-
-    reviewSession.requirements.push(new Requirement("Requirement One", "<p>Here is a requirement</p><ul><li>Acceptance One</li></ul>"));
-    reviewSession.requirements.push(new Requirement("Requirement Two", "<p>Here is another requirement</p><ul><li>Acceptance One</li></ul>"));
-
-    reviewSession.questions.push(new Question("This is Question #1"));
-    reviewSession.questions.push(new Question("This is Question #2"));
-    reviewSession.questions.push(new Question("This is Question #3"));
-
-    return reviewSession;
-}
 
 // The ReviewEditor View mode
 var ReviewEditorViewModel = function (reviewSessionId) {
@@ -43,17 +29,16 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     self.isLoading = ko.observable(false);
     self.reviewSession = new ReviewSession();
 
-    //self.reviewSession = getReviewSession();
     self.newRequirementViewModel = new NewRequirementViewModel(self);
     self.editCommentViewModel = new EditCommentViewModel();
     self.editRequirementViewModel = new EditRequirementViewModel();
     self.newQuestionViewModel = new NewQuestionViewModel(self);
     self.spawnReviewViewModel = new SpawnReviewViewModel(self);
 
-    self.save = function() {
+    self.save = function () {
         $.ajax({
             type: "POST",
-            url: getArrApiUrl('reviewsession'),
+            url: getArrApiUrlPost('reviewsession'),
             data: ko.toJSON(self.reviewSession),
             contentType: 'application/json',
             dataType: 'JSON',
@@ -79,6 +64,8 @@ var ReviewEditorViewModel = function (reviewSessionId) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
                 self.isLoading(false);
                 self.dirtyFlag.reset();
+                setScrollDisplay("Left");
+                setScrollDisplay("Right");
             });
         } 
     };
@@ -166,25 +153,26 @@ function NewQuestionViewModel(reviewSessionModel) {
 }
 
 // Class that handles the bindings for the Spawn functionality
-function SpawnReviewViewModel(reviewSession) {
+function SpawnReviewViewModel(reviewSessionModel) {
     var self = this;
-    self.reviewSession = reviewSession;
+    self.reviewSessionModel = reviewSessionModel;
 
     self.spawnInstance = ko.observable(null);
 
     // Grabs all the pertinent pieces of the review that need to be migrated and creates an instance
     // Of a spawned review.
     self.spawn = function () {
+        var reviewSession = reviewSessionModel.reviewSession;
         var spawnedReview = new SpawnReview(reviewSession);
 
         spawnedReview.name(reviewSession.name + " clone");
 
-        for (var i = 0; i < reviewSession.requirements().length; i++) {
-            spawnedReview.addRequirement(reviewSession.requirements()[i]);
+        for (var i = 0; i < reviewSession.Requirements().length; i++) {
+            spawnedReview.addRequirement(reviewSession.Requirements()[i]);
         }
 
-        for (var k = 0; k < reviewSession.questions().length; k++) {
-            spawnedReview.addQuestion(reviewSession.questions()[k]);
+        for (var k = 0; k < reviewSession.Questions().length; k++) {
+            spawnedReview.addQuestion(reviewSession.Questions()[k]);
         }
 
         self.spawnInstance(spawnedReview);
