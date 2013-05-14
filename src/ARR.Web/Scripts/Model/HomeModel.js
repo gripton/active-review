@@ -12,8 +12,8 @@
     self.editorUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
     self.previewUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
     self.spawnUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
-    self.questionnaireUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
-    self.forumUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
+    self.questionnaireUrl = "../Screens/Questionnaire.html?reviewSession=" + sessionId;
+    self.forumUrl = "../Screens/Forum.html?reviewSession=" + sessionId;
 }
 
 function getReviewers() {
@@ -36,11 +36,9 @@ function getCurrentUser() {
     //$.ajax({
     //    type: "GET",
     //    url: getArrApiUrl('user.user'),
-    //    //data: ko.toJSON(self),
     //    contentType: 'application/json',
     //    dataType: 'JSON',
     //    success: function (d) {
-    //        //TODO: redraw myCreatedSessionsList
     //        alert(d);
     //    },
     //});
@@ -62,16 +60,18 @@ function deleteSession(sessionId) {
 
 function getSessions(self) {
     $.getJSON(getArrApiUrl('reviewindex'), function (allData) {
+        var currentUser = getCurrentUser();
+
         var mappedSessions = $.map(allData, function (item) {
             var type = item.SessionStatus;
 
             if (type == 0) {
                 self.myCreatedSessionsList.push(new Session(item));
             }
-            else if (type == 1 && getCurrentUser() == item.Creator) {
+            else if (type == 1 && currentUser == item.Creator) {
                 self.myActiveSessionsListCreator.push(new Session(item));
             }
-            else if (type == 1 && getCurrentUser() == item.Reviewer) {
+            else if (type == 1 && currentUser == item.Reviewer) {
                 self.myActiveSessionsListReviewer.push(new Session(item));
             }
             else if (type == 2) {
@@ -105,13 +105,10 @@ var IndexViewModel = function () {
             data: ko.toJSON(reviewSession),
             contentType: 'application/json',
             dataType: 'JSON',
-            success: function () {
+            success: function (data) {
                 //self.myCreatedSessionsList.push(true);
-                //getSessions(self);
-            }, //.bind(IndexViewModel),
+            }, 
         });
-
-        //self.myCreatedSessionsList.valueHasMutated();
     };
 
     //Remove Session
@@ -143,8 +140,6 @@ function ReviewerViewModel() {
         self.selectedSession = null;
     };
 }
-
-getCurrentUser();
 
 var indexModel = new IndexViewModel();
 ko.applyBindings(indexModel);

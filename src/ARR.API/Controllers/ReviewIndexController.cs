@@ -25,7 +25,7 @@ namespace ARR.API.Controllers
                         orderby reviewSession.LastModified ascending
                         select reviewSession;
 
-            var orderSessions = qry.ToList();
+            var orderSessions = qry.ToList().OrderByDescending(sessionId => sessionId.Id).ThenBy(sessionDate => sessionDate.LastModified);
 
             return orderSessions.Select(Mapper.Map<ReviewIndex>).ToList();
         }
