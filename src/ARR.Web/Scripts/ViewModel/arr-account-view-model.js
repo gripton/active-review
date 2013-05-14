@@ -64,12 +64,12 @@
         $.getJSON('user.user', function (allData) {
             ko.mapping.fromJS(allData, {}, self.websecurityUser);
             console.log(ko.toJSON(self.websecurityUser));
-        });
-
-        $.getJSON(getArrApiUrl('account/' + self.websecurityUser.Id), function (allData) {
+            $.getJSON(getArrApiUrl('account/' + self.websecurityUser.Id()), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.account);
                 console.log(ko.toJSON(self.account));
             });
+        });
+
     };
 
     self.load();
