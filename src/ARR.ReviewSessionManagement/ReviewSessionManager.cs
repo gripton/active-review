@@ -130,7 +130,7 @@ namespace ARR.ReviewSessionManagement
                 throw new InvalidOperationException();
 
             if (!HasValidWebCharacters(session))
-                throw new InvalidWebCharacterException();
+                throw new InvalidWebCharacterException();   
 
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();

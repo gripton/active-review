@@ -41,7 +41,7 @@ namespace ARR.API.Controllers
         // POST api/reviewindex
         public void Post(ReviewIndex index)
         {
-            var username = Request.Headers.Authorization.Parameter;
+            var username = GetAPIUser();
             _manager.Create(index.ToNewSession(), username);
         }
 

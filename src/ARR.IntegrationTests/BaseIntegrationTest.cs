@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using ARR.API.Controllers;
 using ARR.API.Models;
 using ARR.Data.Entities;
@@ -89,6 +90,12 @@ namespace ARR.IntegrationTests
 
         public void Dispose()
         {
+            // We will definately have to move the unit-like test to a unit test library
+            while (_store.DatabaseCommands.GetStatistics().StaleIndexes.Length != 0)
+            {
+                Thread.Sleep(10);
+            }
+
             _store.DatabaseCommands.DeleteByIndex("AllDocumentsById", new IndexQuery());
         }
     }

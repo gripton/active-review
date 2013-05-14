@@ -32,21 +32,14 @@ namespace ARR.API.Controllers
         // POST api/reviewsession
         public void Post(ReviewSession session)
         {
-            var username = Request.Headers.Authorization.Parameter;
+            var username = GetAPIUser();
             _manager.Create(session, username);
-        }
-
-        // POST api/reviewsession/5
-        public void Post(ReviewSession session, int id)
-        {
-            var currentUser = GetAPIUser();
-            _manager.Edit(session, currentUser);
         }
 
         // PUT api/reviewsession/5/assignreviewer
         public void Put(int id, string patch, ReviewSession session)
         {
-            var username = Request.Headers.Authorization.Parameter;
+            var username = GetAPIUser();
 
             switch (patch)
             {
@@ -59,7 +52,7 @@ namespace ARR.API.Controllers
         // DELETE api/reviewsession/5
         public void Delete(int id)
         {
-            var username = Request.Headers.Authorization.Parameter;
+            var username = GetAPIUser();
             _manager.Delete(id, username);
         }
 
