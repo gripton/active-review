@@ -46,9 +46,9 @@
             <legend class="the-legend">Sign In</legend>
            <form id="tab">
                     <label>Username</label>
-                    <input type="text" data-bind="value: Data.Username" class="input-xlarge" />
+                    <input type="text" data-bind="value: account.Username" class="input-xlarge" />
                     <label>Password</label>
-                    <input type="text" data-bind="value: Data.Password" class="input-xlarge" />                        
+                    <input type="text" data-bind="value: account.Password" class="input-xlarge" />                        
                      <br />
                     <br />      
                     <div>
@@ -62,7 +62,8 @@
     <!-- Bootstrap jQuery Plugins, compiled and minified -->
     <script src="../Scripts/jquery-2.0.0.js"></script>
     <script src="../Scripts/bootstrap.js"></script>
-    <script src="../Scripts/Model/AccountModel.js"></script>
+    <script src="../Scripts/Model/arr-account-model.js"></script>
+    <script src="../Scripts/ViewModel/arr-login-view-model.js"></script>
 
 </body>
 </html>
