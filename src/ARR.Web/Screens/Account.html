@@ -44,24 +44,25 @@
     <section style="margin: 20px">
         <fieldset class="well single-fieldset-small">
             <legend class="the-legend">Register a new account here</legend>
-                <form id="tab">
-                    <label>Screen Name</label>
-                    <input type="text" data-bind="value: Data.ScreenName" class="input-xlarge" />
-                    <label>Username</label>
-                    <input type="text" data-bind="value: Data.Username" class="input-xlarge" />
-                    <label>Password</label>
-                    <input type="text" data-bind="value: Data.Password" class="input-xlarge" /> 
-                    <label>Confirm Password</label>
-                    <input type="text" data-bind="value: Data.ConfirmPassword" class="input-xlarge" />                       
-                    <br />
-                    <br />    
-                    <div>
-                        <button class="btn btn-primary" data-bind="click: create">Create New Account</button>
-                    </div>         
+            <form id="tab">
+                <label>Screen Name</label>
+                <input type="text" data-bind="value: account.ScreenName" class="input-xlarge" />
+                <label>Username</label>
+                <input type="text" data-bind="value: account.Username" class="input-xlarge" />
+                <label>Password</label>
+                <input type="text" data-bind="value: account.Password" class="input-xlarge" /> 
+                <label>Confirm Password</label>
+                <input type="text" data-bind="value: account.ConfirmPassword" class="input-xlarge" />                       
+                <br />
+                <br />    
+                <div>
+                    <button class="btn btn-primary" data-bind="click: create">Create New Account</button>
+                </div>         
 
-                </form>
+            </form>
         </fieldset>
     </section>
+    d
 
     <!-- Modal -->
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -78,7 +79,7 @@
         </div>
     </div>
 
-    < <!-- Bootstrap jQuery Plugins, compiled and minified -->
+    <!-- Bootstrap jQuery Plugins, compiled and minified -->
     <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.base64.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
