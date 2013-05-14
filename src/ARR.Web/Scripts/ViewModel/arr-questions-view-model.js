@@ -8,11 +8,11 @@ var QuestionViewModel = function (reviewSessionId) {
 
     self.questionNavigationViewModel = new QuestionNavigationViewModel(self);
     // Save Session
-    self.save = function () {
-        $.post("http://localhost:55519/api/reviewsession", {
-            data: ko.toJSON({ session: self }),
+    self.saveQuestion = function () {
+        $.ajax(getArrApiUrlPost('reviewsession/' + self.reviewSessionId + "/savequestions"), {
+            data: ko.toJSON(self.reviewSession),
             dataType: "json",
-            type: "post",
+            type: "put", 
             contentType: "application/json",
             success: function (result) { alert(result); }
         });
