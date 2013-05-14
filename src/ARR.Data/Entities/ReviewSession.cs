@@ -13,9 +13,9 @@ namespace ARR.Data.Entities
 
     public class ReviewSession : IPersistentEntity
     {
-        public int Id { get; set; }
+        public const string SaveQuestionnairePatch = "save-questionnaire";
 
-        // NOTE: Courtenay to consider handling 'invitee' scenario
+        public int Id { get; set; }
         public string Creator { get; set; }
         public string Reviewer { get; set; }
         public string Title { get; set; }

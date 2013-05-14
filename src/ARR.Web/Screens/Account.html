@@ -50,11 +50,13 @@
                     <label>Username</label>
                     <input type="text" data-bind="value: Data.Username" class="input-xlarge" />
                     <label>Password</label>
-                    <input type="text" data-bind="value: Data.Password" class="input-xlarge" />                        
+                    <input type="text" data-bind="value: Data.Password" class="input-xlarge" /> 
+                    <label>Confirm Password</label>
+                    <input type="text" data-bind="value: Data.ConfirmPassword" class="input-xlarge" />                       
                     <br />
                     <br />    
                     <div>
-                        <button class="btn btn-primary" data-bind="click: save">Create New Account</button>
+                        <button class="btn btn-primary" data-bind="click: create">Create New Account</button>
                     </div>         
 
                 </form>
@@ -76,9 +78,14 @@
         </div>
     </div>
 
-    <!-- Bootstrap jQuery Plugins, compiled and minified -->
-    <script src="../Scripts/jquery-2.0.0.js"></script>
-    <script src="../Scripts/bootstrap.js"></script>
-    <script src="../Scripts/Model/AccountModel.js"></script>
+    < <!-- Bootstrap jQuery Plugins, compiled and minified -->
+    <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.base64.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
+    <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Model/arr-account-model.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/arr-account-view-model.js"></script>
 </body>
 </html>

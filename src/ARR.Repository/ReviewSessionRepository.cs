@@ -1,4 +1,5 @@
 ﻿using ARR.Data.Entities;
+using ARR.Repository.Patch;
 using Raven.Client;
 using System.Linq;
 
@@ -15,7 +16,7 @@ namespace ARR.Repository
 
         protected override void InitializePatchFunctions()
         {
-            
+            PatchDictionary.Add(ReviewSession.SaveQuestionnairePatch, ReviewSessionPatchCollection.GetSaveQuestionnairePatch);
         }
     }
 }

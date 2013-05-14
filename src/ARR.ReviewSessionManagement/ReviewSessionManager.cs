@@ -260,22 +260,24 @@ namespace ARR.ReviewSessionManagement
         private void SaveQuestionnaire(int sessionId, List<Question> questions, string current, SessionStatusType sessionStatus)
         {
             var session = _sessionRepository.Get(sessionId);
+            session.Questions = questions;
 
-            if (session == null)
-                throw new SessionNotFoundException();
+            //if (session == null)
+            //    throw new SessionNotFoundException();
 
-            if (!HasValidWebCharacters(session))
-                throw new InvalidWebCharacterException();
+            //if (!HasValidWebCharacters(session))
+            //    throw new InvalidWebCharacterException();
 
-            if (session.Reviewer.ToLower() != current.ToLower())
-                throw new AuthorizationException();
+            //if (session.Reviewer.ToLower() != current.ToLower())
+            //    throw new AuthorizationException();
 
-            if (session.SessionStatus != SessionStatusType.Released)
-                throw new InvalidOperationException();
+            //if (session.SessionStatus != SessionStatusType.Released)
+            //    throw new InvalidOperationException();
 
             session.SessionStatus = sessionStatus;
             session.LastModified = DateTime.UtcNow;
-            _sessionRepository.Save(session);
+
+            _sessionRepository.Patch(session, ReviewSession.SaveQuestionnairePatch);
         }
 
         private bool HasValidWebCharacters(ReviewSession session)

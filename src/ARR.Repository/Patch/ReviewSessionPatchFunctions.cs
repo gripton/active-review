@@ -1,16 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using ARR.Data.Entities;
+using Raven.Abstractions.Data;
+using Raven.Json.Linq;
 
-namespace ARR.Data.Patch
+namespace ARR.Repository.Patch
 {
-    public interface IReviewSessionPatcher
+    public class ReviewSessionPatchCollection
     {
-    }
+        public static PatchRequest[] GetSaveQuestionnairePatch(ReviewSession session)
+        {
+            var questions = new List<Question>();
+            questions.AddRange(session.Questions);
 
-    public class ReviewSessionPatcher
-    {
+            return new[] { new PatchRequest {
+                    Type = PatchCommandType.Set, 
+                    Name = "Questions",
+                    Value = RavenJObject.FromObject(questions.ToArray())
+                }
+            };
+        }
     }
 }

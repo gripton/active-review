@@ -18,7 +18,5 @@ namespace ARR.Data.Entities
         public DateTime LastLoginAttempted { get; set; }
         public DateTime LastPasswordChanged { get; set; }
         public int FailedPasswordAttempt { get; set; }
-
-
     }
 }

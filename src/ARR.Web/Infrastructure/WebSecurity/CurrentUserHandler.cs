@@ -1,6 +1,5 @@
 ﻿using System.Web;
-
-using PracticalCode.WebSecurity.Infrastructure.Data;
+using ARR.Data.Entities;
 
 namespace ARR.Web.Infrastructure.WebSecurity
 {
@@ -17,7 +16,8 @@ namespace ARR.Web.Infrastructure.WebSecurity
         public void ProcessRequest(HttpContext context)
         {
             var user = WebApplicationServices.WebSecurity.GetCurrentUser();
-            context.Response.Write(user.JsonSerialize<WebSecurityUser>());
+            var account = AutoMapper.Mapper.Map<Account>(user);
+            context.Response.Write(account.JsonSerialize());
         }
     }
 }
