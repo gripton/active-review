@@ -30,19 +30,15 @@ function getReviewers() {
     });
 }
 
+var currentUser;
+
 function getCurrentUser() {
-    //accountIndexController
-    //http handler
-    //$.ajax({
-    //    type: "GET",
-    //    url: getArrApiUrl('user.user'),
-    //    contentType: 'application/json',
-    //    dataType: 'JSON',
-    //    success: function (d) {
-    //        alert(d);
-    //    },
-    //});
+    $.getJSON('user.user', function (userData) {
+        currentUser = userData.Username;
+    });
 }
+
+getCurrentUser();
 
 function deleteSession(sessionId) {
     $.ajax({
@@ -60,8 +56,6 @@ function deleteSession(sessionId) {
 
 function getSessions(self) {
     $.getJSON(getArrApiUrl('reviewindex'), function (allData) {
-        var currentUser = getCurrentUser();
-
         var mappedSessions = $.map(allData, function (item) {
             var type = item.SessionStatus;
 
@@ -74,7 +68,7 @@ function getSessions(self) {
             else if (type == 1 && currentUser == item.Reviewer) {
                 self.myActiveSessionsListReviewer.push(new Session(item));
             }
-            else if (type == 2) {
+            else if (type == 3) {
                 self.myArchivedSessionsList.push(new Session(item));
             }
         });
@@ -101,7 +95,7 @@ var IndexViewModel = function () {
 
         $.ajax({
             type: "POST",
-            url: getArrApiUrl('reviewIndex'),
+            url: getArrApiUrlPost('reviewIndex'),
             data: ko.toJSON(reviewSession),
             contentType: 'application/json',
             dataType: 'JSON',

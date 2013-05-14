@@ -10,6 +10,7 @@ namespace ARR.API.Models
     {
         public int Id { get; set; }
         public string Reviewer { get; set; }
+        public string Creator { get; set; }
         public string Title { get; set; }
         public DateTime LastModified { get; set; }
         public SessionStatusType SessionStatus { get; set; }
