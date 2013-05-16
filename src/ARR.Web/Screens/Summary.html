@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ARR Session Summary</title>
+    <!-- Styles -->
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="../Content/custom.css" rel="stylesheet" />
+    <script type="text/javascript" src="../Scripts/tinymce/tiny_mce.js"></script>
+    <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
+    <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top" id="Header">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Active Requirements Review</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="Home.html"><i class="icon-home icon-white"></i> Home</a></li>
+             <li><a href="#">Help</a></li> 
+            </ul>
+          </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+      </div><!-- /.navbar-inner -->
+    </div><!-- /.navbar -->
+
+    <div id="Title">
+        <h5>Session Summary: <span data-bind="text: reviewSession.Title"></span></h5>
+    </div>
+    <div id="Content">
+     <div class="row-fluid">
+        <fieldset class="well span6" style="min-width:500px;">
+          <legend class="the-legend">Requirements</legend>
+          <div id="Top_Left">
+            <div class="row-fluid" data-bind="foreach: reviewSession.Requirements">
+              <span data-bind="html: Content"></span>
+              <hr />
+            </div>
+          </div>
+          <div id="Bottom_Left">
+          </div>
+        </fieldset>
+        <fieldset class="well span6" style="min-width:400px;">
+          <legend class="the-legend">Questions and Results</legend>
+            <div id="Top_Right" class="row-fluid">
+                <div class="row-fluid" data-bind="foreach: questionList">
+                    <h5>Question</h5>
+                    <span data-bind="html: Question.Content"></span>
+                    <h5>Answer</h5>
+                    <span data-bind="html: Question.Answer"></span>
+                    <h5>Feedback</h5>
+                    <div data-bind="foreach: Question.Feedbacks">
+                        <p data-bind="html: Text"></p>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+            <div id="Bottom_Right" class="row-fluid">  
+            </div>
+        </fieldset>
+      </div>
+    </div>
+    <div id="Footer">
+
+    </div>
+    <!-- Bootstrap jQuery Plugins, compiled and minified -->
+    <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.base64.js"></script>
+    <script type="text/javascript" src="../Scripts/purl.js"></script>
+    <script type="text/javascript" src="../Scripts/tinymce/jquery.tinymce.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="../Scripts/tinymce/plugins/bbcode/editor_plugin.js"></script>
+    <script type="text/javascript" src="../Scripts/tinymce/plugins/bbcode/editor_plugin_src.js"></script>
+    <script type="text/javascript" src="../Scripts/arr-urls.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-tinymce-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-resize-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Model/arr-requirements-model.js"></script>
+    <script type="text/javascript" src="../Scripts/Model/arr-forum-model.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/arr-forum-view-model.js"></script>
+  </body>
+</html>

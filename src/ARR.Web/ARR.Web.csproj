@@ -164,6 +164,8 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Screens\Account.html" />
+    <Content Include="Screens\Summary.html" />
+    <Content Include="Screens\Preview.html" />
     <Content Include="Screens\Editor.html" />
     <Content Include="Screens\Forum.html" />
     <Content Include="Screens\Home.html" />
