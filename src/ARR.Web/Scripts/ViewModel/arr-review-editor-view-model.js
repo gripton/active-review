@@ -85,7 +85,15 @@ function NewRequirementViewModel(reviewSessionModel) {
         var requirement = new Requirement();
         requirement.Content(self.newRequirement());
         requirement.Comment("");
+        
+        // If the Requirements list is null, we need to instantiate it to an empty array
+        if (self.reviewSessionModel.reviewSession.Requirements() == null) {
+            self.reviewSessionModel.reviewSession.Requirements([]);
+        }
         self.reviewSessionModel.reviewSession.Requirements.push(requirement);
+
+        //Clear out the old question
+        self.newRequirement("");
 
         //Need to recalculate the view in order to adjust the scrolling
         setScrollDisplay("Left");
@@ -162,8 +170,15 @@ function NewQuestionViewModel(reviewSessionModel) {
         question.Content(self.newQuestion());
         question.Answer("");
         
+        // If the Questions list is null, we need to instantiate it to an empty array
+        if (self.reviewSessionModel.reviewSession.Questions() == null) {
+            self.reviewSessionModel.reviewSession.Questions([]);
+        }
         self.reviewSessionModel.reviewSession.Questions.push(question);
 
+        //clear out the question text field
+        self.newQuestion("");
+        
         //Need to recalculate the view in order to adjust the scrolling
         setScrollDisplay("Right");
         setScrollableToBottom("Right");

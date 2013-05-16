@@ -49,19 +49,6 @@ namespace ARR.API.Controllers
             }
         }
 
-        // PUT api/reviewsession/5/assignreviewer
-        public void Put(int id, string patch, List<Question> questions)
-        {
-            var username = GetAPIUser();
-
-            switch (patch)
-            {
-                case "save-questionnaire":
-                    _manager.SaveQuestionnaire(id, questions, username);
-                    break;
-            }
-        }
-
         // DELETE api/reviewsession/5
         public void Delete(int id)
         {
