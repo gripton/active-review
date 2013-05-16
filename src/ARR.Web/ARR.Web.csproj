@@ -174,7 +174,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Commands\arr-loading-commands.js" />
-    <Content Include="Scripts\Commands\arr-review-session-management.js" />
     <Content Include="Scripts\Commands\arr-security-commands.js" />
     <Content Include="Scripts\Commands\arr-dirty-model-commands.js" />
     <Content Include="Scripts\Commands\arr-resize-commands.js" />
@@ -190,7 +189,7 @@
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\knockout.mapping-2.4.1.js" />
     <Content Include="Scripts\Model\arr-account-model.js" />
-    <Content Include="Scripts\Model\ForumModel.js" />
+    <Content Include="Scripts\Model\arr-forum-model.js" />
     <Content Include="Scripts\Model\HomeModel.js" />
     <Content Include="Scripts\Model\arr-requirements-model.js" />
     <Content Include="Scripts\purl.js" />
@@ -453,11 +452,11 @@
     <Content Include="Scripts\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\tinymce\utils\validate.js" />
     <Content Include="Scripts\ViewModel\arr-account-view-model.js" />
+    <Content Include="Scripts\ViewModel\arr-forum-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-login-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-questions-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-review-editor-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-profile-view-model.js" />
-    <Content Include="Scripts\ViewModel\arr-login-view-model.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
