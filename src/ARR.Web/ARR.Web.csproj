@@ -172,6 +172,7 @@
     <Content Include="Screens\Login.html" />
     <Content Include="Screens\Profile.html" />
     <Content Include="Screens\Questionnaire.html" />
+    <Content Include="Scripts\arr-urls.aspx" />
     <Content Include="Scripts\arr-urls.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -459,6 +460,7 @@
     <Content Include="Scripts\ViewModel\arr-questions-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-review-editor-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-profile-view-model.js" />
+    <Content Include="Scripts\ViewModel\arr-spawn-view-model.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -483,6 +485,13 @@
     <Compile Include="Infrastructure\WebSecurity\WebSecurityDataProvider.cs" />
     <Compile Include="Infrastructure\WebSecurity\WebSecurityModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\arr-urls.aspx.cs">
+      <DependentUpon>arr-urls.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Scripts\arr-urls.aspx.designer.cs">
+      <DependentUpon>arr-urls.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-2.0.0.min.map" />
