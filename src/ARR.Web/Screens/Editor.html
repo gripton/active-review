@@ -36,7 +36,7 @@
                                         <li><hr/></li>
                                         <li><a href="#">Release</a></li>
                                         <li><a href="#">Assign Reviewer</a></li>
-                                        <li><a href="#spawnDialog" data-toggle="modal" data-bind="click: $root.spawnReviewViewModel.spawnSetup">Spawn</a></li>
+                                        <li data-bind="with: $root.reviewSession"><a href="#spawnDialog" data-toggle="modal" data-bind="click: $root.spawnReviewViewModel.spawnSetup">Spawn</a></li>
                                     </ul>
                                 </li>
                                 <li ><a href="#">Help</a></li> 
@@ -210,6 +210,7 @@
         <script type="text/javascript" src="../Scripts/Commands/arr-resize-commands.js"></script>
         <script type="text/javascript" src="../Scripts/Commands/arr-dirty-model-commands.js"></script>
         <script type="text/javascript" src="../Scripts/Model/arr-requirements-model.js"></script>
+        <script type="text/javascript" src="../Scripts/ViewModel/arr-spawn-view-model.js"></script>
         <script type="text/javascript" src="../Scripts/ViewModel/arr-review-editor-view-model.js"></script>
     </body>
 </html>

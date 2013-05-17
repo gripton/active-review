@@ -185,61 +185,6 @@ function NewQuestionViewModel(reviewSessionModel) {
     };
 }
 
-// Class that handles the bindings for the Spawn functionality
-function SpawnReviewViewModel(reviewSessionModel) {
-    var self = this;
-    self.reviewSessionModel = reviewSessionModel;
-
-    self.spawnInstance = ko.observable(null);
-
-    // Grabs all the pertinent pieces of the review that need to be migrated and creates an instance
-    // Of a spawned review.
-    self.spawnSetup = function () {
-        var reviewSession = reviewSessionModel.reviewSession;
-        var spawnedReview = new SpawnReview(reviewSession);
-
-        spawnedReview.Title(reviewSession.Title() + " clone");
-
-        for (var i = 0; i < reviewSession.Requirements().length; i++) {
-            spawnedReview.addRequirement(reviewSession.Requirements()[i]);
-        }
-
-        for (var k = 0; k < reviewSession.Questions().length; k++) {
-            spawnedReview.addQuestion(reviewSession.Questions()[k]);
-        }
-
-        self.spawnInstance(spawnedReview);
-    };
-
-    self.spawn = function () {
-        var session = new ReviewSession();
-        var spawnedReview = self.spawnInstance();
-        session.Title(spawnedReview.Title());
-        for (var i = 0; i < spawnedReview.Requirements().length; i++) {
-            if (spawnedReview.Requirements()[i].Copy()) {
-                session.Requirements().push(spawnedReview.Requirements()[i].Requirement);
-            }
-        }
-
-        for (var k = 0; k < spawnedReview.Questions().length; k++) {
-            if (spawnedReview.Questions()[k].Copy()) {
-                session.Questions().push(spawnedReview.Questions()[k].Question);
-            }
-        }
-
-        $.ajax({
-            type: "POST",
-            url: getArrApiUrlPost('reviewsession'),
-            data: ko.toJSON(session),
-            contentType: 'application/json',
-            dataType: 'JSON',
-            success: function () {
-                alert('success!');
-            },
-        });
-    };
-}
-
 var reviewSessionId = $.url(window.location).param('reviewSession');
 
 //Instantiate the requirements model that we will be using throughout the page life
