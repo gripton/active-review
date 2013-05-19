@@ -29,13 +29,19 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     self.isLoading = ko.observable(false);
     self.reviewSession = new ReviewSession();
 
+    //ViewModels for Requirement Functionality
     self.newRequirementViewModel = new NewRequirementViewModel(self);
     self.editCommentViewModel = new EditCommentViewModel();
-    self.renameSessionViewModel = new RenameSessionViewModel(self);
+    self.deleteRequirementViewModel = new DeleteRequirementViewModel(self);
     self.editRequirementViewModel = new EditRequirementViewModel();
+
+    //ViewModels for Question Functionality
     self.newQuestionViewModel = new NewQuestionViewModel(self);
+    self.deleteQuestionViewModel = new DeleteQuestionViewModel(self);
+
+    //ViewModels for Session Functionality
+    self.renameSessionViewModel = new RenameSessionViewModel(self);
     self.spawnReviewViewModel = new SpawnReviewViewModel(self);
-    
 
     self.save = function () {
         $.ajax({
@@ -120,6 +126,18 @@ function EditCommentViewModel() {
 }
 
 // Class that handles the bindings for the Edit Comment Interaction
+function DeleteRequirementViewModel(reviewSessionModel) {
+    var self = this;
+    self.reviewSessionModel = reviewSessionModel;
+    self.deleteRequirement = function (selectedRequirement) {
+        var requirements = self.reviewSessionModel.reviewSession.Requirements;
+        //alert(requirements.indexOf(selectedRequirement));
+        requirements.remove(selectedRequirement);
+
+    };
+}
+
+// Class that handles the bindings for the Edit Comment Interaction
 function RenameSessionViewModel(reviewSessionModel) {
     var self = this;
     self.reviewSessionModel = reviewSessionModel;
@@ -182,6 +200,16 @@ function NewQuestionViewModel(reviewSessionModel) {
         //Need to recalculate the view in order to adjust the scrolling
         setScrollDisplay("Right");
         setScrollableToBottom("Right");
+    };
+}
+
+// Class that handles the bindings for the Edit Comment Interaction
+function DeleteQuestionViewModel(reviewSessionModel) {
+    var self = this;
+    self.reviewSessionModel = reviewSessionModel;
+    self.deleteQuestion = function (selectedQuestion) {
+        var questions = self.reviewSessionModel.reviewSession.Questions;
+        questions.remove(selectedQuestion);
     };
 }
 
