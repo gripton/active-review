@@ -14,7 +14,7 @@ namespace ARR.IntegrationTests.ReviewManagement
         [Fact]
         public void SaveQuestionnaire_Succeeds()
         {
-            // Build the container.
+            /* Build the container.
             var container = Setup();
 
             using (var lifetime = container.BeginLifetimeScope())
@@ -39,6 +39,6 @@ namespace ARR.IntegrationTests.ReviewManagement
 
                 Assert.DoesNotThrow(() => manager.SaveQuestionnaire(session.Id, questions, session.Creator));
             }
-        }
+        }*/
     }
 }
