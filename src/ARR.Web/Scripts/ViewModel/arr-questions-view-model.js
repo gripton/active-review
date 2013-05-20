@@ -45,6 +45,7 @@ var QuestionNavigationViewModel = function(questionViewModel) {
 
     self.enablePrevious = ko.observable(false);
     self.enableNext = ko.observable(true);
+    self.enableComplete = ko.observable(false);
 
     self.previousQuestion = function () {
         self.questionIndex(self.questionIndex() - 1);
@@ -71,10 +72,25 @@ var QuestionNavigationViewModel = function(questionViewModel) {
 
         var enableNext = self.questionIndex() < questionList.length - 1;
         var enablePrevious = self.questionIndex() > 0;
+        var enableComplete = self.questionIndex() === (questionList.length - 1);
 
         self.currentQuestion(questionList[self.questionIndex()]);
         self.enableNext(enableNext);
         self.enablePrevious(enablePrevious);
+        self.enableComplete(enableComplete);
+    };
+
+    self.complete = function () {
+        $.ajax({
+            type: "PUT",
+            url: getArrApiUrlPost('questions/' + reviewSessionId + "/complete-session"),
+            data: ko.toJSON(self.questionViewModel.reviewSession.Questions),
+            contentType: 'application/json',
+            dataType: 'JSON',
+            success: function () {
+                window.location = "Forum.html?reviewSession=" + reviewSessionId;
+            },
+        });
     };
 };
 

@@ -203,7 +203,7 @@ namespace ARR.ReviewSessionManagement
         /// <exception cref="AuthorizationException"></exception>
         public void CompleteQuestionnaire(int sessionId, List<Question> questions, string current)
         {
-            SaveQuestionnaire(sessionId, questions, current, SessionStatusType.Released);
+            SaveQuestionnaire(sessionId, questions, current, SessionStatusType.Completed);
 
             var assignEvent = new Event
             {

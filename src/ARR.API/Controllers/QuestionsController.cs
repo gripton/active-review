@@ -27,6 +27,9 @@ namespace ARR.API.Controllers
 
             switch (patch)
             {
+                case "complete-session":
+                    _manager.CompleteQuestionnaire(id, questions, username);
+                    break;
                 case "save-questionnaire":
                     _manager.SaveQuestionnaire(id, questions, username);
                     break;
