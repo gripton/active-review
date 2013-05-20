@@ -38,7 +38,7 @@ namespace ARR.IntegrationTests.ReviewManagement
                 questions[0].Content = "test was changed";
 
                 Assert.DoesNotThrow(() => manager.SaveQuestionnaire(session.Id, questions, session.Creator));
-            }
-        }*/
+            }*/
+        }
     }
 }
