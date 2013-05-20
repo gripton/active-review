@@ -43,6 +43,9 @@ namespace ARR.API.Controllers
 
             switch (patch)
             {
+                case "release-session":
+                    _manager.Release(id, username);
+                    break;
                 default:
                     _manager.Edit(session, username);
                     break;

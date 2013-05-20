@@ -44,6 +44,20 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     self.renameSessionViewModel = new RenameSessionViewModel(self);
     self.spawnReviewViewModel = new SpawnReviewViewModel(self);
 
+    self.release = function() {
+        $.ajax({
+            type: "PUT",
+            url: getArrApiUrlPost('reviewsession/' + self.reviewSessionId + "/release-session"),
+            data: ko.toJSON(self.reviewSession),
+            contentType: 'application/json',
+            dataType: 'JSON',
+            success: function () {
+                alert('Your session has been released.');
+                window.location = "Home.html";
+            },
+        });
+    };
+
     self.save = function () {
         $.ajax({
             type: "PUT",
