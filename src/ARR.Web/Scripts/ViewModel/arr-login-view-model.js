@@ -10,10 +10,10 @@
             data: ko.toJSON(this.account),
             contentType: 'application/json',
             dataType: 'JSON',
-            success: function(response) {
-                location.href = "home.html";
-            },
-            error: function(response) {
+            success: function () {
+                $.cookie('arr_account', self.account.Username);
+                location.href = "home.html";            },
+            error: function() {
                 alert("Ajax Request Failed");
                 //this.showError(response);
                 //completeFunction();

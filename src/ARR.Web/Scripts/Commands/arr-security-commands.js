@@ -8,8 +8,7 @@
 });
 
 function getSessionAuthorization() {
-    //TODO: load the username from the cookies
-    return getAuthorizationHeader("thorfio","");
+    return getAuthorizationHeader($.cookie('arr_account'), "");
 }
 
 function getAuthorizationHeader(username, password) {
