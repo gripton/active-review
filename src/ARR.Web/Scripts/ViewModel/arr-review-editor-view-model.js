@@ -38,6 +38,7 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     //ViewModels for Question Functionality
     self.newQuestionViewModel = new NewQuestionViewModel(self);
     self.deleteQuestionViewModel = new DeleteQuestionViewModel(self);
+    self.editQuestionViewModel = new EditQuestionViewModel();
 
     //ViewModels for Session Functionality
     self.renameSessionViewModel = new RenameSessionViewModel(self);
@@ -200,6 +201,28 @@ function NewQuestionViewModel(reviewSessionModel) {
         //Need to recalculate the view in order to adjust the scrolling
         setScrollDisplay("Right");
         setScrollableToBottom("Right");
+    };
+}
+
+// Class that handles the bindings for the Edit Requirement Interaction
+function EditQuestionViewModel() {
+    var self = this;
+    self.selectedQuestion = null;
+
+    // Edit Requirement
+    self.currentQuestion = ko.observable("");
+
+    self.setEditQuestion = function (selectedQuestion) {
+        self.selectedQuestion = selectedQuestion;
+        self.currentQuestion(self.selectedQuestion.Content());
+    };
+
+    self.saveEditedQuestion = function () {
+        self.selectedQuestion.Content(self.currentQuestion());
+        self.selectedQuestion = null;
+
+        //Need to recalculate the view in order to adjust the scrolling
+        setScrollDisplay("Right");
     };
 }
 

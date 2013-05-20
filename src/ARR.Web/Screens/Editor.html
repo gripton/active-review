@@ -33,8 +33,6 @@
                                         <li><a href="#renameDialog" data-toggle="modal" data-bind="click: $root.renameSessionViewModel.setTitle">Rename</a></li>
                                         <li><a href="#" data-bind="click: $root.save">Save</a></li>
                                         <li><a data-bind="attr: { href: 'Preview.html?reviewSession=' + reviewSessionId }">Preview</a></li>
-                                        
-<a  />
                                         <li><hr/></li>
                                         <li><a href="#">Release</a></li>
                                         <li><a href="#">Assign Reviewer</a></li>
@@ -59,10 +57,9 @@
                         <div id="Top_Left" class="row-fluid" data-bind="foreach: reviewSession.Requirements">
                             <div>
                                 <div class="span1">
-                                    <span data-bind="text: $index() + 1"></span>:
                                 </div>
                                 <div class="span9"><a href="#" ></a>
-                                    <a href="#editDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editRequirementViewModel.setEditRequirement">edit</a>
+                                    <a href="#editRequirementDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editRequirementViewModel.setEditRequirement">Edit</a>
                                     &nbsp;
                                     <a href="#commentDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editCommentViewModel.setComment" >Comment</a>
                                 </div>
@@ -70,7 +67,10 @@
                                     <a href="#" class="btn btn-small btn-primary" role="button" data-bind="click: $root.deleteRequirementViewModel.deleteRequirement" >Delete</a>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span12" data-bind="html: Content"></div>
+                                    <div class="span1">
+                                        <span data-bind="text: $index() + 1"></span>:
+                                    </div>
+                                    <div class="span11" data-bind="html: Content"></div>
                                 </div>
                             </div>
                         </div>
@@ -85,13 +85,20 @@
                         <div class="row-fluid" id="Top_Right">
                             <div class="span12" data-bind="foreach: reviewSession.Questions">
                                 <div class="row-fluid">
+                                    <div class="span1"></div>
+                                    <div class="span9">
+                                        <a href="#editQuestionDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editQuestionViewModel.setEditQuestion">Edit</a>
+                                    </div>
+                                    <div class="span2" style="text-align:right;">
+                                        <a href="#" class="btn btn-small btn-primary" role="button" data-bind="click: $root.deleteQuestionViewModel.deleteQuestion" >Delete</a>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
                                     <div class="span1">
                                         <span data-bind="text: $index() + 1"></span>:
                                     </div>
-                                    <div class="span9">
+                                    <div class="span11">
                                         <span data-bind="html: Content"></span>
-                                    </div><div class="span2" style="text-align:right;">
-                                        <a href="#" class="btn btn-small btn-primary" role="button" data-bind="click: $root.deleteQuestionViewModel.deleteQuestion" >Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -112,10 +119,10 @@
                  aria-labelledby="commentModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="commentModalLabel" data-bind="text: name"></h3>
+                    <h3 id="commentModalLabel">Requirement Comments</h3>
                 </div>
                 <div class="modal-body">
-                    <textarea id="commentText" data-bind="value: editCommentViewModel.currentComment"></textarea>
+                    <textarea id="commentText" data-bind="value: editCommentViewModel.currentComment" style="width:97%"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -139,7 +146,7 @@
             </div>
 
             <!-- Edit Requirement Modal -->
-            <div id="editDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+            <div id="editRequirementDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h3 id="H1">Edit Requirement</h3>
@@ -148,12 +155,27 @@
                     <textarea style="width:100%" class="tinymce" data-bind="tinymce: editRequirementViewModel.currentRequirement"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editRequirementViewModel.saveEditedRequirement">Save changes</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editRequirementViewModel.saveEditedRequirement">Change</button>
+                </div>
+            </div>
+            
+            <!-- Edit Requirement Modal -->
+            <div id="editQuestionDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editQuestionModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="H4">Edit Question</h3>
+                </div>
+                <div class="modal-body">
+                    <textarea style="width:100%" class="tinymce" data-bind="tinymce: editQuestionViewModel.currentQuestion"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editQuestionViewModel.saveEditedQuestion">Change</button>
                 </div>
             </div>
 
-            <!-- Edit Requirement Modal -->
+            <!-- Spawn Session Modal -->
             <div id="spawnDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true" data-bind="with: spawnReviewViewModel.spawnInstance">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
