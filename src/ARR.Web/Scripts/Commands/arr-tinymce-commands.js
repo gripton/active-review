@@ -12,7 +12,8 @@
             theme_advanced_toolbar_location: "bottom",
             theme_advanced_toolbar_align: "center",
             theme_advanced_styles: "Code=codeStyle;Quote=quoteStyle",
-
+            theme_advanced_path: false,
+            
             // Skin options
             skin: "o2k7",
             skin_variant: "silver",
