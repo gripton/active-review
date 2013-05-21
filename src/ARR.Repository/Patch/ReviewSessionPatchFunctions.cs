@@ -9,13 +9,10 @@ namespace ARR.Repository.Patch
     {
         public static PatchRequest[] GetSaveQuestionnairePatch(ReviewSession session)
         {
-            var questions = new List<Question>();
-            questions.AddRange(session.Questions);
-
             return new[] { new PatchRequest {
                     Type = PatchCommandType.Set, 
                     Name = "Questions",
-                    Value = RavenJObject.FromObject(questions.ToArray())
+                    Value = RavenJObject.FromObject(session)
                 }
             };
         }

@@ -14,8 +14,7 @@ namespace ARR.IntegrationTests.ReviewManagement
         [Fact]
         public void AssignReviewer_Succeeds()
         {
-            // Test
-            /* Build the container.
+            // Build the container.
             var container = Setup();
 
             using (var lifetime = container.BeginLifetimeScope())
@@ -37,7 +36,7 @@ namespace ARR.IntegrationTests.ReviewManagement
                 Assert.Equal(1, events.Count);
                 Assert.Equal(events[0].EventType, EventType.ReviewerInvited);
                 Assert.Equal(events[0].EntityId, session.Id);
-            }*/
+            }
         }
 
         [Fact]
@@ -166,8 +165,18 @@ namespace ARR.IntegrationTests.ReviewManagement
         [Fact]
         public void Edit_Succeeds()
         {
-            /* Build the container.
+            // Build the container.
             var container = Setup();
+
+            var session = NewReviewSession();
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
 
             using (var lifetime = container.BeginLifetimeScope())
             {
@@ -175,17 +184,13 @@ namespace ARR.IntegrationTests.ReviewManagement
                 var eventRepo = lifetime.Resolve<EventRepository>();
                 var manager = new ReviewSessionManager(sessionRepo, eventRepo);
 
-                // Create a new session to work with
-                var session = NewReviewSession();
-                sessionRepo.Save(session);
-
                 AutoMapper.Mapper.CreateMap<ReviewSession, ReviewSession>();
                 var editSession = AutoMapper.Mapper.Map<ReviewSession>(session);
 
-                editSession.Requirements.Add(new Requirement{Comment = "test", Content = "test"});
+                editSession.Requirements.Add(new Requirement {Comment = "test", Content = "test"});
 
                 Assert.DoesNotThrow(() => manager.Edit(editSession, session.Creator));
-            }*/
+            }
         }
 
         [Fact]
