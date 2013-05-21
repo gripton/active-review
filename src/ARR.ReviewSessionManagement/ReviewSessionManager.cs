@@ -274,8 +274,11 @@ namespace ARR.ReviewSessionManagement
             if (session.SessionStatus != SessionStatusType.Released)
                 throw new InvalidOperationException();
 
+            // TODO - these won't work unless we add patches for them
             session.SessionStatus = sessionStatus;
             session.LastModified = DateTime.UtcNow;
+
+            session.Title = "dont change me";
 
             _sessionRepository.Patch(session, ReviewSession.SaveQuestionnairePatch);
         }

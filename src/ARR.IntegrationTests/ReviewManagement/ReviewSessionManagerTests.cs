@@ -17,19 +17,32 @@ namespace ARR.IntegrationTests.ReviewManagement
             // Build the container.
             var container = Setup();
 
+            // Create a new session to work with
+            var session = NewReviewSession();
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                sessionRepo.Save(session);
+            }
+
             using (var lifetime = container.BeginLifetimeScope())
             {
                 var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
                 var eventRepo = lifetime.Resolve<EventRepository>();
-
-                // Create a new session to work with
-                var session = NewReviewSession();
-                sessionRepo.Save(session);
-
                 var manager = new ReviewSessionManager(sessionRepo, eventRepo);
 
                 Assert.DoesNotThrow(() => manager.AssignReviewer(session.Id, "test@test.com", session.Creator));
-                Assert.True(session.PendingReviewer);
+            }
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                
+                var savedSession = sessionRepo.Get(session.Id);
+
+                Assert.True(savedSession.PendingReviewer);
 
                 var events = eventRepo.List(e => e.EventType == EventType.ReviewerInvited);
 
