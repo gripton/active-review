@@ -43,6 +43,9 @@ namespace ARR.API.Controllers
 
             switch (patch)
             {
+                case "archive":
+                    _manager.Archive(id, username);
+                    break;
                 case "release-session":
                     _manager.Release(id, username);
                     break;
