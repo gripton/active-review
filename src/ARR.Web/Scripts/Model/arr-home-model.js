@@ -1,4 +1,12 @@
-﻿function Session(data) {
+﻿var SessionStatus =
+{
+    CREATED: 0,
+    RELEASED: 1,
+    COMPLETED: 2,
+    ARCHIVED: 3
+};
+
+function Session(data) {
     var self = this;
     self.ID = ko.observable(data.Id);
     self.title = ko.observable(data.Title);
@@ -7,6 +15,8 @@
 
     self.reviewer = ko.observable(data.Reviewer);
     //TODO: replace above with method to select returned reviewer from populated drop down
+
+    self.selectedSession = ko.observable();
 
     var sessionId = data.Id;
     self.editorUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
@@ -43,14 +53,9 @@ getCurrentUser();
 function deleteSession(sessionId) {
     $.ajax({
         type: "DELETE",
-        url: getArrApiUrl('reviewIndex/' + sessionId),
-        data: ko.toJSON(self),
+        url: getArrApiUrlPost('reviewIndex/' + sessionId),
         contentType: 'application/json',
-        dataType: 'JSON',
-        success: function () {
-            //TODO: redraw myCreatedSessionsList
-            alert("success");
-        },
+        dataType: 'JSON'
     });
 }
 
@@ -59,16 +64,16 @@ function getSessions(self) {
         var mappedSessions = $.map(allData, function (item) {
             var type = item.SessionStatus;
 
-            if (type == 0) {
+            if (type == SessionStatus.CREATED) {
                 self.myCreatedSessionsList.push(new Session(item));
             }
-            else if (type == 1 && currentUser == item.Creator) {
+            else if (type == SessionStatus.RELEASED && currentUser == item.Creator) {
                 self.myActiveSessionsListCreator.push(new Session(item));
             }
-            else if (type == 1 && currentUser == item.Reviewer) {
+            else if (type == SessionStatus.RELEASED && currentUser == item.Reviewer) {
                 self.myActiveSessionsListReviewer.push(new Session(item));
             }
-            else if (type == 3) {
+            else if (type == SessionStatus.ARCHIVED) {
                 self.myArchivedSessionsList.push(new Session(item));
             }
         });
@@ -78,7 +83,7 @@ function getSessions(self) {
 //View Model for main index page
 var IndexViewModel = function () {
     var self = this;
-    self.selectedSession = null;
+    self.selectedSession = ko.observable();
 
     self.reviewerViewModel = new ReviewerViewModel();
 
@@ -105,15 +110,15 @@ var IndexViewModel = function () {
         });
     };
 
+    self.setSelectedSession = function (selectedSession) {
+        self.selectedSession(selectedSession);
+    }
+
     //Remove Session
-    self.removeSession = function () {
-        //TODO: get selected session ID, pass to
-        //var sessionId = 
-        //deleteSession(sessionId);
-        //self.myCreatedSessionsList.remove(session);
-        //how to bind with modal
-        //use delete verb with ID call using ajax
-        //deleteSession(sessionId);
+    self.removeSession = function (selectedSession) {
+        var sessionId = selectedSession.ID();
+        deleteSession(sessionId);
+        self.myCreatedSessionsList.remove(selectedSession);
     }
 }
 
