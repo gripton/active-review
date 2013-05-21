@@ -97,6 +97,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\ARRSessionStateDiagram.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -164,6 +165,7 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Screens\Account.html" />
+    <Content Include="Screens\Guide.html" />
     <Content Include="Screens\Summary.html" />
     <Content Include="Screens\Preview.html" />
     <Content Include="Screens\Editor.html" />
