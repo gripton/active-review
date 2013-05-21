@@ -1,4 +1,12 @@
-﻿// Base Requirement Class Holds the necessary data for an individual Requirement
+﻿var SessionStatus =
+{
+    CREATED: 0,
+    RELEASED: 1,
+    COMPLETED: 2,
+    ARCHIVED: 3
+};
+
+// Base Requirement Class Holds the necessary data for an individual Requirement
 function Requirement() {
     var self = this;
     self.Content = ko.observable("");

@@ -1,10 +1,14 @@
 ﻿// Here's my data model
 var ForumViewModel = function (reviewSessionId) {
     var self = this;
+    
+    //Retrive the user from the arr-security-commands
+    self.currentUser = loggedInUser();
     self.reviewSessionId = reviewSessionId;
     self.reviewSession = new ReviewSession();
     self.questionList = ko.observableArray();
     self.addFeedbackViewModel = new AddFeedbackViewModel(self);
+    self.archiveSessionViewModel = new ArchiveSessionViewModel(self);
 
     self.ChatMessages = ko.observableArray([
         new ChatMessage("Here are my initial Comments", "Tom", Date.now()),
@@ -60,6 +64,35 @@ var AddFeedbackViewModel = function(forumViewModel) {
                 // Clear out the feedback text box that we just added
                 selectedQuestion.NewFeedback('');
                 setScrollDisplay("Left");
+            }
+        });
+    };
+};
+
+// ViewModel that drives the archival functionality.
+var ArchiveSessionViewModel = function (forumViewModel) {
+    var self = this;
+    self.forumViewModel = forumViewModel;
+
+    self.isComplete = ko.computed(function () {
+        alert(self.forumViewModel.reviewSession.SessionStatus());
+        return self.forumViewModel.reviewSession.SessionStatus() >= SessionStatus.COMPLETED;
+    });
+
+    self.canArchive = ko.computed(function () {
+        var isCreator = self.forumViewModel.reviewSession.Creator() == self.forumViewModel.currentUser;
+        var isComplete = self.forumViewModel.reviewSession.SessionStatus() == SessionStatus.COMPLETED;
+        return (isCreator && isComplete);
+    });
+
+    self.archiveSession = function () {
+        $.ajax(getArrApiUrlPost('reviewsession/' + self.forumViewModel.reviewSessionId + '/archive'), {
+            dataType: "json",
+            type: "put",
+            contentType: "application/json",
+            success: function () {
+                alert("Your session has been archived.");
+                window.location = "Home.html";
             }
         });
     };

@@ -10,7 +10,7 @@ var QuestionViewModel = function (reviewSessionId) {
     // Save Session
     self.saveQuestion = function () {
         $.ajax(getArrApiUrlPost('questions/' + self.reviewSessionId + "/save-questionnaire"), {
-            data: ko.toJSON(self.reviewSession),
+            data: ko.toJSON(self.reviewSession.Questions),
             dataType: "json",
             type: "put", 
             contentType: "application/json",

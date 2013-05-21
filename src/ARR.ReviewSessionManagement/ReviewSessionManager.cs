@@ -245,13 +245,13 @@ namespace ARR.ReviewSessionManagement
             if (session == null)
                 throw new SessionNotFoundException();
 
-            if (session.SessionStatus != SessionStatusType.Created)
+            if (session.SessionStatus != SessionStatusType.Completed)
                 throw new InvalidOperationException();
 
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();
 
-            session.SessionStatus = SessionStatusType.Released;
+            session.SessionStatus = SessionStatusType.Archived;
             session.LastModified = DateTime.UtcNow;
             _sessionRepository.Save(session);
         }

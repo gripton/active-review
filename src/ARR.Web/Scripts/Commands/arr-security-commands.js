@@ -8,7 +8,11 @@
 });
 
 function getSessionAuthorization() {
-    return getAuthorizationHeader($.cookie('arr_account'), "");
+    return getAuthorizationHeader(loggedInUser(), "");
+}
+
+function loggedInUser() {
+    return $.cookie('arr_account');
 }
 
 function getAuthorizationHeader(username, password) {
