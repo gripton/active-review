@@ -12,7 +12,7 @@
             dataType: 'JSON',
             success: function () {
                 $.cookie('arr_account', self.account.Username);
-                location.href = "home.html";            },
+                location.href = "/screens/home.html";            },
             error: function() {
                 alert("Ajax Request Failed");
                 //this.showError(response);
