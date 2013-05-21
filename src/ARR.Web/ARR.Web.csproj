@@ -194,7 +194,7 @@
     <Content Include="Scripts\knockout.mapping-2.4.1.js" />
     <Content Include="Scripts\Model\arr-account-model.js" />
     <Content Include="Scripts\Model\arr-forum-model.js" />
-    <Content Include="Scripts\Model\HomeModel.js" />
+    <Content Include="Scripts\Model\arr-home-model.js" />
     <Content Include="Scripts\Model\arr-requirements-model.js" />
     <Content Include="Scripts\purl.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />

@@ -99,9 +99,9 @@ var IndexViewModel = function () {
             data: ko.toJSON(reviewSession),
             contentType: 'application/json',
             dataType: 'JSON',
-            success: function (data) {
-                //self.myCreatedSessionsList.push(true);
-            }, 
+            success: function (response) {
+                self.myCreatedSessionsList.unshift(new Session({ Id: response, Title: reviewSession.Title }));
+            },
         });
     };
 

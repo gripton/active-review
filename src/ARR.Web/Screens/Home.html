@@ -132,8 +132,10 @@ legend {
             <tbody data-bind="foreach: myActiveSessionsListReviewer">
                 <tr>
                     <td data-bind="text: title"></td>
-                    <td> <!-- ko if SessionStatus() == 2 --> <!-- /ko -->
-                        <a data-bind="attr: {href: questionnaireUrl}"><i class="icon-edit"></i></a>
+                    <td> 
+                        <a data-bind="attr: {href: questionnaireUrl}">
+                            <i class="icon-edit"></i>
+                        </a>
                     </td>
                     <td>
                         <a data-bind="attr: {href: forumUrl}"><i class="icon-comment"></i></a>
@@ -211,12 +213,13 @@ legend {
     <!-- Bootstrap jQuery Plugins, compiled and minified -->
     <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.base64.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.cookie.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
     <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
     <script type="text/javascript" src="../Scripts/arr-urls.js"></script>
-    <script type="text/javascript" src="../Scripts/Model/HomeModel.js"></script>
+    <script type="text/javascript" src="../Scripts/Model/arr-home-model.js"></script>
     
 </body>
 </html>
