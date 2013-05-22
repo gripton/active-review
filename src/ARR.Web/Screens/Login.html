@@ -20,8 +20,60 @@
             line-height: 20px;
             margin-bottom: 0;
         }
+
+        .quotes {display: none;}
        
     </style>
+    <script type="text/javascript"  src="../Scripts/jquery-2.0.0.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            setQuoteOne();
+        });
+
+        function setQuoteOne() {
+            $('#divSwap')
+                .fadeIn(1000)
+                .html('<div class="muted"><blockquote><em>"The technique helps us to select appropriate reviewers by requiring that we write down the characteristics of the reviewers needed."</em></blockquote></div>')
+                .delay(6000)
+                .fadeOut(1000, function () { setQuoteTwo(); });
+        }
+        
+        function setQuoteTwo() {
+            $('#divSwap')
+                .fadeIn(1000)
+                .html('<div class="muted"><blockquote><em>"The technique makes good use of the reviewers’ skills by focusing their energies on those aspects of the design that they are best suited to evaluate."</em></blockquote></div>')
+                .delay(6000)
+                .fadeOut(1000, function () { setQuoteThree(); });
+        }
+
+        function setQuoteThree() {
+            $('#divSwap')
+                .fadeIn(1000)
+                .html('<div class="muted"><blockquote><em>"Each reviewer must make a considerable commitment of effort to the review. No reviewer merely observes the process without contributing. Reviewers who might hesitate to speak up in a large discussion group will often identify prob- lems in a one-on-one meeting."</em></blockquote></div>')
+                .delay(6000)
+                .fadeOut(1000, function () { setQuoteFour(); });
+        }
+        
+        function setQuoteFour() {
+            $('#divSwap')
+                .fadeIn(1000)
+                .html('<div class="muted"><blockquote><em>"The structure of our documentation permits us to design the review questionnaires to focus attention on different concerns individually, and to provide the information needed to accomplish a complete, detailed review."</em></blockquote></div>')
+                .delay(6000)
+                .fadeOut(1000, function () { setQuoteFive(); });
+        }
+        
+        function setQuoteFive() {
+            $('#divSwap')
+                .fadeIn(1000)
+                .html('<div class="muted"><blockquote><em>"By focusing our reviewers’ attentions and making them take an active role, we find many more errors than we would find in a conventional review."</em></blockquote></div>')
+                .delay(6000)
+                .fadeOut(1000, function () { setQuoteOne(); });
+        }       
+        
+
+  </script>
+    
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
 </head>
 <body>
@@ -44,23 +96,28 @@
     <section style="margin: 20px">
         <fieldset class="well single-fieldset-small">
             <legend class="the-legend">Sign In</legend>
-           <form id="tab">
-                    <label>Username</label>
-                    <input type="text" data-bind="value: account.Username" class="input-xlarge" />
-                    <label>Password</label>
-                    <input type="text" data-bind="value: account.Password" class="input-xlarge" />                        
-                     <br />
-                    <br />      
-                    <div>
-                        <button class="btn btn-primary" data-bind="click: login">Sign In</button>
-                    </div>         
-
-                </form>
+            <div style="float: left">
+            <form id="tab">
+                <label>Username</label>
+                <input type="text" data-bind="value: account.Username" class="input-xlarge" />
+                <label>Password</label>
+                <input type="text" data-bind="value: account.Password" class="input-xlarge" />                        
+                <br />
+                <br />      
+                <div>
+                    <button class="btn btn-primary" data-bind="click: login">Sign In</button>
+                </div>      
+                
+            </form>
+            </div>
+            <div id="divSwap" style="float: left; width: 50%; vertical-align: middle; margin: 30px">
+            </div>
         </fieldset>
+        
+        
     </section>
 
     <!-- Bootstrap jQuery Plugins, compiled and minified -->
-    <script type="text/javascript"  src="../Scripts/jquery-2.0.0.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.cookie.js"></script>
     <script type="text/javascript"  src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript"  src="../Scripts/Model/arr-account-model.js"></script>
