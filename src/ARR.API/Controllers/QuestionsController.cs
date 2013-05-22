@@ -33,6 +33,9 @@ namespace ARR.API.Controllers
                 case "save-questionnaire":
                     _manager.SaveQuestionnaire(id, questions, username);
                     break;
+                case "provide-feedback":
+                    _manager.ProvideFeedback(id, questions, username);
+                    break;
             }
         }
 
