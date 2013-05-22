@@ -1,10 +1,12 @@
 ﻿using System;
+
 using ARR.Core.Authorization;
 using ARR.Data.Entities;
 using ARR.Repository;
 using ARR.ReviewSessionManagement;
 using ARR.ReviewSessionManagement.Exceptions;
 using Autofac;
+
 using Xunit;
 
 namespace ARR.IntegrationTests.ReviewManagement
@@ -439,6 +441,105 @@ namespace ARR.IntegrationTests.ReviewManagement
                 var manager = new ReviewSessionManager(sessionRepo, eventRepo);
 
                 Assert.Throws<InvalidOperationException>(() => manager.Release(session.Id, session.Creator));
+            }
+        }
+
+        [Fact]
+        public void Archive_Succeeds()
+        {
+            // Build the container.
+            var container = Setup();
+            var session = NewReviewSession();
+            session.SessionStatus = SessionStatusType.Completed;
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                Assert.DoesNotThrow(() => manager.Archive(session.Id, session.Creator));
+            }
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var releasedSession = sessionRepo.Get(session.Id);
+
+                Assert.Equal(SessionStatusType.Archived, releasedSession.SessionStatus);
+            }
+        }
+
+        [Fact]
+        public void Archive_Fails_Not_Found()
+        {
+            // Build the container.
+            var container = Setup();
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                Assert.Throws<SessionNotFoundException>(() => manager.Archive(1, "test"));
+            }
+        }
+
+        [Fact]
+        public void Archive_Fails_UnAuthorized()
+        {
+            // Build the container.
+            var container = Setup();
+            var session = NewReviewSession();
+            session.SessionStatus = SessionStatusType.Completed;
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                Assert.Throws<AuthorizationException>(() => manager.Archive(session.Id, "FAIL"));
+            }
+        }
+
+        [Fact]
+        public void Archive_Fails_Invalid_Status()
+        {
+            // Build the container.
+            var container = Setup();
+            var session = NewReviewSession();
+            session.SessionStatus = SessionStatusType.Released;
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                Assert.Throws<InvalidOperationException>(() => manager.Archive(session.Id, session.Creator));
             }
         }
     }
