@@ -150,13 +150,7 @@ namespace ARR.IntegrationTests.ReviewManagement
             }
         }
         
-
-        [Fact]
-        public void CreateNewSession_Fails_InvalidChars()
-        {
-
-        }
-
+        
         [Fact]
         public void CreateNewSession_Fails_With_ID()
         {
@@ -173,37 +167,6 @@ namespace ARR.IntegrationTests.ReviewManagement
 
                  Assert.Throws<InvalidOperationException>(() => manager.Create(session, "test_user"));
              }
-        }
-
-        [Fact]
-        public void Edit_Succeeds()
-        {
-            // Build the container.
-            var container = Setup();
-
-            var session = NewReviewSession();
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                
-                // Create a new session to work with
-                sessionRepo.Save(session);
-            }
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-
-                AutoMapper.Mapper.CreateMap<ReviewSession, ReviewSession>();
-                var editSession = AutoMapper.Mapper.Map<ReviewSession>(session);
-
-                editSession.Requirements.Add(new Requirement {Comment = "test", Content = "test"});
-
-                Assert.DoesNotThrow(() => manager.Edit(editSession, session.Creator));
-            }
         }
 
         [Fact]
@@ -257,7 +220,7 @@ namespace ARR.IntegrationTests.ReviewManagement
         }
 
         [Fact]
-        public void DeleteSession_Fails_In_Released_Status()
+        public void DeleteSession_Fails_In_Invalid_Status()
         {
             // Build the container.
             var container = Setup();
@@ -283,11 +246,200 @@ namespace ARR.IntegrationTests.ReviewManagement
         }
 
         [Fact]
-        public void DeleteSession_Fails_NotFound()
+        public void Edit_Succeeds()
         {
+            // Build the container.
+            var container = Setup();
 
+            var session = NewReviewSession();
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                AutoMapper.Mapper.CreateMap<ReviewSession, ReviewSession>();
+                var editSession = AutoMapper.Mapper.Map<ReviewSession>(session);
+
+                editSession.Requirements.Add(new Requirement {Comment = "test", Content = "test"});
+
+                Assert.DoesNotThrow(() => manager.Edit(editSession, session.Creator));
+            }
         }
 
+       [Fact]
+        public void Edit_Fails_UnAuthorized()
+        {
+            // Build the container.
+            var container = Setup();
 
+            var session = NewReviewSession();
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                AutoMapper.Mapper.CreateMap<ReviewSession, ReviewSession>();
+                var editSession = AutoMapper.Mapper.Map<ReviewSession>(session);
+                
+                Assert.Throws<AuthorizationException>(() => manager.Edit(editSession, "FAIL"));
+            }
+        }
+
+        [Fact]
+        public void Edit_Fails_Invalid_Status()
+        {
+            // Build the container.
+            var container = Setup();
+
+            var session = NewReviewSession();
+            session.SessionStatus = SessionStatusType.Released;
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                AutoMapper.Mapper.CreateMap<ReviewSession, ReviewSession>();
+                var editSession = AutoMapper.Mapper.Map<ReviewSession>(session);
+
+                Assert.Throws<InvalidOperationException>(() => manager.Edit(editSession, session.Creator));
+            }
+        }
+
+        [Fact]
+        public void Release_Succeeds()
+        {
+            // Build the container.
+            var container = Setup();
+            var session = NewReviewSession();
+            session.SessionStatus = SessionStatusType.Created;
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                Assert.DoesNotThrow(() => manager.Release(session.Id, session.Creator));
+            }
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+
+                var releasedSession = sessionRepo.Get(session.Id);
+
+                Assert.Equal(SessionStatusType.Released, releasedSession.SessionStatus);
+
+                var events = eventRepo.ListAll();
+
+                Assert.Equal(1, events.Count);
+                Assert.Equal(events[0].EventType, EventType.ReviewReleased);
+                Assert.Equal(events[0].EntityId, session.Id);
+            }
+        }
+
+        [Fact]
+        public void Release_Fails_Not_Found()
+        {
+            // Build the container.
+            var container = Setup();
+           
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                Assert.Throws<SessionNotFoundException>(() => manager.Release(1, "test"));
+            }
+        }
+
+        [Fact]
+        public void Release_Fails_UnAuthorized()
+        {
+            // Build the container.
+            var container = Setup();
+            var session = NewReviewSession();
+            session.SessionStatus = SessionStatusType.Created;
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                Assert.Throws<AuthorizationException>(() => manager.Release(session.Id, "FAIL"));
+            }
+        }
+
+        [Fact]
+        public void Release_Fails_Invalid_Status()
+        {
+            // Build the container.
+            var container = Setup();
+            var session = NewReviewSession();
+            session.SessionStatus = SessionStatusType.Completed;
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+
+                // Create a new session to work with
+                sessionRepo.Save(session);
+            }
+
+            using (var lifetime = container.BeginLifetimeScope())
+            {
+                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var eventRepo = lifetime.Resolve<EventRepository>();
+                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
+
+                Assert.Throws<InvalidOperationException>(() => manager.Release(session.Id, session.Creator));
+            }
+        }
     }
 }

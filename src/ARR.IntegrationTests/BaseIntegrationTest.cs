@@ -67,7 +67,7 @@ namespace ARR.IntegrationTests
             var session = new ReviewSession();
             session.Title = "Session 1";
             session.Creator = "test@test.com";
-
+            
             var requirements1 = new Requirement();
             requirements1.Content = "This is requirement 1";
 

@@ -71,14 +71,10 @@ namespace ARR.ReviewSessionManagement
         /// <param name="session"></param>
         /// <param name="current"></param>
         /// <exception cref="InvalidOperationException"></exception>
-        /// <exception cref="InvalidWebCharacterException"></exception>
         public void Create(ReviewSession session, string current)
         {
             if (session.Id != 0)
                 throw new InvalidOperationException("Cannot create a new session with the 'Id' field already populated.");
-
-            if(!HasValidWebCharacters(session))
-                throw new InvalidWebCharacterException();
 
             session.Creator = current;
             session.LastModified = DateTime.UtcNow;
@@ -119,7 +115,6 @@ namespace ARR.ReviewSessionManagement
         /// <param name="session"></param>
         /// <param name="current">The username of the API user</param>
         /// <exception cref="InvalidOperationException"></exception>
-        /// <exception cref="InvalidWebCharacterException"></exception>
         /// <exception cref="AuthorizationException"></exception>
         public void Edit(ReviewSession session, string current)
         {
@@ -128,9 +123,6 @@ namespace ARR.ReviewSessionManagement
 
             if (session.SessionStatus != SessionStatusType.Created)
                 throw new InvalidOperationException();
-
-            if (!HasValidWebCharacters(session))
-                throw new InvalidWebCharacterException();   
 
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();
@@ -264,10 +256,7 @@ namespace ARR.ReviewSessionManagement
 
             if (session == null)
                 throw new SessionNotFoundException();
-
-            if (!HasValidWebCharacters(session))
-                throw new InvalidWebCharacterException();
-
+            
             if (session.Reviewer.ToLower() != current.ToLower())
                 throw new AuthorizationException();
 
