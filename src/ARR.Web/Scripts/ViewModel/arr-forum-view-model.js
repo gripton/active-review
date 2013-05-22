@@ -10,6 +10,8 @@ var ForumViewModel = function (reviewSessionId) {
     self.addFeedbackViewModel = new AddFeedbackViewModel(self);
     self.archiveSessionViewModel = new ArchiveSessionViewModel(self);
 
+    self.isLoading = ko.observable(false);
+
     self.ChatMessages = ko.observableArray([
         new ChatMessage("Here are my initial Comments", "Tom", Date.now()),
         new ChatMessage("And some friendly chit chat to follow that up", "Dan", Date.now())
@@ -22,7 +24,7 @@ var ForumViewModel = function (reviewSessionId) {
         ko.applyBindings(self); // This makes Knockout get to work
 
         if (self.reviewSessionId != null) {
-            //self.isLoading(true);
+            self.isLoading(true);
 
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
@@ -30,8 +32,8 @@ var ForumViewModel = function (reviewSessionId) {
                 for (var k = 0; k < self.reviewSession.Questions().length; k++) {
                     self.questionList.push(new QuestionFeedback(self.reviewSession.Questions()[k]));
                 }
+                self.isLoading(false);
                 setScrollDisplay("Left");
-                //self.isLoading(false);
             });
         }
     };
@@ -45,6 +47,7 @@ var AddFeedbackViewModel = function(forumViewModel) {
     self.forumViewModel = forumViewModel;
 
     self.saveFeedback = function (selectedQuestion) {
+        forumViewModel.isLoading(true);
         var f = new Feedback();
         f.Text(selectedQuestion.NewFeedback());
         //f.Username = self
@@ -54,16 +57,17 @@ var AddFeedbackViewModel = function(forumViewModel) {
         }
         selectedQuestion.Question.Feedbacks.push(f);
 
-        $.ajax(getArrApiUrlPost('feedback/' + self.forumViewModel.reviewSessionId + '/feedback'), {
-            data: ko.toJSON(selectedQuestion.Question),
+        $.ajax(getArrApiUrlPost('questions/' + self.forumViewModel.reviewSessionId + '/provide-feedback'), {
+            data: ko.toJSON(forumViewModel.reviewSession.Questions()),
             dataType: "json",
-            type: "post",
+            type: "put",
             contentType: "application/json",
             success: function (result) {
-                alert(result);
                 // Clear out the feedback text box that we just added
                 selectedQuestion.NewFeedback('');
                 setScrollDisplay("Left");
+                setScrollableToBottom("Left");
+                forumViewModel.isLoading(false);
             }
         });
     };
@@ -75,7 +79,6 @@ var ArchiveSessionViewModel = function (forumViewModel) {
     self.forumViewModel = forumViewModel;
 
     self.isComplete = ko.computed(function () {
-        alert(self.forumViewModel.reviewSession.SessionStatus());
         return self.forumViewModel.reviewSession.SessionStatus() >= SessionStatus.COMPLETED;
     });
 
