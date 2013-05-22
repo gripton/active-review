@@ -9,8 +9,7 @@ var ForumViewModel = function (reviewSessionId) {
     self.questionList = ko.observableArray();
     self.addFeedbackViewModel = new AddFeedbackViewModel(self);
     self.archiveSessionViewModel = new ArchiveSessionViewModel(self);
-
-    self.isLoading = ko.observable(false);
+    self.processingViewModel = new ProcessingViewModel();
 
     self.ChatMessages = ko.observableArray([
         new ChatMessage("Here are my initial Comments", "Tom", Date.now()),
@@ -24,7 +23,7 @@ var ForumViewModel = function (reviewSessionId) {
         ko.applyBindings(self); // This makes Knockout get to work
 
         if (self.reviewSessionId != null) {
-            self.isLoading(true);
+            self.processingViewModel.turnOnProcessing();
 
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
@@ -32,7 +31,7 @@ var ForumViewModel = function (reviewSessionId) {
                 for (var k = 0; k < self.reviewSession.Questions().length; k++) {
                     self.questionList.push(new QuestionFeedback(self.reviewSession.Questions()[k]));
                 }
-                self.isLoading(false);
+                self.processingViewModel.turnOffProcessing();
                 setScrollDisplay("Left");
             });
         }
@@ -47,7 +46,8 @@ var AddFeedbackViewModel = function(forumViewModel) {
     self.forumViewModel = forumViewModel;
 
     self.saveFeedback = function (selectedQuestion) {
-        forumViewModel.isLoading(true);
+        self.forumViewModel.processingViewModel.processingDisplay("Saving Feedback");
+        self.forumViewModel.processingViewModel.turnOnProcessing();
         var f = new Feedback();
         f.Text(selectedQuestion.NewFeedback());
         //f.Username = self
@@ -67,7 +67,7 @@ var AddFeedbackViewModel = function(forumViewModel) {
                 selectedQuestion.NewFeedback('');
                 setScrollDisplay("Left");
                 setScrollableToBottom("Left");
-                forumViewModel.isLoading(false);
+                self.forumViewModel.processingViewModel.turnOffProcessing();
             }
         });
     };
@@ -78,9 +78,12 @@ var ArchiveSessionViewModel = function (forumViewModel) {
     var self = this;
     self.forumViewModel = forumViewModel;
 
-    self.isComplete = ko.computed(function () {
-        return self.forumViewModel.reviewSession.SessionStatus() >= SessionStatus.COMPLETED;
+    self.canSeeQuestionnaire = ko.computed(function () {
+        var isNotCreator = self.forumViewModel.reviewSession.Creator() != self.forumViewModel.currentUser;
+        var isReleased = self.forumViewModel.reviewSession.SessionStatus() == SessionStatus.RELEASED;
+        return isNotCreator && isReleased;
     });
+
 
     self.canArchive = ko.computed(function () {
         var isCreator = self.forumViewModel.reviewSession.Creator() == self.forumViewModel.currentUser;
@@ -89,6 +92,9 @@ var ArchiveSessionViewModel = function (forumViewModel) {
     });
 
     self.archiveSession = function () {
+        self.forumViewModel.processingViewModel.processingDisplay("Archiving...");
+        self.forumViewModel.processingViewModel.turnOnProcessing();
+        
         $.ajax(getArrApiUrlPost('reviewsession/' + self.forumViewModel.reviewSessionId + '/archive'), {
             dataType: "json",
             type: "put",
