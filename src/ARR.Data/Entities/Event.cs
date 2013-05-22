@@ -5,13 +5,12 @@ namespace ARR.Data.Entities
 {
     public enum EventType
     {
-        None,
-        ReviewerInvited = 1,
-        InviteeRegistered = 2,
-        FeedbackProvided = 3,
-        FeedbackAcknowleged = 4,
-        QuestionnaireCompleted = 5,
-        ReviewReleased = 6
+        ReviewerInvited = 0,
+        InviteeRegistered = 1,
+        FeedbackProvided = 2,
+        FeedbackAcknowleged = 3,
+        QuestionnaireCompleted = 4,
+        ReviewReleased = 5
     }
 
     public class Event : IPersistentEntity
