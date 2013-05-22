@@ -13,7 +13,7 @@ namespace ARR.IntegrationTests.ReviewManagement
 {
     public class ReviewSessionManagerTests : BaseIntegrationTest
     {
-        [Fact(Skip = "Working on fixing this one")]
+        [Fact]
         public void AssignReviewer_Succeeds()
         {
             // Build the container.
