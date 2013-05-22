@@ -5,6 +5,7 @@ namespace ARR.Data.Entities
 {
     public enum EventType
     {
+        None,
         ReviewerInvited = 1,
         InviteeRegistered = 2,
         FeedbackProvided = 3,
