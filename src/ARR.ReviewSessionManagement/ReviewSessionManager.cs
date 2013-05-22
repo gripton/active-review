@@ -221,7 +221,7 @@ namespace ARR.ReviewSessionManagement
             if (session == null)
                 throw new SessionNotFoundException();
 
-            if (session.Reviewer.ToLower() != current.ToLower() || session.Creator.ToLower() != current.ToLower())
+            if (!(session.Reviewer.ToLower() == current.ToLower() || session.Creator.ToLower() == current.ToLower()))
                 throw new AuthorizationException();
 
             if (!(session.SessionStatus == SessionStatusType.Released || session.SessionStatus == SessionStatusType.Created))
