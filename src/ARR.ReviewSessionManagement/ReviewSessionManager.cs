@@ -173,7 +173,6 @@ namespace ARR.ReviewSessionManagement
         /// <param name="sessionId">The id of the review session</param>
         /// <param name="questions">The questions of the review session</param>
         /// <param name="current">The username of the API user</param>
-        /// <exception cref="InvalidWebCharacterException"></exception>
         /// <exception cref="SessionNotFoundException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
         /// <exception cref="AuthorizationException"></exception>
@@ -189,7 +188,6 @@ namespace ARR.ReviewSessionManagement
         /// <param name="sessionId">The id of the review session</param>
         /// <param name="questions"></param>
         /// <param name="current">The username of the API user</param>
-        /// <exception cref="InvalidWebCharacterException"></exception>
         /// <exception cref="SessionNotFoundException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
         /// <exception cref="AuthorizationException"></exception>
@@ -210,16 +208,27 @@ namespace ARR.ReviewSessionManagement
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="content">The feedback text</param>
+        /// <param name="questions">The feedback text</param>
         /// <param name="sessionId">The id of the review session</param>
         /// <param name="current">The username of the API user</param>
-        /// <exception cref="InvalidWebCharacterException"></exception>
         /// <exception cref="SessionNotFoundException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
         /// <exception cref="AuthorizationException"></exception>
-        public void ProvideFeedback(string content, int sessionId, string current)
+        public void ProvideFeedback(int sessionId, List<Question> questions, string current)
         {
-            throw new NotImplementedException();
+            var session = _sessionRepository.Get(sessionId);
+
+            if (session == null)
+                throw new SessionNotFoundException();
+
+            if (session.Reviewer.ToLower() != current.ToLower() || session.Creator.ToLower() != current.ToLower())
+                throw new AuthorizationException();
+
+            if (!(session.SessionStatus == SessionStatusType.Released || session.SessionStatus == SessionStatusType.Created))
+                throw new InvalidOperationException();
+
+            session.Questions = questions;
+            _sessionRepository.Patch(session, ReviewSession.SaveQuestionnairePatch);
         }
 
         /// <summary>
@@ -252,7 +261,6 @@ namespace ARR.ReviewSessionManagement
         private void SaveQuestionnaire(int sessionId, List<Question> questions, string current, SessionStatusType sessionStatus)
         {
             var session = _sessionRepository.Get(sessionId);
-            session.Questions = questions;
 
             if (session == null)
                 throw new SessionNotFoundException();
@@ -263,11 +271,12 @@ namespace ARR.ReviewSessionManagement
             if (session.SessionStatus != SessionStatusType.Released)
                 throw new InvalidOperationException();
 
-            // TODO - these won't work unless we add patches for them
+            
+            session.Questions = questions;
+
+            // TODO - these shouldn't work unless we add patches for them
             session.SessionStatus = sessionStatus;
             session.LastModified = DateTime.UtcNow;
-
-            session.Title = "dont change me";
 
             _sessionRepository.Patch(session, ReviewSession.SaveQuestionnairePatch);
         }

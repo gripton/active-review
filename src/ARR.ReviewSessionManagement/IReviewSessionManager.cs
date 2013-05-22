@@ -13,7 +13,7 @@ namespace ARR.ReviewSessionManagement
         void Release(int sessionId, string current);
         void SaveQuestionnaire(int sessionId, List<Question> questions, string current);
         void CompleteQuestionnaire(int sessionId, List<Question> questions, string current);
-        void ProvideFeedback(string content, int sessionId, string current);
+        void ProvideFeedback(int sessionId, List<Question> questions, string current);
         void Archive(int sessionId, string current);
         
         IReadContext<ReviewSession> ReadContext { get; }
