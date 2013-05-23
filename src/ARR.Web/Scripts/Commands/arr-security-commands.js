@@ -1,4 +1,8 @@
-﻿$(function () {
+﻿function loggedInUser() {
+    return $.cookie('arr_account');
+}
+
+$(function () {
     $.ajaxSetup({ 
         headers:
         {
@@ -9,10 +13,6 @@
 
 function getSessionAuthorization() {
     return getAuthorizationHeader(loggedInUser(), "");
-}
-
-function loggedInUser() {
-    return $.cookie('arr_account');
 }
 
 function getAuthorizationHeader(username, password) {

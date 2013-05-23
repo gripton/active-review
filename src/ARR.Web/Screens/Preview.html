@@ -58,8 +58,8 @@
                         </div>
                     </div>
                     <div class="span4" style="text-align:right">
-                        <button class="btn-primary" data-bind="click: $root.questionNavigationViewModel.previousQuestion, enable: $root.questionNavigationViewModel.enablePrevious">Previous</button>
-                        <button class="btn-primary" data-bind="click: $root.questionNavigationViewModel.nextQuestion, enable: $root.questionNavigationViewModel.enableNext">Next</button>
+                        <button class="btn btn-primary" data-bind="click: $root.questionNavigationViewModel.previousQuestion, visible: $root.questionNavigationViewModel.enablePrevious">Previous</button>
+                        <button class="btn btn-primary" data-bind="click: $root.questionNavigationViewModel.nextQuestion, visible: $root.questionNavigationViewModel.enableNext">Next</button>
                     </div>
                 </div>
                 
@@ -67,15 +67,16 @@
             </fieldset>
         </div>
     </div>
-    <div id="Loader" data-bind="loadingWhen: isLoading">
+    <div id="Loader" data-bind="loadingWhen: processingViewModel.isProcessing">
         <div id="horizon">
             <div id="LoadingDiv">
-                <h4>Loading...</h4>
+                <h4 data-bind="text: processingViewModel.processingDisplay">Loading...</h4>
                 <img alt="activity indicator" src="../Content/images/ajax-loader.gif"/>
             </div>
         </div>
     </div>
-    <div id="PageMask" class="modal-backdrop" data-bind="loadingWhen: isLoading"></div>
+    <div id="PageMask" class="modal-backdrop" data-bind="loadingWhen: processingViewModel.isProcessing"></div>
+
 
     <!-- Bootstrap jQuery Plugins, compiled and minified -->
     <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
@@ -92,6 +93,7 @@
     <script type="text/javascript" src="../Scripts/Commands/arr-loading-commands.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
     <script type="text/javascript" src="../Scripts/Model/arr-requirements-model.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/arr-processing-view-model.js"></script>
     <script type="text/javascript" src="../Scripts/ViewModel/arr-questions-view-model.js"></script>
 </body>
 </html>
