@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Web;
-
+using System.Web.Management;
 using ARR.Data.Entities;
 
 using PracticalCode.WebSecurity.Infrastructure.Data;
@@ -10,6 +11,15 @@ using PracticalCode.WebSecurity.Infrastructure.Policies;
 
 namespace ARR.Web.Infrastructure.WebSecurity
 {
+    public class LoginErrorEvent : WebRequestErrorEvent
+    {
+        public LoginErrorEvent(string message, Exception ex)
+            : base(message, null, 100001, ex)
+        {
+        }
+
+    }
+
     public class LoginHandler : JsonRequestHandler
     {
         private const string _anonymousMessage = @"Anonymous user failed to login with a username of {0}";
@@ -38,7 +48,13 @@ namespace ARR.Web.Infrastructure.WebSecurity
                 }
                 catch (Exception ex)
                 {
-                    WebApplicationServices.Logger.Error(_exceptionMessage, ex);
+                    const string format = "Login Failed with APIUrl '{0}'";
+
+                    var errorEvent = 
+                        new LoginErrorEvent(string.Format(format, ConfigurationManager.AppSettings["ApiUrl"]), ex);
+
+                    errorEvent.Raise();
+
                     status = LoginStatus.UnAuthorized;
                 }
 
