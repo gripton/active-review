@@ -280,10 +280,5 @@ namespace ARR.ReviewSessionManagement
 
             _sessionRepository.Patch(session, ReviewSession.SaveQuestionnairePatch);
         }
-
-        private bool HasValidWebCharacters(ReviewSession session)
-        {
-            return true;
-        }
     }
 }
