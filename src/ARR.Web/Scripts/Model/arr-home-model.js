@@ -14,7 +14,8 @@ function Session(data) {
     self.type = ko.observable(data.SessionStatus);
 
     self.reviewer = ko.observable(data.Reviewer);
-    //TODO: replace above with method to select returned reviewer from populated drop down
+    //if exists in drop down, mark item as selected
+
 
     self.selectedSession = ko.observable();
 
@@ -26,17 +27,17 @@ function Session(data) {
     self.forumUrl = "../Screens/Forum.html?reviewSession=" + sessionId;
 }
 
-function getReviewers() {
-    $.ajax({
-        type: "GET",
-        url: getArrApiUrl('account'),
-        data: ko.toJSON(self),
-        contentType: 'application/json',
-        dataType: 'JSON',
-        success: function () {
-            //TODO: bind to drop down list in html
-            alert("success");
-        },
+var Reviewer = function (screenName, domain) {
+    var self = this;
+    self.screenName = screenName;
+    self.domain = domain;
+};
+
+function getReviewers(self) {
+    $.getJSON(getArrApiUrl('account'), function(data) {
+        var mappedReviewers = $.map(data, function (reviewer) {
+            self.reviewers.push(new Reviewer(reviewer.ScreenName, reviewer.AreaOfExpertise));
+        });
     });
 }
 
@@ -94,6 +95,10 @@ var IndexViewModel = function () {
 
     getSessions(self);
 
+    self.reviewers = ko.observableArray([]);
+    self.selectedReviewer = ko.observable();
+    getReviewers(self);
+
     self.createNewSession = function () {
         var reviewSession = this;
         reviewSession.Title = "Untitled Session";
@@ -123,11 +128,15 @@ var IndexViewModel = function () {
 }
 
 // Class that handles the bindings for the Reviewer Interaction
-function ReviewerViewModel() {
+var ReviewerViewModel = function(selectedReviewer) {
     var self = this;
     self.selectedSession = null;
 
     self.currentReviewer = ko.observable("");
+
+    self.assignReviewer = function (selectedReviewer) {
+        alert(selectedReviewer);
+    }
 
     self.setReviewer = function (selectedSession) {
         self.selectedSession = selectedSession;
@@ -141,4 +150,6 @@ function ReviewerViewModel() {
 }
 
 var indexModel = new IndexViewModel();
+//var reviewerModel = new ReviewerViewModel();
 ko.applyBindings(indexModel);
+//ko.applyBindings(reviewerModel);

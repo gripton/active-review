@@ -43,11 +43,11 @@ legend {
 <section style="margin: 20px">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="Profile.html">Profile</a></li>
+        <li><a href="Profile.html">My Profile</a></li>
         <li><a href="Guide.html" >Active Reviews for "Dummies"</a></li>
     </ul>   
 
-    <button class="btn btn-primary" data-bind="click: createNewSession">Create New Session</button>
+    <button class="btn btn-primary" data-bind="click: createNewSession" title="Create a new review session">Create New Session</button>
 
     <fieldset class="well" style="min-width: 500px; margin-top: 20px;">
         <legend class="the-legend">My New Created Sessions</legend>
@@ -67,19 +67,19 @@ legend {
                 <tr>
                     <td data-bind="text: title"></td>
                     <td>
-                        <a data-bind="attr: {href: editorUrl}"><i class="icon-pencil"></i></a>
+                        <a data-bind="attr: {href: editorUrl}"><i class="icon-pencil" title="Edit this review session"></i></a>
                     </td>
                     <td>
-                        <a data-bind="attr: {href: editorUrl}"><i class="icon-eye-open"></i></a>
+                        <a data-bind="attr: {href: editorUrl}"><i class="icon-eye-open" title="Preview this review session"></i></a>
                     </td>
                     <td>
-                        <a href="#reviewerModal" role="button" data-toggle="modal"><i class="icon-user"></i></a>
+                        <a href="#reviewerModal" role="button" data-toggle="modal"><i class="icon-user" title="Assign a reviewer for this session"></i></a>
                     </td>
                     <td>
-                        <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire"></i></a>
+                        <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire" title="Create a copy of this review session"></i></a>
                     </td>
                     <td>
-                        <a href="#deleteModal" role="button" data-toggle="modal" data-bind="click: $root.setSelectedSession"><i class="icon-remove"></i></a>
+                        <a href="#deleteModal" role="button" data-toggle="modal" data-bind="click: $root.setSelectedSession"><i class="icon-remove" title="Delete this session"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -108,12 +108,18 @@ legend {
                 <label>Reviewer Name</label>
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-user"></i></span>
-                    <input type="text" id="txtReviewerName" data-bind="text: $root.reviewer"  />
+                    <select data-bind="options: reviewers, 
+                                       optionsText: function(item) { 
+                                           return item.screenName + ' (Domain: ' + item.domain + ')' 
+                                       }, 
+                                       value: selectedReviewer, 
+                                       optionsCaption: 'Please select a reviewer...'"></select>
                 </div>
+                <p>Don't see an appropriate reviewer? <a href="#">Invite them now.</a></p>
             </div>
             <div class="modal-footer">
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                <button class="btn" data-dismiss="modal">Assign</button>
+                <button class="btn" data-dismiss="modal" >Assign</button>
             </div>
         </div>    
     </fieldset>
@@ -134,11 +140,11 @@ legend {
                     <td data-bind="text: title"></td>
                     <td> 
                         <a data-bind="attr: {href: questionnaireUrl}">
-                            <i class="icon-edit"></i>
+                            <i class="icon-edit" title="Answer review session questions"></i>
                         </a>
                     </td>
                     <td>
-                        <a data-bind="attr: {href: forumUrl}"><i class="icon-comment"></i></a>
+                        <a data-bind="attr: {href: forumUrl}"><i class="icon-comment" title="Discuss this review session"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -160,7 +166,7 @@ legend {
                 <tr>
                     <td data-bind="text: title"></td>
                     <td>
-                        <a data-bind="attr: {href: forumUrl}"><i class="icon-comment"></i></a>
+                        <a data-bind="attr: {href: forumUrl}"><i class="icon-comment" title="Discuss this review session"></i></a>
                     </td>
                     <td>
                         <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire"></i></a>
@@ -194,7 +200,7 @@ legend {
                 </tbody>
             </table>
 
-        <div class="pagination">
+        <!--<div class="pagination">
             <ul>
                 <li><a href="#">Prev</a></li>
                 <li><a href="#">1</a></li>
@@ -203,7 +209,7 @@ legend {
                 <li><a href="#">4</a></li>
                 <li><a href="#">Next</a></li>
             </ul>
-        </div>
+        </div>-->
 
     </fieldset>
  </section>
