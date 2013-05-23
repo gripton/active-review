@@ -23,7 +23,7 @@ var ForumViewModel = function (reviewSessionId) {
         ko.applyBindings(self); // This makes Knockout get to work
 
         if (self.reviewSessionId != null) {
-            self.processingViewModel.turnOnProcessing();
+            self.processingViewModel.turnOnProcessing("Loading...");
 
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
@@ -46,8 +46,7 @@ var AddFeedbackViewModel = function(forumViewModel) {
     self.forumViewModel = forumViewModel;
 
     self.saveFeedback = function (selectedQuestion) {
-        self.forumViewModel.processingViewModel.processingDisplay("Saving Feedback");
-        self.forumViewModel.processingViewModel.turnOnProcessing();
+        self.forumViewModel.processingViewModel.turnOnProcessing("Saving Feedback...");
         var f = new Feedback();
         f.Text(selectedQuestion.NewFeedback());
         //f.Username = self
@@ -92,8 +91,7 @@ var ArchiveSessionViewModel = function (forumViewModel) {
     });
 
     self.archiveSession = function () {
-        self.forumViewModel.processingViewModel.processingDisplay("Archiving...");
-        self.forumViewModel.processingViewModel.turnOnProcessing();
+        self.forumViewModel.processingViewModel.turnOnProcessing("Archiving...");
         
         $.ajax(getArrApiUrlPost('reviewsession/' + self.forumViewModel.reviewSessionId + '/archive'), {
             dataType: "json",

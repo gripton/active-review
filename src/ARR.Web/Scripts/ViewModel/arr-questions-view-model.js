@@ -4,17 +4,20 @@ var QuestionViewModel = function (reviewSessionId) {
     self.reviewSessionId = reviewSessionId;
     self.reviewSession = new ReviewSession();
 
-    self.isLoading = ko.observable(false);
-
     self.questionNavigationViewModel = new QuestionNavigationViewModel(self);
+    self.processingViewModel = new ProcessingViewModel();
+    
     // Save Session
     self.saveQuestion = function () {
+        self.processingViewModel.turnOnProcessing("Saving...");
         $.ajax(getArrApiUrlPost('questions/' + self.reviewSessionId + "/save-questionnaire"), {
             data: ko.toJSON(self.reviewSession.Questions),
             dataType: "json",
             type: "put", 
             contentType: "application/json",
-            success: function (result) { alert(result); }
+            success: function() {
+                self.processingViewModel.turnOffProcessing();
+            }
         });
     };
 
@@ -23,12 +26,11 @@ var QuestionViewModel = function (reviewSessionId) {
         ko.applyBindings(self); // This makes Knockout get to work
 
         if (self.reviewSessionId != null) {
-            self.isLoading(true);
-
+            self.processingViewModel.turnOnProcessing("Loading...");
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
-                self.isLoading(false);
                 self.questionNavigationViewModel.setQuestion();
+                self.processingViewModel.turnOffProcessing();
             });
         }
     };
@@ -81,16 +83,27 @@ var QuestionNavigationViewModel = function(questionViewModel) {
     };
 
     self.complete = function () {
-        $.ajax({
-            type: "PUT",
-            url: getArrApiUrlPost('questions/' + reviewSessionId + "/complete-session"),
-            data: ko.toJSON(self.questionViewModel.reviewSession.Questions),
-            contentType: 'application/json',
-            dataType: 'JSON',
-            success: function () {
-                window.location = "Forum.html?reviewSession=" + reviewSessionId;
-            },
+        self.questionViewModel.processingViewModel.turnOnProcessing("Saving and Completing Session...");
+        $.ajax(getArrApiUrlPost('questions/' + self.reviewSessionId + "/save-questionnaire"), {
+            data: ko.toJSON(self.reviewSession.Questions),
+            dataType: "json",
+            type: "put",
+            contentType: "application/json",
+            success: function(result) {
+                $.ajax({
+                    type: "PUT",
+                    url: getArrApiUrlPost('questions/' + reviewSessionId + "/complete-session"),
+                    data: ko.toJSON(self.questionViewModel.reviewSession.Questions),
+                    contentType: 'application/json',
+                    dataType: 'JSON',
+                    success: function () {
+                        self.questionViewModel.processingViewModel.turnOffProcessing();
+                        window.location = "Forum.html?reviewSession=" + reviewSessionId;
+                    },
+                });
+            }
         });
+
     };
 };
 
