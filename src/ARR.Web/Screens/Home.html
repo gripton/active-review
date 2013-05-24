@@ -49,6 +49,17 @@ legend {
 
     <button class="btn btn-primary" data-bind="click: createNewSession" title="Create a new review session">Create New Session</button>
 
+    <div class="modal small hide fade" id="modalIntro" tabindex="-1" role="dialog" aria-labelledby="introModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="H2">Active Requirements Review Introduction</h3>
+            </div>
+            <div class="modal-body">
+                <h4>Welcome</h4>
+                <p class="">My great intro content</p>
+            </div>
+        </div>
+
     <fieldset class="well" style="min-width: 500px; margin-top: 20px;">
         <legend class="the-legend">My New Created Sessions</legend>
        
@@ -169,7 +180,7 @@ legend {
                         <a data-bind="attr: {href: forumUrl}"><i class="icon-comment" title="Discuss this review session"></i></a>
                     </td>
                     <td>
-                        <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire"></i></a>
+                        <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire" title="Make a copy of this review session"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -191,10 +202,10 @@ legend {
                     <tr>
                         <td data-bind="text: title"></td>
                         <td>
-                            <a data-bind="attr: {href: previewUrl}"><i class="icon-file"></i></a>
+                            <a data-bind="attr: {href: previewUrl}"><i class="icon-file" title="View a read-only version of this review session"></i></a>
                         </td>
                         <td>
-                            <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire"></i></a>
+                            <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire" title="Make a copy of this review session"></i></a>
                         </td>
                     </tr>
                 </tbody>

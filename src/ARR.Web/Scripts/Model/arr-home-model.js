@@ -1,4 +1,12 @@
-﻿var SessionStatus =
+﻿$(document).ready(function () {
+    if ($.cookie("arr_home") == null) {
+        $("#modalIntro").modal('show');
+        $.cookie('arr_home', true);
+    }
+});
+
+
+var SessionStatus =
 {
     CREATED: 0,
     RELEASED: 1,
