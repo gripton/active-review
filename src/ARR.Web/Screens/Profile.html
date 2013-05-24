@@ -7,32 +7,29 @@
     <link href="../Content/bootstrap-responsive.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <a class="brand" href="#">Active Requirements Review</a>
-                <div class="nav-collapse">
-                    <form class="navbar-search pull-right" action="">
-                        <input type="text" class="search-query span2" placeholder="Search">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+   <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Active Requirements Review</a>
+          <div class="nav-collapse">
+              <ul class="nav">
+                  <li><a href="Home.html"><i class="icon-home icon-white"></i> Home</a></li>
+                  <li class="active"><a href="Profile.html">My Profile</a></li>
+             <li ><a href="Guide.html">Active Reviews for Dummies</a></li> 
+            </ul>
+          </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+      </div><!-- /.navbar-inner -->
+   </div><!-- /.navbar -->
 
 
     <section style="margin: 20px">
-        <ul class="nav nav-tabs">
-            <li><a href="Home.html">Home</a></li>
-            <li class="active"><a href="#">Profile</a></li>
-            <li><a href="Guide.html">Active Reviews for "Dummies"</a></li>
-        </ul>
-
+        
         <fieldset class="well" style="width: 80%; height: 600px; margin-left: 20px">
             <legend class="the-legend">My Info</legend>
 
@@ -59,11 +56,11 @@
                 <div class="tab-pane fade" id="profile">
                     <form id="tab2">
                         <label>New Password</label>
-                         <input type="text" data-bind="value: account.Password" class="input-xlarge" />
+                        <input type="text" data-bind="value: account.Password" class="input-xlarge" />
                         <label>Confirm Password</label>
-                         <input type="text" data-bind="value: account.ScreenName" class="input-xlarge" />
+                        <input type="text" data-bind="value: account.ScreenName" class="input-xlarge" />
                         <div>
-                         <button class="btn btn-primary" data-bind="click: updateProfile">Update Password</button>
+                            <button class="btn btn-primary" data-bind="click: updateProfile">Update Password</button>
                         </div>
                     </form>
                 </div>
