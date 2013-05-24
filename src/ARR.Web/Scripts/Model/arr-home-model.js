@@ -1,12 +1,4 @@
-﻿$(document).ready(function () {
-    if ($.cookie("arr_home") == null) {
-        $("#modalIntro").modal('show');
-        $.cookie('arr_home', true);
-    }
-});
-
-
-var SessionStatus =
+﻿var SessionStatus =
 {
     CREATED: 0,
     RELEASED: 1,
@@ -110,6 +102,7 @@ var IndexViewModel = function () {
     self.createNewSession = function () {
         var reviewSession = this;
         reviewSession.Title = "Untitled Session";
+        reviewSession.Creator = currentUser;
 
         $.ajax({
             type: "POST",
