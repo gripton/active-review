@@ -1,8 +1,6 @@
-﻿using System.Web;
-using ARR.Web.Infrastructure.WebSecurity;
+﻿using ARR.Web.Infrastructure.WebSecurity;
 using Autofac;
 using Autofac.Integration.Web;
-using log4net;
 using PracticalCode.WebSecurity.Infrastructure.Membership;
 
 namespace ARR.Web.Infrastructure
@@ -12,11 +10,6 @@ namespace ARR.Web.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             // Register Common Stuff
-            builder
-              .RegisterInstance(LogManager.GetLogger(typeof(HttpApplication)))
-              .As<ILog>()
-              .SingleInstance();
-
             builder
                .RegisterType<WebSecurityMembershipProvider>()
                .As<IWebSecurityMembershipProvider>()

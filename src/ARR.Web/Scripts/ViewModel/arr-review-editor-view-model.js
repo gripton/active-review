@@ -17,6 +17,9 @@
             } else {
                 alert('Uncaught Error.\n' + jqXhr.responseText);
             }
+
+            // Make sure if the ajax fails, we turn off the screen mask
+            self.processingViewModel.turnOffProcessing();
         }
     });
 });
@@ -26,7 +29,6 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     var self = this;
     self.reviewSessionId = reviewSessionId;
     self.selectedRequirement = null;
-    self.isLoading = ko.observable(false);
     self.reviewSession = new ReviewSession();
 
     //ViewModels for Requirement Functionality
@@ -44,7 +46,10 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     self.renameSessionViewModel = new RenameSessionViewModel(self);
     self.spawnReviewViewModel = new SpawnReviewViewModel(self);
 
-    self.release = function() {
+    self.processingViewModel = new ProcessingViewModel();
+
+    self.release = function () {
+        self.processingViewModel.turnOnProcessing("Releasing Session...");
         $.ajax({
             type: "PUT",
             url: getArrApiUrlPost('reviewsession/' + self.reviewSessionId + "/release-session"),
@@ -53,12 +58,14 @@ var ReviewEditorViewModel = function (reviewSessionId) {
             dataType: 'JSON',
             success: function () {
                 alert('Your session has been released.');
+                self.processingViewModel.turnOffProcessing();
                 window.location = "Home.html";
             },
         });
     };
 
     self.save = function () {
+        self.processingViewModel.turnOnProcessing("Saving...");
         $.ajax({
             type: "PUT",
             url: getArrApiUrlPost('reviewsession/' + self.reviewSessionId + "/session"),
@@ -66,8 +73,8 @@ var ReviewEditorViewModel = function (reviewSessionId) {
             contentType: 'application/json',
             dataType: 'JSON',
             success: function () {
-                alert('success!');
                 self.dirtyFlag.reset();
+                self.processingViewModel.turnOffProcessing();
             },
         });
     };
@@ -81,11 +88,11 @@ var ReviewEditorViewModel = function (reviewSessionId) {
         ko.applyBindings(self); // This makes Knockout get to work
 
         if (self.reviewSessionId != null) {
-            self.isLoading(true);
-            
+
+            self.processingViewModel.turnOnProcessing("Loading...");
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
-                self.isLoading(false);
+                self.processingViewModel.turnOffProcessing();
                 self.dirtyFlag.reset();
                 setScrollDisplay("Left");
                 setScrollDisplay("Right");

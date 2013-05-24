@@ -53,9 +53,6 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\..\packages\AutoMapper.3.0.0-ci1035\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -460,6 +457,7 @@
     <Content Include="Scripts\ViewModel\arr-account-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-forum-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-login-view-model.js" />
+    <Content Include="Scripts\ViewModel\arr-processing-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-questions-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-review-editor-view-model.js" />
     <Content Include="Scripts\ViewModel\arr-profile-view-model.js" />
