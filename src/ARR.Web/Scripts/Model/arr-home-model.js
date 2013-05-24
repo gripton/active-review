@@ -21,10 +21,11 @@ function Session(data) {
 
     var sessionId = data.Id;
     self.editorUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
-    self.previewUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
+    self.previewUrl = "../Screens/Preview.html?reviewSession=" + sessionId;
     self.spawnUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
     self.questionnaireUrl = "../Screens/Questionnaire.html?reviewSession=" + sessionId;
     self.forumUrl = "../Screens/Forum.html?reviewSession=" + sessionId;
+    self.summaryUrl = "../Screens/Summary.html?reviewSession=" + sessionId;
 }
 
 var Reviewer = function (screenName, domain) {
