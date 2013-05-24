@@ -151,8 +151,9 @@ legend {
                 <tr>
                     <td data-bind="text: title"></td>
                     <td> 
+                        <span class="icon-lock" title="Session marked as complete.  No edits allowed." data-bind="visible: isLocked" ></span>
                         <a data-bind="attr: {href: questionnaireUrl}">
-                            <i class="icon-edit" title="Answer review session questions"></i>
+                            <i class="icon-edit" title="Answer review session questions" data-bind="visible: allowQuestionnaire"></i>
                         </a>
                     </td>
                     <td>

@@ -16,8 +16,14 @@ function Session(data) {
     self.reviewer = ko.observable(data.Reviewer);
     //if exists in drop down, mark item as selected
 
-
     self.selectedSession = ko.observable();
+    self.isLocked = ko.observable(false);
+    self.allowQuestionnaire = ko.observable(true);
+
+    if (data.SessionStatus == SessionStatus.COMPLETED) {
+        self.isLocked = ko.observable(true);
+        self.allowQuestionnaire = ko.observable(false);
+    }
 
     var sessionId = data.Id;
     self.editorUrl = "../Screens/Editor.html?reviewSession=" + sessionId;
@@ -66,7 +72,7 @@ function getSessions(self) {
         var mappedSessions = $.map(allData, function (item) {
             var type = item.SessionStatus;
 
-            if (type == SessionStatus.CREATED) {
+            if (type == SessionStatus.CREATED && currentUser == item.Creator) {
                 self.myCreatedSessionsList.push(new Session(item));
             }
             else if (type == SessionStatus.RELEASED && currentUser == item.Creator) {
@@ -75,7 +81,16 @@ function getSessions(self) {
             else if (type == SessionStatus.RELEASED && currentUser == item.Reviewer) {
                 self.myActiveSessionsListReviewer.push(new Session(item));
             }
-            else if (type == SessionStatus.ARCHIVED) {
+            else if (type == SessionStatus.COMPLETED && currentUser == item.Creator)
+            {
+                self.myActiveSessionsListCreator.push(new Session(item));
+                self.locked = ko.observable(true);
+            }
+            else if (type == SessionStatus.COMPLETED && currentUser == item.Reviewer) {
+                self.myActiveSessionsListReviewer.push(new Session(item));
+                self.locked = ko.observable(true);
+            }
+            else if (type == SessionStatus.ARCHIVED && (currentUser == item.Reviewer || currentUser == item.Creator)) {
                 self.myArchivedSessionsList.push(new Session(item));
             }
         });
@@ -93,11 +108,11 @@ var IndexViewModel = function () {
     self.myActiveSessionsListCreator = ko.observableArray([]);
     self.myActiveSessionsListReviewer = ko.observableArray([]);
     self.myArchivedSessionsList = ko.observableArray([]);
-
-    getSessions(self);
-
+    
     self.reviewers = ko.observableArray([]);
     self.selectedReviewer = ko.observable();
+
+    getSessions(self);
     getReviewers(self);
 
     self.createNewSession = function () {
