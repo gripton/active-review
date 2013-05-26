@@ -62,7 +62,9 @@
                                 <div class="span9"><a href="#" ></a>
                                     <a href="#editRequirementDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editRequirementViewModel.setEditRequirement">Edit</a>
                                     &nbsp;
-                                    <a href="#commentDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editCommentViewModel.setComment" >Comment</a>
+                                    <a href="#commentDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editCommentViewModel.setComment" >
+                                        <span data-bind="visible: Comment"><i class="icon-comment icon-white"></i> &nbsp;</span>Comment
+                                    </a>
                                 </div>
                                 <div class="span2" style="text-align:right;">
                                     <a href="#" class="btn btn-small btn-primary" role="button" data-bind="click: $root.deleteRequirementViewModel.deleteRequirement" >Delete</a>
