@@ -13,6 +13,7 @@
             dataType: 'JSON',
             success: function (response) {
                 if (response.Status == 'Authenticated') {
+                    $.removeCookie('arr_account');
                     $.cookie('arr_account', self.account.Username);
                     location.href = "/screens/home.html";
                 } else {

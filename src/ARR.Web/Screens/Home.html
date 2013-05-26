@@ -230,12 +230,16 @@ legend {
     <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.base64.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../Scripts/arr-firstVisitModal.js"></script>
+    <script type="text/javascript" src="../Scripts/arr-first-visit-modal.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
     <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
     <script type="text/javascript" src="../Scripts/arr-urls.aspx"></script>
     <script type="text/javascript" src="../Scripts/Model/arr-home-model.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(triggerModalOnFirstVisit('arr_firstVisit', '#modalIntro'));
+    </script>
 </body>
 </html>
