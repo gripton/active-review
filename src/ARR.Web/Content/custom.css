@@ -73,3 +73,8 @@
     visibility: visible;
     padding: 10px;
 }
+
+#InvalidPassword 
+{
+    display: none;    
+}

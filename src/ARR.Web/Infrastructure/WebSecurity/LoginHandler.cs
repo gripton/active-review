@@ -39,11 +39,11 @@ namespace ARR.Web.Infrastructure.WebSecurity
                 var json = inputStream.ReadToEnd();
                 var account = Newtonsoft.Json.JsonConvert.DeserializeObject<Account>(json);
 
-                LoginStatus status;
+                LoginResult result = new LoginResult();
 
                 try
                 {
-                    status = LoginManager.DefaultLogin(account.Username, account.Password,
+                    result.Status = LoginManager.DefaultLogin(account.Username, account.Password,
                         WebSecuritySettings, context.Request.QueryString);                    
                 }
                 catch (Exception ex)
@@ -55,32 +55,17 @@ namespace ARR.Web.Infrastructure.WebSecurity
 
                     errorEvent.Raise();
 
-                    status = LoginStatus.UnAuthorized;
+                    result.Status = LoginStatus.UnAuthorized;
                 }
 
-                SetResponse(context, status);
-
-                // TODO: Add this functionality to javascript
-                //if (status == LoginStatus.PasswordExpired)
-                //{
-                //    return RedirectToAction("ChangePassword", "User");
-                //}
-
-                // Do if any Un-Authorized, Locked-out, or Invalid Password
-                //if (status != LoginStatus.Authenticated)
-                //{
-                //    return View(model);
-                //}
-
-                // Do if we're good
-                //if (!returnUrl.IsNullOrEmpty())
-                //{
-                //    return Redirect(returnUrl);
-                //}
-
-                //return RedirectToAction("Index", "Home");
+                SetResponse(context, result);
             }
         }
 
+
+        private class LoginResult
+        {
+            public LoginStatus Status { get; set; }
+        }
     }
 }

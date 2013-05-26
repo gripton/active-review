@@ -103,11 +103,12 @@
                 <label>Password</label>
                 <input type="password" data-bind="value: account.Password" class="input-xlarge" />                        
                 <br />
-                <br />      
+                <div class="alert alert-error" id="InvalidPassword">
+                    Invalid Username or Password
+                </div>                
                 <div>
                     <button class="btn btn-primary" data-bind="click: login">Sign In</button>
                 </div>      
-                
             </form>
             </div>
             <div id="divSwap" style="float: left; width: 50%; vertical-align: middle; margin: 30px">
