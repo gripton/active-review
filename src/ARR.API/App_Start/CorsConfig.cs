@@ -8,12 +8,11 @@ namespace ARR.API.App_Start
 
         public static void RegisterCors(HttpConfiguration httpConfig)
         {
-
             var corsConfig = new WebApiCorsConfiguration();
             corsConfig.RegisterGlobal(httpConfig);
 
             corsConfig.AllowAll();
-
+            corsConfig.ForAllOrigins().AllowAll();
         }
 
     }
