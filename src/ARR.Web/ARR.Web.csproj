@@ -173,8 +173,8 @@
     <Content Include="Screens\Login.html" />
     <Content Include="Screens\Profile.html" />
     <Content Include="Screens\Questionnaire.html" />
+    <Content Include="Scripts\arr-first-visit-modal.js" />
     <Content Include="Scripts\arr-urls.aspx" />
-    <Content Include="Scripts\arr-urls.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Commands\arr-loading-commands.js" />
