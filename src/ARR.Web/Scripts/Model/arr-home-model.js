@@ -75,16 +75,11 @@ function getSessions(self) {
             if (type == SessionStatus.CREATED && currentUser == item.Creator) {
                 self.myCreatedSessionsList.push(new Session(item));
             }
-            else if (type == SessionStatus.RELEASED && currentUser == item.Creator) {
+            else if ((type == SessionStatus.RELEASED || type == SessionStatus.COMPLETED) && currentUser == item.Creator) {
                 self.myActiveSessionsListCreator.push(new Session(item));
             }
             else if (type == SessionStatus.RELEASED && currentUser == item.Reviewer) {
                 self.myActiveSessionsListReviewer.push(new Session(item));
-            }
-            else if (type == SessionStatus.COMPLETED && currentUser == item.Creator)
-            {
-                self.myActiveSessionsListCreator.push(new Session(item));
-                self.locked = ko.observable(true);
             }
             else if (type == SessionStatus.COMPLETED && currentUser == item.Reviewer) {
                 self.myActiveSessionsListReviewer.push(new Session(item));
