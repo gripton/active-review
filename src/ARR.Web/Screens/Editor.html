@@ -12,49 +12,49 @@
     
 </head>
     <body>
-            <div class="navbar navbar-fixed-top" id="Header" style="height:60px;">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
-                        <a class="brand" href="#">Active Requirements Review</a>
-                        <div class="nav-collapse">
-                            <ul class="nav">
-                                <li><a href="Home.html"><i class="icon-home icon-white"></i> Home</a></li>
-                                <li class="dropdown active">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">File <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">New</a></li>
-                                        <li><a href="#">Open</a></li>
-                                        <li><hr/></li>
-                                        <li><a href="#renameDialog" data-toggle="modal" data-bind="click: $root.renameSessionViewModel.setTitle">Rename</a></li>
-                                        <li><a href="#" data-bind="click: $root.save">Save</a></li>
-                                        <li><a data-bind="attr: { href: 'Preview.html?reviewSession=' + reviewSessionId }">Preview</a></li>
-                                        <li><hr/></li>
-                                        <li><a href="#" data-bind="click: $root.release">Release</a></li>
-                                        <li><a href="#">Assign Reviewer</a></li>
-                                        <li data-bind="with: $root.reviewSession"><a href="#spawnDialog" data-toggle="modal" data-bind="click: $root.spawnReviewViewModel.spawnSetup">Spawn</a></li>
-                                    </ul>
-                                </li>
-                                 <li><a href="Guide_Requirements.html">Selecting Requirements</a></li>
-                                <li><a href="~/Screens/Guide_Questions.html">Creating Questions</a></li> 
-                            </ul>
- 
-                        </div><!-- /.nav-collapse -->
-                    </div><!-- /.container -->
-                </div><!-- /.navbar-inner -->
-            </div><!-- /.navbar -->
-        <div>
-            <div id="Title">
-                <h5>Session: <span data-bind="text: reviewSession.Title"></span></h5>
-            </div>
-            <div id="Content">
-                <div class="row-fluid">
-                    <fieldset class="well span6">
-                        <legend class="the-legend">Requirements</legend>
+        <div class="navbar navbar-fixed-top" id="Header" style="height:60px;">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Active Requirements Review</a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li><a href="Home.html"><i class="icon-home icon-white"></i> Home</a></li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">File <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">New</a></li>
+                                    <li><a href="#">Open</a></li>
+                                    <li><hr/></li>
+                                    <li><a href="#renameDialog" data-toggle="modal" data-bind="click: $root.renameSessionViewModel.setTitle">Rename</a></li>
+                                    <li><a href="#" data-bind="click: $root.save">Save</a></li>
+                                    <li><a data-bind="attr: { href: 'Preview.html?reviewSession=' + reviewSessionId }">Preview</a></li>
+                                    <li><hr/></li>
+                                    <li><a href="#" data-bind="click: $root.release">Release</a></li>
+                                    <li><a href="#">Assign Reviewer</a></li>
+                                    <li data-bind="with: $root.reviewSession"><a href="#spawnDialog" data-toggle="modal" data-bind="click: $root.spawnReviewViewModel.spawnSetup">Spawn</a></li>
+                                </ul>
+                            </li>
+                                <li><a href="Guide_Requirements.html">Selecting Requirements</a></li>
+                            <li><a href="~/Screens/Guide_Questions.html">Creating Questions</a></li> 
+                        </ul>
+                    </div><!-- /.nav-collapse -->
+                </div><!-- /.container -->
+            </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+        <div id="Content">
+            <fieldset class="well">
+                <legend class="the-legend"><h5>Session: <span data-bind="text: reviewSession.Title"></span></h5></legend>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#requirements" data-toggle="tab">Requirements</a></li>
+                    <li><a href="#questions" data-toggle="tab">Questions</a></li>
+                </ul>                
+                <div class="tab-content" id="TabContent">
+                    <div class="tab-pane active" id="requirements">
                         <div id="Top_Left" class="row-fluid" data-bind="foreach: reviewSession.Requirements">
                             <div>
                                 <div class="span1">
@@ -82,9 +82,8 @@
                             <br />
                             <button class="btn-primary" data-bind="click: newRequirementViewModel.addRequirement">Add Requirement</button>
                         </div>
-                    </fieldset>
-                    <fieldset class="well span6" style="min-width:400px;">
-                        <legend class="the-legend">Questionnaire</legend>
+                    </div>
+                    <div class="tab-pane" id="questions">
                         <div class="row-fluid" id="Top_Right">
                             <div class="span12" data-bind="foreach: reviewSession.Questions">
                                 <div class="row-fluid">
@@ -111,12 +110,12 @@
                             <br />
                             <button class="btn-primary" data-bind="click: newQuestionViewModel.addQuestion">Add Question</button>
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
-            </div>
-            <div id="Footer">
+                <div id="Footer">
 
-            </div>
+                </div>
+            </fieldset>
             <!-- Comment Modal -->
             <div id="commentDialog" class="modal hide fade" tabindex="-1" role="dialog" 
                  aria-labelledby="commentModalLabel" aria-hidden="true">
@@ -259,7 +258,7 @@
         <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
         <script type="text/javascript" src="../Scripts/Commands/arr-loading-commands.js"></script>
         <script type="text/javascript" src="../Scripts/Commands/arr-tinymce-commands.js"></script>
-        <script type="text/javascript" src="../Scripts/Commands/arr-resize-commands.js"></script>
+        <script type="text/javascript" src="../Scripts/Commands/arr-tab-resize-commands.js"></script>
         <script type="text/javascript" src="../Scripts/Commands/arr-dirty-model-commands.js"></script>
         <script type="text/javascript" src="../Scripts/Model/arr-requirements-model.js"></script>
         <script type="text/javascript" src="../Scripts/ViewModel/arr-processing-view-model.js"></script>
