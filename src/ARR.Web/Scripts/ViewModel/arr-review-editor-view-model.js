@@ -7,7 +7,7 @@
                 alert('Requested page not found. [404]');
             } else if (jqXhr.status == 500) {
                 var obj = JSON.parse(jqXhr.responseText);
-                alert('Internal Server Error [500]: ' + obj.ExceptionMessage);
+                displayMessage(obj.ExceptionMessage, true);
             } else if (exception === 'parsererror') {
                 alert('Requested JSON parse failed.');
             } else if (exception === 'timeout') {
@@ -19,10 +19,31 @@
             }
 
             // Make sure if the ajax fails, we turn off the screen mask
-            self.processingViewModel.turnOffProcessing();
+            if (requirementsModel.processingViewModel) {
+                requirementsModel.processingViewModel.turnOffProcessing();
+            }
         }
     });
 });
+
+function displayMessage(message, isError) {
+    $("#Message").removeClass("alert-error");
+    $("#Message").removeClass("alert-success");
+    if (isError) {
+        $("#Message").addClass("alert-error");
+    } else {
+        $("#Message").addClass("alert-success");
+    }
+    $("#MessageText").text(message);
+    $("#Message").addClass("show");
+    setTimeout(function () {
+        hideMessage();
+    }, 10000);
+}
+
+function hideMessage() {
+    $("#Message").removeClass("show");
+}
 
 // The ReviewEditor View mode
 var ReviewEditorViewModel = function (reviewSessionId) {
@@ -73,6 +94,7 @@ var ReviewEditorViewModel = function (reviewSessionId) {
             contentType: 'application/json',
             dataType: 'JSON',
             success: function () {
+                displayMessage("Review Session Saved", false);
                 self.dirtyFlag.reset();
                 self.processingViewModel.turnOffProcessing();
             },
