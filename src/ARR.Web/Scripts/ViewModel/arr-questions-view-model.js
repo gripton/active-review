@@ -61,25 +61,27 @@ var QuestionNavigationViewModel = function(questionViewModel) {
 
     self.setQuestion = function () {
         var questionList = questionViewModel.reviewSession.Questions();
-
+        
         //make sure we haven't gone too far back
         if (self.questionIndex() < 0) {
             self.questionIndex(0);
         }
         
-        //make sure we haven't gone too far forward
-        if (self.questionIndex() >= questionList.length) {
-            self.questionIndex(questionList.length - 1);
+        if (questionList != undefined) {
+            //make sure we haven't gone too far forward
+            if (self.questionIndex() >= questionList.length) {
+                self.questionIndex(questionList.length - 1);
+            }
+
+            var enableNext = self.questionIndex() < questionList.length - 1;
+            var enablePrevious = self.questionIndex() > 0;
+            var enableComplete = self.questionIndex() === (questionList.length - 1);
+
+            self.currentQuestion(questionList[self.questionIndex()]);
+            self.enableNext(enableNext);
+            self.enablePrevious(enablePrevious);
+            self.enableComplete(enableComplete);
         }
-
-        var enableNext = self.questionIndex() < questionList.length - 1;
-        var enablePrevious = self.questionIndex() > 0;
-        var enableComplete = self.questionIndex() === (questionList.length - 1);
-
-        self.currentQuestion(questionList[self.questionIndex()]);
-        self.enableNext(enableNext);
-        self.enablePrevious(enablePrevious);
-        self.enableComplete(enableComplete);
     };
 
     self.complete = function () {
