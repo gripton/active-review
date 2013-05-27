@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Thinktecture.IdentityModel.Http.Cors;
 using Thinktecture.IdentityModel.Http.Cors.WebApi;
 
 namespace ARR.API.App_Start
@@ -6,12 +7,9 @@ namespace ARR.API.App_Start
     public class CorsConfig
     {
 
-        public static void RegisterCors(HttpConfiguration httpConfig)
+        public static void RegisterCors(CorsConfiguration corsConfig)
         {
-            var corsConfig = new WebApiCorsConfiguration();
-            corsConfig.RegisterGlobal(httpConfig);
-
-            corsConfig.ForAllOrigins().AllowAll();
+            corsConfig.AllowAll();
         }
 
     }

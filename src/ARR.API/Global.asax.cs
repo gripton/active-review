@@ -7,6 +7,7 @@ using ARR.API.Controllers;
 using ARR.API.Models;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Thinktecture.IdentityModel.Http.Cors.IIS;
 
 namespace ARR.API
 {
@@ -25,7 +26,7 @@ namespace ARR.API
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            CorsConfig.RegisterCors(GlobalConfiguration.Configuration);
+            CorsConfig.RegisterCors(UrlBasedCorsConfiguration.Configuration);
 
             // Create the container builder.
             var builder = new ContainerBuilder();
