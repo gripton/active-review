@@ -11,7 +11,6 @@ namespace ARR.API.App_Start
             var corsConfig = new WebApiCorsConfiguration();
             corsConfig.RegisterGlobal(httpConfig);
 
-            corsConfig.AllowAll();
             corsConfig.ForAllOrigins().AllowAll();
         }
 
