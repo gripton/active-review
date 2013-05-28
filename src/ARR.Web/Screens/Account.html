@@ -50,9 +50,9 @@
                 <label>Username</label>
                 <input type="text" data-bind="value: account.Username" class="input-xlarge" />
                 <label>Password</label>
-                <input type="text" data-bind="value: account.Password" class="input-xlarge" /> 
+                <input type="password" data-bind="value: account.Password" class="input-xlarge" /> 
                 <label>Confirm Password</label>
-                <input type="text" data-bind="value: account.ConfirmPassword" class="input-xlarge" />                       
+                <input type="password" data-bind="value: account.ConfirmPassword" class="input-xlarge" />                       
                 <br />
                 <br />    
                 <div>
@@ -62,7 +62,6 @@
             </form>
         </fieldset>
     </section>
-    d
 
     <!-- Modal -->
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -78,6 +77,17 @@
             <button class="btn" aria-hidden="true" onclick="location.href='login.html'">Close</button>
         </div>
     </div>
+    
+    <div id="Loader" data-bind="loadingWhen: processingViewModel.isProcessing">
+        <div id="horizon">
+            <div id="LoadingDiv">
+                <h4 data-bind="text: processingViewModel.processingDisplay">Loading...</h4>
+                <img alt="activity indicator" src="../Content/images/ajax-loader.gif"/>
+            </div>
+        </div>
+    </div>
+    <div id="PageMask" class="modal-backdrop" data-bind="loadingWhen: processingViewModel.isProcessing"></div>
+    
 
     <!-- Bootstrap jQuery Plugins, compiled and minified -->
     <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
@@ -87,8 +97,10 @@
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
     <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-loading-commands.js"></script>
     <script type="text/javascript" src="../Scripts/arr-urls.aspx"></script>
     <script type="text/javascript" src="../Scripts/Model/arr-account-model.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/arr-processing-view-model.js"></script>
     <script type="text/javascript" src="../Scripts/ViewModel/arr-account-view-model.js"></script>
 </body>
 </html>
