@@ -74,7 +74,7 @@ legend {
                         <a data-bind="attr: {href: editorUrl}"><i class="icon-eye-open" title="Preview this review session"></i></a>
                     </td>
                     <td>
-                        <a href="#reviewerModal" role="button" data-toggle="modal"><i class="icon-user" title="Assign a reviewer for this session"></i></a>
+                        <a href="#reviewerModal" role="button" data-toggle="modal" data-bind="click: $root.setSelectedSession"><i class="icon-user" title="Assign a reviewer for this session"></i></a>
                     </td>
                     <td>
                         <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire" title="Create a copy of this review session"></i></a>
@@ -100,7 +100,7 @@ legend {
             </div>
         </div>
     
-        <div class="modal small hide fade" id="reviewerModal" tabindex="-1" role="dialog" aria-labelledby="reviewerModalLabel" aria-hidden="true">
+        <div class="modal small hide fade" id="reviewerModal" tabindex="-1" role="dialog" aria-labelledby="reviewerModalLabel" aria-hidden="true" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="H1">Assign Session Reviewer</h3>
@@ -109,18 +109,21 @@ legend {
                 <label>Reviewer Name</label>
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-user"></i></span>
-                    <select data-bind="options: reviewers, 
+                    <select id="reviewer" data-bind="options: $root.reviewers, 
                                        optionsText: function(item) { 
                                            return item.screenName + ' (Domain: ' + item.domain + ')' 
                                        }, 
-                                       value: selectedReviewer, 
+                                       optionsValue: function(item) { 
+                                           return item.screenName 
+                                       },
+                                       value: $root.selectedReviewer, 
                                        optionsCaption: 'Please select a reviewer...'"></select>
                 </div>
                 <p>Don't see an appropriate reviewer? <a href="#">Invite them now.</a></p>
             </div>
             <div class="modal-footer">
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                <button class="btn" data-dismiss="modal" >Assign</button>
+                <button class="btn" data-dismiss="modal" data-bind="click: $root.assignReviewer, enable: $root.selectedReviewer, enable: $root.selectedSession" >Assign</button>
             </div>
         </div>    
     </fieldset>

@@ -13,8 +13,9 @@ function Session(data) {
     self.creator = ko.observable(data.Creator);
     self.type = ko.observable(data.SessionStatus);
 
-    self.reviewer = ko.observable(data.Reviewer);
-    //if exists in drop down, mark item as selected
+    //self.reviewer = ko.observable(data.Reviewer);    
+    //self.reviewers = ko.observableArray([]);
+    //self.selectedReviewer = ko.observable();
 
     self.selectedSession = ko.observable();
     self.isLocked = ko.observable(false);
@@ -32,6 +33,19 @@ function Session(data) {
     self.questionnaireUrl = "../Screens/Questionnaire.html?reviewSession=" + sessionId;
     self.forumUrl = "../Screens/Forum.html?reviewSession=" + sessionId;
     self.summaryUrl = "../Screens/Summary.html?reviewSession=" + sessionId;
+}
+
+function setAssignedReviewer(reviewer)
+{
+    var selectedValue;
+    //$("#reviewer > option").each(function (index, option) {
+    //    alert($(this).value);
+    //    if ($(this).text() == "Test (Domain: null)") {
+    //        alert(option);
+    //    ///    selectedValue = item;
+    //        //$("#reviewer option[value=Courtenay]").attr("selected","selected");
+    //    }
+    //});
 }
 
 var Reviewer = function (screenName, domain) {
@@ -74,6 +88,12 @@ function getSessions(self) {
 
             if (type == SessionStatus.CREATED && currentUser == item.Creator) {
                 self.myCreatedSessionsList.push(new Session(item));
+
+                var sessionReviewer = item.Reviewer;
+                if (sessionReviewer != null && sessionReviewer != undefined) {
+                    //setAssignedReviewer(sessionReviewer);
+                    self.selectedReviewer = ko.observable(sessionReviewer);
+                }
             }
             else if ((type == SessionStatus.RELEASED || type == SessionStatus.COMPLETED) && currentUser == item.Creator) {
                 self.myActiveSessionsListCreator.push(new Session(item));
@@ -95,21 +115,20 @@ function getSessions(self) {
 //View Model for main index page
 var IndexViewModel = function () {
     var self = this;
+
     self.selectedSession = ko.observable();
 
-    self.reviewerViewModel = new ReviewerViewModel();
+    self.reviewers = ko.observableArray([]);
+    self.selectedReviewer = ko.observable();
 
     self.myCreatedSessionsList = ko.observableArray([]);
     self.myActiveSessionsListCreator = ko.observableArray([]);
     self.myActiveSessionsListReviewer = ko.observableArray([]);
     self.myArchivedSessionsList = ko.observableArray([]);
-    
-    self.reviewers = ko.observableArray([]);
-    self.selectedReviewer = ko.observable();
 
-    getSessions(self);
     getReviewers(self);
-
+    getSessions(self);
+    
     self.createNewSession = function () {
         var reviewSession = this;
         reviewSession.Title = "Untitled Session";
@@ -137,31 +156,23 @@ var IndexViewModel = function () {
         deleteSession(sessionId);
         self.myCreatedSessionsList.remove(selectedSession);
     }
-}
 
-// Class that handles the bindings for the Reviewer Interaction
-var ReviewerViewModel = function(selectedReviewer) {
-    var self = this;
-    self.selectedSession = null;
+    //assign-reviewer
+    self.assignReviewer = function () {
+        var sessionData = this;
+        sessionData.Id = this.selectedSession().ID();
+        sessionData.Reviewer = this.selectedReviewer();
 
-    self.currentReviewer = ko.observable("");
-
-    self.assignReviewer = function (selectedReviewer) {
-        alert(selectedReviewer);
+        $.ajax({
+            type: "PUT",
+            url: getArrApiUrlPost('reviewindex/' + sessionData.Id + "/assign-reviewer"),
+            data: ko.toJSON(sessionData),
+            contentType: 'application/json',
+            dataType: 'JSON'
+            //TODO: exception handling - pending reviewer error checking/notification
+        });
     }
-
-    self.setReviewer = function (selectedSession) {
-        self.selectedSession = selectedSession;
-        self.currentReviewer(self.selectedSession.Reviewer());
-    };
-
-    self.saveReviewer = function () {
-        self.selectedSession.Reviewer(self.currentReviewer());
-        self.selectedSession = null;
-    };
 }
 
 var indexModel = new IndexViewModel();
-//var reviewerModel = new ReviewerViewModel();
 ko.applyBindings(indexModel);
-//ko.applyBindings(reviewerModel);
