@@ -1,18 +1,14 @@
 ﻿ko.bindingHandlers.loadingWhen = {
-    init: function () {
-        $("#Loader").hide();
-        $("#PageMask").hide();
+    init: function (element) {
+        $("#"+element.id).hide();
     },
     update: function (element, valueAccessor) {
         var isLoading = ko.utils.unwrapObservable(valueAccessor());
-
         if (isLoading) {
-            $("#Loader").show();
-            $("#PageMask").show();
+            $("#" + element.id).show();
         }
         else {
-            $("#Loader").hide();
-            $("#PageMask").hide();
+            $("#" + element.id).hide();
         }
     }
 };

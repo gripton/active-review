@@ -2,8 +2,11 @@
 
     var self = this;
     self.account = new Account();
-    
+
+    self.processingViewModel = new ProcessingViewModel();
+
     self.login = function () {
+        self.processingViewModel.turnOnProcessing("Logging in");
         $("#InvalidPassword").hide();
         $.ajax({
             type: "POST",
@@ -19,11 +22,11 @@
                 } else {
                     $("#InvalidPassword").show();
                 }
+                self.processingViewModel.turnOffProcessing();
             },
             error: function() {
                 alert("Ajax Request Failed");
-                //this.showError(response);
-                //completeFunction();
+                self.processingViewModel.turnOffProcessing();
             }
         });
     };
