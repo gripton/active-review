@@ -39,43 +39,34 @@
         <h5>Session: <span data-bind="text: reviewSession.Title"></span></h5>
     </div>
     <div id="Content">
-     <div class="row-fluid">
-        <fieldset class="well span6" style="min-width:500px;">
-          <legend class="the-legend">Active Review Thread</legend>
-          <div id="Top_Left">
-              <div class="row-fluid" data-bind="foreach: questionList">
-                  <h5>Question</h5>
-                  <span data-bind="html: Question.Content"></span>
-                  <h5>Answer</h5>
-                      <span data-bind="html: Question.Answer"></span>
-                  <h5>Feedback</h5>
-                  <div data-bind="foreach: Question.Feedbacks">
-                      <p data-bind="html: Text"></p>
-                  </div>
-                  <br />
-                  <textarea style="width:99%; margin-left:0; padding-left:0; margin-right:0; padding-right:0;" data-bind="tinymce: NewFeedback"></textarea>
-                  <br />
-                  <button class="btn-primary" data-bind="click: $root.addFeedbackViewModel.saveFeedback">Add Feedback</button>
-                  <hr />
-              </div>
-          </div>
-          <div id="Bottom_Left">
-          </div>
-        </fieldset>
-        <fieldset class="well span6" style="min-width:400px;">
-          <legend class="the-legend">Chat</legend>
-            <div id="Top_Right" class="row-fluid">
-                <div class="row" style="margin:0;" data-bind="foreach: ChatMessages">
-                    <p><span data-bind="text: user"></span>:&nbsp; <span data-bind="text: message"></span></p>
+        <div id="Message" class="alert alert-error">
+            <button type="button" class="close" onclick="hideMessage()">&times;</button>
+            <span id="MessageText"></span> 
+        </div>
+        <div class="row-fluid">
+            <fieldset class="well span12" style="min-width:500px;">
+                <legend class="the-legend">Active Review Thread</legend>
+                <div id="Top_Left">
+                    <div class="row-fluid" data-bind="foreach: questionList">
+                        <h5>Question</h5>
+                        <span data-bind="html: Question.Content"></span>
+                        <h5>Answer</h5>
+                        <span data-bind="html: Question.Answer"></span>
+                        <h5>Feedback</h5>
+                        <div data-bind="foreach: Question.Feedbacks">
+                            <p data-bind="html: Text"></p>
+                        </div>
+                        <br />
+                        <textarea style="width:99%; margin-left:0; padding-left:0; margin-right:0; padding-right:0;" data-bind="tinymce: NewFeedback"></textarea>
+                        <br />
+                        <button class="btn-primary" data-bind="click: $root.addFeedbackViewModel.saveFeedback">Add Feedback</button>
+                        <hr />
+                    </div>
                 </div>
-            </div>
-            <div id="Bottom_Right" class="row-fluid">  
-                <textarea style="width:100%; margin-left:0; padding-left:0; margin-right:0; padding-right:0;" data-bind="value: newMessage"></textarea>
-                <br />
-                <button class="btn-primary">Chat</button>
-            </div>
-        </fieldset>
-      </div>
+                <div id="Bottom_Left">
+                </div>
+            </fieldset>
+        </div>
     </div>
     <div id="Footer">
 
@@ -105,6 +96,7 @@
     <script type="text/javascript" src="../Scripts/Commands/arr-tinymce-commands.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-resize-commands.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-loading-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-error-handling.js"></script>
     <script type="text/javascript" src="../Scripts/Model/arr-requirements-model.js"></script>
     <script type="text/javascript" src="../Scripts/Model/arr-forum-model.js"></script>
     <script type="text/javascript" src="../Scripts/ViewModel/arr-processing-view-model.js"></script>

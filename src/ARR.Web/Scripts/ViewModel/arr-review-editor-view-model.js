@@ -1,53 +1,7 @@
-﻿$(function () {
-    $.ajaxSetup({
-        error: function (jqXhr, exception) {
-            if (jqXhr.status === 0) {
-                alert('Not connect.\n Verify Network.');
-            } else if (jqXhr.status == 404) {
-                alert('Requested page not found. [404]');
-            } else if (jqXhr.status == 500) {
-                var obj = JSON.parse(jqXhr.responseText);
-                displayMessage(obj.ExceptionMessage, true);
-            } else if (exception === 'parsererror') {
-                alert('Requested JSON parse failed.');
-            } else if (exception === 'timeout') {
-                alert('Time out error.');
-            } else if (exception === 'abort') {
-                alert('Ajax request aborted.');
-            } else {
-                alert('Uncaught Error.\n' + jqXhr.responseText);
-            }
-
-            // Make sure if the ajax fails, we turn off the screen mask
-            if (requirementsModel.processingViewModel) {
-                requirementsModel.processingViewModel.turnOffProcessing();
-            }
-        }
-    });
-});
-
-function displayMessage(message, isError) {
-    $("#Message").removeClass("alert-error");
-    $("#Message").removeClass("alert-success");
-    if (isError) {
-        $("#Message").addClass("alert-error");
-    } else {
-        $("#Message").addClass("alert-success");
-    }
-    $("#MessageText").text(message);
-    $("#Message").addClass("show");
-    setTimeout(function () {
-        hideMessage();
-    }, 10000);
-}
-
-function hideMessage() {
-    $("#Message").removeClass("show");
-}
-
-// The ReviewEditor View mode
+﻿// The ReviewEditor View mode
 var ReviewEditorViewModel = function (reviewSessionId) {
     var self = this;
+    setupErrorHandling(self);
     self.reviewSessionId = reviewSessionId;
     self.selectedRequirement = null;
     self.reviewSession = new ReviewSession();

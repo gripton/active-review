@@ -224,7 +224,7 @@ namespace ARR.ReviewSessionManagement
             if (!(session.Reviewer.ToLower() == current.ToLower() || session.Creator.ToLower() == current.ToLower()))
                 throw new AuthorizationException();
 
-            if (!(session.SessionStatus == SessionStatusType.Released || session.SessionStatus == SessionStatusType.Created))
+            if (!(session.SessionStatus == SessionStatusType.Released || session.SessionStatus == SessionStatusType.Completed))
                 throw new InvalidOperationException();
 
             session.Questions = questions;

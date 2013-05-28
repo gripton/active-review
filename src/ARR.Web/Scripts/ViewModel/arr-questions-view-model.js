@@ -1,6 +1,9 @@
 ﻿// Here's my data model
 var QuestionViewModel = function (reviewSessionId) {
     var self = this;
+    
+    setupErrorHandling(self);
+
     self.reviewSessionId = reviewSessionId;
     self.reviewSession = new ReviewSession();
 
@@ -85,9 +88,10 @@ var QuestionNavigationViewModel = function(questionViewModel) {
     };
 
     self.complete = function () {
+        var reviewSessionId = self.questionViewModel.reviewSessionId;
         self.questionViewModel.processingViewModel.turnOnProcessing("Saving and Completing Session...");
-        $.ajax(getArrApiUrlPost('questions/' + self.reviewSessionId + "/save-questionnaire"), {
-            data: ko.toJSON(self.reviewSession.Questions),
+        $.ajax(getArrApiUrlPost('questions/' + reviewSessionId + "/save-questionnaire"), {
+            data: ko.toJSON(self.questionViewModel.reviewSession.Questions),
             dataType: "json",
             type: "put",
             contentType: "application/json",

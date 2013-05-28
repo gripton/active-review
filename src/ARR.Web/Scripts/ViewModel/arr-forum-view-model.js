@@ -1,7 +1,9 @@
 ﻿// Here's my data model
 var ForumViewModel = function (reviewSessionId) {
     var self = this;
-    
+
+    setupErrorHandling(self);
+
     //Retrive the user from the arr-security-commands
     self.currentUser = loggedInUser();
     self.reviewSessionId = reviewSessionId;
@@ -61,12 +63,12 @@ var AddFeedbackViewModel = function(forumViewModel) {
             dataType: "json",
             type: "put",
             contentType: "application/json",
-            success: function (result) {
+            success: function () {
                 // Clear out the feedback text box that we just added
                 selectedQuestion.NewFeedback('');
                 setScrollDisplay("Left");
-                setScrollableToBottom("Left");
                 self.forumViewModel.processingViewModel.turnOffProcessing();
+                displayMessage('Feedback Saved');
             }
         });
     };

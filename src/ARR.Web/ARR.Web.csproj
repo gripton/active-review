@@ -183,6 +183,7 @@
     <Content Include="Scripts\arr-urls.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Commands\arr-error-handling.js" />
     <Content Include="Scripts\Commands\arr-loading-commands.js" />
     <Content Include="Scripts\Commands\arr-security-commands.js" />
     <Content Include="Scripts\Commands\arr-dirty-model-commands.js" />
