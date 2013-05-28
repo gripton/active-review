@@ -175,7 +175,6 @@ function DeleteRequirementViewModel(reviewSessionModel) {
     self.reviewSessionModel = reviewSessionModel;
     self.deleteRequirement = function (selectedRequirement) {
         var requirements = self.reviewSessionModel.reviewSession.Requirements;
-        //alert(requirements.indexOf(selectedRequirement));
         requirements.remove(selectedRequirement);
 
     };
