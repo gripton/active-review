@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="AccountManager.cs" />
     <Compile Include="AccountMonitor.cs" />
+    <Compile Include="Exceptions\InvalidEmailAddressException.cs" />
+    <Compile Include="Exceptions\InvalidUsernameException.cs" />
     <Compile Include="IAccountManager.cs" />
     <Compile Include="IAccountMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

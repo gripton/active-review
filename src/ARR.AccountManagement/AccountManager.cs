@@ -1,4 +1,8 @@
 ﻿
+using System;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
+using ARR.AccountManagement.Exceptions;
 using ARR.Data.Entities;
 using ARR.Notifications;
 using ARR.Repository;
@@ -6,6 +10,7 @@ using ARR.Repository;
 using PracticalCode.WebSecurity.Infrastructure.Data;
 using PracticalCode.WebSecurity.Infrastructure.Encryption;
 using PracticalCode.WebSecurity.Infrastructure.Membership;
+using PracticalCode.WebSecurity.Infrastructure.Policies.Exceptions;
 
 namespace ARR.AccountManagement
 {
@@ -13,10 +18,10 @@ namespace ARR.AccountManagement
     {
         //private readonly INotificationGenerator _generator;
         private readonly INotificationSender _sender;
-        private readonly AccountRepository _repository;
+        private readonly AbstractRepository<Account> _repository;
         private readonly IPasswordManager _passwordManager;
         
-        public AccountManager(INotificationSender sender, AccountRepository repository, IPasswordManager passwordManager)
+        public AccountManager(INotificationSender sender, AbstractRepository<Account> repository, IPasswordManager passwordManager)
         {
             _sender = sender;
             _repository = repository;
@@ -29,6 +34,15 @@ namespace ARR.AccountManagement
 
         public void CreateNew(Account account)
         {
+            if(UserExists(account.Username))
+                throw new UserAlreadyExistsException();
+
+            if(InvalidUserName(account.Username))
+                throw new InvalidUsernameException();
+
+            if (InvalidEmailAddres(account.Username))
+                throw new InvalidEmailAddressException();
+
             var user = new WebSecurityUser();
             user.SetDefaultStatistics("system");
             
@@ -58,6 +72,29 @@ namespace ARR.AccountManagement
         {
             var account = _repository.Get(id);
             _repository.Delete(account);
+        }
+
+        private static bool InvalidUserName(string username)
+        {
+            return Regex.IsMatch(username, "^[a-zA-Z0-9_]*$");
+        }
+
+        private static bool InvalidEmailAddres(string emailaddress)
+        {
+            try
+            {
+                var m = new MailAddress(emailaddress);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+        private bool UserExists(string username)
+        {
+            return _repository.GetByName(username) != null;
         }
     }
 }

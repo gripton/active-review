@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 
 using ARR.AccountManagement;
@@ -29,8 +28,7 @@ namespace ARR.API.Controllers
         // GET api/account/5
         public Account Get(string id)
         {
-            var name = HttpUtility.UrlDecode(id);
-            return _manager.ReadContext.GetByName(name);
+            return _manager.ReadContext.GetByName(id);
         }
 
         // POST api/account
@@ -45,6 +43,9 @@ namespace ARR.API.Controllers
             switch (patch)
             {
                 case "security":
+                    _manager.UpdateSecurityStatistics(account);
+                    break;
+                case "update-profile":
                     _manager.UpdateSecurityStatistics(account);
                     break;
                 default:

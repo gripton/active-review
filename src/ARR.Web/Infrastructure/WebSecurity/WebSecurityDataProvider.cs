@@ -20,7 +20,7 @@ namespace ARR.Web.Infrastructure.WebSecurity
 
             var user = new WebSecurityUser();
 
-            var response = client.GetAsync("/api/account/" + HttpUtility.UrlEncode(username)).Result;
+            var response = client.GetAsync("/api/account/" + username).Result;
             if (response.IsSuccessStatusCode)
             {
                 // Parse the response body. Blocking!

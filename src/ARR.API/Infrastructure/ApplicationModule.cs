@@ -24,7 +24,7 @@ namespace ARR.API.Controllers
 
             builder
                 .RegisterType<AccountRepository>()
-                .AsSelf()
+                .As<AbstractRepository<Account>>()
                 .InstancePerApiRequest();
 
             builder
@@ -64,7 +64,7 @@ namespace ARR.API.Controllers
 
             builder
                .RegisterType<EventRepository>()
-               .AsSelf()
+                .As<AbstractRepository<Event>>()
                .InstancePerApiRequest();
 
             builder
