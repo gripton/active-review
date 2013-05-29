@@ -27,6 +27,10 @@
     margin-right:30px;
 }
 
+#Bottom_Left, #Bottom_Right {
+    padding-top: 10px;
+}
+
 #Title h5 {
     margin-bottom: 0;
 }

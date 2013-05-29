@@ -23,6 +23,7 @@
             external_link_list_url: "js/link_list.js",
             external_image_list_url: "js/image_list.js",
             media_external_list_url: "js/media_list.js",
+            content_css: "../Content/scrollbars.css",
         };
         var modelValue = valueAccessor();
         var value = ko.utils.unwrapObservable(valueAccessor());
