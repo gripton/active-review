@@ -68,10 +68,10 @@
                                        
                                    </div>
                                    <div class="span4" style="text-align:right;">
-                                       <a href="#editRequirementDialog" class="ui-icon-link ui-icon-" data-toggle="modal" role="button" data-bind="click: $root.editRequirementViewModel.setEditRequirement">Edit</a>
+                                       <a href="#editRequirementDialog" class="ui-icon-link" data-toggle="modal" role="button" data-bind="click: $root.editRequirementViewModel.setEditRequirement">Edit</a>
                                        &nbsp;|&nbsp;
                                        <a href="#commentDialog" class="ui-icon-link" data-toggle="modal" role="button" data-bind="click: $root.editCommentViewModel.setComment" >
-                                           <span data-bind="visible: Comment"><i class="icon-comment icon-white"></i> &nbsp;</span>Comment
+                                           <span data-bind="visible: Comment"><i class="icon-comment"></i> &nbsp;</span>Comment
                                        </a>
                                        &nbsp;|&nbsp;
                                        <a href="#" class="ui-icon-link" role="button" data-bind="click: $root.deleteRequirementViewModel.deleteRequirement" >Delete</a>
@@ -85,7 +85,7 @@
                         <div id="Bottom_Left" style="height:180px;">
                             <textarea style="width:100%" class="tinymce" data-bind="tinymce: newRequirementViewModel.newRequirement"></textarea>
                             <br />
-                            <button class="btn-primary" data-bind="click: newRequirementViewModel.addRequirement">Add Requirement</button>
+                            <button class="btn btn-small btn-primary" data-bind="click: newRequirementViewModel.addRequirement">Add Requirement</button>
                         </div>
                     </div>
                     <div class="tab-pane" id="questions">
@@ -113,7 +113,7 @@
                         <div id="Bottom_Right" style="height:180px;">
                             <textarea style="width:100%" class="tinymce" data-bind="tinymce: newQuestionViewModel.newQuestion"></textarea>
                             <br />
-                            <button class="btn-primary" data-bind="click: newQuestionViewModel.addQuestion">Add Question</button>
+                            <button class="btn btn-small btn-primary" data-bind="click: newQuestionViewModel.addQuestion">Add Question</button>
                         </div>
                     </div>
                 </div>
@@ -132,8 +132,8 @@
                     <textarea id="commentText" data-bind="value: editCommentViewModel.currentComment" style="width:97%"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editCommentViewModel.saveComment">Save changes</button>
+                    <button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-small btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editCommentViewModel.saveComment">Save changes</button>
                 </div>
             </div>
 
@@ -147,8 +147,8 @@
                     <input style="width:98%" data-bind="value: renameSessionViewModel.currentTitle" />
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: renameSessionViewModel.saveTitle">Rename</button>
+                    <button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-small btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: renameSessionViewModel.saveTitle">Rename</button>
                 </div>
             </div>
 
@@ -162,8 +162,8 @@
                     <textarea style="width:100%" class="tinymce" data-bind="tinymce: editRequirementViewModel.currentRequirement"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editRequirementViewModel.saveEditedRequirement">Change</button>
+                    <button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-small btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editRequirementViewModel.saveEditedRequirement">Change</button>
                 </div>
             </div>
             
@@ -177,8 +177,8 @@
                     <textarea style="width:100%" class="tinymce" data-bind="tinymce: editQuestionViewModel.currentQuestion"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editQuestionViewModel.saveEditedQuestion">Change</button>
+                    <button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-small btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: editQuestionViewModel.saveEditedQuestion">Change</button>
                 </div>
             </div>
 
@@ -222,8 +222,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                    <button class="btn btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: $root.spawnReviewViewModel.spawn" >Hatch</button>
+                    <button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-small btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: $root.spawnReviewViewModel.spawn" >Hatch</button>
                 </div>
             </div>
         </div>
