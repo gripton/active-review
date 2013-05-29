@@ -62,23 +62,23 @@
                     <div class="tab-pane active" id="requirements">
                         <div id="Top_Left" class="row-fluid" data-bind="foreach: reviewSession.Requirements">
                             <div>
-                                <div class="span1">
-                                </div>
-                                <div class="span9"><a href="#" ></a>
-                                    <a href="#editRequirementDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editRequirementViewModel.setEditRequirement">Edit</a>
-                                    &nbsp;
-                                    <a href="#commentDialog" class="btn btn-small btn-primary" data-toggle="modal" role="button" data-bind="click: $root.editCommentViewModel.setComment" >
-                                        <span data-bind="visible: Comment"><i class="icon-comment icon-white"></i> &nbsp;</span>Comment
-                                    </a>
-                                </div>
-                                <div class="span2" style="text-align:right;">
-                                    <a href="#" class="btn btn-small btn-primary" role="button" data-bind="click: $root.deleteRequirementViewModel.deleteRequirement" >Delete</a>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span1">
-                                        <span data-bind="text: $index() + 1"></span>:
-                                    </div>
-                                    <div class="span11" data-bind="html: Content"></div>
+                               <div class="row-fluid">
+                                   <div class="span7">
+                                       <strong>Requirement <span data-bind="text: $index() + 1"></span>:</strong>
+                                       
+                                   </div>
+                                   <div class="span4" style="text-align:right;">
+                                       <a href="#editRequirementDialog" class="ui-icon-link ui-icon-" data-toggle="modal" role="button" data-bind="click: $root.editRequirementViewModel.setEditRequirement">Edit</a>
+                                       &nbsp;|&nbsp;
+                                       <a href="#commentDialog" class="ui-icon-link" data-toggle="modal" role="button" data-bind="click: $root.editCommentViewModel.setComment" >
+                                           <span data-bind="visible: Comment"><i class="icon-comment icon-white"></i> &nbsp;</span>Comment
+                                       </a>
+                                       &nbsp;|&nbsp;
+                                       <a href="#" class="ui-icon-link" role="button" data-bind="click: $root.deleteRequirementViewModel.deleteRequirement" >Delete</a>
+
+                                   </div>
+                                   <div class="span11" data-bind="html: Content"></div>
+                                   <div class="span11"><hr/></div>
                                 </div>
                             </div>
                         </div>
