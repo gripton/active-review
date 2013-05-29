@@ -12,10 +12,7 @@ function Session(data) {
     self.title = ko.observable(data.Title);
     self.creator = ko.observable(data.Creator);
     self.type = ko.observable(data.SessionStatus);
-
-    //self.reviewer = ko.observable(data.Reviewer);    
-    //self.reviewers = ko.observableArray([]);
-    //self.selectedReviewer = ko.observable();
+    self.reviewer = ko.observable(data.Reviewer);    
 
     self.selectedSession = ko.observable();
     self.isLocked = ko.observable(false);
@@ -35,30 +32,22 @@ function Session(data) {
     self.summaryUrl = "../Screens/Summary.html?reviewSession=" + sessionId;
 }
 
-function setAssignedReviewer(reviewer)
-{
-    var selectedValue;
-    //$("#reviewer > option").each(function (index, option) {
-    //    alert($(this).value);
-    //    if ($(this).text() == "Test (Domain: null)") {
-    //        alert(option);
-    //    ///    selectedValue = item;
-    //        //$("#reviewer option[value=Courtenay]").attr("selected","selected");
-    //    }
-    //});
-}
-
 var Reviewer = function (screenName, domain) {
     var self = this;
     self.screenName = screenName;
     self.domain = domain;
 };
 
-function getReviewers(self) {
+function getReviewers(self, selectedSession) {
     $.getJSON(getArrApiUrl('account'), function(data) {
         var mappedReviewers = $.map(data, function (reviewer) {
             self.reviewers.push(new Reviewer(reviewer.ScreenName, reviewer.AreaOfExpertise));
         });
+
+        var assignedReviewer = selectedSession.reviewer();
+        if (assignedReviewer != null && assignedReviewer != undefined) {
+            setAssignedReviewer(assignedReviewer);
+        }
     });
 }
 
@@ -88,12 +77,6 @@ function getSessions(self) {
 
             if (type == SessionStatus.CREATED && currentUser == item.Creator) {
                 self.myCreatedSessionsList.push(new Session(item));
-
-                var sessionReviewer = item.Reviewer;
-                if (sessionReviewer != null && sessionReviewer != undefined) {
-                    //setAssignedReviewer(sessionReviewer);
-                    self.selectedReviewer = ko.observable(sessionReviewer);
-                }
             }
             else if ((type == SessionStatus.RELEASED || type == SessionStatus.COMPLETED) && currentUser == item.Creator) {
                 self.myActiveSessionsListCreator.push(new Session(item));
@@ -126,7 +109,6 @@ var IndexViewModel = function () {
     self.myActiveSessionsListReviewer = ko.observableArray([]);
     self.myArchivedSessionsList = ko.observableArray([]);
 
-    getReviewers(self);
     getSessions(self);
     
     self.createNewSession = function () {
@@ -157,6 +139,12 @@ var IndexViewModel = function () {
         self.myCreatedSessionsList.remove(selectedSession);
     }
 
+    self.getReviewers = function (selectedSession) {
+        $("#reviewer option").remove();
+        
+        getReviewers(self, selectedSession);
+    }
+
     //assign-reviewer
     self.assignReviewer = function () {
         var sessionData = this;
@@ -172,6 +160,16 @@ var IndexViewModel = function () {
             //TODO: exception handling - pending reviewer error checking/notification
         });
     }
+}
+
+function setAssignedReviewer(reviewer) {
+    $("#reviewer > option").each(function () {
+        if (this.value == reviewer) {
+            $("#reviewer").val(reviewer).attr('selected', true);
+            //try self.selectedReviewer = ko.observable(reviewer);
+            return false;
+        }
+    });
 }
 
 var indexModel = new IndexViewModel();

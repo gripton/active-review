@@ -73,7 +73,7 @@ legend {
                     <td>
                         <a data-bind="attr: {href: editorUrl}"><i class="icon-eye-open" title="Preview this review session"></i></a>
                     </td>
-                    <td>
+                    <td data-bind="click: $root.getReviewers">
                         <a href="#reviewerModal" role="button" data-toggle="modal" data-bind="click: $root.setSelectedSession"><i class="icon-user" title="Assign a reviewer for this session"></i></a>
                     </td>
                     <td>
