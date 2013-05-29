@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using ARR.AccountManagement;
 using ARR.API.Infrastructure;
+using ARR.Data.Entities;
 using ARR.Notifications;
 using ARR.Repository;
 using ARR.ReviewSessionManagement;
@@ -38,7 +39,7 @@ namespace ARR.API.Controllers
 
             builder
                 .RegisterType<ReviewSessionRepository>()
-                .AsSelf()
+                .As<AbstractRepository<ReviewSession>>()
                 .InstancePerApiRequest();
             
             builder
