@@ -140,8 +140,7 @@ var IndexViewModel = function () {
     }
 
     self.getReviewers = function (selectedSession) {
-        $("#reviewer option").remove();
-        
+        self.reviewers.removeAll();        
         getReviewers(self, selectedSession);
     }
 
@@ -166,7 +165,7 @@ function setAssignedReviewer(reviewer) {
     $("#reviewer > option").each(function () {
         if (this.value == reviewer) {
             $("#reviewer").val(reviewer).attr('selected', true);
-            //try self.selectedReviewer = ko.observable(reviewer);
+            //self.selectedReviewer = ko.observable(reviewer);
             return false;
         }
     });
