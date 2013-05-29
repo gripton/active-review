@@ -44,7 +44,8 @@ namespace ARR.IntegrationTests.ReviewManagement
                 
                 var savedSession = sessionRepo.Get(session.Id);
 
-                Assert.True(savedSession.PendingReviewer);
+                Assert.False(savedSession.PendingReviewer);
+                Assert.Equal("test@test.com", savedSession.Reviewer);
 
                 //TODO: Figure out why the build server test break on Event.EventType assertion
                 //var events = eventRepo.ListAll();

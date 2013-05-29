@@ -51,7 +51,7 @@ namespace ARR.ReviewSessionManagement
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();
 
-            session.PendingReviewer = true;
+            session.Reviewer = reviewer;
             _sessionRepository.Save(session);
 
             var assignEvent = new Event
