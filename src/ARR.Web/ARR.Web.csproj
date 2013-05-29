@@ -103,6 +103,7 @@
     <Content Include="Content\images\guide\ARRSessionStateDiagram.png" />
     <Content Include="Content\images\guide\ARRStateDiagramLegend.png" />
     <Content Include="Content\images\guide\ARRTaskLegend.png" />
+    <Content Include="Content\scrollbars.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

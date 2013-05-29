@@ -1,13 +1,15 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using ARR.Core.Authorization;
 using ARR.Data.Entities;
 using ARR.Repository;
 using ARR.ReviewSessionManagement;
 using ARR.ReviewSessionManagement.Exceptions;
+
 using Autofac;
+
 using Xunit;
 using AutoMapper;
 
@@ -16,7 +18,7 @@ namespace ARR.IntegrationTests.ReviewManagement
     public class ReviewSessionQuestionnaireTests : BaseIntegrationTest
     {
         [Fact]
-        public void SaveQuestionnaire_Succeeds()
+        public void SaveQuestionnaire_Integrates()
         {
             // Build the container.
             var container = Setup();
@@ -28,15 +30,15 @@ namespace ARR.IntegrationTests.ReviewManagement
 
             using (var lifetime = container.BeginLifetimeScope())
             {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
                 sessionRepo.Save(session);
             }
 
 
             using (var lifetime = container.BeginLifetimeScope())
             {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
+                var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
+                var eventRepo = lifetime.Resolve<AbstractRepository<Event>>();
                 var manager = new ReviewSessionManager(sessionRepo, eventRepo);
 
                 Mapper.CreateMap<Question, Question>();
@@ -50,7 +52,7 @@ namespace ARR.IntegrationTests.ReviewManagement
 
             using (var lifetime = container.BeginLifetimeScope())
             {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
                 var savedSession = sessionRepo.Get(session.Id);
 
                 Assert.Equal(SessionStatusType.Released, savedSession.SessionStatus);
@@ -58,81 +60,9 @@ namespace ARR.IntegrationTests.ReviewManagement
                 Assert.Equal("test was changed", savedSession.Questions[0].Content);
             }
         }
-
+        
         [Fact]
-        public void SaveQuestionnaire_Fails_Not_Found()
-        {
-            // Build the container.
-            var container = Setup();
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-
-                Assert.Throws<SessionNotFoundException>(() => manager.SaveQuestionnaire(1, new List<Question>(), "test"));
-            }
-        }
-
-        [Fact]
-        public void SaveQuestionnaire_Fails_UnAuthorized()
-        {
-            // Build the container.
-            var container = Setup();
-
-            var session = NewReviewSession();
-            session.Reviewer = "test@test.com";
-            session.SessionStatus = SessionStatusType.Released;
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-
-                // Create a new session to work with
-                sessionRepo.Save(session);
-            }
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-                
-                Assert.Throws<AuthorizationException>(() => manager.SaveQuestionnaire(session.Id, new List<Question>(), "FAIL"));
-            }
-        }
-
-        [Fact]
-        public void SaveQuestionnaire_Fails_Invalid_Status()
-        {
-            // Build the container.
-            var container = Setup();
-
-            var session = NewReviewSession();
-            session.Reviewer = "test@test.com";
-            session.SessionStatus = SessionStatusType.Completed;
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-
-                // Create a new session to work with
-                sessionRepo.Save(session);
-            }
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-
-                Assert.Throws<InvalidOperationException>(() => manager.SaveQuestionnaire(session.Id, new List<Question>(), session.Reviewer));
-            }
-        }
-
-        [Fact]
-        public void CompleteQuestionnaire_Succeeds()
+        public void CompleteQuestionnaire_Integrates()
         {
             // Build the container.
             var container = Setup();
@@ -144,15 +74,15 @@ namespace ARR.IntegrationTests.ReviewManagement
 
             using (var lifetime = container.BeginLifetimeScope())
             {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
                 sessionRepo.Save(session);
             }
 
 
             using (var lifetime = container.BeginLifetimeScope())
             {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
+                var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
+                var eventRepo = lifetime.Resolve<AbstractRepository<Event>>();
                 var manager = new ReviewSessionManager(sessionRepo, eventRepo);
 
                 Mapper.CreateMap<Question, Question>();
@@ -166,8 +96,8 @@ namespace ARR.IntegrationTests.ReviewManagement
 
             using (var lifetime = container.BeginLifetimeScope())
             {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
+                var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
+                var eventRepo = lifetime.Resolve<AbstractRepository<Event>>();
                 var savedSession = sessionRepo.Get(session.Id);
 
                 Assert.Equal(SessionStatusType.Completed, savedSession.SessionStatus);
@@ -182,81 +112,9 @@ namespace ARR.IntegrationTests.ReviewManagement
                 //Assert.Equal(events[0].EntityId, session.Id);
             }
         }
-
+        
         [Fact]
-        public void CompleteQuestionnaire_Fails_Not_Found()
-        {
-            // Build the container.
-            var container = Setup();
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-
-                Assert.Throws<SessionNotFoundException>(() => manager.CompleteQuestionnaire(1, new List<Question>(), "test"));
-            }
-        }
-
-        [Fact]
-        public void CompleteQuestionnaire_Fails_UnAuthorized()
-        {
-            // Build the container.
-            var container = Setup();
-
-            var session = NewReviewSession();
-            session.Reviewer = "test@test.com";
-            session.SessionStatus = SessionStatusType.Released;
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-
-                // Create a new session to work with
-                sessionRepo.Save(session);
-            }
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-
-                Assert.Throws<AuthorizationException>(() => manager.CompleteQuestionnaire(session.Id, new List<Question>(), "FAIL"));
-            }
-        }
-
-        [Fact]
-        public void CompleteQuestionnaire_Fails_Invalid_Status()
-        {
-            // Build the container.
-            var container = Setup();
-
-            var session = NewReviewSession();
-            session.Reviewer = "test@test.com";
-            session.SessionStatus = SessionStatusType.Completed;
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-
-                // Create a new session to work with
-                sessionRepo.Save(session);
-            }
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-
-                Assert.Throws<InvalidOperationException>(() => manager.CompleteQuestionnaire(session.Id, new List<Question>(), session.Reviewer));
-            }
-        }
-
-        [Fact]
-        public void ProvideFeedback_Succeeds()
+        public void ProvideFeedback_Integrates()
         {
             // Build the container.
             var container = Setup();
@@ -268,15 +126,15 @@ namespace ARR.IntegrationTests.ReviewManagement
 
             using (var lifetime = container.BeginLifetimeScope())
             {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
                 sessionRepo.Save(session);
             }
 
 
             using (var lifetime = container.BeginLifetimeScope())
             {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
+                var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
+                var eventRepo = lifetime.Resolve<AbstractRepository<Event>>();
                 var manager = new ReviewSessionManager(sessionRepo, eventRepo);
 
                 Mapper.CreateMap<Question, Question>();
@@ -298,7 +156,7 @@ namespace ARR.IntegrationTests.ReviewManagement
 
             using (var lifetime = container.BeginLifetimeScope())
             {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
+                var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
                 var savedSession = sessionRepo.Get(session.Id);
 
                 Assert.Equal(SessionStatusType.Released, savedSession.SessionStatus);
@@ -307,92 +165,5 @@ namespace ARR.IntegrationTests.ReviewManagement
                 Assert.Equal(session.Reviewer, savedSession.Questions[0].Feedbacks[0].Username);
             }
         }
-
-        [Fact]
-        public void ProvideFeedback_Fails_Not_Found()
-        {
-            // Build the container.
-            var container = Setup();
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-
-                Assert.Throws<SessionNotFoundException>(() => manager.ProvideFeedback(1, new List<Question>(), "test"));
-            }
-        }
-
-        [Fact]
-        public void ProvideFeedback_Fails_UnAuthorized()
-        {
-            // Build the container.
-            var container = Setup();
-
-            var session = NewReviewSession();
-            session.Reviewer = "test@test.com";
-            session.SessionStatus = SessionStatusType.Released;
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-
-                // Create a new session to work with
-                sessionRepo.Save(session);
-            }
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-
-                Mapper.CreateMap<Question, Question>();
-
-                var questions = session.Questions.Select(Mapper.Map<Question>).ToList();
-
-                questions[0].Feedbacks = new List<Feedback>
-                    {
-                        new Feedback
-                            {
-                                Created = DateTime.UtcNow,
-                                Text = "This is new feedback",
-                                Username = session.Reviewer
-                            }
-                    };
-
-                Assert.Throws<AuthorizationException>(() => manager.ProvideFeedback(session.Id, questions, "FAIL"));
-            }
-        }
-
-        [Fact]
-        public void ProvideFeedback_Fails_Invalid_Status()
-        {
-            // Build the container.
-            var container = Setup();
-
-            var session = NewReviewSession();
-            session.Reviewer = "test@test.com";
-            session.SessionStatus = SessionStatusType.Archived;
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-
-                // Create a new session to work with
-                sessionRepo.Save(session);
-            }
-
-            using (var lifetime = container.BeginLifetimeScope())
-            {
-                var sessionRepo = lifetime.Resolve<ReviewSessionRepository>();
-                var eventRepo = lifetime.Resolve<EventRepository>();
-                var manager = new ReviewSessionManager(sessionRepo, eventRepo);
-
-                Assert.Throws<InvalidOperationException>(() => manager.ProvideFeedback(session.Id, new List<Question>(), session.Reviewer));
-            }
-        }
-
     }
 }

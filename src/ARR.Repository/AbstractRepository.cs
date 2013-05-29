@@ -22,15 +22,15 @@ namespace ARR.Repository
 
         protected virtual void InitializePatchFunctions() { }
 
-        protected IDictionary<string, Func<TEntity, PatchRequest[]>> PatchDictionary { get; set; }
+        protected virtual IDictionary<string, Func<TEntity, PatchRequest[]>> PatchDictionary { get; set; }
 
-        public void Save(TEntity entity)
+        public virtual void Save(TEntity entity)
         {
             _session.Store(entity);
             _session.SaveChanges();
         }
 
-        public void Patch(TEntity entity, string patchKey)
+        public virtual void Patch(TEntity entity, string patchKey)
         {
             const string patchFormat = "{0}s/{1}";
 
@@ -46,13 +46,13 @@ namespace ARR.Repository
             _session.SaveChanges();
         }
 
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
            _session.Delete<TEntity>(entity);
             _session.SaveChanges();
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return _session.Load<TEntity>(id);
         }
@@ -62,22 +62,22 @@ namespace ARR.Repository
             throw new NotImplementedException();
         }
 
-        public IQueryable<TEntity> Find(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate = null)
+        public virtual IQueryable<TEntity> Find(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate = null)
         {
             return predicate == null ? _session.Query<TEntity>() : _session.Query<TEntity>().Where(predicate);
         }
 
-        public IQueryable<TEntity> FindAll()
+        public virtual IQueryable<TEntity> FindAll()
         {
             return Find();
         }
 
-        public List<TEntity> List(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate = null)
+        public virtual List<TEntity> List(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate = null)
         {
             return Find(predicate).ToList();
         }
 
-        public List<TEntity> ListAll()
+        public virtual List<TEntity> ListAll()
         {
             return Find().ToList();
         }

@@ -43,7 +43,7 @@ namespace ARR.Web.Infrastructure.WebSecurity
 
                 try
                 {
-                    result.Status = LoginManager.DefaultLogin(account.Username, account.Password,
+                    result.Status = LoginManager.DefaultLogin(account.Username.Trim(), account.Password.Trim(),
                         WebSecuritySettings, context.Request.QueryString);                    
                 }
                 catch (Exception ex)

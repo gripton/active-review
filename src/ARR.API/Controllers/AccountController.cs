@@ -45,6 +45,9 @@ namespace ARR.API.Controllers
                 case "security":
                     _manager.UpdateSecurityStatistics(account);
                     break;
+                case "update-profile":
+                    _manager.UpdateSecurityStatistics(account);
+                    break;
                 default:
                     _manager.Save(account);
                     break;

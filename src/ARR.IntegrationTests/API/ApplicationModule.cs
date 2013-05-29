@@ -1,4 +1,5 @@
 ﻿using ARR.AccountManagement;
+using ARR.Data.Entities;
 using ARR.Notifications;
 using ARR.Repository;
 using ARR.ReviewSessionManagement;
@@ -35,7 +36,7 @@ namespace ARR.IntegrationTests.API
 
             builder
                 .RegisterType<ReviewSessionRepository>()
-                .AsSelf()
+                .As<AbstractRepository<ReviewSession>>()
                 .InstancePerLifetimeScope();
             
             builder
@@ -45,7 +46,7 @@ namespace ARR.IntegrationTests.API
 
             builder
                .RegisterType<EventRepository>()
-               .AsSelf()
+                .As<AbstractRepository<Event>>()
                .InstancePerLifetimeScope();
 
             builder

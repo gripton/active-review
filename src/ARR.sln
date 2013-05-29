@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.Repository", "ARR.Repos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.IntegrationTests", "ARR.IntegrationTests\ARR.IntegrationTests.csproj", "{81A7A7EB-FB25-4813-9F33-127DB9896AED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARR.UnitTests", "ARR.UnitTests\ARR.UnitTests.csproj", "{C7392CC5-293D-43FC-A7F4-5C3B1B275DA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,11 +67,16 @@ Global
 		{81A7A7EB-FB25-4813-9F33-127DB9896AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81A7A7EB-FB25-4813-9F33-127DB9896AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81A7A7EB-FB25-4813-9F33-127DB9896AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7392CC5-293D-43FC-A7F4-5C3B1B275DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7392CC5-293D-43FC-A7F4-5C3B1B275DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7392CC5-293D-43FC-A7F4-5C3B1B275DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7392CC5-293D-43FC-A7F4-5C3B1B275DA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{81A7A7EB-FB25-4813-9F33-127DB9896AED} = {88596FC9-9CAD-4A1A-8923-EF0D93B2FC42}
+		{C7392CC5-293D-43FC-A7F4-5C3B1B275DA9} = {88596FC9-9CAD-4A1A-8923-EF0D93B2FC42}
 	EndGlobalSection
 EndGlobal

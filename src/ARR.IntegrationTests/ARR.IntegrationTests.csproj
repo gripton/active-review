@@ -154,9 +154,16 @@
       <Project>{8d81bac6-567a-4d18-8519-625ff2b4e3de}</Project>
       <Name>ARR.ReviewSessionManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ARR.UnitTests\ARR.UnitTests.csproj">
+      <Project>{c7392cc5-293d-43fc-a7f4-5c3b1b275da9}</Project>
+      <Name>ARR.UnitTests</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AccountManagement\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

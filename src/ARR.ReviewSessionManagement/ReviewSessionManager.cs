@@ -10,11 +10,11 @@ namespace ARR.ReviewSessionManagement
 {
     public class ReviewSessionManager : IReviewSessionManager
     {
-        private readonly ReviewSessionRepository _sessionRepository;
-        private readonly EventRepository _eventRepository;
+        private readonly AbstractRepository<ReviewSession> _sessionRepository;
+        private readonly AbstractRepository<Event> _eventRepository;
 
 
-        public ReviewSessionManager(ReviewSessionRepository sessionRepository, EventRepository eventRepository)
+        public ReviewSessionManager(AbstractRepository<ReviewSession> sessionRepository, AbstractRepository<Event> eventRepository)
         {
             _eventRepository = eventRepository;
             _sessionRepository = sessionRepository;
@@ -51,7 +51,7 @@ namespace ARR.ReviewSessionManagement
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();
 
-            session.PendingReviewer = true;
+            session.Reviewer = reviewer;
             _sessionRepository.Save(session);
 
             var assignEvent = new Event
@@ -118,9 +118,6 @@ namespace ARR.ReviewSessionManagement
         /// <exception cref="AuthorizationException"></exception>
         public void Edit(ReviewSession session, string current)
         {
-            if (session.Id == 0)
-                throw new InvalidOperationException("Cannot create a new session with the 'Id' field already populated.");
-
             if (session.SessionStatus != SessionStatusType.Created)
                 throw new InvalidOperationException();
 
