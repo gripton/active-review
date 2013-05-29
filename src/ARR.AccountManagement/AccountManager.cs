@@ -29,7 +29,7 @@ namespace ARR.AccountManagement
 
         public void CreateNew(Account account)
         {
-            WebSecurityUser user = new WebSecurityUser();
+            var user = new WebSecurityUser();
             user.SetDefaultStatistics("system");
             
             // Copy over default stats

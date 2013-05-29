@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 using ARR.AccountManagement;
@@ -28,7 +29,8 @@ namespace ARR.API.Controllers
         // GET api/account/5
         public Account Get(string id)
         {
-            return _manager.ReadContext.GetByName(id);
+            var name = HttpUtility.UrlDecode(id);
+            return _manager.ReadContext.GetByName(name);
         }
 
         // POST api/account
