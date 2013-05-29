@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
+using System.Web;
 using ARR.Data.Entities;
 
 using PracticalCode.WebSecurity.Infrastructure.Data;
@@ -20,7 +20,7 @@ namespace ARR.Web.Infrastructure.WebSecurity
 
             var user = new WebSecurityUser();
 
-            var response = client.GetAsync("/api/account/" + username).Result;
+            var response = client.GetAsync("/api/account/" + HttpUtility.UrlEncode(username)).Result;
             if (response.IsSuccessStatusCode)
             {
                 // Parse the response body. Blocking!
