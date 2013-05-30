@@ -3,18 +3,31 @@
         error: function (jqXhr, exception) {
             if (jqXhr.status === 0) {
                 displayMessage('Error: Could not connect to server', true);
-            } else if (jqXhr.status == 404) {
-                displayMessage('Error: Could not access resource', true);
-            } else if (jqXhr.status == 500) {
+            }
+            else if (jqXhr.status == 401) {
+                displayMessage('Error: Unauthorized', true);
+            }
+            else if (jqXhr.status == 403) {
+                displayMessage('Error: Current state of Review Session does not allow this action', true);
+            }
+            else if (jqXhr.status == 404) {
+                //displayMessage('Error: Could not access resource', true);
+                displayMessage('Error: Review Session identifier not found', true);
+            }
+            else if (jqXhr.status == 500) {
                 var obj = JSON.parse(jqXhr.responseText);
                 displayMessage(obj.ExceptionMessage, true);
-            } else if (exception === 'parsererror') {
+            }
+            else if (exception === 'parsererror') {
                 displayMessage('Requested JSON parse failed.', true);
-            } else if (exception === 'timeout') {
+            }
+            else if (exception === 'timeout') {
                 displayMessage('Time out error.', true);
-            } else if (exception === 'abort') {
+            }
+            else if (exception === 'abort') {
                 displayMessage('Ajax request aborted.', true);
-            } else {
+            }
+            else {
                 alert('Uncaught Error.\n' + jqXhr.responseText);
             }
 

@@ -14,6 +14,7 @@ function Session(data) {
     self.type = ko.observable(data.SessionStatus);
     self.reviewer = ko.observable(data.Reviewer);    
 
+    self.newSession = ko.observable();
     self.selectedSession = ko.observable();
     self.isLocked = ko.observable(false);
     self.allowQuestionnaire = ko.observable(true);
@@ -66,7 +67,10 @@ function deleteSession(sessionId) {
         type: "DELETE",
         url: getArrApiUrlPost('reviewIndex/' + sessionId),
         contentType: 'application/json',
-        dataType: 'JSON'
+        dataType: 'JSON',
+        success: function () {
+            displayMessage("Review Session deleted", false);
+        },
     });
 }
 
@@ -98,9 +102,9 @@ function getSessions(self) {
 //View Model for main index page
 var IndexViewModel = function () {
     var self = this;
-
+    setupErrorHandling(self);
     self.selectedSession = ko.observable();
-
+    
     self.reviewers = ko.observableArray([]);
     self.selectedReviewer = ko.observable();
 
@@ -124,6 +128,7 @@ var IndexViewModel = function () {
             dataType: 'JSON',
             success: function (response) {
                 self.myCreatedSessionsList.unshift(new Session({ Id: response, Title: reviewSession.Title }));
+                displayMessage("New session created", false);
             },
         });
     };
@@ -155,8 +160,10 @@ var IndexViewModel = function () {
             url: getArrApiUrlPost('reviewindex/' + sessionData.Id + "/assign-reviewer"),
             data: ko.toJSON(sessionData),
             contentType: 'application/json',
-            dataType: 'JSON'
-            //TODO: exception handling - pending reviewer error checking/notification
+            dataType: 'JSON',
+            success: function () {
+                displayMessage("Reviewer assigned", false);
+            },
         });
     }
 }

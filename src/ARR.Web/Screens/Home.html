@@ -42,11 +42,10 @@ legend {
 
 
 <section style="margin: 20px">
-    <!--<ul class="nav nav-tabs">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="Profile.html">My Profile</a></li>
-        <li><a href="Guide.html" >Active Reviews for "Dummies"</a></li>
-    </ul> -->  
+    <div id="Message" class="alert alert-error">
+                <button type="button" class="close" onclick="hideMessage()">&times;</button>
+                <span id="MessageText"></span> 
+            </div>
 
     <button class="btn btn-primary" data-bind="click: createNewSession" title="Create a new review session">Create New Session</button>
 
@@ -65,7 +64,7 @@ legend {
                 </tr>
             </thead>
             <tbody data-bind="foreach: myCreatedSessionsList">
-                <tr>
+                <tr data-bind="css: newSession">
                     <td data-bind="text: title"></td>
                     <td>
                         <a data-bind="attr: {href: editorUrl}"><i class="icon-pencil" title="Edit this review session"></i></a>
@@ -254,6 +253,7 @@ legend {
     <script type="text/javascript" src="../Scripts/jquery.cookie.js"></script>
     <script type="text/javascript" src="../Scripts/arr-first-visit-modal.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-error-handling.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
     <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
