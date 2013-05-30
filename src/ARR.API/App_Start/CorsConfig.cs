@@ -1,6 +1,4 @@
-﻿using System.Web.Http;
-using Thinktecture.IdentityModel.Http.Cors;
-using Thinktecture.IdentityModel.Http.Cors.WebApi;
+﻿using Thinktecture.IdentityModel.Http.Cors;
 
 namespace ARR.API.App_Start
 {

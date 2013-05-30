@@ -143,11 +143,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CorsConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountIndexController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\ReviewIndexController.cs" />
     <Compile Include="Controllers\ReviewSessionController.cs" />

@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using ARR.API.Models;
 using ARR.ReviewSessionManagement;
 using AutoMapper;
 using System.Collections.Generic;
-using System.Web.Http;
 
 namespace ARR.API.Controllers
 {
-    public class ReviewIndexController : ApiController
+    public class ReviewIndexController : BaseController
     {
         private readonly IReviewSessionManager _manager;
 
@@ -43,37 +41,68 @@ namespace ARR.API.Controllers
         // POST api/reviewindex
         public HttpResponseMessage Post(ReviewIndex index)
         {
+            HttpResponseMessage response;
             var username = GetAPIUser();
             var session = index.ToNewSession();
-            _manager.Create(session, username);
             
-            // Sending back the id in the reponse for the index page
-            var response = new HttpResponseMessage {Content = new StringContent(session.Id.ToString())};
-            response.StatusCode = HttpStatusCode.OK;
-            return response;    
+            try
+            {
+                _manager.Create(session, username);
+                response = GetResponse(session.Id.ToNullSafeString());
+            }
+            catch (Exception e)
+            {
+                response = GetResponse(e);
+            }
+
+            return response;
         }
 
         // PUT api/reviewindex/5
-        public void Put(int id, string patch, ReviewIndex index)
+        public HttpResponseMessage Put(int id, string patch, ReviewIndex index)
         {
+            HttpResponseMessage response;
             var username = GetAPIUser();
 
-            switch (patch)
+            try
             {
-                case "assign-reviewer":
-                    _manager.AssignReviewer(id, index.Reviewer, username);
-                    break;
-                default:
-                    _manager.Edit(index.ToSession(_manager.ReadContext), username);
-                    break;
+                switch (patch)
+                {
+                    case "assign-reviewer":
+                        _manager.AssignReviewer(id, index.Reviewer, username);
+                        break;
+                    default:
+                        _manager.Edit(index.ToSession(_manager.ReadContext), username);
+                        break;
+                }
+
+                response = GetResponse();
             }
+            catch (Exception e)
+            {
+                response = GetResponse(e);
+            }
+
+            return response;
         }
 
         // DELETE api/reviewindex/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
+            HttpResponseMessage response;
             var username = GetAPIUser();
-            _manager.Delete(id, username);
+
+            try
+            {
+                _manager.Delete(id, username);
+                response = GetResponse();
+            }
+            catch (Exception e)
+            {
+                response = GetResponse(e);
+            }
+
+            return response;
         }
 
         // Very temporary for handling security
