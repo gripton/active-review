@@ -4,8 +4,12 @@
     self.accountId = ko.observable();
     self.account = new Account();
     self.websecurityUser = new Account();
+    self.processingViewModel = new ProcessingViewModel();
+
+    setupErrorHandling(self);
 
     self.updateProfile = function () {
+        self.processingViewModel.turnOnProcessing("Updating Profile...");
         $.ajax({
             type: "PUT",
             url: getArrApiUrlPost('account/' + self.account.Id() + '/account'),
@@ -13,31 +17,35 @@
             contentType: 'application/json',
             dataType: 'JSON',
             success: function () {
-                alert('success!');
+                self.processingViewModel.turnOffProcessing();
+                displayMessage("Profile Successfully Updated");
             }
         });
     };
 
     self.changePassword = function () {
+        self.processingViewModel.turnOnProcessing("Changing Password...");
         $.ajax({
             type: "POST",
             url: "http://localhost:49882/api/account",
             data: ko.toJSON(this.Data),
             contentType: 'application/json',
             dataType: 'JSON',
-            success: function (data) { $('#myModal').modal('show'); }
+            success: function() {
+                self.processingViewModel.turnOffProcessing();
+                displayMessage("Password Change Successful");
+            }
         });
     };
 
     self.load = function () {
         ko.applyBindings(self);
-
+        self.processingViewModel.turnOnProcessing("Loading Account...");
         $.getJSON('user.user', function (allData) {
             ko.mapping.fromJS(allData, {}, self.websecurityUser);
-            console.log(ko.toJSON(self.websecurityUser));
             $.getJSON(getArrApiUrl('account/' + self.websecurityUser.Username()), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.account);
-                console.log(self.account.ScreenName());
+                self.processingViewModel.turnOffProcessing();
             });
         });
     };

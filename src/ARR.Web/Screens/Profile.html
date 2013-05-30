@@ -18,7 +18,7 @@
           <a class="brand" href="#">Active Requirements Review</a>
           <div class="nav-collapse">
               <ul class="nav">
-                  <li><a href="Home.html"><i class="icon-home icon-white"></i> Home</a></li>
+                  <li><a href="Home.html"><i class="icon-home"></i> Home</a></li>
                   <li class="active"><a href="Profile.html">My Profile</a></li>
              <li ><a href="Guide.html">Active Reviews for Dummies</a></li> 
             </ul>
@@ -26,13 +26,13 @@
         </div><!-- /.container -->
       </div><!-- /.navbar-inner -->
    </div><!-- /.navbar -->
-
-
     <section style="margin: 20px">
-        
-        <fieldset class="well" style="width: 80%; height: 600px; margin-left: 20px">
+        <div id="Message" class="alert alert-error">
+            <button type="button" class="close" onclick="hideMessage()">&times;</button>
+            <span id="MessageText"></span> 
+        </div>
+        <fieldset class="well" style="width: 80%; margin-left: 20px">
             <legend class="the-legend">My Info</legend>
-
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
                 <li><a href="#profile" data-toggle="tab">Password</a></li>
@@ -67,6 +67,15 @@
             </div>
         </fieldset>
     </section>
+    <div id="Loader" data-bind="loadingWhen: processingViewModel.isProcessing">
+        <div id="horizon">
+            <div id="LoadingDiv">
+                <h4 data-bind="text: processingViewModel.processingDisplay">Loading...</h4>
+                <img alt="activity indicator" src="../Content/images/ajax-loader.gif"/>
+            </div>
+        </div>
+    </div>
+    <div id="PageMask" class="modal-backdrop" data-bind="loadingWhen: processingViewModel.isProcessing"></div>
 
 
      <!-- Bootstrap jQuery Plugins, compiled and minified -->
@@ -78,8 +87,10 @@
     <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
     <script type="text/javascript" src="../Scripts/arr-urls.aspx"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-error-handling.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-loading-commands.js"></script>
     <script type="text/javascript" src="../Scripts/Model/arr-account-model.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/arr-processing-view-model.js"></script>
     <script type="text/javascript" src="../Scripts/ViewModel/arr-profile-view-model.js"></script>
-
 </body>
 </html>

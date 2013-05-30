@@ -24,20 +24,17 @@
                     <a class="brand" href="#">Active Requirements Review</a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li><a href="Home.html"><i class="icon-home icon-white"></i> Home</a></li>
+                            <li><a href="Home.html"><i class="icon-home"></i> Home</a></li>
                             <li class="dropdown active">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">File <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">New</a></li>
-                                    <li><a href="#">Open</a></li>
-                                    <li><hr/></li>
                                     <li><a href="#renameDialog" data-toggle="modal" data-bind="click: $root.renameSessionViewModel.setTitle">Rename</a></li>
                                     <li><a href="#" data-bind="click: $root.save">Save</a></li>
                                     <li><a data-bind="attr: { href: 'Preview.html?reviewSession=' + reviewSessionId }">Preview</a></li>
+                                    <li data-bind="with: $root.reviewSession"><a href="#spawnDialog" data-toggle="modal" data-bind="    click: $root.spawnReviewViewModel.spawnSetup">Spawn</a></li>
                                     <li><hr/></li>
-                                    <li><a href="#" data-bind="click: $root.release">Release</a></li>
                                     <li><a href="#">Assign Reviewer</a></li>
-                                    <li data-bind="with: $root.reviewSession"><a href="#spawnDialog" data-toggle="modal" data-bind="click: $root.spawnReviewViewModel.spawnSetup">Spawn</a></li>
+                                    <li><a href="#" data-bind="click: $root.release">Release</a></li>
                                 </ul>
                             </li>
                                 <li><a href="Guide_Requirements.html">Selecting Requirements</a></li>

@@ -22,7 +22,7 @@
                     <a class="brand" href="#">Active Requirements Review</a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li><a href="Home.html"><i class="icon-home icon-white"></i> Home</a></li>
+                            <li><a href="Home.html"><i class="icon-home"></i> Home</a></li>
                             <li><a data-bind="attr: { href: 'Editor.html?reviewSession=' + reviewSessionId }">Editor</a></li>
                             <li ><a href="#">Help</a></li> 
                         </ul>
@@ -30,6 +30,11 @@
                 </div><!-- /.container -->
             </div><!-- /.navbar-inner -->
         </div><!-- /.navbar -->
+        <div id="Message" class="alert alert-error">
+            <button type="button" class="close" onclick="hideMessage()">&times;</button>
+            <span id="MessageText"></span> 
+        </div>
+
         <div id="Title">
             <h5>Preview: <span data-bind="text: reviewSession.Title"></span></h5>
         </div>    

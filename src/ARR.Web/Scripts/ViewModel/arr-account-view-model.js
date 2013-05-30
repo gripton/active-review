@@ -2,6 +2,8 @@
     var self = this;
     self.account = new Account();
 
+    setupErrorHandling(self);
+
     self.processingViewModel = new ProcessingViewModel();
 
     self.create = function () {
