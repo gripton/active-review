@@ -166,12 +166,10 @@ function AssginSessionViewModel(reviewSessionModel) {
     self.selectedReviewer = ko.observable();
 
     self.setReviewer = function () {
-        console.log(self.reviewSessionModel.reviewSession.Reviewer());
         self.selectedReviewer(self.reviewSessionModel.reviewSession.Reviewer());
     };
 
     self.assignReviewer = function () {
-        alert(self.selectedReviewer());
         self.reviewSessionModel.reviewSession.Reviewer(self.selectedReviewer());
     };
 }
