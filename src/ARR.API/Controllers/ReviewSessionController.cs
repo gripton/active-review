@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using ARR.Data.Entities;
 using ARR.ReviewSessionManagement;
+
 using System.Collections.Generic;
-using System.Web.Http;
 
 namespace ARR.API.Controllers
 {
-    public class ReviewSessionController : ApiController
+    public class ReviewSessionController : BaseController
     {
         private readonly IReviewSessionManager _manager;
 
@@ -30,38 +31,54 @@ namespace ARR.API.Controllers
         }
 
         // POST api/reviewsession
-        public void Post(ReviewSession session)
+        public HttpResponseMessage Post(ReviewSession session)
         {
+            HttpResponseMessage response;
             var username = GetAPIUser();
-            _manager.Create(session, username);
+            try
+            {
+                _manager.Create(session, username);
+                response = GetResponse(session.Id.ToString());
+            }
+            catch (Exception e)
+            {
+                response = GetResponse(e);
+            }
+
+            return response;
         }
 
         // PUT api/reviewsession/5/assignreviewer
-        public void Put(int id, string patch, ReviewSession session)
+        public HttpResponseMessage Put(int id, string patch, ReviewSession session)
         {
+            HttpResponseMessage response;
             var username = GetAPIUser();
 
-            switch (patch)
+            try
             {
-                case "archive":
-                    _manager.Archive(id, username);
-                    break;
-                case "release-session":
-                    _manager.Release(id, username);
-                    break;
-                default:
-                    _manager.Edit(session, username);
-                    break;
+                switch (patch)
+                {
+                    case "archive":
+                        _manager.Archive(id, username);
+                        break;
+                    case "release-session":
+                        _manager.Release(id, username);
+                        break;
+                    default:
+                        _manager.Edit(session, username);
+                        break;
+                }
+
+                response = GetResponse();
             }
-        }
+            catch (Exception e)
+            {
+                response = GetResponse(e);
+            }
 
-        // DELETE api/reviewsession/5
-        public void Delete(int id)
-        {
-            var username = GetAPIUser();
-            _manager.Delete(id, username);
+            return response;
         }
-
+        
         // Temporary for handling security
         private string GetAPIUser()
         {
