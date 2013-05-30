@@ -1,4 +1,5 @@
-﻿div::-webkit-scrollbar, body::-webkit-scrollbar{
+﻿/*
+div::-webkit-scrollbar, body::-webkit-scrollbar{
     width: 12px;
 }
 
@@ -19,3 +20,14 @@ div::-webkit-scrollbar-thumb{
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
+*/
+
+#Top_Left, #Top_Right { clear: both; overflow-x: hidden; }
+#Top_Left .viewport, #Top_Right .viewport{ width: 95%; height: 100%; overflow: hidden; position: relative; }
+#Top_Left .overview, #Top_Right .overview{ list-style: none; position: absolute; left: 0; top: 0; }
+#Top_Left .scrollbar, #Top_Right .scrollbar{ background: transparent url(../Content/images/bg-scrollbar-track-y.png) 0 0; position: relative; background-position: 0 0; float: right; width: 15px; }
+#Top_Left .track, #Top_Right .track{ background: transparent url(../Content/images/bg-scrollbar-trackend-y.png) no-repeat 0 100%; height: 100%; width:13px; position: relative; padding: 0 1px; }
+#Top_Left .thumb, #Top_Right .thumb{ background: transparent url(../Content/images/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
+#Top_Left .thumb .end, #Top_Right .thumb .end{ background: transparent url(../Content/images/bg-scrollbar-thumb-y.png) no-repeat 50% 0; overflow: hidden; height: 5px; width: 25px; }
+#Top_Left .disable, #Top_Right .disable{ display: none; }
+.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }

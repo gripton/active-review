@@ -16,7 +16,7 @@ function sizeContent() {
     setScrollDisplay("Left");
 
     if ($("#Top_Right").val() != null) {
-        var resizableContentHeight = calculateResizableHeight("Right");
+        resizableContentHeight = calculateResizableHeight("Right");
         $("#Top_Right").css("height", resizableContentHeight + "px");
         setScrollDisplay("Right");
     }
@@ -24,18 +24,20 @@ function sizeContent() {
 
 function setScrollDisplay(postFix) {
     var resizableContentHeight = calculateResizableHeight(postFix);
-    var element = $("#Top_" + postFix)
-
+    var element = $("#Top_" + postFix);
     if (element[0] !== undefined) {
+        element.tinyscrollbar();
         if (resizableContentHeight < element[0].scrollHeight) {
             element.css("overflow-y", "scroll");
         }
         else {
             element.css("overflow-y", "hidden");
         }
+        element.tinyscrollbar_update();
     }
 }
 
+/*Calculates what the height of the content should be. */
 function calculateNewContentHeight() {
     return $(window).height() - $("#Header").outerHeight() - $("#Footer").outerHeight();
 }

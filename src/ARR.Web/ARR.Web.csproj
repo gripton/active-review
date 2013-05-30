@@ -94,6 +94,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\bg-scrollbar-thumb-y.png" />
+    <Content Include="Content\images\bg-scrollbar-track-y.png" />
+    <Content Include="Content\images\bg-scrollbar-trackend-y.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\guide\ARRAnswerQuestionnaire.png" />
@@ -199,6 +202,7 @@
     <Content Include="Scripts\jquery.base64.js" />
     <Content Include="Scripts\jquery.base64.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.tinyscrollbar.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\knockout.mapping-2.4.1.js" />

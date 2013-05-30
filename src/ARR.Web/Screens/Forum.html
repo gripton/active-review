@@ -6,6 +6,7 @@
     <link href="../Content/bootstrap.css" rel="stylesheet" />
     <link href="../Content/bootstrap-responsive.css" rel="stylesheet" />
     <link href="../Content/custom.css" rel="stylesheet" />
+    <link href="../Content/scrollbars.css" rel="stylesheet" />
     <script type="text/javascript" src="../Scripts/tinymce/tiny_mce.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
     <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
@@ -47,21 +48,25 @@
             <fieldset class="well span12" style="min-width:500px;">
                 <legend class="the-legend">Active Review Thread</legend>
                 <div id="Top_Left">
-                    <div class="row-fluid" data-bind="foreach: questionList">
-                        <h5>Question</h5>
-                        <span data-bind="html: Question.Content"></span>
-                        <h5>Answer</h5>
-                        <span data-bind="html: Question.Answer"></span>
-                        <h5>Feedback</h5>
-                        <div data-bind="foreach: Question.Feedbacks">
-                            <p data-bind="html: Text"></p>
+                  <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                    <div class="viewport">
+                        <div class="overview row-fluid" data-bind="foreach: questionList">
+                            <h5>Question</h5>
+                            <span data-bind="html: Question.Content"></span>
+                            <h5>Answer</h5>
+                            <span data-bind="html: Question.Answer"></span>
+                            <h5>Feedback</h5>
+                            <div data-bind="foreach: Question.Feedbacks">
+                                <p data-bind="html: Text"></p>
+                            </div>
+                            <br />
+                            <textarea style="width:99%; margin-left:0; padding-left:0; margin-right:0; padding-right:0;" data-bind="tinymce: NewFeedback"></textarea>
+                            <br />
+                            <button class="btn-primary" data-bind="click: $root.addFeedbackViewModel.saveFeedback">Add Feedback</button>
+                            <hr />
                         </div>
-                        <br />
-                        <textarea style="width:99%; margin-left:0; padding-left:0; margin-right:0; padding-right:0;" data-bind="tinymce: NewFeedback"></textarea>
-                        <br />
-                        <button class="btn-primary" data-bind="click: $root.addFeedbackViewModel.saveFeedback">Add Feedback</button>
-                        <hr />
-                    </div>
+                        
+                    </div>  
                 </div>
                 <div id="Bottom_Left">
                 </div>
@@ -86,6 +91,7 @@
     <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.base64.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.tinyscrollbar.min.js"></script>
     <script type="text/javascript" src="../Scripts/purl.js"></script>
     <script type="text/javascript" src="../Scripts/tinymce/jquery.tinymce.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>

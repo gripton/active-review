@@ -35,6 +35,7 @@ var ForumViewModel = function (reviewSessionId) {
                 }
                 self.processingViewModel.turnOffProcessing();
                 setScrollDisplay("Left");
+                setScrollDisplay("Right");
             });
         }
     };
