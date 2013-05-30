@@ -20,6 +20,7 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     //ViewModels for Session Functionality
     self.renameSessionViewModel = new RenameSessionViewModel(self);
     self.spawnReviewViewModel = new SpawnReviewViewModel(self);
+    self.assginSessionViewModel = new AssginSessionViewModel(self);
 
     self.processingViewModel = new ProcessingViewModel();
 
@@ -68,10 +69,17 @@ var ReviewEditorViewModel = function (reviewSessionId) {
             self.processingViewModel.turnOnProcessing("Loading...");
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
-                self.processingViewModel.turnOffProcessing();
-                self.dirtyFlag.reset();
                 setScrollDisplay("Left");
                 setScrollDisplay("Right");
+                
+                $.getJSON(getArrApiUrl('account'), function (data) {
+                    $.map(data, function (reviewer) {
+                        self.assginSessionViewModel.reviewerList.push(new Reviewer(reviewer.ScreenName, reviewer.AreaOfExpertise));
+                    });
+
+                    self.processingViewModel.turnOffProcessing();
+                    self.dirtyFlag.reset();
+                });
             });
         } 
     };
@@ -134,7 +142,7 @@ function DeleteRequirementViewModel(reviewSessionModel) {
     };
 }
 
-// Class that handles the bindings for the Edit Comment Interaction
+// Class that handles the bindings for the Renaming the Session Interaction
 function RenameSessionViewModel(reviewSessionModel) {
     var self = this;
     self.reviewSessionModel = reviewSessionModel;
@@ -147,6 +155,24 @@ function RenameSessionViewModel(reviewSessionModel) {
 
     self.saveTitle = function () {
         self.reviewSessionModel.reviewSession.Title(self.currentTitle());
+    };
+}
+
+// Class that handles the bindings for the Edit Comment Interaction
+function AssginSessionViewModel(reviewSessionModel) {
+    var self = this;
+    self.reviewSessionModel = reviewSessionModel;
+    self.reviewerList = ko.observableArray([]);
+    self.selectedReviewer = ko.observable();
+
+    self.setReviewer = function () {
+        console.log(self.reviewSessionModel.reviewSession.Reviewer());
+        self.selectedReviewer(self.reviewSessionModel.reviewSession.Reviewer());
+    };
+
+    self.assignReviewer = function () {
+        alert(self.selectedReviewer());
+        self.reviewSessionModel.reviewSession.Reviewer(self.selectedReviewer());
     };
 }
 
