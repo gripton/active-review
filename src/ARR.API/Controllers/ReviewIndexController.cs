@@ -6,12 +6,14 @@ using ARR.API.Models;
 using ARR.ReviewSessionManagement;
 using AutoMapper;
 using System.Collections.Generic;
+using NLog;
 
 namespace ARR.API.Controllers
 {
     public class ReviewIndexController : BaseController
     {
         private readonly IReviewSessionManager _manager;
+        private static readonly Logger log = LogManager.GetLogger(typeof(ReviewIndexController).Name);
 
         public ReviewIndexController(IReviewSessionManager manager)
         {
@@ -41,6 +43,8 @@ namespace ARR.API.Controllers
         // POST api/reviewindex
         public HttpResponseMessage Post(ReviewIndex index)
         {
+            log.Debug("A new review session has been posted");
+
             HttpResponseMessage response;
             var username = GetAPIUser();
             var session = index.ToNewSession();
