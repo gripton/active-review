@@ -1,25 +1,50 @@
 ﻿using System;
 using NLog;
-
-
+using Topshelf;
 
 namespace ARR.Background
 {
     class Program
     {
         private static readonly Logger log = LogManager.GetLogger(typeof(Program).Name);
-
-
+        
         static void Main(string[] args)
         {
+            HostFactory.Run(x =>
+            {
+                x.Service<ILogService>(s =>
+                {
+                    s.ConstructUsing(name => new LogService());
+                    s.WhenStarted(tc => tc.Start());
+                    s.WhenStopped(tc => tc.Stop());
+                });
+                x.RunAsLocalSystem();
 
-            Console.WriteLine("Starting - hit any key to continue...");
+                x.SetDescription("Log Service proudly hosted by TopShelf");
+                x.SetDisplayName("Log Service to Log");
+                x.SetServiceName("LogService");
+            });
+        }
 
-            log.Debug("The background thing actually worked!");
-            
-            Console.ReadLine();
+        public interface ILogService
+        {
+            void Start();
+            void Stop();
+        }
 
-            Console.WriteLine("Ending");
+        public class LogService : ILogService
+        {
+            public void Start()
+            {
+                log.Debug("The background thing actually worked!");
+            }
+
+            public void Stop()
+            {
+                log.Debug("The background thing stopped!");
+            }
         }
     }
+
+
 }
