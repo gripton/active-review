@@ -11,13 +11,13 @@ function sizeContent() {
     var newHeight = calculateNewContentHeight();
     $("#Content").css("height", newHeight + "px");
 
-    var resizableContentHeight = calculateResizableHeight("Left");
+    var resizableContentHeight = calculateResizableHeight("Left") - calculatePadding("#Top_Left");
     $("#Top_Left").css("height", resizableContentHeight + "px");
     setScrollDisplay("Left");
 
     if ($("#Top_Right").val() != null) {
         resizableContentHeight = calculateResizableHeight("Right");
-        $("#Top_Right").css("height", resizableContentHeight + "px");
+        $("#Top_Right").css("height", resizableContentHeight + "px") - calculatePadding("#Top_Right");
         setScrollDisplay("Right");
     }
 }
@@ -37,6 +37,10 @@ function setScrollDisplay(postFix) {
     }
 }
 
+function calculatePadding(id) {
+    return $(id).outerHeight() - $(id).height();
+}
+
 /*Calculates what the height of the content should be. */
 function calculateNewContentHeight() {
     return $(window).height() - $("#Header").outerHeight() - $("#Footer").outerHeight();
@@ -44,7 +48,7 @@ function calculateNewContentHeight() {
 
 function calculateResizableHeight(postFix) {
     var newHeight = calculateNewContentHeight();
-    return newHeight - $("#Bottom_" + postFix).outerHeight() - 85;
+    return newHeight - $("#Bottom_" + postFix).outerHeight() - calculatePadding("#Content") - $("#Title").outerHeight() - calculatePadding($("#Bottom_" + postFix));
 }
 
 function setScrollableToBottom(postFix) {
