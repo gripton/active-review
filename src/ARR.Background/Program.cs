@@ -36,7 +36,7 @@ namespace ARR.Background
         {
             public void Start()
             {
-                log.Debug("The background thing actually worked!");
+                log.Debug("The TopShelf background thing actually worked!");
             }
 
             public void Stop()
