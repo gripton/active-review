@@ -6,6 +6,12 @@
     ARCHIVED: 3
 };
 
+function Reviewer(screenName, domain) {
+    var self = this;
+    self.screenName = screenName;
+    self.domain = domain;
+};
+
 // Base Requirement Class Holds the necessary data for an individual Requirement
 function Requirement() {
     var self = this;
@@ -24,7 +30,7 @@ function ReviewSession() {
     var self = this;
     self.Title = ko.observable("New Review Session");
     self.Creator = ko.observable("");
-    self.Review = ko.observable("");
+    self.Reviewer = ko.observable("");
     self.LastModified = ko.observable(Date.now());
     self.Requirements = ko.observableArray([]);
     self.Questions = ko.observableArray([]);
