@@ -8,7 +8,7 @@ $(window).resize(sizeContent);
 
 //Dynamically assign height
 function sizeContent() {
-    var newHeight = calculateNewContentHeight();
+    var newHeight = calculateNewContentHeight() + 20;
     $("#Content").css("height", newHeight + "px");
 
     var resizableContentHeight = calculateResizableHeight("Left") - calculatePadding("#Top_Left");
@@ -48,7 +48,7 @@ function calculateNewContentHeight() {
 
 function calculateResizableHeight(postFix) {
     var newHeight = calculateNewContentHeight();
-    return newHeight - $("#Bottom_" + postFix).outerHeight() - calculatePadding("#Content") - $("#Title").outerHeight() - calculatePadding($("#Bottom_" + postFix));
+    return newHeight - $("#Bottom_" + postFix).outerHeight() - calculatePadding("#Content") - $("#Title").outerHeight() - calculatePadding($("#Bottom_" + postFix)) - 26;
 }
 
 function setScrollableToBottom(postFix) {
