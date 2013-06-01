@@ -194,7 +194,7 @@
     <Content Include="Scripts\Commands\arr-resize-commands.js" />
     <Content Include="Scripts\Commands\arr-tinymce-commands.js" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
-    <Content Include="Scripts\Commands\arr-tab-resize-commands.js" />
+    <Content Include="Scripts\Commands\arr-row-resize-commands.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />

@@ -17,18 +17,18 @@
 
 /* Setting the height to match the body's top padding - the resizing functions rely on it being the same*/
 #Header {
-    height:60px;
+    height:40px;
 }
 
 #Bottom_Left, #Bottom_Right {
     padding-top: 10px;
 }
 
-#Title h5 {
+#Title_Left, #Title_Right h5 {
     margin-bottom: 0;
 }
 
-#Content, #Footer {
+#Content, #ArrFooter {
     margin:0;
     padding: 0;
 }
@@ -100,4 +100,13 @@
 #LeftColumn {
     background-color: #f3f4f6;
     border-right: #C5CACF solid thin;
+}
+
+#TopRow {
+    background-color: #f3f4f6;
+}
+
+.TopPadding {
+    width: 100%;
+    height: 40px;
 }

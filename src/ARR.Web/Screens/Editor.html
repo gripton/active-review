@@ -45,19 +45,19 @@
             </div><!-- /.navbar-inner -->
         </div><!-- /.navbar -->
         <div>
-            <div id="Div1" style="width: 100%; height: 40px;"></div>            
+            <div class="TopPadding"></div>            
             <div id="Message" class="alert alert-error">
                 <button type="button" class="close" onclick="hideMessage()">&times;</button>
                 <span id="MessageText"></span> 
             </div>
             <div id="Content" class="row-fluid">
                 <div id="LeftColumn" class="span7" style="padding-right: 20px;">
-                    <div class="column_header row-fluid" >
+                    <div id="Title_Left" class="column_header row-fluid" >
                         <div class="span7 lead" style="text-align: right; float: left; border-bottom:solid thin #e3e3e3; width: 100%;" >
                             Requirements&nbsp;&nbsp;
                         </div>
                     </div>
-                    <div style="margin-left: 30px">
+                    <div style="margin-left: 30px;">
                         <div id="Top_Left" class="row-fluid">
                             <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                             <div class="viewport" >
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="span5" style="margin-left: 10px;">
-                    <div class="column_header span5 lead" style="margin-left: 10px; float: left; border-bottom: solid thin #e3e3e3; width: 100%">Questions</div>
+                    <div id="Title_Right" class="column_header span5 lead" style="margin-left: 10px; float: left; border-bottom: solid thin #e3e3e3; width: 100%">Questions</div>
                     <div style="margin-left: 10px">
                         <br/>
                         <div class="row-fluid" id="Top_Right">
@@ -128,9 +128,6 @@
                 </div>
             </div>
         </div>
-            <div id="Footer">
-
-            </div>
             <!-- Comment Modal -->
             <div id="commentDialog" class="modal hide fade" tabindex="-1" role="dialog" 
                  aria-labelledby="commentModalLabel" aria-hidden="true">

@@ -30,58 +30,53 @@
         </div><!-- /.container -->
       </div><!-- /.navbar-inner -->
     </div><!-- /.navbar -->
-    <div id="Div1" style="width: 100%; height: 40px;"></div>            
+    <div class="TopPadding"></div>
     <div id="Message" class="alert alert-error">
         <button type="button" class="close" onclick="hideMessage()">&times;</button>
         <span id="MessageText"></span> 
     </div>
-
-    <div id="Title">
-        <h5>Session Summary: <span data-bind="text: reviewSession.Title"></span></h5>
-    </div>
-    <div id="Content">
-     <div class="row-fluid">
-        <fieldset class="well span6" style="min-width:500px;">
-          <legend class="the-legend">Requirements</legend>
-            <div id="Top_Left">
-                <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-                <div class="viewport">
-                    <div class="overview row-fluid" data-bind="foreach: reviewSession.Requirements">
-                        <span data-bind="html: Content"></span>
-                        <hr />
-                    </div>
+    <div id="Content" class="row-fluid">
+        <div id="LeftColumn" class="span7" style="padding-right: 20px;">
+            <div id="Title_Left" class="column_header row-fluid" >
+                <div class="span7 lead" style="text-align: right; float: left; border-bottom:solid thin #e3e3e3; width: 100%;" >
+                    Requirements&nbsp;&nbsp;
                 </div>
             </div>
-          <div id="Bottom_Left">
-          </div>
-        </fieldset>
-        <fieldset class="well span6" style="min-width:400px;">
-          <legend class="the-legend">Questions and Results</legend>
-            <div id="Top_Right" class="row-fluid">
-                <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-                <div class="viewport">
-                    <div class="overview row-fluid" data-bind="foreach: questionList">
-                        <h5>Question</h5>
-                        <span data-bind="html: Question.Content"></span>
-                        <h5>Answer</h5>
-                        <span data-bind="html: Question.Answer"></span>
-                        <h5>Feedback</h5>
-                        <div data-bind="foreach: Question.Feedbacks">
-                            <p data-bind="html: Text"></p>
+            <div style="margin-left: 30px;">
+                <div id="Top_Left" class="row-fluid">
+                    <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                    <div class="viewport">
+                        <div class="overview row-fluid" data-bind="foreach: reviewSession.Requirements">
+                            <span data-bind="html: Content"></span>
+                            <hr />
                         </div>
-                        <hr />
                     </div>
                 </div>
             </div>
-            <div id="Bottom_Right" class="row-fluid">  
+        </div>
+        <div class="span5" style="margin-left: 10px;">
+            <div id="Title_Right" class="column_header span5 lead" style="margin-left: 10px; float: left; border-bottom: solid thin #e3e3e3; width: 100%">Questions</div>
+            <div style="margin-left: 10px">
+                <br/>
+                <div class="row-fluid" id="Top_Right">
+                    <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                    <div class="viewport">
+                        <div class="overview row-fluid" data-bind="foreach: questionList">
+                            <h5>Question</h5>
+                            <span data-bind="html: Question.Content"></span>
+                            <h5>Answer</h5>
+                            <span data-bind="html: Question.Answer"></span>
+                            <h5>Feedback</h5>
+                            <div data-bind="foreach: Question.Feedbacks">
+                                <p data-bind="html: Text"></p>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </fieldset>
-      </div>
+        </div>
     </div>
-    <div id="Footer">
-
-    </div>
-    
     <div id="Loader" data-bind="loadingWhen: processingViewModel.isProcessing">
         <div id="horizon">
             <div id="LoadingDiv">

@@ -33,6 +33,7 @@ var QuestionViewModel = function (reviewSessionId) {
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
                 self.questionNavigationViewModel.setQuestion();
+                sizeContent();
                 setScrollDisplay("Left");
                 setScrollDisplay("Right");
                 self.processingViewModel.turnOffProcessing();
