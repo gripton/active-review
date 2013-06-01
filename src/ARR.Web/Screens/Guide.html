@@ -20,7 +20,7 @@
                 <ul class="nav">
                     <li><a href="Home.html"><i class="icon-home"></i>Home</a></li>
                     <li><a href="Profile.html">My Profile</a></li>
-                    <li class="active"><a href="#">Active Reviews for Dummies</a></li> 
+                    <li class="active"><a href="#">Active Reviews for "Dummies"</a></li> 
             </ul>
             </div><!-- /.nav-collapse -->
         </div><!-- /.container -->
@@ -34,9 +34,10 @@
             <legend class="the-legend">The Active Review Process...</legend>
            
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#home" data-toggle="tab">Overview</a></li>
-                <li><a href="#details" data-toggle="tab">Details</a></li>
-                <li><a href="#moreDetails" data-toggle="tab">More</a></li>
+                <li class="active"><a href="#home" data-toggle="tab">Active Review Overview</a></li>
+                <li><a href="#roles" data-toggle="tab"><em>Roles</em></a></li>
+                <li><a href="#tasks" data-toggle="tab"><em>Tasks</em></a></li>
+                <li><a href="#products" data-toggle="tab"><em>Products</em></a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active in" id="home">
@@ -46,112 +47,126 @@
                         <br/>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="details">
-                    <h4>Home page- navigation</h4>
+                <div class="tab-pane fade" id="roles">
+                    <h4 class="lead">Roles</h4>
                     <br />
                     <ul>
-                        <li><b>Create new session (button)-</b> starts the ARR session create process. This action 
-                            moves the review session to the “create” state so then it is visible in the “My New 
-                            Created Sessions” list. This will take you to the session editor screen.
-                        </li>
-                        <li><b>My New Created Sessions (list)-</b> contains the creator’s sessions that have been 
-                            started but are not released. As a session creator, you populate the session (with 
-                            requirement material and ARR questionnaire) in the editor screen and assign the reviewer. 
-                            You can then release a session (from the session editor screen) when you are ready.
-                        </li>
-                        <li><b>My Active Review Sessions (Reviewer) (list)-</b> contains sessions that have been 
-                            assigned to you as a reviewer. The session creator selects the reviewer for a session. 
-                            You can view the requirements material and ARR questionnaire (from the questionnaire reader 
-                            screen).
-                        </li>
-                        <li><b>My Active Review Sessions (Creator) (list)-</b> contains sessions that you, as the 
-                            creator, have created and, then, released. You have assigned a reviewer to each of these 
-                            sessions so they will see the session in their “Active Review Session (Reviewer)” list.
-                        </li>
-                        <li><b>My Archived Sessions (list)-</b> contains the sessions that the reviewer has completed 
-                            and the session creator has assessed/checked and archived for future reference.
-                        </li>
-                    </ul>
-                </div>
-                <div class="tab-pane fade" id="moreDetails">
-                    <h4>Roles</h4>
-                    <br />
-                    <ul>
-                        <li><b>Creator-</b> the author of requirements specification or individual responsible 
+                        <li><b>Creator</b>
+                            <br /><br />
+                            <blockquote>The author of requirements specification or individual responsible 
                             for requirements analysis and verification. Must have intimate familiarity with a 
                             project’s requirements and must have the background to understand the intent of the 
                             requirements and the project. Designs the review session and develops its objectives. 
                             Is motivated to create the active review in order to determine whether the requirements 
                             specification has met specific criteria and can be used to successfully create all 
-                            downstream software artifacts.</li>
-                        <li><b>Reviewer-</b>  individual with specific skills that can be used in the requirements 
+                            downstream software artifacts.</blockquote> 
+                       </li>
+                       <br />
+                       <li><b>Reviewer</b>
+                            <br /><br />
+                            <blockquote>Individual with specific skills that can be used in the requirements 
                             review process. The skill included domain familiarity (as a user or customer of a 
                             product), general requirements review and validation experience, ability to determine 
                             qualities of documents, and other related skills. Is motivated to participate in the 
                             active review to share his/her skills with the broader team and to make a positive 
-                            contribution to the quality of the development project.</li>
+                            contribution to the quality of the development project.</blockquote>
+                       </li>
                     </ul>
-                    <hr />
-                    <h4>Tasks</h4>
+                  </div>
+                <div class="tab-pane fade" id="tasks">
+                    <h4 class="lead">Tasks</h4>
                     <br />
                     <ul>
-                        <li><b>Prepare requirements specification for review session-</b> determine the parts of the 
+                        <li><b>Prepare requirements specification for review session</b> 
+                            <br /><br />
+                            <blockquote>Determine the parts of the 
                             requirements specification or other material needed to focus the reviewers attention on the 
                             specific concerns of the review session. This should be all of the material that the reviewer 
                             needs to answer the questions that the creator posses. Provide context for the requirements 
-                            material if it is needed. Organize and insert this material into the session review template.
+                            material if it is needed. Organize and insert this material into the session review template.</blockquote>
                         </li>
-                        <li><b>Create review questionnaire for review session-</b> develop a a set of questions about the 
+                        <br />
+                        <li><b>Create review questionnaire for review session</b> 
+                            <br /><br />
+                            <blockquote>Develop a a set of questions about the 
                             requirements under review in the session that will allow the creator to explore the qualities 
                             of the requirement. The reviewer should be able to use the material provided by the creator in 
                             the review session template to give detailed, descriptive answers to the questions beyond a 
-                            simple “yes/no” answer.
+                            simple “yes/no” answer.</blockquote>
                         </li>
-                        <li><b>Assign reviewer for review session-</b> find the best reviewer to focus on the concerns of the 
+                        <br />
+                        <li><b>Assign reviewer for review session</b> 
+                            <br /><br />
+                            <blockquote>Find the best reviewer to focus on the concerns of the 
                             review session based based on the skills of the set of possible reviewers and objective of the 
                             review session. Select this reviewer for the session. Reviewer will be notified when the session is released.
-                            (If reviewer does not have an account in the system, invite the him/her to create an account.)
+                            (If reviewer does not have an account in the system, invite the him/her to create an account.)</blockquote>
                         </li>
+                        <br />
                         <li>
-                            <b>Release review session-</b> upon completion of the review session creation tasks above, release 
+                            <b>Release review session</b> 
+                            <br /><br />
+                            <blockquote>Upon completion of the review session creation tasks above, release 
                             the session to the reviewer so he/she can gain access to the specification material and the questions 
-                            and start their part of the review process.
+                            and start their part of the review process.</blockquote>
                         </li>
+                        <br />
                         <li>
-                            <b>Answer review session questionnaire-</b> the reviewer provides detailed answers to the questions 
+                            <b>Answer review session questionnaire</b> 
+                            <br /><br />
+                            <blockquote>The reviewer provides detailed answers to the questions 
                             in the session questionnaire after a thorough review of the requirements material. He/she should 
                             directly use the material to come up with deep and well thought out answers to the questions. When 
                             the reviewer is done answering the questions, he/she selects save and complete to notify the creator 
-                            the questionnaire is complete.
+                            the questionnaire is complete.</<blockquote>
                         </li>
-                        <li><b>Discuss review questions and requirements in a forum-</b> if the reviewer is unclear on the session
+                        <br />
+                        <li><b>Discuss review questions and requirements in a forum</b> 
+                            <br /><br />
+                            <blockquote>If the reviewer is unclear on the session
                             objectives, material under review or has questions, he/she initiates a forum-style discussion with 
                             the creator. This also applies to the creator of he/she feels the need to clarify the review session 
-                            content or the questionnaire in any way.</li>
+                            content or the questionnaire in any way.</blockquote>
+                        </li>
+                        <br />
                         <li>
-                            <b>Archive review session-</b> after all questions are answered, the reviewer has selected complete, 
+                            <b>Archive review session</b> 
+                            <br /><br />
+                            <blockquote>After all questions are answered, the reviewer has selected complete, 
                             and the creator has clarified the answers (if necessary), store the contents of the review session 
                             (requirements, questionnaire questions and answers, forum material) if a form where it can be accessed 
-                            for future reference. Session material will be read only after it is archived.
+                            for future reference. Session material will be read only after it is archived.</blockquote>
                         </li>
                     </ul>
-                    <hr />
-                    <h4>Products</h4>
+                    </div>
+                <div class="tab-pane active in" id="products">
+                    <h4 class="lead">Products</h4>
                     <br />
                     <ul>
-                        <li><b>Requirements specification excerpt-</b> textual material from the software requirements 
+                        <li><b>Requirements specification excerpt</b> 
+                            <br /><br />
+                            <blockquote>Textual material from the software requirements 
                             specification and possibly other sources that the creator wants to be reviewed by the active review 
-                            process.
+                            process.</blockquote>
                         </li>
-                        <li><b>Review session questionnaire questions-</b> specific questions that the creator wants the review to 
-                            answer using the material provided.
+                        <br />
+                        <li><b>Review session questionnaire questions</b> 
+                            <br /><br />
+                            <blockquote>Specific questions that the creator wants the review to 
+                            answer using the material provided.</blockquote>
                         </li>
-                        <li><b>Review session questionnaire answers-</b> specific answers (as “positive assertions”) to the review 
-                            questions provided by the creator.
+                        <br />
+                        <li><b>Review session questionnaire answers</b> 
+                            <br /><br />
+                            <blockquote>Specific answers (as “positive assertions”) to the review 
+                            questions provided by the creator.</blockquote>
                         </li>
-                        <li><b>Review session forum discussion-</b> record of the interactions between the creator and reviewer if 
+                        <br />
+                        <li><b>Review session forum discussion</b> 
+                            <br /><br />
+                            <blockquote>Record of the interactions between the creator and reviewer if 
                             either one need to clarify a question, requirement or other topic in the active review process. 
-                            (Provides context to the questionnaire questions and answers.)
+                            (Provides context to the questionnaire questions and answers.)</blockquote>
                         </li>
                     </ul>
                 </div>
