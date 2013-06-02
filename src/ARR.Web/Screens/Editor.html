@@ -37,9 +37,9 @@
                                     <li><a href="#" data-bind="click: $root.release">Release</a></li>
                                 </ul>
                             </li>
-                                <li><a href="Guide_Requirements.html">Selecting Requirements</a></li>
-                            <li><a href="Guide_Reviewer.html">Selecting Reviewer</a></li>
-                            <li><a href="Guide_Questions.html">Creating Questions</a></li> 
+                            <li><a data-bind="attr: { href: 'Guide_Requirements.html?reviewSession=' + reviewSessionId }">Selecting Requirements</a></li>
+                            <li><a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }">Selecting Reviewer</a></li>
+                            <li><a data-bind="attr: { href: 'Guide_Questions.html?reviewSession=' + reviewSessionId }">Creating Questions</a></li> 
                         </ul>
                     </div><!-- /.nav-collapse -->
                 </div><!-- /.container -->

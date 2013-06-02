@@ -19,9 +19,9 @@
                 <a class="brand" href="#">Active Requirements Review</a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li><a href="Editor.html"><i class="icon-arrow-left"></i>Back to Editor</a></li>
-                        <li><a href="Guide_Requirements.html">Selecting Requirements</a></li>
-                        <li><a href="Guide_Reviewer.html">Selecting Reviewer</a></li>                        
+                        <li><a data-bind="attr: { href: 'Editor.html?reviewSession=' + reviewSessionId }"><i class="icon-arrow-left"></i>Back to Editor</a></li>
+                        <li><a data-bind="attr: { href: 'Guide_Requirements.html?reviewSession=' + reviewSessionId }">Selecting Requirements</a></li>
+                        <li><a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }"">Selecting Reviewer</a></li>                        
                         <li class="active"><a href="#">Creating Questions</a></li>
                     </ul>
                 </div>
@@ -71,8 +71,8 @@
                             reviewer, spawn. These are described in detail below.
                         </li>
                         <li>
-                            <b>Help on ARR activities-</b> more information and assistance with <a href="Guide_Requirements.html">“selecting 
-                            requirements”</a>, <a href="Guide_Reviewer.html">“selecting the reviewer”</a>, 
+                            <b>Help on ARR activities-</b> more information and assistance with <a data-bind="attr: { href: 'Guide_Requirements.html?reviewSession=' + reviewSessionId }">“selecting 
+                            requirements”</a>, <a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }">“selecting the reviewer”</a>, 
                             and “creating the questionnaire” (this link)
                         </li>
                     </ul>
@@ -127,7 +127,7 @@
                         <li>
                             <b>Assign reviewer-</b> assigns a reviewer to this session. The session cannot be 
                             released until you assign a reviewer. (More information is available in the 
-                            <a href="Guide_Reviewer.html">“selecting the reviewer”</a> section).
+                            <a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }">“selecting the reviewer”</a> section).
                         </li>
                         <li>
                             <b>Release-</b> moves the review session from the create stage to the release 
@@ -266,10 +266,7 @@
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
     <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
-    <script type="text/javascript" src="../Scripts/arr-urls.aspx"></script>
-    <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
-    <script type="text/javascript" src="../Scripts/Model/arr-account-model.js"></script>
-    <script type="text/javascript" src="../Scripts/ViewModel/arr-profile-view-model.js"></script>
-
+    <script type="text/javascript" src="../Scripts/purl.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/arr-guide-view-model.js"></script>
 </body>
 </html>
