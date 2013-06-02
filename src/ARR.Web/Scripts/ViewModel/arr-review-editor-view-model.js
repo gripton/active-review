@@ -69,6 +69,7 @@ var ReviewEditorViewModel = function (reviewSessionId) {
             self.processingViewModel.turnOnProcessing("Loading...");
             $.getJSON(getArrApiUrl('reviewsession/' + self.reviewSessionId), function (allData) {
                 ko.mapping.fromJS(allData, {}, self.reviewSession);
+                sizeContent();
                 setScrollDisplay("Left");
                 setScrollDisplay("Right");
                 

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Active Requirements Review - Home</title>
+    <title>Active Requirements Review - Guide- Selecting Requirements</title>
     <link href="../Content/custom.css" rel="stylesheet" />
     <link href="../Content/bootstrap.css" rel="stylesheet" />
     <link href="../Content/bootstrap-responsive.css" rel="stylesheet" />
@@ -9,52 +9,255 @@
 <body>
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#">Active Requirements Review</a>
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li><a href="Editor.html"><i class="icon-arrow-left"></i>Back to Editor</a></li>
-                    <li  class="active"><a href="#">Selecting Requirements</a></li>
-                    <li><a href="Guide_Questions.html">Creating Questions</a></li> 
-                </ul>
-            </div><!-- /.nav-collapse -->
-        </div><!-- /.container -->
-        </div><!-- /.navbar-inner -->
-    </div><!-- /.navbar -->
-
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Active Requirements Review</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a data-bind="attr: { href: 'Editor.html?reviewSession=' + reviewSessionId }"><i class="icon-arrow-left"></i>Back to Editor</a></li>
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guide<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-bind="attr: { href: 'Guide_Requirements.html?reviewSession=' + reviewSessionId }">Selecting Requirements</a></li>
+                                <li><a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }">Selecting a Reviewer</a></li>
+                                <li><a data-bind="attr: { href: 'Guide_Questions.html?reviewSession=' + reviewSessionId }">Creating Questions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.nav-collapse -->
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.navbar-inner -->
+    </div>
+    <!-- /.navbar -->
 
     <section style="margin: 20px">
-     
+
         <fieldset class="well" style="width: 80%; height: 100%; margin-left: 20px">
-            <legend class="the-legend">The Active Review Process...</legend>
-           
-            <div style="margin-left:auto; margin-right:auto; margin-top: auto; width:80%;">
-                <br/>
-                <img src="../Content/images/guide/ARRSessionStateDiagram.png" width="700px" height="1000px" class="img-polaroid"  />
-                <br/>
+            <legend class="the-legend">Selecting Requirements for an Active Review Session...</legend>
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#home" data-toggle="tab">Overview</a></li>
+                <li><a href="#details" data-toggle="tab">Details</a></li>
+                <li><a href="#moreDetails" data-toggle="tab">More</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="home">
+                    <div style="margin-left: auto; margin-right: auto; margin-top: auto; width: 80%;">
+                        <br />
+                        <img src="../Content/images/guide/ARRSelectRequirements.png" width="700px" height="1000px" class="img-polaroid" />
+                        <br />
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="details">
+                    <h4>Editor screen- navigation</h4>
+                    <br />
+                    <p>
+                        The editor screen is where you- the session creator- can select requirements material, 
+                        choose a reviewer, create session questionnaire and release the session for review.
+                    </p>
+                    <p>The options on the upper navigation bar are:</p>
+                    <ul>
+                        <li>
+                            <b>Home-</b> returns you to the home page where you can create, open, and view 
+                            new and existing sessions.
+                        </li>
+                        <li>
+                            <b>File (menu)-</b> allows you to initiate a number of important actions related 
+                            to the session you are creating such as- rename, save, preview, release, assign 
+                            reviewer, spawn. These are described in detail below.
+                        </li>
+                        <li>
+                            <b>Help on ARR activities-</b> more information and assistance with “selecting 
+                            requirements” (this link), <a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }">“selecting the reviewer”</a>, 
+                            and <a data-bind="attr: { href: 'Guide_Questions.html?reviewSession=' + reviewSessionId }">“creating the questionnaire” </a>
+                        </li>
+                    </ul>
+                    <hr />
+                    <p>
+                        The editor page allows you to paste selected material from a software requirement 
+                        specification into the ARR tool in an organized manner.
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Edit Requirements (edit box)-</b> you use this edit area to insert the 
+                            requirements text and images into the editor screen. You can type or cut and 
+                            paste from another document.
+                        </li>
+                        <li>
+                            <b>Add Requirement (button)-</b> when you have completed your work on a specific 
+                            requirement, you use this button to actually add the requirement to the list.
+                        </li>
+                    </ul>
+                    <p>For requirements that have been added, you have the option to edit, comment on, 
+                        or delete.</p>
+                    <ul>
+                        <li>
+                            <b>Edit-</b> pulls up a editor window with the current material ready for you 
+                            to modify in the same way you would when you first edit the requirements.
+                        </li>
+                        <li>
+                            <b>Comment-</b> allows you to make notes or give further descriptions or 
+                            background on the requirement. These comments are intended to help the reviewer.
+                        </li>
+                        <li>
+                            <b>Delete-</b> removes the requirement and renumbers the remaining ones.
+                        </li>
+                    </ul>
+                    <hr />
+                    <p>File menu options are:</p>
+                    <ul>
+                        <li>
+                            <b>Rename (pop up)-</b> changes the title/name of the review session. Allows 
+                            you to give the review session a descriptive name so it can be distinguished 
+                            from other sessions.
+                        </li>
+                        <li>
+                            <b>Save-</b> saves the contents of the session editor screen. To keep the content 
+                            you have entered you must save before leaving the editor page.
+                        </li>
+                        <li>
+                            <b>Preview-</b> formats the contents of the session editor screen in the same 
+                            way the reviewer will see the screen once the session is released to him/her. 
+                            You can check the presentation of the requirements and questions (along with
+                            your comments) in this screen.
+                        </li>
+                        <li>
+                            <b>Spawn</b>- allows you to copy specified sections of the review session to a 
+                            new session. This makes it easy for you to replicate a session or reuse parts of 
+                            an existing session to create a similar session.
+                        </li>
+                        <li>
+                            <b>Assign reviewer-</b> assigns a reviewer to this session. The session cannot be 
+                            released until you assign a reviewer. (More information is available in the 
+                            <a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }">“selecting the reviewer”</a> section).
+                        </li>
+                        <li>
+                            <b>Release-</b> moves the review session from the create stage to the release 
+                            stage so the assigned reviewer can start the review process. After a session is 
+                            released it can no longer be edited by the creator.
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="moreDetails">
+                    <h4>Notes on requirements selection- an ideal process</h4>
+                    <p>
+                        <b>How to select requirements material to present to the reviewer for an active 
+                        requirements review session:</b>
+                    </p>
+                    <p>
+                        <b>Determine the objective/goal of the requirements review session</b>
+                    </p>
+                    <ul>
+                        <li>What type of review session is this and what is it trying to accomplish 
+                            (stated succinctly)
+                        </li>
+                        <li>
+                            What does the requirements creator want to confirm or validate
+                        </li>
+                        <li>
+                            What issues or errors is the session seeking to expose
+                        </li>
+                        <li>
+                            What is the scope or coverage of the session both is depth (level of 
+                            detail) and breadth (areas of the specification session will cover)
+                        </li>
+                        <li>
+                            What information is need to start this session and what is the desired 
+                            end result for this session
+                        </li>
+                        <li>
+                            Where does this session fit in with respect to other previously conducted 
+                            or upcoming planned review sessions- where does it overlap, complement, 
+                            enhance, other sessions
+                        </li>
+                    </ul>
+                    <p>
+                        <b>Assemble all available requirements material</b>
+                    </p>
+                    <ul>
+                        <li>Collect the material in the form of documents, diagrams, prototypes 
+                            (if any) available for use in this session
+                        </li>
+                        <li>Assess if the documentation available covers the scope of the review 
+                            (the specific topic and level of detail)
+                        </li>
+                        <li>Create supplementary material to provide context for this session if 
+                            needed
+                        </li>
+                        <li>Reformat material for easy of understanding and review if this has not 
+                            been done
+                        </li>
+                    </ul>
+                    <p>
+                        <b>Formulate review questions in rough outline form</b>
+                    </p>
+                    <ul>
+                        <li>
+                            Consider, in general, the questions that the creator will ask the reviewer for 
+                            this session
+                        </li>
+                        <li>
+                            Create classes of questions that relate to the session goal
+                        </li>
+                        <li>
+                            Consider specific methods for exposing issues we are looking for in the session
+                        </li>
+                        <li>
+                            Determine questions at the boundary of the session’s scope (what is in versus 
+                            out of scope for the session)
+                        </li>
+                    </ul>
+                    <p>
+                        <b>Determine your answers to the proposed questions</b>
+                    </p>
+                    <ul>
+                        <li>
+                            Using all of the requirement material assembled above, determine what you need 
+                            to answer classes of questions
+                        </li>
+                        <li>
+                            Consider how much or what level of requirement specification detail is needed 
+                            to answer the questions
+                        </li>
+                        <li>
+                            Use the boundary questions to determine the complete range of material needed 
+                            to answer the questions
+                        </li>
+                    </ul>
+                    <p>
+                        <b>Assemble the material you needed to answer the questions</b>
+                    </p>
+                    <ul>
+                        <li>
+                            Assemble the material you needed to answer the questions
+                        </li>
+                        <li>
+                            Format the extracted material for ease of reference and review
+                        </li>
+                    </ul>
+                </div>
             </div>
-            
 
         </fieldset>
     </section>
 
-
-     <!-- Bootstrap jQuery Plugins, compiled and minified -->
+    <!-- Bootstrap jQuery Plugins, compiled and minified -->
     <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.base64.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.cookie.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-2.2.1.js"></script>
     <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
-    <script type="text/javascript" src="../Scripts/arr-urls.aspx"></script>
-    <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
-    <script type="text/javascript" src="../Scripts/Model/arr-account-model.js"></script>
-    <script type="text/javascript" src="../Scripts/ViewModel/arr-profile-view-model.js"></script>
-
+    <script type="text/javascript" src="../Scripts/purl.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/arr-guide-view-model.js"></script>
 </body>
 </html>

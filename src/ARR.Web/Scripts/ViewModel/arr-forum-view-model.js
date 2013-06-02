@@ -34,6 +34,7 @@ var ForumViewModel = function (reviewSessionId) {
                     self.questionList.push(new QuestionFeedback(self.reviewSession.Questions()[k]));
                 }
                 self.processingViewModel.turnOffProcessing();
+                sizeContent();
                 setScrollDisplay("Left");
                 setScrollDisplay("Right");
             });

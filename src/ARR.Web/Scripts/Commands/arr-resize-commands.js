@@ -1,6 +1,4 @@
-﻿$(document).ready(sizeContent);
-
-var ContentMinHeight = parseInt($("#Top_Left").css("min-height").replace(/[^-\d\.]/g, '')) + $("#Bottom_Left").height();
+﻿var ContentMinHeight = parseInt($("#Top_Left").css("min-height").replace(/[^-\d\.]/g, '')) + $("#Bottom_Left").height();
 $("#Content").css("min-height", ContentMinHeight + "px");
 
 //Every resize of window
@@ -16,8 +14,8 @@ function sizeContent() {
     setScrollDisplay("Left");
 
     if ($("#Top_Right").val() != null) {
-        resizableContentHeight = calculateResizableHeight("Right");
-        $("#Top_Right").css("height", resizableContentHeight + "px") - calculatePadding("#Top_Right");
+        resizableContentHeight = calculateResizableHeight("Right") - calculatePadding("#Top_Right");
+        $("#Top_Right").css("height", resizableContentHeight + "px");
         setScrollDisplay("Right");
     }
 }
@@ -43,12 +41,12 @@ function calculatePadding(id) {
 
 /*Calculates what the height of the content should be. */
 function calculateNewContentHeight() {
-    return $(window).height() - $("#Header").outerHeight() - $("#Footer").outerHeight();
+    return $(window).height() - $("#Header").outerHeight(true) - $("#Footer").outerHeight(true) - calculatePadding("#Content") - 20 ;
 }
 
 function calculateResizableHeight(postFix) {
     var newHeight = calculateNewContentHeight();
-    return newHeight - $("#Bottom_" + postFix).outerHeight() - calculatePadding("#Content") - $("#Title").outerHeight() - calculatePadding($("#Bottom_" + postFix)) - 26;
+    return newHeight - $("#Bottom_" + postFix).outerHeight(true) - calculatePadding("#Top_" + postFix) - $("#Title_" + postFix).outerHeight(true)+20;
 }
 
 function setScrollableToBottom(postFix) {
