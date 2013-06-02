@@ -20,9 +20,14 @@
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li><a data-bind="attr: { href: 'Editor.html?reviewSession=' + reviewSessionId }"><i class="icon-arrow-left"></i>Back to Editor</a></li>
-                        <li class="active"><a href="#">Selecting Requirements</a></li>
-                        <li><a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }">Selecting Reviewer</a></li>
-                        <li><a data-bind="attr: { href: 'Guide_Questions.html?reviewSession=' + reviewSessionId }">Creating Questions</a></li>
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guide<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-bind="attr: { href: 'Guide_Requirements.html?reviewSession=' + reviewSessionId }">Selecting Requirements</a></li>
+                                <li><a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }">Selecting a Reviewer</a></li>
+                                <li><a data-bind="attr: { href: 'Guide_Questions.html?reviewSession=' + reviewSessionId }">Creating Questions</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.nav-collapse -->

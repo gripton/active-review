@@ -20,11 +20,17 @@
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li><a data-bind="attr: { href: 'Editor.html?reviewSession=' + reviewSessionId }"><i class="icon-arrow-left"></i>Back to Editor</a></li>
-                        <li><a data-bind="attr: { href: 'Guide_Requirements.html?reviewSession=' + reviewSessionId }">Selecting Requirements</a></li>
-                        <li><a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }"">Selecting Reviewer</a></li>                        
-                        <li class="active"><a href="#">Creating Questions</a></li>
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guide<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-bind="attr: { href: 'Guide_Requirements.html?reviewSession=' + reviewSessionId }">Selecting Requirements</a></li>
+                                <li><a data-bind="attr: { href: 'Guide_Reviewer.html?reviewSession=' + reviewSessionId }">Selecting a Reviewer</a></li>
+                                <li><a data-bind="attr: { href: 'Guide_Questions.html?reviewSession=' + reviewSessionId }">Creating Questions</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
+                <!-- /.nav-collapse -->
                 <!-- /.nav-collapse -->
             </div>
             <!-- /.container -->
@@ -33,7 +39,7 @@
     </div>
 
 
-   <section style="margin: 20px">
+    <section style="margin: 20px">
 
         <fieldset class="well" style="width: 80%; height: 100%; margin-left: 20px">
             <legend class="the-legend">Creating questionnaire for an Active Review Session...</legend>
@@ -142,40 +148,32 @@
                         <b>How to create questions for an active review session's questionnaire</b>
                     </p>
                     <ul>
-                        <li>
-                            Start with understand of the goals and objectives for the session- what we 
+                        <li>Start with understand of the goals and objectives for the session- what we 
                             want to accomplish, what type of errors we want to uncover or what qualities 
                             of the requirements we want to validate
                         </li>
-                        <li> 
-                            Determine the general types of questions and questioning techniques that are 
+                        <li>Determine the general types of questions and questioning techniques that are 
                             useful for accomplishing the objectives of the session
                         </li>
-                        <li>
-                            Assure you understand the requirements specification selected for this session
+                        <li>Assure you understand the requirements specification selected for this session
                         </li>
-                        <li>
-                            Organize the requirements into reviewable sections- details pertaining to different 
+                        <li>Organize the requirements into reviewable sections- details pertaining to different 
                             classes of questions isolated in their own sections to the extent possible
                         </li>
-                        <li>
-                            Create a few questions (at most 5-10) that cover one central detail of the 
+                        <li>Create a few questions (at most 5-10) that cover one central detail of the 
                             session from highest to lowest level of the scope or most general to most 
                             specific- this leads to a small “vertical slice” of review questions
                         </li>
-                        <li>
-                            Create a few high-level or general questions that cover topics at the boundary 
+                        <li>Create a few high-level or general questions that cover topics at the boundary 
                             of the scope of the session- this leads to a “horizontal slice” (breadthwise) 
                             of the review questions
                         </li>
-                        <li>
-                            Fill in the details between these boundaries (depth and width) until the 
+                        <li>Fill in the details between these boundaries (depth and width) until the 
                             coverage of the requirements specified is complete- each question should 
                             pertain to or “cover” a goal of the session for a specific area of the 
                             specification
                         </li>
-                        <li>
-                            Before releasing the session make a final check to confirm that questions cover 
+                        <li>Before releasing the session make a final check to confirm that questions cover 
                             the entire scope of the review (both in level of detail and breadth of sections 
                             of the specification)
                         </li>
@@ -184,26 +182,21 @@
                         <b>Characteristics of review session questions</b>
                     </p>
                     <ul>
-                        <li>
-                            Questions should have a single “concern” per question- avoid mixed purposes or 
+                        <li>Questions should have a single “concern” per question- avoid mixed purposes or 
                             objectives in a single question
                         </li>
-                        <li>
-                            Questions should provide the necessary context- for example when a question 
+                        <li>Questions should provide the necessary context- for example when a question 
                             measures conformance to a standard, rule, or domain specific convention, it 
                             should includes details by which to measure requirement
                         </li>
-                        <li>
-                            Questions can ask for concrete use of requirement- for example you can ask the 
+                        <li>Questions can ask for concrete use of requirement- for example you can ask the 
                             reviewer to explain what an application would do with specified inputs 
                         </li>
-                        <li>
-                            Questions should lead to descriptive answers rather than simple affirm/deny 
+                        <li>Questions should lead to descriptive answers rather than simple affirm/deny 
                             (“yes/no”) answers- start questions with “Which…” or “What…” rather than 
                             “Does…” or “Is…” to yield more open questions
                         </li>
-                        <li>
-                            (Meta-questions can determine the effectiveness or quality of the session and 
+                        <li>(Meta-questions can determine the effectiveness or quality of the session and 
                             the session questionnaire- ask the reviewer to evaluate the session using 
                             questions about the questions themselves or about the review session- 
                             this discussion can also take place in the forum part of the ARR tool)
@@ -213,43 +206,32 @@
                         <b>Methods for examining requirements with questions</b>
                     </p>
                     <ul>
-                        <li>
-                            Ask reviewer to use the requirements to create a draft implementation of one feature (a possible architectural view or summary design) to determine if requirements are complete or clear enough to be useful for downstream use
+                        <li>Ask reviewer to use the requirements to create a draft implementation of one feature (a possible architectural view or summary design) to determine if requirements are complete or clear enough to be useful for downstream use
                         </li>
-                        <li>
-                            Ask reviewer to restate a requirement to determine how it will be interpreted by others
+                        <li>Ask reviewer to restate a requirement to determine how it will be interpreted by others
                         </li>
-                        <li>
-                            Ask reviewer to summarize the content or point of a section or group of related requirements to determine if organization is clear and interpretation is in line with the creators intent
+                        <li>Ask reviewer to summarize the content or point of a section or group of related requirements to determine if organization is clear and interpretation is in line with the creators intent
                         </li>
-                        <li>
-                            Ask reviewer to point out what parts of the requirements specification he/she would use to answer a specific question about a specific behavior or quality of the system
+                        <li>Ask reviewer to point out what parts of the requirements specification he/she would use to answer a specific question about a specific behavior or quality of the system
                         </li>
-                        <li>
-                            Ask the reviewer to determine how the system should react to a specific environment or input condition- the condition could be normal or abnormal
+                        <li>Ask the reviewer to determine how the system should react to a specific environment or input condition- the condition could be normal or abnormal
                         </li>
-                        <li>
-                            Use a requirement testing methodology described below
+                        <li>Use a requirement testing methodology described below
                         </li>
                     </ul>
                     <p>
                         <b>Requirements “testing” method</b> (adapted from Gause and Weinberg, <em>Exploring Requirements, Quality before Design</em>)
                     </p>
                     <ul>
-                        <li>
-                            Use requirements that describe system’s externally visible behavior as the basis for the session
+                        <li>Use requirements that describe system’s externally visible behavior as the basis for the session
                         </li>
-                        <li>
-                            The requirements creator should write requirements so they answer questions about how this simulated system behaves
+                        <li>The requirements creator should write requirements so they answer questions about how this simulated system behaves
                         </li>
-                        <li>
-                            Ask reviewer to simulate the behavior of a system that would fulfill these requirements
+                        <li>Ask reviewer to simulate the behavior of a system that would fulfill these requirements
                         </li>
-                        <li>
-                            Use series of “what if” questions to determine normal use, abnormal but reasonable use, abnormal and unreasonable use
+                        <li>Use series of “what if” questions to determine normal use, abnormal but reasonable use, abnormal and unreasonable use
                         </li>
-                        <li>
-                            Document test cases and the outcomes when the reviewer “runs” them
+                        <li>Document test cases and the outcomes when the reviewer “runs” them
                         </li>
                     </ul>
                 </div>
@@ -259,7 +241,7 @@
     </section>
 
 
-     <!-- Bootstrap jQuery Plugins, compiled and minified -->
+    <!-- Bootstrap jQuery Plugins, compiled and minified -->
     <script type="text/javascript" src="../Scripts/jquery-2.0.0.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.base64.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.cookie.js"></script>
