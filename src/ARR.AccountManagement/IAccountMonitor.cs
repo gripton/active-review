@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace ARR.AccountManagement
 {
-    public interface IAccountMonitor : IEventProcessor
+    public interface IAccountMonitor :  IObserver<Event>
     {
-        void InviteReviewer(string invitee);
-        void AssignInvitedReviewer(int reviewId, string username);
+        
     }
 }

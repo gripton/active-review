@@ -11,7 +11,7 @@ namespace ARR.AccountManagement
 {
     public class AccountMonitor : IAccountMonitor
     {
-        public AccountMonitor(ReviewSessionRepository repository, INotificationGenerator generator, INotificationSender sender)
+        public AccountMonitor(ReviewSessionRepository repository,  INotificationGenerator generator, INotificationSender sender)
         {
 
         }
@@ -28,18 +28,33 @@ namespace ARR.AccountManagement
 
         public void ProcessEvent(Event evt)
         {
-            switch (evt.EventType)
+            
+        }
+
+        public void OnCompleted()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnError(Exception error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNext(Event value)
+        {
+            switch (value.EventType)
             {
                 case EventType.ReviewerInvited:
-                    var invitee = evt.Info["invitee"];
+                    var invitee = value.Info["invitee"];
                     InviteReviewer(invitee);
-                    evt.Recevied = true;
+                    value.Recevied = true;
                     break;
                 case EventType.InviteeRegistered:
-                    var reviewId = evt.EntityId;
-                    var username = evt.Info["invitee"];
+                    var reviewId = value.EntityId;
+                    var username = value.Info["invitee"];
                     AssignInvitedReviewer(reviewId, username);
-                    evt.Recevied = true;
+                    value.Recevied = true;
                     break;
                 default:
                     return;

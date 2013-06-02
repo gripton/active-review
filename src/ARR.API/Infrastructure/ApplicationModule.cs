@@ -1,6 +1,5 @@
 ﻿using System.Configuration;
 using ARR.AccountManagement;
-using ARR.API.Infrastructure;
 using ARR.Data.Entities;
 using ARR.Notifications;
 using ARR.Repository;

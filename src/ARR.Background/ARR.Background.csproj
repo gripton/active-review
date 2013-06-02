@@ -32,13 +32,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.0.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\..\packages\Autofac.3.0.2\lib\net40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="le_nlog">
       <HintPath>..\..\packages\le_nlog.2.1.7\lib\Net40\le_nlog.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\..\packages\Quartz.2.1.2\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\..\packages\RavenDB.Client.2.0.2288-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\..\packages\RavenDB.Client.2.0.2288-Unstable\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,14 +70,43 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackgroundModule.cs" />
+    <Compile Include="Events\EventPublisher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Events\Publisher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ARR.AccountManagement\ARR.AccountManagement.csproj">
+      <Project>{41a80fd8-fb44-4d57-b8a0-1d04df0f7854}</Project>
+      <Name>ARR.AccountManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Core\ARR.Core.csproj">
+      <Project>{1292dc71-7a5c-409f-bfed-60d2c17f340e}</Project>
+      <Name>ARR.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Data\ARR.Data.csproj">
+      <Project>{3b221ee1-e418-4da6-b863-41ae9f5f13c9}</Project>
+      <Name>ARR.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Notifications\ARR.Notifications.csproj">
+      <Project>{79a6e6c2-f1a7-48ed-97b8-ba4f64b6196d}</Project>
+      <Name>ARR.Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Repository\ARR.Repository.csproj">
+      <Project>{85f45a1a-d695-44a9-b6f9-05fb6940c022}</Project>
+      <Name>ARR.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.ReviewSessionManagement\ARR.ReviewSessionManagement.csproj">
+      <Project>{8d81bac6-567a-4d18-8519-625ff2b4e3de}</Project>
+      <Name>ARR.ReviewSessionManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

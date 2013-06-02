@@ -70,7 +70,7 @@ namespace ARR.IntegrationTests.API
                 .InstancePerLifetimeScope()
                 .OnActivating(c =>
                     {
-                        var test = "test";
+                        
                     });               
                 
         }
