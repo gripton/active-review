@@ -170,6 +170,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Guide_Reviewer.html" />
     <Content Include="packages.config" />
     <Content Include="Screens\Account.html" />
     <Content Include="Screens\Guide.html" />
