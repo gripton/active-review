@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Active Requirements Review - Home</title>
+    <title>Active Requirements Review - Guide- Creating Questions</title>
     <link href="../Content/custom.css" rel="stylesheet" />
     <link href="../Content/bootstrap.css" rel="stylesheet" />
     <link href="../Content/bootstrap-responsive.css" rel="stylesheet" />
@@ -9,36 +9,251 @@
 <body>
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#">Active Requirements Review</a>
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li><a href="Editor.html"><i class="icon-arrow-left"></i>Back to Editor</a></li>
-                    <li><a href="Guide_Requirements.html">Selecting Requirements</a></li>
-                    <li class="active"><a href="#">Creating Questions</a></li> 
-                </ul>
-            </div><!-- /.nav-collapse -->
-        </div><!-- /.container -->
-        </div><!-- /.navbar-inner -->
-    </div><!-- /.navbar -->
-
-
-    <section style="margin: 20px">
-     
-        <fieldset class="well" style="width: 80%; height: 100%; margin-left: 20px">
-            <legend class="the-legend">The Active Review Process...</legend>
-           
-            <div style="margin-left:auto; margin-right:auto; margin-top: auto; width:80%;">
-                <br/>
-                <img src="../Content/images/guide/ARRSessionStateDiagram.png" width="700px" height="1000px" class="img-polaroid"  />
-                <br/>
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Active Requirements Review</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a href="Editor.html"><i class="icon-arrow-left"></i>Back to Editor</a></li>
+                        <li><a href="Guide_Requirements.html">Selecting Requirements</a></li>
+                        <li><a href="Guide_Reviewer.html">Selecting Reviewer</a></li>                        
+                        <li class="active"><a href="#">Creating Questions</a></li>
+                    </ul>
+                </div>
+                <!-- /.nav-collapse -->
             </div>
-            
+            <!-- /.container -->
+        </div>
+        <!-- /.navbar-inner -->
+    </div>
+
+
+   <section style="margin: 20px">
+
+        <fieldset class="well" style="width: 80%; height: 100%; margin-left: 20px">
+            <legend class="the-legend">Creating questionnaire for an Active Review Session...</legend>
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#home" data-toggle="tab">Overview</a></li>
+                <li><a href="#details" data-toggle="tab">Details</a></li>
+                <li><a href="#moreDetails" data-toggle="tab">More</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="home">
+                    <div style="margin-left: auto; margin-right: auto; margin-top: auto; width: 80%;">
+                        <br />
+                        <img src="../Content/images/guide/ARRCreateQuestionnaire.png" width="700px" height="1000px" class="img-polaroid" />
+                        <br />
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="details">
+                    <h4>Editor screen- navigation</h4>
+                    <br />
+                    <p>
+                        The editor screen is where you- the session creator- can select requirements material, 
+                        choose a reviewer, create session questionnaire and release the session for review.
+                    </p>
+                    <p>The options on the upper navigation bar are:</p>
+                    <ul>
+                        <li>
+                            <b>Home-</b> returns you to the home page where you can create, open, and view 
+                            new and existing sessions.
+                        </li>
+                        <li>
+                            <b>File (menu)-</b> allows you to initiate a number of important actions related 
+                            to the session you are creating such as- rename, save, preview, release, assign 
+                            reviewer, spawn. These are described in detail below.
+                        </li>
+                        <li>
+                            <b>Help on ARR activities-</b> more information and assistance with <a href="Guide_Requirements.html">“selecting 
+                            requirements”</a>, <a href="Guide_Reviewer.html">“selecting the reviewer”</a>, 
+                            and “creating the questionnaire” (this link)
+                        </li>
+                    </ul>
+                    <hr />
+                    <p>
+                        The editor page allows insert questions that you want the reviewer to answer about the software 
+                        requirements you have included in the active review session.
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Edit Question (edit box)-</b> you use this edit area to insert the 
+                            questions you have created into the editor screen. 
+                        </li>
+                        <li>
+                            <b>Add Question (button)-</b> when you have completed your work on a specific 
+                            question, you use this button to actually add the question to the list.
+                        </li>
+                    </ul>
+                    <p>For questions that have been added, you have the option to edit or delete.</p>
+                    <ul>
+                        <li>
+                            <b>Edit-</b> pulls up a editor window with the current question ready for you 
+                            to modify in the same way you would when you first create the question.
+                        </li>
+                        <li>
+                            <b>Delete-</b> removes the question and renumbers the remaining ones.
+                        </li>
+                    </ul>
+                    <hr />
+                    <p>File menu options are:</p>
+                    <ul>
+                        <li>
+                            <b>Rename (pop up)-</b> changes the title/name of the review session. Allows 
+                            you to give the review session a descriptive name so it can be distinguished 
+                            from other sessions.
+                        </li>
+                        <li>
+                            <b>Save-</b> saves the contents of the session editor screen. To keep the content 
+                            you have entered you must save before leaving the editor page.
+                        </li>
+                        <li>
+                            <b>Preview-</b> formats the contents of the session editor screen in the same 
+                            way the reviewer will see the screen once the session is released to him/her. 
+                            You can check the presentation of the requirements and questions (along with
+                            your comments) in this screen.
+                        </li>
+                        <li>
+                            <b>Spawn</b>- allows you to copy specified sections of the review session to a 
+                            new session. This makes it easy for you to replicate a session or reuse parts of 
+                            an existing session to create a similar session.
+                        </li>
+                        <li>
+                            <b>Assign reviewer-</b> assigns a reviewer to this session. The session cannot be 
+                            released until you assign a reviewer. (More information is available in the 
+                            <a href="Guide_Reviewer.html">“selecting the reviewer”</a> section).
+                        </li>
+                        <li>
+                            <b>Release-</b> moves the review session from the create stage to the release 
+                            stage so the assigned reviewer can start the review process. After a session is 
+                            released it can no longer be edited by the creator.
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="moreDetails">
+                    <h4>Notes on creating questionnaire- an ideal process</h4>
+                    <p>
+                        <b>How to create questions for an active review session's questionnaire</b>
+                    </p>
+                    <ul>
+                        <li>
+                            Start with understand of the goals and objectives for the session- what we 
+                            want to accomplish, what type of errors we want to uncover or what qualities 
+                            of the requirements we want to validate
+                        </li>
+                        <li> 
+                            Determine the general types of questions and questioning techniques that are 
+                            useful for accomplishing the objectives of the session
+                        </li>
+                        <li>
+                            Assure you understand the requirements specification selected for this session
+                        </li>
+                        <li>
+                            Organize the requirements into reviewable sections- details pertaining to different 
+                            classes of questions isolated in their own sections to the extent possible
+                        </li>
+                        <li>
+                            Create a few questions (at most 5-10) that cover one central detail of the 
+                            session from highest to lowest level of the scope or most general to most 
+                            specific- this leads to a small “vertical slice” of review questions
+                        </li>
+                        <li>
+                            Create a few high-level or general questions that cover topics at the boundary 
+                            of the scope of the session- this leads to a “horizontal slice” (breadthwise) 
+                            of the review questions
+                        </li>
+                        <li>
+                            Fill in the details between these boundaries (depth and width) until the 
+                            coverage of the requirements specified is complete- each question should 
+                            pertain to or “cover” a goal of the session for a specific area of the 
+                            specification
+                        </li>
+                        <li>
+                            Before releasing the session make a final check to confirm that questions cover 
+                            the entire scope of the review (both in level of detail and breadth of sections 
+                            of the specification)
+                        </li>
+                    </ul>
+                    <p>
+                        <b>Characteristics of review session questions</b>
+                    </p>
+                    <ul>
+                        <li>
+                            Questions should have a single “concern” per question- avoid mixed purposes or 
+                            objectives in a single question
+                        </li>
+                        <li>
+                            Questions should provide the necessary context- for example when a question 
+                            measures conformance to a standard, rule, or domain specific convention, it 
+                            should includes details by which to measure requirement
+                        </li>
+                        <li>
+                            Questions can ask for concrete use of requirement- for example you can ask the 
+                            reviewer to explain what an application would do with specified inputs 
+                        </li>
+                        <li>
+                            Questions should lead to descriptive answers rather than simple affirm/deny 
+                            (“yes/no”) answers- start questions with “Which…” or “What…” rather than 
+                            “Does…” or “Is…” to yield more open questions
+                        </li>
+                        <li>
+                            (Meta-questions can determine the effectiveness or quality of the session and 
+                            the session questionnaire- ask the reviewer to evaluate the session using 
+                            questions about the questions themselves or about the review session- 
+                            this discussion can also take place in the forum part of the ARR tool)
+                        </li>
+                    </ul>
+                    <p>
+                        <b>Methods for examining requirements with questions</b>
+                    </p>
+                    <ul>
+                        <li>
+                            Ask reviewer to use the requirements to create a draft implementation of one feature (a possible architectural view or summary design) to determine if requirements are complete or clear enough to be useful for downstream use
+                        </li>
+                        <li>
+                            Ask reviewer to restate a requirement to determine how it will be interpreted by others
+                        </li>
+                        <li>
+                            Ask reviewer to summarize the content or point of a section or group of related requirements to determine if organization is clear and interpretation is in line with the creators intent
+                        </li>
+                        <li>
+                            Ask reviewer to point out what parts of the requirements specification he/she would use to answer a specific question about a specific behavior or quality of the system
+                        </li>
+                        <li>
+                            Ask the reviewer to determine how the system should react to a specific environment or input condition- the condition could be normal or abnormal
+                        </li>
+                        <li>
+                            Use a requirement testing methodology described below
+                        </li>
+                    </ul>
+                    <p>
+                        <b>Requirements “testing” method</b> (adapted from Gause and Weinberg, <em>Exploring Requirements, Quality before Design</em>)
+                    </p>
+                    <ul>
+                        <li>
+                            Use requirements that describe system’s externally visible behavior as the basis for the session
+                        </li>
+                        <li>
+                            The requirements creator should write requirements so they answer questions about how this simulated system behaves
+                        </li>
+                        <li>
+                            Ask reviewer to simulate the behavior of a system that would fulfill these requirements
+                        </li>
+                        <li>
+                            Use series of “what if” questions to determine normal use, abnormal but reasonable use, abnormal and unreasonable use
+                        </li>
+                        <li>
+                            Document test cases and the outcomes when the reviewer “runs” them
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
         </fieldset>
     </section>
