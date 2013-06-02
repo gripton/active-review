@@ -170,12 +170,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="Guide_Reviewer.html" />
     <Content Include="packages.config" />
     <Content Include="Screens\Account.html" />
     <Content Include="Screens\Guide.html" />
     <Content Include="Screens\Guide_Questions.html" />
     <Content Include="Screens\Guide_Requirements.html" />
+    <Content Include="Screens\Guide_Reviewer.html" />
     <Content Include="Screens\Summary.html" />
     <Content Include="Screens\Preview.html" />
     <Content Include="Screens\Editor.html" />
@@ -196,6 +196,7 @@
     <Content Include="Scripts\Commands\arr-tinymce-commands.js" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\Commands\arr-row-resize-commands.js" />
+    <Content Include="Scripts\Guide_Reviewer.html" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
