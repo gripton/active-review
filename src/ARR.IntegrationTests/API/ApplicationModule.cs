@@ -67,11 +67,7 @@ namespace ARR.IntegrationTests.API
             builder
                 .Register(c => c.Resolve<IDocumentStore>().OpenSession())
                 .As<IDocumentSession>()
-                .InstancePerLifetimeScope()
-                .OnActivating(c =>
-                    {
-                        
-                    });               
+                .InstancePerLifetimeScope();
                 
         }
     }

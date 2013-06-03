@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading;
 using ARR.API.Controllers;
 using ARR.API.Models;
@@ -21,8 +22,8 @@ namespace ARR.IntegrationTests
         {
             _store = new DocumentStore
                 {
-                    Url = "https://aeo.ravenhq.com/databases/AppHarbor_48e97815-70ea-43bc-ac81-4229e1cc4454",
-                    ApiKey = "3d9f210f-2fdc-4eb5-a350-5d4cc3a1e226"
+                    Url = ConfigurationManager.AppSettings["RavenUrl"],
+                    ApiKey = ConfigurationManager.AppSettings["RavenKey"]
                 };
 
             _store.Initialize();

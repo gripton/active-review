@@ -1,4 +1,6 @@
 ﻿using System;
+using ARR.Background.Events;
+using Autofac;
 using NLog;
 using Topshelf;
 
@@ -10,41 +12,24 @@ namespace ARR.Background
         
         static void Main(string[] args)
         {
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<BackgroundModule>();
+            var container = builder.Build();
+
             HostFactory.Run(x =>
             {
-                x.Service<ILogService>(s =>
+                x.Service<IEventPublisherScheduler>(s =>
                 {
-                    s.ConstructUsing(name => new LogService());
+                    s.ConstructUsing(name => container.Resolve<IEventPublisherScheduler>());
                     s.WhenStarted(tc => tc.Start());
-                    s.WhenStopped(tc => tc.Stop());
+                    s.WhenStopped(tc => tc.ShutDown());
                 });
                 x.RunAsLocalSystem();
 
-                x.SetDescription("Log Service proudly hosted by TopShelf");
-                x.SetDisplayName("Log Service to Log");
-                x.SetServiceName("LogService");
+                x.SetDescription("EventPublisherScheduler proudly hosted by TopShelf");
+                x.SetDisplayName("Event Publisher Scheduler");
+                x.SetServiceName("EventPublisherScheduler");
             });
         }
-
-        public interface ILogService
-        {
-            void Start();
-            void Stop();
-        }
-
-        public class LogService : ILogService
-        {
-            public void Start()
-            {
-                log.Debug("The TopShelf background thing actually worked!");
-            }
-
-            public void Stop()
-            {
-                log.Debug("The background thing stopped!");
-            }
-        }
     }
-
-
 }

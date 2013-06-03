@@ -1,9 +1,5 @@
 ﻿using ARR.Data.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ARR.Notifications;
 using ARR.Repository;
 
@@ -11,7 +7,9 @@ namespace ARR.ReviewSessionManagement
 {
     public class ReviewSessionMonitor : IReviewSessionMonitor
     {
-        public ReviewSessionMonitor(ReviewSessionRepository repository, INotificationGenerator generator, INotificationSender sender)
+        public ReviewSessionMonitor(AbstractRepository<ReviewSession> reviewRepository,
+            AbstractRepository<Event> eventRepository,
+            INotificationGenerator generator, INotificationSender sender)
         {
 
         }
@@ -28,7 +26,7 @@ namespace ARR.ReviewSessionManagement
 
         public void OnNext(Event value)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void OnAssignedReviewer(int reviewId, string username)

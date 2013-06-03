@@ -64,6 +64,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Services" />
@@ -118,6 +119,7 @@
     <Compile Include="API\AccountControllerTests.cs" />
     <Compile Include="API\AccountIndexControllerTests.cs" />
     <Compile Include="API\ApplicationModule.cs" />
+    <Compile Include="Background\SchedulerResolutionTests.cs" />
     <Compile Include="BaseIntegrationTest.cs" />
     <Compile Include="API\ReviewIndexControllerTests.cs" />
     <Compile Include="API\ReviewSessionControllerTests.cs" />
@@ -133,6 +135,10 @@
     <ProjectReference Include="..\ARR.API\ARR.API.csproj">
       <Project>{88b8a51d-0d65-489e-8ad4-63eecb1180a3}</Project>
       <Name>ARR.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ARR.Background\ARR.Background.csproj">
+      <Project>{2267adca-5b87-4ee2-ba17-de5f9eafb905}</Project>
+      <Name>ARR.Background</Name>
     </ProjectReference>
     <ProjectReference Include="..\ARR.Core\ARR.Core.csproj">
       <Project>{1292dc71-7a5c-409f-bfed-60d2c17f340e}</Project>
@@ -160,6 +166,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

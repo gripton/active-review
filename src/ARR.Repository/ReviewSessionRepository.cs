@@ -1,6 +1,8 @@
 ﻿using ARR.Data.Entities;
 using ARR.Repository.Patch;
+
 using Raven.Client;
+
 using System.Linq;
 
 namespace ARR.Repository
@@ -8,6 +10,8 @@ namespace ARR.Repository
     public class ReviewSessionRepository : AbstractRepository<ReviewSession>
     {
         public ReviewSessionRepository(IDocumentSession session) : base(session) { }
+
+        public ReviewSessionRepository(IDocumentStore store) : base(store) { }
 
         public override ReviewSession GetByName(string name)
         {

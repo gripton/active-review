@@ -17,13 +17,11 @@ namespace ARR.AccountManagement
     public class AccountManager :  IAccountManager
     {
         //private readonly INotificationGenerator _generator;
-        private readonly INotificationSender _sender;
         private readonly AbstractRepository<Account> _repository;
         private readonly IPasswordManager _passwordManager;
         
-        public AccountManager(INotificationSender sender, AbstractRepository<Account> repository, IPasswordManager passwordManager)
+        public AccountManager(AbstractRepository<Account> repository, IPasswordManager passwordManager)
         {
-            _sender = sender;
             _repository = repository;
             _passwordManager = passwordManager;
 

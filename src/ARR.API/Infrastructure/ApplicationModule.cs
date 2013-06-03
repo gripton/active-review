@@ -1,7 +1,6 @@
 ﻿using System.Configuration;
 using ARR.AccountManagement;
 using ARR.Data.Entities;
-using ARR.Notifications;
 using ARR.Repository;
 using ARR.ReviewSessionManagement;
 using Autofac;
@@ -10,7 +9,7 @@ using PracticalCode.WebSecurity.Infrastructure.Membership;
 using Raven.Client;
 using Raven.Client.Document;
 
-namespace ARR.API.Controllers
+namespace ARR.API.Infrastructure
 {
     public class ApplicationModule : Module
     {
@@ -22,7 +21,7 @@ namespace ARR.API.Controllers
                 .InstancePerApiRequest();
 
             builder
-                .RegisterType<AccountRepository>()
+                .Register(c => new AccountRepository(c.Resolve<IDocumentSession>()))
                 .As<AbstractRepository<Account>>()
                 .InstancePerApiRequest();
 
@@ -37,32 +36,12 @@ namespace ARR.API.Controllers
                 .InstancePerApiRequest();
 
             builder
-                .RegisterType<ReviewSessionRepository>()
+                .Register(c => new ReviewSessionRepository(c.Resolve<IDocumentSession>()))
                 .As<AbstractRepository<ReviewSession>>()
                 .InstancePerApiRequest();
             
             builder
-                .RegisterType<ReviewSessionMonitor>()
-                .As<IReviewSessionMonitor>()
-                .InstancePerApiRequest();
-
-            builder
-                .RegisterType<NotificationGenerator>()
-                .As<INotificationGenerator>()
-                .InstancePerApiRequest();
-
-            builder
-                .RegisterType<NotificationSender>()
-                .As<INotificationSender>()
-                .InstancePerApiRequest();
-
-            builder
-                .RegisterType<NotificationSender>()
-                .As<INotificationSender>()
-                .InstancePerApiRequest();
-
-            builder
-               .RegisterType<EventRepository>()
+               .Register(c => new ReviewSessionRepository(c.Resolve<IDocumentSession>()))
                 .As<AbstractRepository<Event>>()
                .InstancePerApiRequest();
 
