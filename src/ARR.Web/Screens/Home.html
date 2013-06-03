@@ -47,7 +47,7 @@ legend {
                 <span id="MessageText"></span> 
             </div>
 
-    <button class="btn btn-primary" data-bind="click: createNewSession" title="Create a new review session">Create New Session</button>
+    <button class="btn btn-primary btn-small" data-bind="click: createNewSession" title="Create a new review session">Create New Session</button>
 
     <fieldset class="well" style="min-width: 500px; margin-top: 20px;">
         <legend class="the-legend">My New Created Sessions</legend>
@@ -94,8 +94,8 @@ legend {
                 <p class="error-text">Are you sure you want to delete this session?</p>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                <button class="btn btn-danger" data-dismiss="modal" data-bind="click: $root.removeSession">Delete</button>
+                <button class="btn btn-small" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                <button class="btn btn-small btn-danger" data-dismiss="modal" data-bind="click: $root.removeSession">Delete</button>
             </div>
         </div>
     
@@ -121,8 +121,8 @@ legend {
                 <p>Don't see an appropriate reviewer? <a href="#">Invite them now.</a></p>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                <button class="btn" data-dismiss="modal" data-bind="click: $root.assignReviewer, enable: $root.selectedReviewer, enable: $root.selectedSession" >Assign</button>
+                <button class="btn btn-small" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                <button class="btn btn-small" data-dismiss="modal" data-bind="click: $root.assignReviewer, enable: $root.selectedReviewer, enable: $root.selectedSession" >Assign</button>
             </div>
         </div>    
     </fieldset>
