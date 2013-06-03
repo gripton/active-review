@@ -6,6 +6,7 @@ using ARR.Data.Entities;
 using ARR.ReviewSessionManagement;
 
 using System.Collections.Generic;
+using AutoMapper;
 
 namespace ARR.API.Controllers
 {
@@ -38,11 +39,11 @@ namespace ARR.API.Controllers
             try
             {
                 _manager.Create(session, username);
-                response = GetResponse(session.Id.ToString());
+                response = GetResponse(session.Id.ToNullSafeString());
             }
             catch (Exception e)
             {
-                response = GetResponse(e);
+                response = GetResponse(session.Id.ToNullSafeString());
             }
 
             return response;
@@ -69,7 +70,7 @@ namespace ARR.API.Controllers
                         break;
                 }
 
-                response = GetResponse();
+                response = GetResponse(session.Id.ToNullSafeString());
             }
             catch (Exception e)
             {

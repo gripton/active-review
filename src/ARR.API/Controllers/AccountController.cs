@@ -7,10 +7,11 @@ using System.Web.Http;
 
 using ARR.AccountManagement;
 using ARR.Data.Entities;
+using AutoMapper;
 
 namespace ARR.API.Controllers
 {
-    public class AccountController : ApiController
+    public class AccountController : BaseController
     {
         private readonly IAccountManager _manager;
 
@@ -32,26 +33,41 @@ namespace ARR.API.Controllers
         }
 
         // POST api/account
-        public void Post(Account account)
+        public HttpResponseMessage Post(Account account)
         {
-            _manager.CreateNew(account);
+            try
+            {
+                _manager.CreateNew(account);
+                return GetResponse(account.Id.ToNullSafeString());
+            }
+            catch (Exception e)
+            {
+                return GetResponse(e);
+            }
         }
 
         // PUT api/account/5/patch
-        public void Put(int id, string patch, Account account)
+        public HttpResponseMessage Put(int id, string patch, Account account)
         {
-            switch (patch)
-            {
-                case "security":
-                    _manager.UpdateSecurityStatistics(account);
-                    break;
-                case "update-profile":
-                    _manager.UpdateSecurityStatistics(account);
-                    break;
-                default:
-                    _manager.Save(account);
-                    break;
+            try{
+                switch (patch)
+                {
+                    case "security":
+                        _manager.UpdateSecurityStatistics(account);
+                        break;
+                    case "update-profile":
+                        _manager.UpdateSecurityStatistics(account);
+                        break;
+                    default:
+                        _manager.Save(account);
+                        break;
+                }
+                return GetResponse(id.ToNullSafeString());
             }
+            catch (Exception e)
+            {
+                return GetResponse(e);
+            }        
         }
 
         // DELETE api/account/5

@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using ARR.Data.Entities;
 using ARR.ReviewSessionManagement;
 using System.Collections.Generic;
-using System.Web.Http;
+using AutoMapper;
 
 
 namespace ARR.API.Controllers
 {
-    public class QuestionsController : ApiController
+    public class QuestionsController : BaseController
     {
         private readonly IReviewSessionManager _manager;
 
@@ -21,21 +22,29 @@ namespace ARR.API.Controllers
         // GET: /Questions/
 
         // PUT api/questions/5/save-questionnaire
-        public void Put(int id, string patch, List<Question> questions)
+        public HttpResponseMessage Put(int id, string patch, List<Question> questions)
         {
             var username = GetAPIUser();
 
-            switch (patch)
+            try
             {
-                case "complete-session":
-                    _manager.CompleteQuestionnaire(id, questions, username);
-                    break;
-                case "save-questionnaire":
-                    _manager.SaveQuestionnaire(id, questions, username);
-                    break;
-                case "provide-feedback":
-                    _manager.ProvideFeedback(id, questions, username);
-                    break;
+                switch (patch)
+                {
+                    case "complete-session":
+                        _manager.CompleteQuestionnaire(id, questions, username);
+                        break;
+                    case "save-questionnaire":
+                        _manager.SaveQuestionnaire(id, questions, username);
+                        break;
+                    case "provide-feedback":
+                        _manager.ProvideFeedback(id, questions, username);
+                        break;
+                }
+                return GetResponse(id.ToNullSafeString());
+            }
+            catch (Exception e)
+            {
+                return GetResponse(e);
             }
         }
 

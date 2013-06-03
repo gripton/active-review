@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Http;
 using ARR.Core.Authorization;
 using ARR.ReviewSessionManagement.Exceptions;
@@ -25,10 +26,8 @@ namespace ARR.API.Controllers
 
         protected HttpResponseMessage GetResponse(string content = null)
         {
-            var response = new HttpResponseMessage{ StatusCode = HttpStatusCode.OK };
-
-            if(!string.IsNullOrEmpty(content))
-                response.Content = new StringContent(content);
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(string.IsNullOrEmpty(content)? "" : content);
 
             return response;    
         }
@@ -38,10 +37,8 @@ namespace ARR.API.Controllers
             var map = CodeMap;
             var exType = e.GetType();
 
-            var response = new HttpResponseMessage
-                {
-                    StatusCode = (map.ContainsKey(exType)) ? map[exType] : HttpStatusCode.InternalServerError
-                };
+            var response = Request.CreateErrorResponse(
+                (map.ContainsKey(exType)) ? map[exType] : HttpStatusCode.InternalServerError, e);
 
             return response;
         }

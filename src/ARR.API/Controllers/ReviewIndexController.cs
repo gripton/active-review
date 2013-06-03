@@ -80,7 +80,7 @@ namespace ARR.API.Controllers
                         break;
                 }
 
-                response = GetResponse();
+                response = GetResponse(id.ToNullSafeString());
             }
             catch (Exception e)
             {
@@ -99,11 +99,11 @@ namespace ARR.API.Controllers
             try
             {
                 _manager.Delete(id, username);
-                response = GetResponse();
+                response = GetResponse(id.ToNullSafeString());
             }
             catch (Exception e)
             {
-                response = GetResponse(e);
+                response = GetResponse(e.ToNullSafeString());
             }
 
             return response;
