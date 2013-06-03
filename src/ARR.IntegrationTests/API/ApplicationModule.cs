@@ -6,7 +6,6 @@ using ARR.ReviewSessionManagement;
 using Autofac;
 using PracticalCode.WebSecurity.Infrastructure.Membership;
 using Raven.Client;
-using Raven.Client.Document;
 
 namespace ARR.IntegrationTests.API
 {
@@ -20,8 +19,8 @@ namespace ARR.IntegrationTests.API
                 .InstancePerLifetimeScope();
 
             builder
-                .RegisterType<AccountRepository>()
-                .AsSelf()
+                .Register(c => new AccountRepository(c.Resolve<IDocumentSession>()))
+                .As<AbstractRepository<Account>>()
                 .InstancePerLifetimeScope();
 
             builder
@@ -35,19 +34,19 @@ namespace ARR.IntegrationTests.API
                 .InstancePerLifetimeScope();
 
             builder
-                .RegisterType<ReviewSessionRepository>()
+                .Register(c => new ReviewSessionRepository(c.Resolve<IDocumentSession>()))
                 .As<AbstractRepository<ReviewSession>>()
                 .InstancePerLifetimeScope();
+
+            builder
+               .Register(c => new EventRepository(c.Resolve<IDocumentSession>()))
+                .As<AbstractRepository<Event>>()
+               .InstancePerLifetimeScope();
             
             builder
                 .RegisterType<ReviewSessionMonitor>()
                 .As<IReviewSessionMonitor>()
                 .InstancePerLifetimeScope();
-
-            builder
-               .RegisterType<EventRepository>()
-                .As<AbstractRepository<Event>>()
-               .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<NotificationGenerator>()

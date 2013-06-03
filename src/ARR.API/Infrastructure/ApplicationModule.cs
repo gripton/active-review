@@ -41,7 +41,7 @@ namespace ARR.API.Infrastructure
                 .InstancePerApiRequest();
             
             builder
-               .Register(c => new ReviewSessionRepository(c.Resolve<IDocumentSession>()))
+               .Register(c => new EventRepository(c.Resolve<IDocumentSession>()))
                 .As<AbstractRepository<Event>>()
                .InstancePerApiRequest();
 
