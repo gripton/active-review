@@ -43,7 +43,7 @@ namespace ARR.API.Controllers
         // POST api/reviewindex
         public HttpResponseMessage Post(ReviewIndex index)
         {
-            log.Debug("A new review session has been posted");
+            log.Info("A new review session has been posted");
 
             HttpResponseMessage response;
             var username = GetAPIUser();

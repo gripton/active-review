@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using ARR.Data.Entities;
 using ARR.Repository;
-
+using NLog;
 using Quartz;
 using Raven.Client;
 
@@ -26,6 +26,7 @@ namespace ARR.Background.Events
         public class EventPublisher : Publisher<Event>, IJob
         {
             private readonly IDocumentStore _store;
+            private static readonly Logger log = LogManager.GetLogger(typeof(EventPublisher).Name);
 
             public EventPublisher(IDocumentStore store, IObserver<Event> reviewSessionMonitor)
             {
@@ -35,6 +36,8 @@ namespace ARR.Background.Events
 
             public void Execute(IJobExecutionContext context)
             {
+                log.Info("EventPublisher is executing");
+
                 var eventRepository = new EventRepository(_store.OpenSession());
                 var events = eventRepository.ListAll();
 
