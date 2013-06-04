@@ -82,11 +82,11 @@ namespace ARR.AccountManagement
             try
             {
                 var m = new MailAddress(emailaddress);
-                return true;
+                return false    ;
             }
             catch (FormatException)
             {
-                return false;
+                return true;
             }
         }
 
