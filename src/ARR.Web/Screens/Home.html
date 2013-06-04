@@ -218,6 +218,51 @@ legend {
     </fieldset>
  </section>
 
+    <!-- Spawn Session Modal -->
+            <!--<div id="spawnDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true" data-bind="with: spawnReviewViewModel.spawnInstance">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="H3">Spawn Review<span></span></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="control-group">
+                        <h5>Name</h5>
+                        <div class="controls">
+                            <input id="spawnName" type="text" data-bind="value: Title"/>
+                        </div>
+                    </div>
+                    <div>
+                        <h5>Requirements</h5>
+                        <div data-bind="foreach: Requirements">
+                            <div class="row-fluid">
+                                <div class="span2">
+                                    <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />
+                                    <span data-bind="text: $index() + 1"></span>:
+                                </div>
+                                <div class="span10"  data-bind="html: Requirement.Content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h5>Questions</h5>
+                        <div data-bind="foreach: Questions">
+                            <div class="row-fluid">
+                                <div class="span2">
+                                    <input type="checkbox" data-bind="checked: Copy, attr: { value: $data }" />
+                                    <span data-bind="text: ($index() + 1) + ':'"></span>
+                                </div>
+                                <div class="span10" data-bind="html: Question.Content">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-small btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: $root.spawnReviewViewModel.spawn" >Hatch</button>
+                </div>
+            </div>-->
+
      <!-- first visit modal -->
      <div class="modal small hide fade hero-unit" id="modalIntro" tabindex="-1" role="dialog" aria-labelledby="introModalLabel" aria-hidden="true">
         <div class="modal-header">
@@ -273,6 +318,7 @@ legend {
     <script type="text/javascript" src="../Scripts/knockout.mapping-2.4.1.js"></script>
     <script type="text/javascript" src="../Scripts/arr-urls.aspx"></script>
     <script type="text/javascript" src="../Scripts/Model/arr-home-model.js"></script>
+    <!--<script type="text/javascript" src="../Scripts/ViewModel/arr-spawn-view-model.js"></script>-->
     
     <script type="text/javascript">
         $(document).ready(triggerModalOnFirstVisit('arr_first_home', '#modalIntro'));

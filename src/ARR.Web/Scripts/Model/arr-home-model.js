@@ -104,7 +104,7 @@ var IndexViewModel = function () {
     getSessions(self);
     
     self.createNewSession = function () {
-        var reviewSession = this;
+        var reviewSession = new IndexViewModel();
         reviewSession.Title = "Untitled Session";
         reviewSession.Creator = currentUser;
 
@@ -160,6 +160,7 @@ var IndexViewModel = function () {
             dataType: 'JSON',
             success: function () {
                 displayMessage("Reviewer assigned", false);
+                self.selectedSession().reviewer(sessionData.Reviewer);
             },
         });
     }
