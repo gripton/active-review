@@ -75,7 +75,7 @@ var ReviewEditorViewModel = function (reviewSessionId) {
                 
                 $.getJSON(getArrApiUrl('account'), function (data) {
                     $.map(data, function (reviewer) {
-                        self.assginSessionViewModel.reviewerList.push(new Reviewer(reviewer.ScreenName, reviewer.AreaOfExpertise));
+                        self.assginSessionViewModel.reviewerList.push(new Reviewer(reviewer.ScreenName, reviewer.Username, reviewer.AreaOfExpertise));
                     });
 
                     self.processingViewModel.turnOffProcessing();

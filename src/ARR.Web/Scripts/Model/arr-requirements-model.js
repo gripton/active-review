@@ -6,9 +6,10 @@
     ARCHIVED: 3
 };
 
-function Reviewer(screenName, domain) {
+function Reviewer(screenName, username, domain) {
     var self = this;
     self.screenName = screenName;
+    self.username = username;
     self.domain = domain;
 };
 

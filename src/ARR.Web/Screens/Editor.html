@@ -206,7 +206,7 @@
                         <span class="add-on"><i class="icon-user"></i></span>
                         <select id="reviewer" data-bind="options: $root.assginSessionViewModel.reviewerList, optionsText: function (item) { 
                             return item.screenName + ' (Domain: ' + item.domain + ')'
-                            }, optionsValue: 'screenName', value: $root.assginSessionViewModel.selectedReviewer, optionsCaption: 'Please select a reviewer...'">
+                            }, optionsValue: 'username', value: $root.assginSessionViewModel.selectedReviewer, optionsCaption: 'Please select a reviewer...'">
                         </select>
                     </div>
                     <p>Don't see an appropriate reviewer? <a href="#">Invite them now.</a></p>

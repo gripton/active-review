@@ -70,7 +70,7 @@ legend {
                         <a data-bind="attr: {href: editorUrl}"><i class="icon-pencil" title="Edit this review session"></i></a>
                     </td>
                     <td>
-                        <a data-bind="attr: {href: editorUrl}"><i class="icon-eye-open" title="Preview this review session"></i></a>
+                        <a data-bind="attr: {href: previewUrl}"><i class="icon-eye-open" title="Preview this review session"></i></a>
                     </td>
                     <td data-bind="click: $root.getReviewers">
                         <a href="#reviewerModal" role="button" data-toggle="modal" data-bind="click: $root.setSelectedSession"><i class="icon-user" title="Assign a reviewer for this session"></i></a>
@@ -113,7 +113,7 @@ legend {
                                            return item.screenName + ' (Domain: ' + item.domain + ')' 
                                        }, 
                                        optionsValue: function(item) { 
-                                           return item.screenName 
+                                           return item.username 
                                        },
                                        value: $root.selectedReviewer, 
                                        optionsCaption: 'Please select a reviewer...'"></select>
@@ -195,7 +195,7 @@ legend {
                     <tr>
                         <td data-bind="text: title"></td>
                         <td>
-                            <a data-bind="attr: {href: previewUrl}"><i class="icon-file" title="View a read-only version of this review session"></i></a>
+                            <a data-bind="attr: {href: summaryUrl}"><i class="icon-file" title="View a read-only version of this review session"></i></a>
                         </td>
                         <td>
                             <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire" title="Make a copy of this review session"></i></a>
