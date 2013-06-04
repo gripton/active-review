@@ -66,13 +66,13 @@ namespace ARR.IntegrationTests
 
         public void Dispose()
         {
-            // We will definately have to move the unit-like test to a unit test library
-            while (_store.DatabaseCommands.GetStatistics().StaleIndexes.Length != 0)
-            {
-                Thread.Sleep(10);
-            }
+            //// We will definately have to move the unit-like test to a unit test library
+            //while (_store.DatabaseCommands.GetStatistics().StaleIndexes.Length != 0)
+            //{
+            //    Thread.Sleep(10);
+            //}
 
-            _store.DatabaseCommands.DeleteByIndex("AllDocumentsById", new IndexQuery());
+            //_store.DatabaseCommands.DeleteByIndex("AllDocumentsById", new IndexQuery());
         }
     }
 

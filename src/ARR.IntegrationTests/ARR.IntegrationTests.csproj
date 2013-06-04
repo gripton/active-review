@@ -123,6 +123,7 @@
     <Compile Include="BaseIntegrationTest.cs" />
     <Compile Include="API\ReviewIndexControllerTests.cs" />
     <Compile Include="API\ReviewSessionControllerTests.cs" />
+    <Compile Include="Notification\NotificationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReviewManagement\ReviewSessionManagerTests.cs" />
     <Compile Include="ReviewManagement\ReviewSessionQuestionnaireTests.cs" />

@@ -22,5 +22,4 @@ namespace ARR.Repository
             PatchDictionary.Add(Account.UpdateSecurityPatch, AccountPatchCollection.GetUpdateStatisticsPatch);
         }
     }
-    
 }

@@ -14,11 +14,20 @@ namespace ARR.Notifications
             var username = ConfigurationManager.AppSettings["SMTPUsername"];
             var password = ConfigurationManager.AppSettings["SMTPPassword"];
 
-            using (var client = new SmtpClient(server, port))
+            try
             {
-                client.Credentials = new NetworkCredential(username, password);
-                client.Send(message);
+                using (var client = new SmtpClient(server, port))
+                {
+                    client.Credentials = new NetworkCredential(username, password);
+                    client.Send(message);
+                }
             }
+            catch (Exception e)
+            {
+                string test = e.Message;
+                throw;
+            }
+            
         }
     }
 }

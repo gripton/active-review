@@ -4,13 +4,28 @@ using ARR.Data.Entities;
 using ARR.Repository;
 using ARR.ReviewSessionManagement;
 using Autofac;
-
+using Raven.Client;
 using Xunit;
 
 namespace ARR.IntegrationTests.ReviewManagement
 {
     public class ReviewSessionManagerTests : BaseIntegrationTest
     {
+        [Fact]
+        public void NAME()
+        {
+            // Build the container.
+            var container = Setup();
+
+            var html = new HtmlEmailTemplate();
+            html.Name = "ReviewerAssigned";
+            html.Content = "test";
+
+            var repo = new HtmlEmailTemplateRepository(container.Resolve<IDocumentStore>());
+
+            repo.Save(html);
+        }
+
         [Fact]
         public void AssignReviewer_Integrates()
         {
