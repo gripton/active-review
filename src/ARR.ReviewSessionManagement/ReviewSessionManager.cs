@@ -58,7 +58,7 @@ namespace ARR.ReviewSessionManagement
             {
                 Created = DateTime.UtcNow,
                 EntityId = session.Id,
-                EventType = EventType.ReviewerInvited,
+                EventType = EventType.ReviewerAssigned,
                 Info = new Dictionary<string, string> { { "username", reviewer } }
             };
 
@@ -158,7 +158,7 @@ namespace ARR.ReviewSessionManagement
             {
                 Created = DateTime.UtcNow,
                 EntityId = session.Id,
-                EventType = EventType.ReviewReleased
+                EventType = EventType.ReviewSessionReleased
             };
 
             _eventRepository.Save(assignEvent);

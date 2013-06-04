@@ -7,7 +7,7 @@ namespace ARR.Notifications
 {
     public class NotificationSender : INotificationSender
     {
-        public void SendNotification(Func<MailMessage> messageGenerator)
+        public void SendNotification(MailMessage message)
         {
             var server = ConfigurationManager.AppSettings["SMTPServer"];
             var port = int.Parse(ConfigurationManager.AppSettings["SMTPPort"]);
@@ -16,7 +16,6 @@ namespace ARR.Notifications
 
             using (var client = new SmtpClient(server, port))
             {
-                var message = messageGenerator.Invoke();
                 client.Credentials = new NetworkCredential(username, password);
                 client.Send(message);
             }

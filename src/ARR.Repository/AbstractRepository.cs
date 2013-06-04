@@ -127,7 +127,7 @@ namespace ARR.Repository
 
         private TEntity Get(int id, IDocumentSession session)
         {
-            return _session.Load<TEntity>(id);
+            return session.Load<TEntity>(id);
         }
 
         public virtual TEntity GetByName(string name)

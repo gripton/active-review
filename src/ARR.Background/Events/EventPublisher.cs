@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
+
 using ARR.Data.Entities;
 using ARR.Repository;
+
 using Quartz;
 using Raven.Client;
 
@@ -19,6 +22,7 @@ namespace ARR.Background.Events
 
         public IJob Instance { get { return new EventPublisher(_store, _reviewSessionMonitor); } }
 
+        [DisallowConcurrentExecution]
         public class EventPublisher : Publisher<Event>, IJob
         {
             private readonly IDocumentStore _store;
@@ -32,12 +36,13 @@ namespace ARR.Background.Events
             public void Execute(IJobExecutionContext context)
             {
                 var eventRepository = new EventRepository(_store.OpenSession());
-                var events = eventRepository.FindAll();
+                var events = eventRepository.ListAll();
 
-                foreach (var evt in events)
-                {
-                    Notify(evt);
-                }
+                // Process the new events
+                Parallel.ForEach(events, Notify);
+
+                // Delete the recevied events
+                Parallel.ForEach(events, evt => { if (evt.Recevied) eventRepository.Delete(evt); });
             }
         }
     }

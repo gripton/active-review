@@ -5,6 +5,6 @@ namespace ARR.Notifications
 {
     public interface INotificationSender
     {
-        void SendNotification(Func<MailMessage> messageGenerator);
+        void SendNotification(MailMessage message);
     }
 }

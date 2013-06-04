@@ -1,13 +1,14 @@
 ﻿using System.Reflection;
 using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Routing;
+
 using ARR.API.App_Start;
-using ARR.API.Controllers;
 using ARR.API.Infrastructure;
 using ARR.API.Models;
+
 using Autofac;
 using Autofac.Integration.WebApi;
+
 using Thinktecture.IdentityModel.Http.Cors.IIS;
 
 namespace ARR.API

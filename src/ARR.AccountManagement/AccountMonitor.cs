@@ -2,10 +2,6 @@
 using ARR.Notifications;
 using ARR.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ARR.AccountManagement
 {
@@ -43,22 +39,7 @@ namespace ARR.AccountManagement
 
         public void OnNext(Event value)
         {
-            switch (value.EventType)
-            {
-                case EventType.ReviewerInvited:
-                    var invitee = value.Info["invitee"];
-                    InviteReviewer(invitee);
-                    value.Recevied = true;
-                    break;
-                case EventType.InviteeRegistered:
-                    var reviewId = value.EntityId;
-                    var username = value.Info["invitee"];
-                    AssignInvitedReviewer(reviewId, username);
-                    value.Recevied = true;
-                    break;
-                default:
-                    return;
-            }
+            
         }
     }
 }
