@@ -40,15 +40,15 @@ var Reviewer = function (screenName, username, domain) {
     self.domain = domain;
 };
 
-var currentUser;
+var currentUser = loggedInUser();
 
-function getCurrentUser() {
-    $.getJSON('user.user', function (userData) {
-        currentUser = userData.Username;
-    });
-}
+//function getCurrentUser() {
+//    $.getJSON('user.user', function (userData) {
+//        currentUser = userData.Username;
+//    });
+//}
 
-getCurrentUser();
+//getCurrentUser();
 
 function deleteSession(sessionId) {
     $.ajax({
