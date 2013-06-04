@@ -9,7 +9,7 @@ function Feedback() {
     var self = this;
     self.Username = ko.observable();
     self.Text = ko.observable();
-    self.Created = Date.now();
+    self.Created = ko.observable("");
 };
 
 function QuestionFeedback(question) {

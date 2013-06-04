@@ -56,7 +56,7 @@
                         <span data-bind="html: Question.Answer"></span>
                         <h5>Feedback</h5>
                         <div data-bind="foreach: Question.Feedbacks">
-                            <strong>User: <span data-bind="text: Username"></span>(<span data-bind="text: Created"></span>)</strong>
+                            <strong>User: <span data-bind="text: Username"></span> (<span  data-bind="    dateString: Created, datePattern: 'dddd, MMMM dd, yyyy'"></span>)</strong>
                             <p data-bind="html: Text"></p>
                         </div>
                         <br />
@@ -91,6 +91,7 @@
     <script type="text/javascript" src="../Scripts/tinymce/plugins/bbcode/editor_plugin_src.js"></script>
     <script type="text/javascript" src="../Scripts/arr-urls.aspx"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-security-commands.js"></script>
+    <script type="text/javascript" src="../Scripts/Commands/arr-formatting-commands.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-tinymce-commands.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-row-resize-commands.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-loading-commands.js"></script>

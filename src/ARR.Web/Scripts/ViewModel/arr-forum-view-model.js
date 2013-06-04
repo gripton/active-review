@@ -53,7 +53,8 @@ var AddFeedbackViewModel = function(forumViewModel) {
         self.forumViewModel.processingViewModel.turnOnProcessing("Saving Feedback...");
         var f = new Feedback();
         f.Text(selectedQuestion.NewFeedback());
-        //f.Username = self
+        f.Username(loggedInUser());
+        f.Created(new Date().toISOString());
 
         if (selectedQuestion.Question.Feedbacks() == null) {
             selectedQuestion.Question.Feedbacks([]);
