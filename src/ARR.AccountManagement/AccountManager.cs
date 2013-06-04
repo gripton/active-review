@@ -38,7 +38,7 @@ namespace ARR.AccountManagement
             if(InvalidUserName(account.Username))
                 throw new InvalidUsernameException();
 
-            if (InvalidEmailAddres(account.Username))
+            if (InvalidEmailAddres(account.EmailAddress))
                 throw new InvalidEmailAddressException();
 
             var user = new WebSecurityUser();
@@ -74,7 +74,7 @@ namespace ARR.AccountManagement
 
         private static bool InvalidUserName(string username)
         {
-            return Regex.IsMatch(username, "^[a-zA-Z0-9_]*$");
+            return !Regex.IsMatch(username, "^[a-zA-Z0-9_]*$");
         }
 
         private static bool InvalidEmailAddres(string emailaddress)
