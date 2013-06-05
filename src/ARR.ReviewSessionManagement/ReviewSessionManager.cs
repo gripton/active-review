@@ -143,9 +143,18 @@ namespace ARR.ReviewSessionManagement
 
             if (session == null)
                 throw new SessionNotFoundException();
-           
+
+            if (session.Requirements == null || session.Requirements.Count == 0)
+                throw new InvalidOperationException("Session being released must have at least one requirement.");
+
+            if (session.Questions != null && session.Questions.Count == 0)
+                throw new InvalidOperationException("Session being released must have at least one question");
+
+            if (session.Reviewer == null)
+                throw new InvalidOperationException("Session cannot be released without a reviewer assigned.");
+
             if (session.SessionStatus != SessionStatusType.Created)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Session has already been released.");
             
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();

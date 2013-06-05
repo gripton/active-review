@@ -8,7 +8,8 @@
                 displayMessage('Error: Unauthorized', true);
             }
             else if (jqXhr.status == 403) {
-                displayMessage('Error: Current state of Review Session does not allow this action', true);
+                var obj = JSON.parse(jqXhr.responseText);
+                displayMessage('Error: Current state of Review Session does not allow this action: ' + obj.ExceptionMessage, true);
             }
             else if (jqXhr.status == 404) {
                 //displayMessage('Error: Could not access resource', true);
