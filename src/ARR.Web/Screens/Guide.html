@@ -41,10 +41,15 @@
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active in" id="home">
+                    <!-- ***button to display the legend in a modal -->
+                    <a href="#legendModal" role="button" class="btn" data-toggle="modal">Show Legend</a>
                     <div style="margin-left:auto; margin-right:auto; margin-top: auto; width:80%;">
                         <br/>
                         <img src="../Content/images/guide/ARRSessionStateDiagram.png" width="700px" height="1000px" class="img-polaroid"  />
                         <br/>
+                        <!-- ***quick fix to add legend for this document --
+                        <img src="../Content/images/guide/ARRStateDiagramLegend.png" width="300px" height="500px" class="img-polaroid" />
+                        <br /> -->
                     </div>
                 </div>
                 <div class="tab-pane fade" id="roles">
@@ -174,7 +179,22 @@
             
         </fieldset>
     </section>
-    
+     
+    <!-- ***modal to display legend for state diagram legend -->
+    <div id="legendModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="legendModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h3 id="legendModalLabel">State diagram</h3>
+        </div>
+        <div class="modal-body">
+            <br/>
+                <img src="../Content/images/guide/ARRStateDiagramLegend.png" width="300px" height="500px" class="img-polaroid" />
+            <br />
+        </div>
+        <!-- <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div> -->
+    </div>
 
 
      <!-- Bootstrap jQuery Plugins, compiled and minified -->
