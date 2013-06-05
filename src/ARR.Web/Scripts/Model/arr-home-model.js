@@ -1,4 +1,6 @@
-﻿var SessionStatus =
+﻿var currentUser = loggedInUser();
+
+var SessionStatus =
 {
     CREATED: 0,
     RELEASED: 1,
@@ -14,7 +16,6 @@ function Session(data) {
     self.type = ko.observable(data.SessionStatus);
     self.reviewer = ko.observable(data.Reviewer);    
 
-    self.newSession = ko.observable();
     self.selectedSession = ko.observable();
     self.isLocked = ko.observable(false);
     self.allowQuestionnaire = ko.observable(true);
@@ -39,16 +40,6 @@ var Reviewer = function (screenName, username, domain) {
     self.username = username;
     self.domain = domain;
 };
-
-var currentUser = loggedInUser();
-
-//function getCurrentUser() {
-//    $.getJSON('user.user', function (userData) {
-//        currentUser = userData.Username;
-//    });
-//}
-
-//getCurrentUser();
 
 function deleteSession(sessionId) {
     $.ajax({
@@ -92,7 +83,7 @@ var IndexViewModel = function () {
     var self = this;
     setupErrorHandling(self);
     self.selectedSession = ko.observable();
-    
+
     self.reviewers = ko.observableArray([]);
     self.selectedReviewer = ko.observable();
 
@@ -102,7 +93,7 @@ var IndexViewModel = function () {
     self.myArchivedSessionsList = ko.observableArray([]);
 
     getSessions(self);
-    
+
     self.createNewSession = function () {
         var reviewSession = new IndexViewModel();
         reviewSession.Title = "Untitled Session";
@@ -116,6 +107,7 @@ var IndexViewModel = function () {
             dataType: 'JSON',
             success: function (response) {
                 self.myCreatedSessionsList.unshift(new Session({ Id: response, Title: reviewSession.Title }));
+                $("tr.myCreatedSessions:first").attr('style', 'background-color: #FAFAB1');
                 displayMessage("New session created", false);
             },
         });
