@@ -25,19 +25,25 @@ var ReviewEditorViewModel = function (reviewSessionId) {
     self.processingViewModel = new ProcessingViewModel();
 
     self.release = function () {
-        self.processingViewModel.turnOnProcessing("Releasing Session...");
-        $.ajax({
-            type: "PUT",
-            url: getArrApiUrlPost('reviewsession/' + self.reviewSessionId + "/release-session"),
-            data: ko.toJSON(self.reviewSession),
-            contentType: 'application/json',
-            dataType: 'JSON',
-            success: function () {
-                alert('Your session has been released.');
-                self.processingViewModel.turnOffProcessing();
-                window.location = "Home.html";
-            },
-        });
+        if (requirementsModel.isDirty()) {
+            displayMessage("Session needs to be saved before you can release it.", true);
+        }
+        else
+        { 
+            self.processingViewModel.turnOnProcessing("Releasing Session...");
+            $.ajax({
+                type: "PUT",
+                url: getArrApiUrlPost('reviewsession/' + self.reviewSessionId + "/release-session"),
+                data: ko.toJSON(self.reviewSession),
+                contentType: 'application/json',
+                dataType: 'JSON',
+                success: function () {
+                    alert('Your session has been released.');
+                    self.processingViewModel.turnOffProcessing();
+                    window.location = "Home.html";
+                },
+            });
+        }
     };
 
     self.save = function () {

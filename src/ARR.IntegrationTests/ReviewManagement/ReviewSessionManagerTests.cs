@@ -155,11 +155,12 @@ namespace ARR.IntegrationTests.ReviewManagement
             var container = Setup();
             var session = NewReviewSession();
             session.SessionStatus = SessionStatusType.Created;
+            session.Reviewer = "somebody";
 
             using (var lifetime = container.BeginLifetimeScope())
             {
                 var sessionRepo = lifetime.Resolve<AbstractRepository<ReviewSession>>();
-
+                
                 // Create a new session to work with
                 sessionRepo.Save(session);
             }

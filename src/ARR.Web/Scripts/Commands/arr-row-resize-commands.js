@@ -13,7 +13,7 @@ function sizeContent() {
 }
 
 function setScrollDisplay(id) {
-    $("#ScrollArea").css("height", calculateScrollHeight() + "px");
+    $(id).css("height", calculateScrollHeight() + "px");
     var element = $(id);
     if (element[0] !== undefined) {
         element.tinyscrollbar();

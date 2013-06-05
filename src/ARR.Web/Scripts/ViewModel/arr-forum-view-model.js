@@ -1,5 +1,5 @@
 ﻿// Here's my data model
-var ForumViewModel = function (reviewSessionId) {
+var ForumViewModel = function (reviewSessionId, message) {
     var self = this;
 
     setupErrorHandling(self);
@@ -34,9 +34,12 @@ var ForumViewModel = function (reviewSessionId) {
                     self.questionList.push(new QuestionFeedback(self.reviewSession.Questions()[k]));
                 }
                 self.processingViewModel.turnOffProcessing();
+                
+                if (message) {
+                    displayMessage(message, false);
+                }
+
                 sizeContent();
-                setScrollDisplay("Left");
-                setScrollDisplay("Right");
             });
         }
     };
@@ -69,8 +72,8 @@ var AddFeedbackViewModel = function(forumViewModel) {
             success: function () {
                 // Clear out the feedback text box that we just added
                 selectedQuestion.NewFeedback('');
-                setScrollDisplay("Left");
                 self.forumViewModel.processingViewModel.turnOffProcessing();
+                setScrollDisplay("#ScrollArea");
                 displayMessage('Feedback Saved');
             }
         });
@@ -112,4 +115,5 @@ var ArchiveSessionViewModel = function (forumViewModel) {
 
 
 var reviewSessionId = $.url(window.location).param('reviewSession');
-var forumModel = new ForumViewModel(reviewSessionId);
+var message = $.url(window.location).param('message');
+var forumModel = new ForumViewModel(reviewSessionId, message);

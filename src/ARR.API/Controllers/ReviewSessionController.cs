@@ -70,7 +70,7 @@ namespace ARR.API.Controllers
                         break;
                 }
 
-                response = GetResponse(session.Id.ToNullSafeString());
+                response = GetResponse(id.ToNullSafeString());
             }
             catch (Exception e)
             {

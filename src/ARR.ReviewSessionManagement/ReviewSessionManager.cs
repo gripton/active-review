@@ -98,8 +98,8 @@ namespace ARR.ReviewSessionManagement
 
             if (session == null) return;
 
-            if(session.SessionStatus == SessionStatusType.Released)
-                throw new InvalidOperationException();
+            if(session.SessionStatus >= SessionStatusType.Released)
+                throw new InvalidOperationException("Session can't be deleted after it has been released.");
 
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();
@@ -119,7 +119,7 @@ namespace ARR.ReviewSessionManagement
         public void Edit(ReviewSession session, string current)
         {
             if (session.SessionStatus != SessionStatusType.Created)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Session can't be edited after it has been released.");
 
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();
@@ -143,9 +143,18 @@ namespace ARR.ReviewSessionManagement
 
             if (session == null)
                 throw new SessionNotFoundException();
-           
+
+            if (session.Requirements == null || session.Requirements.Count == 0)
+                throw new InvalidOperationException("Session being released must have at least one requirement.");
+
+            if (session.Questions != null && session.Questions.Count == 0)
+                throw new InvalidOperationException("Session being released must have at least one question");
+
+            if (session.Reviewer == null)
+                throw new InvalidOperationException("Session cannot be released without a reviewer assigned.");
+
             if (session.SessionStatus != SessionStatusType.Created)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Session has already been released.");
             
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();
@@ -222,7 +231,7 @@ namespace ARR.ReviewSessionManagement
                 throw new AuthorizationException();
 
             if (!(session.SessionStatus == SessionStatusType.Released || session.SessionStatus == SessionStatusType.Completed))
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("User can only provide feedback when the session is in a released or completed state.");
 
             session.Questions = questions;
             _sessionRepository.Patch(session, ReviewSession.SaveQuestionnairePatch);
@@ -244,7 +253,7 @@ namespace ARR.ReviewSessionManagement
                 throw new SessionNotFoundException();
 
             if (session.SessionStatus != SessionStatusType.Completed)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Questionnaire for the session has not been completed by the reviewer.");
 
             if (session.Creator.ToLower() != current.ToLower())
                 throw new AuthorizationException();
@@ -253,7 +262,6 @@ namespace ARR.ReviewSessionManagement
             session.LastModified = DateTime.UtcNow;
             _sessionRepository.Save(session);
         }
-
 
         private void SaveQuestionnaire(int sessionId, List<Question> questions, string current, SessionStatusType sessionStatus)
         {
@@ -266,7 +274,7 @@ namespace ARR.ReviewSessionManagement
                 throw new AuthorizationException();
 
             if (session.SessionStatus != SessionStatusType.Released)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Questionnare can only be saved when the session is in the released state.");
 
             
             session.Questions = questions;

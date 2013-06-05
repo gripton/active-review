@@ -107,7 +107,7 @@ var QuestionNavigationViewModel = function(questionViewModel) {
                     dataType: 'JSON',
                     success: function () {
                         self.questionViewModel.processingViewModel.turnOffProcessing();
-                        window.location = "Forum.html?reviewSession=" + reviewSessionId;
+                        window.location = "Forum.html?reviewSession=" + reviewSessionId + "&message=Review Session questionnaire has been completed.";
                     },
                 });
             }

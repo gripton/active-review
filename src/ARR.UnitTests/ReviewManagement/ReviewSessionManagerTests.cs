@@ -173,6 +173,10 @@ namespace ARR.UnitTests.ReviewManagement
             // Create a new session to work with
             var session = NewReviewSession();
             session.SessionStatus = SessionStatusType.Created;
+            session.Questions.Add(new Question());
+            session.Requirements.Add(new Requirement());
+            session.Reviewer = "somebody";
+
             sessionRepo.Setup(r => r.Get(It.IsAny<int>())).Returns(session);
 
             var manager = new ReviewSessionManager(sessionRepo.Object, eventRepo.Object);
