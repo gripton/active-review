@@ -137,7 +137,7 @@ var IndexViewModel = function(message) {
     };
 
     self.getSessionToSpawn = function (selectedSession) {
-        self.processingViewModel.turnOnProcessing("Loading Session To Spawn...");
+        self.processingViewModel.turnOnProcessing("Loading Session To Clone...");
         $.getJSON(getArrApiUrl('reviewsession/' + selectedSession.ID()), function (allData) {
             ko.mapping.fromJS(allData, {}, self.spawnReviewViewModel.reviewSession);
             self.spawnReviewViewModel.spawnSetup(self.spawnReviewViewModel.reviewSession);

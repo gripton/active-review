@@ -61,7 +61,7 @@ legend {
                     <th style="width:12%;text-align:center;">Edit</th>
                     <th style="width:12%;text-align:center;">Preview</th>
                     <th style="width:12%;text-align:center;">Assign Reviewer</th>
-                    <th style="width:12%;text-align:center;">Spawn</th>
+                    <th style="width:12%;text-align:center;">Clone</th>
                     <th style="width:12%;text-align:center;">Delete</th>
                 </tr>
             </thead>
@@ -190,7 +190,7 @@ legend {
                     <tr>
                         <th style="width:76%;">Session Title</th>
                         <th style="width:12%;text-align:center;">Summary</th>
-                        <th style="width:12%;text-align:center;">Spawn</th>
+                        <th style="width:12%;text-align:center;">Clone</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: myArchivedSessionsList">
@@ -212,7 +212,7 @@ legend {
             <div id="spawnDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true" data-bind="with: spawnReviewViewModel.spawnInstance">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="H3">Spawn Review<span></span></h3>
+                    <h3 id="H3">Clone Review<span></span></h3>
                 </div>
                 <div class="modal-body">
                     <div class="control-group">
@@ -249,7 +249,7 @@ legend {
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
-                    <button class="btn btn-small btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: $root.spawnReviewViewModel.spawn" >Hatch</button>
+                    <button class="btn btn-small btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: $root.spawnReviewViewModel.spawn" >Clone</button>
                 </div>
             </div>
 
