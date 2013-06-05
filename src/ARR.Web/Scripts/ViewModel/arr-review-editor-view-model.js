@@ -38,9 +38,8 @@ var ReviewEditorViewModel = function (reviewSessionId) {
                 contentType: 'application/json',
                 dataType: 'JSON',
                 success: function () {
-                    alert('Your session has been released.');
                     self.processingViewModel.turnOffProcessing();
-                    window.location = "Home.html";
+                    window.location = "Home.html?message=Your session has been released.";
                 },
             });
         }

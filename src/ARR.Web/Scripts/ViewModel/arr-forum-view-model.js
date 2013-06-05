@@ -106,8 +106,7 @@ var ArchiveSessionViewModel = function (forumViewModel) {
             type: "put",
             contentType: "application/json",
             success: function () {
-                alert("Your session has been archived.");
-                window.location = "Home.html";
+                window.location = "Home.html?message=Your session has been archived.";
             }
         });
     };

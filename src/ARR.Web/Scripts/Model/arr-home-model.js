@@ -53,7 +53,7 @@ function deleteSession(sessionId) {
     });
 }
 
-function getSessions(self) {
+function getSessions(self, message) {
     self.processingViewModel.turnOnProcessing("Loading...");
     $.getJSON(getArrApiUrl('reviewindex'), function (allData) {
         var mappedSessions = $.map(allData, function (item) {
@@ -76,12 +76,16 @@ function getSessions(self) {
                 self.myArchivedSessionsList.push(new Session(item));
             }
             self.processingViewModel.turnOffProcessing();
+            
+            if (message) {
+                displayMessage(message, false);
+            }
         });
     });
 }
 
 //View Model for main index page
-var IndexViewModel = function() {
+var IndexViewModel = function(message) {
     var self = this;
     setupErrorHandling(self);
     self.selectedSession = ko.observable();
@@ -97,7 +101,7 @@ var IndexViewModel = function() {
     self.processingViewModel = new ProcessingViewModel();
 
 
-    getSessions(self);
+    getSessions(self, message);
 
     self.createNewSession = function () {
         self.processingViewModel.turnOnProcessing("Creating New Session");
@@ -166,5 +170,7 @@ var IndexViewModel = function() {
     };
 };
 
-var indexModel = new IndexViewModel();
+var message = $.url(window.location).param('message');
+
+var indexModel = new IndexViewModel(message);
 ko.applyBindings(indexModel);
