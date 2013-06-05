@@ -5,6 +5,20 @@ namespace ARR.UnitTests
 {
     public class BaseUnitTest
     {
+        public Account NewAccount()
+        {
+            var account = new Account
+                {
+                    Username = "testUser",
+                    EmailAddress = "test@test.com",
+                    AreaOfExpertise = "All Of them",
+                    ScreenName = "Tester Testington",
+                    Password = "1234Test"
+                };
+
+            return account;
+        }
+
         public ReviewSession NewReviewSession()
         {
             var session = new ReviewSession();

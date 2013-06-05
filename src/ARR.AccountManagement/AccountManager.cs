@@ -4,7 +4,6 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using ARR.AccountManagement.Exceptions;
 using ARR.Data.Entities;
-using ARR.Notifications;
 using ARR.Repository;
 
 using PracticalCode.WebSecurity.Infrastructure.Data;
