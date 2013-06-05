@@ -33,6 +33,10 @@
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="PracticalCode.WebSecurity.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\PracticalCode.WebSecurity.Infrastructure.1.0.0-alpha\lib\net45\PracticalCode.WebSecurity.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Raven.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\RavenDB.Client.2.0.2288-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
@@ -54,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountManagement\AccountManagerTests.cs" />
     <Compile Include="BaseUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReviewManagement\ReviewSessionManagerTests.cs" />
