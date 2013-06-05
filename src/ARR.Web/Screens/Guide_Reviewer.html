@@ -41,12 +41,12 @@
    <section style="margin: 20px">
 
         <fieldset class="well" style="width: 80%; height: 100%; margin-left: 20px">
-            <legend class="the-legend">Selecting Requirements for an Active Review Session...</legend>
+            <legend class="the-legend">Selecting Reviewer for an Active Review Session...</legend>
 
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#home" data-toggle="tab">Overview</a></li>
-                <li><a href="#details" data-toggle="tab">Details</a></li>
-                <li><a href="#moreDetails" data-toggle="tab">More</a></li>
+                <li><a href="#usingAssign" data-toggle="tab"><em>Using assign reviewer</em></a></li>
+                <li><a href="#selectRev" data-toggle="tab"><em>How to select a reviewer</em></a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active in" id="home">
@@ -57,15 +57,28 @@
                     </div>
 
                 </div>
-                <div class="tab-pane fade" id="details">
-                    <h4>Assign session reviewer dialog- navigation</h4>
-                    <br />
+                <div class="tab-pane fade" id="usingAssign">
+                    <h4>What can you do in the assign reviewer dialog?</h4>
                     <p>
-                        The assign session reviewer dialog is where you choose a specific reviewer for the 
-                        session that you are creating.
+                        <b>Assign session reviewer from a list of <abbr title="Active requirements review">ARR</abbr> users</b>
                     </p>
-                    <br />
-                    <ul>
+                    <hr />
+                    <blockquote>
+                        <b>Reviewer name (pulldown)-</b>  assigns a specific reviewer to the session. This 
+                            pulldown includes the names of all reviewers with user accounts for the ARR tool 
+                            as well as their domain areas of their expertise.Scroll through the list to find 
+                            the right reviewer for this session.
+                    </blockquote>
+                    <blockquote>
+                        <b>Assign (button)-</b>  assigns the reviewer to the session and closes the dialog. 
+                            You can change the reviewer at any point before the session is released to him/her. 
+                            After release, the session creator cannot change the reviewer.
+                    </blockquote>
+                    <blockquote>
+                        <b>Cancel (button)-</b>  Selecting this cancels the selection of the reviewer.  
+                            If you had previously selected a review, cancel will revert to that choice.
+                    </blockquote>
+                    <!-- <ul>>
                         <li>
                             <b>Reviewer name (pulldown)-</b>  assigns a specific reviewer to the session. This 
                             pulldown includes the names of all reviewers with user accounts for the ARR tool 
@@ -81,15 +94,32 @@
                             <b>Cancel (button)-</b>  Selecting this cancels the selection of the reviewer.  
                             If you had previously selected a review, cancel will revert to that choice.
                         </li>
-                    </ul>
-                    <hr />
+                    </ul> -->
                 </div>
-                <div class="tab-pane fade" id="moreDetails">
-                    <h4>Notes on reviewer selection</h4>
+                <div class="tab-pane fade" id="selectRev">
+                    <h4>Picking the best reviewer for the session</h4>
                     <p>
                         <b>Determine the desired skills based on the objective/goal of the session</b>
                     </p>
-                    <ul>
+                    <blockquote>
+                        <p>
+                            <small>List skills needed to expose the errors or inconsistencies the session is seeking 
+                            to uncover</small>
+                        </p>
+                        <p>
+                            <small>Discuss perspectives needed to evaluate qualities of requirements that the session is 
+                            suppose to validate</small>
+                        </p>
+                        <p>
+                            <small>Determine the desired expertise most useful for the review session</small>
+                        </p>
+                        <p>
+                            <small>Examples of skills are experience with or knowledge of the application or domain, 
+                            experience with eliciting or specifying requirements, a knack for determining inconsistencies 
+                            or constructively critiquing qualities of documents</small>
+                        </p>
+                    </blockquote>
+                    <!-- <ul>
                         <li>
                             List skills needed to expose the errors or inconsistencies the session is seeking 
                             to uncover
@@ -106,11 +136,27 @@
                             experience with eliciting or specifying requirements, a knack for determining inconsistencies 
                             or constructively critiquing qualities of documents
                         </li>
-                    </ul>
+                    </ul> -->
                     <p>
                         <b>Evaluate characteristics of individual reviewers needed the session goals</b>
                     </p>
-                    <ul>
+                    <blockquote>
+                        <p>
+                            <small>Determine the class of reviewers appropriate to the goals of the session- (for example, 
+                            potential users, domain specialists, process and method experts.)</small>
+                        </p>
+                        <p>
+                            <small>Weigh the relative importance of the characteristics the reviewers- this will vary based 
+                            on objective- (for example we would require less depth on from users reviewing high level 
+                            domain requirements than developers or architects reviewing the technical sufficiency in a 
+                            requirements session.)</small>
+                        </p>
+                        <p>
+                            <small>Survey the available skills and resources for the review session- who can do the reviews- 
+                            what are their specific strengths</small>
+                        </p>
+                    </blockquote>
+                    <!-- <ul>
                         <li>
                             Determine the class of reviewers appropriate to the goals of the session- (for example, 
                             potential users, domain specialists, process and method experts.)
@@ -125,11 +171,25 @@
                             Survey the available skills and resources for the review session- who can do the reviews- 
                             what are their specific strengths
                         </li>
-                    </ul>
+                    </ul> -->
                     <p>
                         <b>Match reviewer to session</b>
                     </p>
-                    <ul>
+                    <blockquote>
+                        <p>
+                            <small>Use best judgment to determine where needs of the review line up with the skills the reviewer</small>
+                        </p>
+                        <p>
+                            <small>Consider tradeoffs and alternatives if the ideal reviewers are not available- adjust the goal or scope of the review- seek help outside the group of potential reviewers</small>
+                        </p>
+                        <p>
+                            <small>Assure that the skills of reviewers used on this session are put to the best use since each reviewer should be used for a limited number of review sessions</small>
+                        </p>
+                        <p>
+                            <small>Confirm that the reviewer should be able to cover the range (depth and breadth) of the review session topic with good chance of success</small>
+                        </p>
+                    </blockquote>
+                    <!-- <ul>
                         <li>
                             Use best judgment to determine where needs of the review line up with the skills the reviewer
                         </li>
@@ -142,11 +202,25 @@
                         <li>
                             Confirm that the reviewer should be able to cover the range (depth and breadth) of the review session topic with good chance of success
                         </li>
-                    </ul>
+                    </ul> -->
                     <p>
                         <b>Gain consent of reviewers based on:</b>
                     </p>
-                    <ul>
+                    <blockquote>
+                        <p>
+                            <small>Time resources- assure that reviewers have enough time during the period for 
+                            which the session is scheduled</small>
+                        </p>
+                        <p>
+                            <small>Interest- assess whether the reviewers are motivated to participate in the review session</small>
+                        </p>
+                        <p>
+                            <small>Support from management- solicit support from the reviewer’s managers and others who control 
+                            resources to assure that the review effort is not constrained- without direct support of the 
+                            process it will have difficulty meeting objectives</small>
+                        </p>
+                    </blockquote>
+                    <!-- <ul>
                         <li>
                             Time resources- assure that reviewers have enough time during the period for 
                             which the session is scheduled
@@ -159,10 +233,24 @@
                             resources to assure that the review effort is not constrained- without direct support of the 
                             process it will have difficulty meeting objectives
                         </li>
-                    </ul>
+                    </ul> -->
                     <hr />
-                    <h4>Characteristics used to classify reviewers</h4>
-                    <ul>
+                    <h4>Characteristics of reviewers</h4>
+                    <blockquote>
+                        <p>
+                            <small>Expertise- skills or areas of concentration that the reviewer has noted in his/her profile- what the reviewer has noted he/she likes to do- types include (see below)</small>
+                        </p>
+                        <p>
+                            <small>Experience- inventory of reviews the reviewer has completed in the past- what the reviewer has proven he/she is good at</small>
+                        </p>
+                        <p>
+                            <small>Responsibility- level at which the reviewer can provide well thought out answers to review questions- in the active review process answers are positive assertions necessitating thought not discovering more obvious errors through cursory reading</small>
+                        </p>
+                        <p>
+                           <small>Motivation- Understanding that the reward for full participation in the review session is to gain a better understanding of the project and to improve the viability of the down stream products like the software that will be created- a professional reviewer will accept the chance to learn about and improve the work of their peers</small>
+                        </p>
+                    </blockquote>
+                    <!-- <ul>
                         <li>
                             Expertise- skills or areas of concentration that the reviewer has noted in his/her profile- what the reviewer has noted he/she likes to do- types include (see below)
                         </li>
@@ -175,10 +263,24 @@
                         <li>
                            Motivation- Understanding that the reward for full participation in the review session is to gain a better understanding of the project and to improve the viability of the down stream products like the software that will be created- a professional reviewer will accept the chance to learn about and improve the work of their peers
                         </li>
-                    </ul>
+                    </ul> -->
                     <hr />
                     <h4>Types of reviewer expertise</h4>
-                    <ul>
+                    <blockquote>
+                        <p>
+                            <small>Reviews determining if business goals and customer needs are appropriate require domain expertise, reviews to determine that requirements are unambiguous enough to develop the right software product require technical expertise, reviews that evaluate certain qualities inherent in the specifications like organization require process or methodology expertise</small>
+                        </p>
+                        <p>
+                            <small>Domain expertise- knowledge or experience in the application domain- can determine if business goals and customer needs are adequately covered- can be users, customer, business analysts, systems engineers</small>
+                        </p>
+                        <p>
+                            <small>Technical expertise- knowledge or experience in the design and construction of software- can determine if requirements are sufficient for downstream activities and if requirements under or over constrain the project- can be analysts, experience developers (from other teams), software architects and designers</small>
+                        </p>
+                        <p>
+                            <small>Process expertise- knowledge of good requirements elicitation, specification and analysis practices- can determine if requirements are written well and are fit for use- can be business analysts, experienced team leaders, process or quality improvement people</small>
+                        </p>
+                    </blockquote>
+                    <!-- <ul>
                         <li>
                             Reviews determining if business goals and customer needs are appropriate require domain expertise, reviews to determine that requirements are unambiguous enough to develop the right software product require technical expertise, reviews that evaluate certain qualities inherent in the specifications like organization require process or methodology expertise
                         </li>
@@ -191,7 +293,7 @@
                         <li>
                             Process expertise- knowledge of good requirements elicitation, specification and analysis practices- can determine if requirements are written well and are fit for use- can be business analysts, experienced team leaders, process or quality improvement people
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
 
