@@ -57,30 +57,30 @@ legend {
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width:40%">Session Title</th>
-                    <th style="width:12%">Edit</th>
-                    <th style="width:12%">Preview</th>
-                    <th style="width:12%">Assign Reviewer</th>
-                    <th style="width:12%">Spawn</th>
-                    <th style="width:12%">Delete</th>
+                    <th style="width:40%;text-align:center;">Session Title</th>
+                    <th style="width:12%;text-align:center;">Edit</th>
+                    <th style="width:12%;text-align:center;">Preview</th>
+                    <th style="width:12%;text-align:center;">Assign Reviewer</th>
+                    <th style="width:12%;text-align:center;">Spawn</th>
+                    <th style="width:12%;text-align:center;">Delete</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: myCreatedSessionsList">
                 <tr class="myCreatedSessions">
                     <td data-bind="text: title"></td>
-                    <td>
+                    <td style="text-align:center;">
                         <a data-bind="attr: {href: editorUrl}"><i class="icon-pencil" title="Edit this review session"></i></a>
                     </td>
-                    <td>
+                    <td style="text-align:center;">
                         <a data-bind="attr: {href: previewUrl}"><i class="icon-eye-open" title="Preview this review session"></i></a>
                     </td>
-                    <td data-bind="click: $root.getReviewers">
+                    <td style="text-align:center;" data-bind="click: $root.getReviewers">
                         <a href="#reviewerModal" role="button" data-toggle="modal" data-bind="click: $root.setSelectedSession"><i class="icon-user" title="Assign a reviewer for this session"></i></a>
                     </td>
-                    <td>
+                    <td style="text-align:center;">
                         <a href="#spawnDialog" data-toggle="modal" data-bind="    click: $root.getSessionToSpawn"><i class="icon-fire" title="Make a copy of this review session"></i></a>
                     </td>
-                    <td>
+                    <td style="text-align:center;">
                         <a href="#deleteModal" role="button" data-toggle="modal" data-bind="click: $root.setSelectedSession"><i class="icon-remove" title="Delete this session"></i></a>
                     </td>
                 </tr>
@@ -135,21 +135,21 @@ legend {
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width:76%">Session Title</th>
-                    <th style="width:12%">Questionnaire</th>
-                    <th style="width:12%">Forum</th>
+                    <th style="width:76%;text-align:center;">Session Title</th>
+                    <th style="width:12%;text-align:center;">Questionnaire</th>
+                    <th style="width:12%;text-align:center;">Forum</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: myActiveSessionsListReviewer">
                 <tr>
                     <td data-bind="text: title"></td>
-                    <td> 
+                    <td style="text-align:center;"> 
                         <span class="icon-lock" title="Session marked as complete.  No edits allowed." data-bind="visible: isLocked" ></span>
                         <a data-bind="attr: {href: questionnaireUrl}">
                             <i class="icon-edit" title="Answer review session questions" data-bind="visible: allowQuestionnaire"></i>
                         </a>
                     </td>
-                    <td>
+                    <td style="text-align:center;">
                         <a data-bind="attr: {href: forumUrl}"><i class="icon-comment" title="Discuss this review session"></i></a>
                     </td>
                 </tr>
@@ -163,18 +163,18 @@ legend {
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width:76%">Session Title</th>
-                    <th style="width:12%">Forum</th>
-                    <th style="width:12%">Spawn</th>
+                    <th style="width:76%;text-align:center;">Session Title</th>
+                    <th style="width:12%;text-align:center;">Forum</th>
+                    <th style="width:12%;text-align:center;">Spawn</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: myActiveSessionsListCreator">
                 <tr>
                     <td data-bind="text: title"></td>
-                    <td>
+                    <td style="text-align:center;">
                         <a data-bind="attr: {href: forumUrl}"><i class="icon-comment" title="Discuss this review session"></i></a>
                     </td>
-                    <td>
+                    <td style="text-align:center;">
                         <a href="#spawnDialog" data-toggle="modal" data-bind="    click: $root.getSessionToSpawn"><i class="icon-fire" title="Make a copy of this review session"></i></a>
                     </td>
                 </tr>
@@ -188,18 +188,18 @@ legend {
             <table class="table">
                 <thead>
                     <tr>
-                        <th style="width:76%">Session Title</th>
-                        <th style="width:12%">Summary</th>
-                        <th style="width:12%">Spawn</th>
+                        <th style="width:76%;text-align:center;">Session Title</th>
+                        <th style="width:12%;text-align:center;">Summary</th>
+                        <th style="width:12%;text-align:center;">Spawn</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: myArchivedSessionsList">
                     <tr>
                         <td data-bind="text: title"></td>
-                        <td>
+                        <td style="text-align:center;">
                             <a data-bind="attr: {href: summaryUrl}"><i class="icon-file" title="View a read-only version of this review session"></i></a>
                         </td>
-                        <td>
+                        <td style="text-align:center;">
                             <a href="#spawnDialog" data-toggle="modal" data-bind="    click: $root.getSessionToSpawn"><i class="icon-fire" title="Make a copy of this review session"></i></a>
                         </td>
                     </tr>
