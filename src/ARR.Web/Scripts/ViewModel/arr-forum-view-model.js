@@ -35,8 +35,6 @@ var ForumViewModel = function (reviewSessionId) {
                 }
                 self.processingViewModel.turnOffProcessing();
                 sizeContent();
-                setScrollDisplay("Left");
-                setScrollDisplay("Right");
             });
         }
     };
@@ -69,8 +67,8 @@ var AddFeedbackViewModel = function(forumViewModel) {
             success: function () {
                 // Clear out the feedback text box that we just added
                 selectedQuestion.NewFeedback('');
-                setScrollDisplay("Left");
                 self.forumViewModel.processingViewModel.turnOffProcessing();
+                setScrollDisplay("#ScrollArea");
                 displayMessage('Feedback Saved');
             }
         });
