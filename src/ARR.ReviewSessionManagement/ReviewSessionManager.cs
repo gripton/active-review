@@ -98,7 +98,7 @@ namespace ARR.ReviewSessionManagement
 
             if (session == null) return;
 
-            if(session.SessionStatus == SessionStatusType.Released)
+            if(session.SessionStatus >= SessionStatusType.Released)
                 throw new InvalidOperationException();
 
             if (session.Creator.ToLower() != current.ToLower())
