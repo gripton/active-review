@@ -50,6 +50,7 @@ namespace ARR.API.Infrastructure
                 {
                     Url = ConfigurationManager.AppSettings["RavenUrl"],
                     ApiKey = ConfigurationManager.AppSettings["RavenKey"]
+                    
                 })
                 .As<IDocumentStore>()
                 .SingleInstance()
@@ -58,8 +59,8 @@ namespace ARR.API.Infrastructure
             builder
                 .Register(c => c.Resolve<IDocumentStore>().OpenSession())
                 .As<IDocumentSession>()
-                .InstancePerApiRequest();               
-                
+                .InstancePerApiRequest()
+                .OnActivating(c => c.Instance.Advanced.DocumentStore.JsonRequestFactory.DisableAllCaching());
         }
     }
 
