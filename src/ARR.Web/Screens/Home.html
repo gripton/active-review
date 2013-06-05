@@ -78,7 +78,7 @@ legend {
                         <a href="#reviewerModal" role="button" data-toggle="modal" data-bind="click: $root.setSelectedSession"><i class="icon-user" title="Assign a reviewer for this session"></i></a>
                     </td>
                     <td>
-                        <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire" title="Create a copy of this review session"></i></a>
+                        <a href="#spawnDialog" data-toggle="modal" data-bind="    click: $root.getSessionToSpawn"><i class="icon-fire" title="Make a copy of this review session"></i></a>
                     </td>
                     <td>
                         <a href="#deleteModal" role="button" data-toggle="modal" data-bind="click: $root.setSelectedSession"><i class="icon-remove" title="Delete this session"></i></a>
@@ -175,7 +175,7 @@ legend {
                         <a data-bind="attr: {href: forumUrl}"><i class="icon-comment" title="Discuss this review session"></i></a>
                     </td>
                     <td>
-                        <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire" title="Make a copy of this review session"></i></a>
+                        <a href="#spawnDialog" data-toggle="modal" data-bind="    click: $root.getSessionToSpawn"><i class="icon-fire" title="Make a copy of this review session"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -200,28 +200,16 @@ legend {
                             <a data-bind="attr: {href: summaryUrl}"><i class="icon-file" title="View a read-only version of this review session"></i></a>
                         </td>
                         <td>
-                            <a data-bind="attr: {href: spawnUrl}"><i class="icon-fire" title="Make a copy of this review session"></i></a>
+                            <a href="#spawnDialog" data-toggle="modal" data-bind="    click: $root.getSessionToSpawn"><i class="icon-fire" title="Make a copy of this review session"></i></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-        <!--<div class="pagination">
-            <ul>
-                <li><a href="#">Prev</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
-        </div>-->
-
     </fieldset>
  </section>
 
     <!-- Spawn Session Modal -->
-            <!--<div id="spawnDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true" data-bind="with: spawnReviewViewModel.spawnInstance">
+            <div id="spawnDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true" data-bind="with: spawnReviewViewModel.spawnInstance">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h3 id="H3">Spawn Review<span></span></h3>
@@ -263,7 +251,7 @@ legend {
                     <button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
                     <button class="btn btn-small btn-primary" aria-hidden="true" data-dismiss="modal" data-bind="click: $root.spawnReviewViewModel.spawn" >Hatch</button>
                 </div>
-            </div>-->
+            </div>
 
         <div id="Loader" data-bind="loadingWhen: processingViewModel.isProcessing">
             <div id="horizon">
@@ -334,6 +322,8 @@ legend {
     <script type="text/javascript" src="../Scripts/Commands/arr-error-handling.js"></script>
     <script type="text/javascript" src="../Scripts/Commands/arr-loading-commands.js"></script>
     <script type="text/javascript" src="../Scripts/arr-urls.aspx"></script>
+    <script type="text/javascript" src="../Scripts/Model/arr-requirements-model.js"></script>
+    <script type="text/javascript" src="../Scripts/ViewModel/arr-spawn-view-model.js"></script>
     <script type="text/javascript" src="../Scripts/ViewModel/arr-processing-view-model.js"></script>
     <script type="text/javascript" src="../Scripts/Model/arr-home-model.js"></script>
     <!--<script type="text/javascript" src="../Scripts/ViewModel/arr-spawn-view-model.js"></script>-->

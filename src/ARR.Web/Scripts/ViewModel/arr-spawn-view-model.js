@@ -1,5 +1,5 @@
 ﻿// Class that handles the bindings for the Spawn functionality
-function SpawnReviewViewModel(reviewSessionModel) {
+function SpawnReviewViewModel() {
     var self = this;
     self.reviewSession = new ReviewSession();
 
@@ -13,14 +13,16 @@ function SpawnReviewViewModel(reviewSessionModel) {
 
         spawnedReview.Title(reviewSession.Title() + " clone");
 
-        for (var i = 0; i < reviewSession.Requirements().length; i++) {
-            spawnedReview.addRequirement(reviewSession.Requirements()[i]);
+        if (reviewSession.Requirements()) {
+            for (var i = 0; i < reviewSession.Requirements().length; i++) {
+                spawnedReview.addRequirement(reviewSession.Requirements()[i]);
+            }
         }
-
-        for (var k = 0; k < reviewSession.Questions().length; k++) {
-            spawnedReview.addQuestion(reviewSession.Questions()[k]);
+        if (reviewSession.Questions()) {
+            for (var k = 0; k < reviewSession.Questions().length; k++) {
+                spawnedReview.addQuestion(reviewSession.Questions()[k]);
+            }
         }
-
         self.spawnInstance(spawnedReview);
     };
 
@@ -46,9 +48,14 @@ function SpawnReviewViewModel(reviewSessionModel) {
             data: ko.toJSON(session),
             contentType: 'application/json',
             dataType: 'JSON',
-            success: function () {
-                alert('success!');
+            success: function (response) {
+                self.spawnCallBack(response);
+                $('body').scrollTop(0);
+                displayMessage("Session was sucessfully spawned", false);
             },
         });
+    };
+
+    self.spawnCallBack = function (response) {
     };
 }

@@ -88,6 +88,18 @@ function getSessions(self, message) {
 var IndexViewModel = function(message) {
     var self = this;
     setupErrorHandling(self);
+    
+    self.spawnReviewViewModel = new SpawnReviewViewModel();
+
+    self.spawnCallBack = function (response) {
+        console.log(self.spawnReviewViewModel);
+        self.myCreatedSessionsList.unshift(new Session({ Id: response, Title: self.spawnReviewViewModel.spawnInstance().Title() }));
+        $("tr.myCreatedSessions:first").attr('style', 'background-color: #FAFAB1');
+    };
+
+    self.spawnReviewViewModel.spawnCallBack = self.spawnCallBack;
+
+
     self.selectedSession = ko.observable();
 
     self.reviewers = ko.observableArray([]);
@@ -121,6 +133,15 @@ var IndexViewModel = function(message) {
                 self.processingViewModel.turnOffProcessing();
                 displayMessage("New session created", false);
             },
+        });
+    };
+
+    self.getSessionToSpawn = function (selectedSession) {
+        self.processingViewModel.turnOnProcessing("Loading Session To Spawn...");
+        $.getJSON(getArrApiUrl('reviewsession/' + selectedSession.ID()), function (allData) {
+            ko.mapping.fromJS(allData, {}, self.spawnReviewViewModel.reviewSession);
+            self.spawnReviewViewModel.spawnSetup(self.spawnReviewViewModel.reviewSession);
+            self.processingViewModel.turnOffProcessing();
         });
     };
 
