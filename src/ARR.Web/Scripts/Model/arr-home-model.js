@@ -54,6 +54,7 @@ function deleteSession(sessionId) {
 }
 
 function getSessions(self) {
+    self.processingViewModel.turnOnProcessing("Loading...");
     $.getJSON(getArrApiUrl('reviewindex'), function (allData) {
         var mappedSessions = $.map(allData, function (item) {
             var type = item.SessionStatus;
@@ -74,12 +75,13 @@ function getSessions(self) {
             if (type == SessionStatus.ARCHIVED && (currentUser == item.Reviewer || currentUser == item.Creator)) {
                 self.myArchivedSessionsList.push(new Session(item));
             }
+            self.processingViewModel.turnOffProcessing();
         });
     });
 }
 
 //View Model for main index page
-var IndexViewModel = function () {
+var IndexViewModel = function() {
     var self = this;
     setupErrorHandling(self);
     self.selectedSession = ko.observable();
@@ -92,9 +94,13 @@ var IndexViewModel = function () {
     self.myActiveSessionsListReviewer = ko.observableArray([]);
     self.myArchivedSessionsList = ko.observableArray([]);
 
+    self.processingViewModel = new ProcessingViewModel();
+
+
     getSessions(self);
 
     self.createNewSession = function () {
+        self.processingViewModel.turnOnProcessing("Creating New Session");
         var reviewSession = new IndexViewModel();
         reviewSession.Title = "Untitled Session";
         reviewSession.Creator = currentUser;
@@ -105,41 +111,42 @@ var IndexViewModel = function () {
             data: ko.toJSON(reviewSession),
             contentType: 'application/json',
             dataType: 'JSON',
-            success: function (response) {
+            success: function(response) {
                 self.myCreatedSessionsList.unshift(new Session({ Id: response, Title: reviewSession.Title }));
                 $("tr.myCreatedSessions:first").attr('style', 'background-color: #FAFAB1');
+                self.processingViewModel.turnOffProcessing();
                 displayMessage("New session created", false);
             },
         });
     };
 
-    self.setSelectedSession = function (selectedSession) {
+    self.setSelectedSession = function(selectedSession) {
         self.selectedSession(selectedSession);
-    }
+    };
 
-    self.removeSession = function (selectedSession) {
+    self.removeSession = function(selectedSession) {
         var sessionId = selectedSession.ID();
         deleteSession(sessionId);
         self.myCreatedSessionsList.remove(selectedSession);
-    }
+    };
 
-    self.getReviewers = function (selectedSession) {
-        self.reviewers.removeAll();        
+    self.getReviewers = function(selectedSession) {
+        self.reviewers.removeAll();
 
-        $.getJSON(getArrApiUrl('account'), function (data) {
-            var mappedReviewers = $.map(data, function (reviewer) {
+        $.getJSON(getArrApiUrl('account'), function(data) {
+            $.map(data, function(reviewer) {
                 self.reviewers.push(new Reviewer(reviewer.ScreenName, reviewer.Username, reviewer.AreaOfExpertise));
             });
 
             var assignedReviewer = selectedSession.reviewer();
-            if (assignedReviewer != null && assignedReviewer != undefined) {
-                self.selectedReviewer(assignedReviewer);
-            }
+
+            self.selectedReviewer(assignedReviewer);
         });
-    }
+    };
 
     //assign-reviewer
     self.assignReviewer = function () {
+        self.processingViewModel.turnOnProcessing("Assigning User...");
         var sessionData = this;
         sessionData.Id = this.selectedSession().ID();
         sessionData.Reviewer = this.selectedReviewer();
@@ -150,13 +157,14 @@ var IndexViewModel = function () {
             data: ko.toJSON(sessionData),
             contentType: 'application/json',
             dataType: 'JSON',
-            success: function () {
+            success: function() {
                 displayMessage("Reviewer assigned", false);
                 self.selectedSession().reviewer(sessionData.Reviewer);
+                self.turnOffProcessing();
             },
         });
-    }
-}
+    };
+};
 
 var indexModel = new IndexViewModel();
 ko.applyBindings(indexModel);
