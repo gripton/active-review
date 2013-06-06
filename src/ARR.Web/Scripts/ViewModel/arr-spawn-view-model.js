@@ -51,7 +51,7 @@ function SpawnReviewViewModel() {
             success: function (response) {
                 self.spawnCallBack(response);
                 $('body').scrollTop(0);
-                displayMessage("Session was sucessfully spawned", false);
+                displayMessage("Session was sucessfully cloned", false);
             },
         });
     };
