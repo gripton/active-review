@@ -185,7 +185,7 @@ var IndexViewModel = function(message) {
             success: function() {
                 displayMessage("Reviewer assigned", false);
                 self.selectedSession().reviewer(sessionData.Reviewer);
-                self.turnOffProcessing();
+                self.processingViewModel.turnOffProcessing();
             },
         });
     };
